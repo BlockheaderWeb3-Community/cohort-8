@@ -21,7 +21,7 @@ test: add coverage for revert conditions
 4. Pull Request Checklist
 - [x] Code compiles
 - [x] Tests pass
-- [x] README included
+- [x] README  
 - [x] No changes outside /submissions
 
 5. PR Review Process

@@ -1,0 +1,28 @@
+{
+  "name": "deborahcohort-8",
+  "version": "1.0.0",
+  "description": "Blockchain Development Bootcamp — Cohort 8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deborahamoni0-prog/deborahcohort-8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deborahamoni0-prog/deborahcohort-8/issues"
+  },
+  "homepage": "https://github.com/deborahamoni0-prog/deborahcohort-8#readme",
+  "dependencies": {
+    "bip32": "^5.0.0",
+    "bip39": "^3.1.0",
+    "ethereumjs-util": "^7.1.5",
+    "hdkey": "^2.1.0",
+    "keccak": "^3.0.4",
+    "tiny-secp256k1": "^2.2.4"
+  }
+}
