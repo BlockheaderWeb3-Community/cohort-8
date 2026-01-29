@@ -22,7 +22,6 @@ const TOTAL_ADDRESSES = 5;
 
 for (let index = 0; index < TOTAL_ADDRESSES; index++) {
   const derivationPath = `m/44'/60'/0'/0/${index}`;
-  
   const branch = Trunk.derivePath(derivationPath);
 
   const privKey = Buffer.from(branch.privateKey);
