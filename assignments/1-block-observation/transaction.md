@@ -1,0 +1,1 @@
+(Transaction Concept on Explorer)[https://hackmd.io/@GhXpzopCT4GRIXOIrUHk6g/SJDDJtTHbe]

@@ -1,16 +1,10 @@
 {
-  "type": "module",
   "scripts": {
-    "hash": "ts-node ./hash.ts"
+    "dev:gas": "node gasEstimator.js",
+    "dev:merkle-root": "node merkleroot.js"
   },
   "dependencies": {
-    "@types/node": "^25.0.9",
     "crypto": "^1.0.1",
-    "ethers": "^6.16.0",
-    "readline-sync": "^1.4.10",
-    "ts-node": "^10.9.2"
-  },
-  "devDependencies": {
-    "@types/readline-sync": "^1.4.8"
+    "web3": "^4.16.0"
   }
 }
