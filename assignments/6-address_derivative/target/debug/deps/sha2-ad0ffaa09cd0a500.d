@@ -1,0 +1,10 @@
+/home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/deps/sha2-ad0ffaa09cd0a500.d: /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/lib.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/consts.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha256.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha256_utils.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha512.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha512_utils.rs
+
+/home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/deps/libsha2-ad0ffaa09cd0a500.rmeta: /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/lib.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/consts.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha256.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha256_utils.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha512.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha512_utils.rs
+
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/lib.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/consts.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha256.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha256_utils.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha512.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.8.2/src/sha512_utils.rs:

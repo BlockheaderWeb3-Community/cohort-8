@@ -1,0 +1,12 @@
+/home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/deps/serde-dfd5e72c007f9646.d: /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/build/serde-e86601c092f623d6/out/private.rs
+
+/home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/deps/libserde-dfd5e72c007f9646.rmeta: /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/build/serde-e86601c092f623d6/out/private.rs
+
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/home/henry-peters/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/build/serde-e86601c092f623d6/out/private.rs:
+
+# env-dep:OUT_DIR=/home/henry-peters/Desktop/ethereum_bootcamp(cohort8)/json_rpc_methods/cohort-8/assignments/address_derivative/target/debug/build/serde-e86601c092f623d6/out
