@@ -1,19 +1,24 @@
 {
-  "name": "6-wallet-address",
+  "name": "ethereum-hd-wallet",
   "version": "1.0.0",
-  "description": "",
+  "description": "Ethereum HD wallet derivation using BIP39 and ethers.js",
   "main": "index.js",
-  "scripts": {
-    "wallet-address": "ts-node wallet-address.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "module",
-  "dependencies": {
-    "ethers": "^6.16.0"
+  "scripts": {
+    "wallet": "node ./bip32wallet.js"
   },
-  "devDependencies": {
-    "ts-node": "^10.9.2"
+  "keywords": [
+    "ethereum",
+    "ethers",
+    "bip39",
+    "hd-wallet",
+    "web3",
+    "crypto"
+  ],
+  "author": "Farouq Alhassan",
+  "license": "MIT",
+  "dependencies": {
+    "bip39": "^3.1.0",
+    "ethers": "^6.13.4"
   }
 }
