@@ -1,0 +1,175 @@
+
+At this stage, it is **just text**.
+
+---
+
+### 4. Mnemonic → Seed (SHA-256)
+
+The mnemonic phrase is hashed using **SHA-256**.
+
+This produces:
+- A 256-bit value
+- Represented as 64 hexadecimal characters
+
+This hash is treated as the **seed**.
+
+---
+
+### 5. Seed → Private Key (Keccak-256)
+
+The seed is hashed again using **Keccak-256**.
+
+The output is another 256-bit value.
+
+This value is used as the **Ethereum private key**.
+
+⚠️ Anyone with this key controls the wallet.
+
+---
+
+### 6. Private Key → Public Key (secp256k1)
+
+The private key is passed into the **secp256k1 elliptic curve**.
+
+This produces an **uncompressed public key**.
+
+- Starts with `0x04`
+- Contains X and Y coordinates
+
+---
+
+### 7. Public Key → Hash
+
+- The `0x04` prefix is removed
+- The remaining bytes are hashed with **Keccak-256**
+
+This produces a 32-byte hash.
+
+---
+
+### 8. Ethereum Address
+
+- The **last 20 bytes** of the hash are taken
+- Converted to hexadecimal
+- `0x` is prepended
+
+This final value is the **Ethereum address**.
+
+---
+
+## Final Wallet Output
+
+- Mnemonic phrase  
+- Seed (SHA-256)  
+- Private key (Keccak-256)  
+- Public key (secp256k1)  
+- Ethereum address  
+
+Each step depends entirely on the previous one.
+
+---
+
+## Important Warning
+
+This wallet logic is **for learning only**.
+
+It does NOT fully follow:
+- BIP-39
+- BIP-32
+- BIP-44
+
+Do **not** use this to store real funds.
+
+---
+
+## How Real Wallets Improve This
+
+Real wallets like MetaMask add extra layers:
+
+### BIP-39 Mnemonic Standard
+- Fixed 2048-word list
+- Embedded checksum
+- Detects typing mistakes
+
+### PBKDF2 (2048 Rounds)
+- Uses HMAC-SHA512
+- Slows down brute force attacks
+- Optional passphrase support
+
+### Hierarchical Deterministic Wallets
+- One mnemonic → unlimited addresses
+- Defined in BIP-32 / BIP-44
+
+---
+
+## Ethereum Dashboard (Home Page)
+
+The home page shows **live Ethereum network data**.
+
+### Features
+
+- Current **ETH price**
+- Current **gas price**
+- Latest blocks
+- Latest transactions
+
+### Technical Details
+
+- Data fetched from the Sepolia test network
+- Custom React hooks for fetching data
+- Loading and error states handled cleanly
+- Values formatted from Wei → Gwei / ETH
+
+---
+
+## Tech Stack
+
+- React Router
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Node.js crypto
+- secp256k1
+- Keccak-256
+
+---
+
+## Getting Started
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+Run Development Server
+```bash 
+npm run dev 
+```
+App runs at:
+
+```
+http://localhost:5173
+```
+
+Build for Production
+npm run build
+
+
+Why This Project Matters
+
+This project removes the magic.
+
+It shows that wallets are not mysterious —
+they are built from simple cryptographic steps.
+
+If you understand this flow, you understand Ethereum wallets.
+
+You can deploy to:
+
+Fly.io
+
+Railway
+
+AWS
