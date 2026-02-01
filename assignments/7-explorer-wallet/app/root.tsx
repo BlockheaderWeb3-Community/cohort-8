@@ -27,7 +27,6 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-
   const [queryClient] = useState(() => new QueryClient());
   return (
     <html lang="en">
@@ -38,10 +37,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
 
-      <body className='w-full h-full max-w-7xl mx-auto'>
+      <body className="w-full h-full relative flex flex-col min-h-screen">
         <QueryClientProvider client={queryClient}>
           <Header />
-          <Outlet />
+          <main className="flex flex-1 w-full h-full">
+            <Outlet />
+          </main>
           <Footer />
         </QueryClientProvider>
 

@@ -20,7 +20,7 @@ export function useEthPrice() {
   return useQuery<number, Error>({
     queryKey: ['ethPrice'],
     queryFn: getEthPriceUSD,
-    refetchInterval: 60_000,
+    refetchInterval: 60_000, // ms
   });
 }
 
