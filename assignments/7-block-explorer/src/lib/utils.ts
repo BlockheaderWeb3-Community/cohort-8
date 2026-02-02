@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -32,4 +33,14 @@ export function formatGasPrice(gwei: number): string {
 
 export function hexToDecimal(hex: string): number {
   return parseInt(hex, 16);
+}
+
+export function timeAgo(timestampInSeconds: any): string {
+  const now = Math.floor(Date.now() / 1000); // current time in seconds
+  const diff = now - timestampInSeconds;
+
+  if (diff < 60) return `${diff} secs ago`;
+  if (diff < 3600) return `${Math.floor(diff / 60)} mins ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+  return `${Math.floor(diff / 86400)} days ago`;
 }

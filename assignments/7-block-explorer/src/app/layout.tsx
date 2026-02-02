@@ -1,9 +1,13 @@
 import { QueryProvider } from '@/components/QueryProvider';
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import { Header } from '@/components/Header';
+import { ThemeProvider } from 'next-themes';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+});
 
 export default function RootLayout({
   children,
@@ -12,15 +16,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <QueryProvider>
-          <div className="min-h-screen">
-            <Header />
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              {children}
-            </main>
-            {/* <Footer /> */}
-          </div>
+          <ThemeProvider>
+            <div className="min-h-screen">
+              <Header />
+              <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                {children}
+              </main>
+              {/* <Footer /> */}
+            </div>
+          </ThemeProvider>
         </QueryProvider>
       </body>
     </html>

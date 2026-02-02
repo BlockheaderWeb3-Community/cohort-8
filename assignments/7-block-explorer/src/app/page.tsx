@@ -1,15 +1,11 @@
 'use client';
 
 import { BlockList } from '@/components/BlockList';
-import { EthereumStatsCard } from '@/components/EthereumStatsCard';
 import { StatsGrid } from '@/components/StatsGrid';
 import { TransactionList } from '@/components/TransactionList';
 import useTransaction from '@/lib/useTransaction';
-import { useEthereumStats } from '@/lib/useEtherscanData';
-import { TrendingUp, TrendingDown } from 'lucide-react';
 
 export default function HomePage() {
-  const { data: stats, isLoading: statsLoading } = useEthereumStats();
   const {
     transactions,
     transactionsLoading,
@@ -19,18 +15,10 @@ export default function HomePage() {
     safeBlockNumber,
   } = useTransaction();
 
-  console.log('Transactions on HomePage:', transactions);
-
   return (
     <div className="space-y-8">
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              Ethereum (ETH) Blockchain Explorer
-            </h1>
-          </div>
-        </div>
+      <div className="rounded-xl">
+        <p className="text-xl font-bold">Ethereum (ETH) Blockchain Explorer</p>
       </div>
 
       {/* Stats Grid */}

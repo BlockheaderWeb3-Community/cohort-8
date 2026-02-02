@@ -10,48 +10,48 @@ interface TransactionListProps {
 
 export function TransactionList({ transactions }: TransactionListProps) {
   return (
-    <div className="bg-white rounded-xl shadow overflow-hidden">
+    <div className="bg-secondary rounded-xl shadow overflow-hidden">
       <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+        {/* <thead className="bg-secondary py-4">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-abstract/80 uppercase tracking-wider">
               Transaction Hash
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-abstract/80 uppercase tracking-wider">
               From / To
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-abstract/80 uppercase tracking-wider">
               Value
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-abstract/80 uppercase tracking-wider">
               Gas Price
             </th>
           </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        </thead> */}
+        <tbody className="bg-secondary divide-y divide-gray-200">
           {transactions.map((tx: any) => (
-            <tr key={tx.hash} className="hover:bg-gray-50 transition">
+            <tr key={tx.hash} className="hover:bg-tertiary/20 transition">
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
-                  <a
-                    href={`/tx/${tx.hash}`}
-                    className="text-blue-600 hover:text-blue-800 font-mono text-sm flex items-center"
+                  <p
+                    // href={`/tx/${tx.hash}`}
+                    className="text-abstract hover:text-abstract/90 font-mono text-xs flex items-center"
                   >
                     {tx.hash.substring(0, 20)}...
-                    <ExternalLink className="w-4 h-4 ml-1" />
-                  </a>
+                    {/* <ExternalLink className="w-4 h-4 ml-1" /> */}
+                  </p>
                 </div>
               </td>
               <td className="px-6 py-4">
                 <div className="space-y-1">
-                  <div className="text-sm">
-                    <span className="text-gray-500">From:</span>{' '}
+                  <div className="text-xs">
+                    <span className="text-abstract/80">From:</span>{' '}
                     <span className="font-mono">
                       {tx.from.substring(0, 20)}...
                     </span>
                   </div>
-                  <div className="text-sm">
-                    <span className="text-gray-500">To:</span>{' '}
+                  <div className="text-xs">
+                    <span className="text-abstract/80">To:</span>{' '}
                     <span className="font-mono">
                       {tx.to.substring(0, 20)}...
                     </span>
@@ -59,14 +59,14 @@ export function TransactionList({ transactions }: TransactionListProps) {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-lg font-semibold">
-                  {hexToDecimal(tx.value)}
+                <div className="text-xs font-semibold">
+                  {hexToDecimal(tx.value) / 1e18} ETH
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-abstract/80 text-xs">
                   <Droplets className="w-4 h-4 mr-2" />
-                  {hexToDecimal(tx.gasPrice)}
+                  {hexToDecimal(tx.gasPrice) / 1e9} Gwei
                 </div>
               </td>
             </tr>

@@ -45,15 +45,17 @@ export function StatsGrid({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {statCards.map((stat) => (
-        <div key={stat.title} className="bg-white p-6 rounded-xl shadow">
+        <div key={stat.title} className="bg-secondary p-6 rounded-xl shadow">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-500 text-sm">{stat.title}</p>
-              <p className="text-2xl font-bold mt-2">{stat.value}</p>
-              <p className="text-gray-400 text-sm mt-1">{stat.subtitle}</p>
+              <p className="text-gray-500 text-xs">{stat.title}</p>
+              <p className="text-2xl font-bold mt-2 text-foreground">
+                {stat.value}
+              </p>
+              <p className="text-gray-400 text-xs mt-1">{stat.subtitle}</p>
             </div>
             <div className={`${stat.color} p-3 rounded-full`}>
-              <stat.icon className="w-6 h-6 text-white" />
+              <stat.icon className="w-4 h-4 text-white" />
             </div>
           </div>
         </div>
