@@ -1,0 +1,85 @@
+body {
+  font-family:'Courier New', Courier, monospace;
+  background: #000000;
+  color: #e5e7eb;
+  padding: 90px;
+}
+
+button {
+  padding: 20px 26px;
+  /* background: #0006ae71; */
+  background: transparent;
+  border: 1px solid #43d0fbde;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition:ease-in-out 0.3s;
+}
+
+button:hover {
+  padding: 20px 33px;
+  border: 1px solid #032c39fe;
+  background: #032c39fe;
+}
+
+#blocks {
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+.block {
+  background: #4555592e;
+  border-radius: 10px;
+  padding: 50px;
+  margin-bottom: 70px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.block:hover {
+  background: #347b9943;
+  /* outline: 1px solid #38bdf8; */
+}
+
+.block-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #38bdf8;
+  cursor: pointer;
+}
+
+/* .block-body {
+  padding: 12px 16px;
+  display: none; 
+  margin-top: 900px;
+} */
+
+.block.expanded .block-body {
+    display: block;
+}
+
+.space{
+  margin-top: 50px;
+}
+
+.tx {
+  /* margin-top: 90px; */
+  font-family: monospace;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.tx:last-child {
+  border-bottom: none;
+}
