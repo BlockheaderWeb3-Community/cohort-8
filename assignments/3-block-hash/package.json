@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dev:block-hash": "node blockHash.js"
+  },
+  "dependencies": {
+    "web3": "^4.16.0"
+  }
+}
