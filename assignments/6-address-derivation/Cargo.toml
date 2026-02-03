@@ -1,0 +1,11 @@
+[package]
+name = "address_derivative"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bip39 = { version = "2.0", features = ["rand"] }
+hex = "0.4.3"
+tiny-hderive = "0.3"
+k256 = { version = "0.13", features = ["ecdsa"] }
+sha3 = "0.10"
