@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_31-0e177e2bfeceb21ce68f4c57425a3f8f2a6dcc7f",
+  "solcVersion": "0.8.31",
+  "solcLongVersion": "0.8.31+commit.fd3a2265",
+  "userSourceNameMap": {
+    "contracts/Counter.sol": "project/contracts/Counter.sol",
+    "contracts/Escrow.sol": "project/contracts/Escrow.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "osaka",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Counter.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract Counter {\n  uint public x;\n\n  event Increment(uint by);\n\n  function inc() public {\n    x++;\n    emit Increment(1);\n  }\n\n  function incBy(uint by) public {\n    require(by > 0, \"incBy: increment should be positive\");\n    x += by;\n    emit Increment(by);\n  }\n}\n"
+      },
+      "project/contracts/Escrow.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.31;\n\ncontract Escrow {\n  uint public x;\n  address public buyer;\n  address public seller;\n  address public escrowAgent;\n\n  enum State {\n    AWAITING_PAYMENT,\n    AWAITING_DELIVERY,\n    AWAITING_FUNDS_DISBURSEMENT,\n    COMPLETE\n  }\n  State public currentState;\n\n  constructor() {\n    escrowAgent = msg.sender;\n    currentState = State.AWAITING_PAYMENT;\n  }\n\n  function deposit() external payable {\n    require(currentState == State.AWAITING_PAYMENT, 'Already paid');\n    require(msg.sender == buyer, 'Only buyer can deposit');\n    require(msg.value > 0, 'No ETH value is available');\n\n    currentState = State.AWAITING_DELIVERY;\n  }\n\n  function makeDelivery() external {\n    require(currentState == State.AWAITING_DELIVERY, \"Can't make delivery\");\n    require(msg.sender == seller, 'Only seller can make delivery');\n    require(address(this).balance > 0, 'No payment made');\n\n    currentState = State.AWAITING_FUNDS_DISBURSEMENT;\n  }\n\n  function releaseFundsToSeller() external {\n    require(msg.sender == escrowAgent, 'Only Agent can release funds');\n    require(\n      currentState == State.AWAITING_FUNDS_DISBURSEMENT,\n      \"Can't release funds\"\n    );\n    require(address(this).balance > 0, 'No ETH value is available');\n\n    (bool success, ) = seller.call{value: address(this).balance}('');\n    require(success, 'Transfer failed');\n    currentState = State.COMPLETE;\n  }\n\n  function refundFundsToBuyer() external {\n    require(msg.sender == escrowAgent, 'Only Agent can make refund');\n    require(currentState == State.AWAITING_DELIVERY, \"Can't make refund\");\n    require(address(this).balance > 0, 'No ETH value is available');\n\n    (bool success, ) = buyer.call{value: address(this).balance}('');\n    require(success, 'Refund failed');\n  }\n}\n"
+      }
+    }
+  }
+}
