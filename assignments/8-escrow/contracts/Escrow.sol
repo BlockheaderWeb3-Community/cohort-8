@@ -2,7 +2,7 @@
 pragma solidity ^0.8.31;
 
 contract Escrow {
-  uint public x;
+  uint public transactAmount;
   address public buyer;
   address public seller;
   address public escrowAgent;
@@ -18,6 +18,8 @@ contract Escrow {
   constructor(address _buyer, address _seller) {
     require(_buyer != address(0), 'Buyer should be a valid address');
     require(_seller != address(0), 'Seller should be a valid address');
+    require(_seller != msg.sender, 'Seller cannot be escrow agent');
+    require(_buyer != msg.sender, 'Buyer cannot be escrow agent');
 
     escrowAgent = msg.sender;
     buyer = _buyer;
@@ -45,6 +47,14 @@ contract Escrow {
     _;
   }
 
+  modifier paymentMade() {
+    require(
+      address(this).balance >= transactAmount && address(this).balance > 0,
+      'Amount not paid'
+    );
+    _;
+  }
+
   function deposit()
     external
     payable
@@ -53,11 +63,13 @@ contract Escrow {
   {
     require(msg.value > 0, 'No ETH value is available');
 
+    transactAmount = msg.value;
     currentState = State.AWAITING_DELIVERY;
   }
 
   function makeDelivery()
     external
+    paymentMade
     onlySeller
     validState(State.AWAITING_DELIVERY)
   {
@@ -69,6 +81,7 @@ contract Escrow {
   function releaseFundsToSeller()
     external
     onlyEscrowAgent
+    paymentMade
     validState(State.AWAITING_FUNDS_DISBURSEMENT)
   {
     require(address(this).balance > 0, 'No ETH value is available');
@@ -76,16 +89,19 @@ contract Escrow {
     (bool success, ) = seller.call{value: address(this).balance}('');
     require(success, 'Transfer failed');
     currentState = State.COMPLETE;
+    transactAmount = 0;
   }
 
   function refundFundsToBuyer()
     external
     onlyEscrowAgent
+    paymentMade
     validState(State.AWAITING_DELIVERY)
   {
     require(address(this).balance > 0, 'No ETH value is available');
 
     (bool success, ) = buyer.call{value: address(this).balance}('');
     require(success, 'Refund failed');
+    transactAmount = 0;
   }
 }
