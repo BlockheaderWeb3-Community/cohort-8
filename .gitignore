@@ -31,3 +31,7 @@ Thumbs.db
 # --- React ---
 .react-router
 
+# 
+artifacts
+cache
+

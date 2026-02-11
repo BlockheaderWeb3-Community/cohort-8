@@ -7,7 +7,8 @@
     "assignment-2": "cd assignments/2-gas-hash && ts-node ./hash.ts",
     "assignment-3": "cd assignments/3-block-hash && ts-node blockHash.ts",
     "assignment-6": "cd assignments/6-wallet-address && ts-node wallet-address.ts",
-    "assignment-7": "cd assignments/7-explorer-wallet && npm run dev"
+    "assignment-7": "cd assignments/7-explorer-wallet && npm run dev",
+    "assignment-8": "cd assignments/8-escrow && npx hardhat compile"
   },
   "repository": {
     "type": "git",
