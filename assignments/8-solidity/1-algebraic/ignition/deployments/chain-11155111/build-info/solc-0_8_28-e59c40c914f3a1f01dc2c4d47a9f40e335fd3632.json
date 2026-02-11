@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-e59c40c914f3a1f01dc2c4d47a9f40e335fd3632",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Sub.sol": "project/contracts/Sub.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Sub.sol": {
+        "content": "// SPDX-License-Identifier: SEE LICENSE IN LICENSE\npragma solidity ^0.8.28;\n\ncontract SubtractionContract {\n  function subtract(uint _a, uint _b) public pure returns(uint) {\n    uint d = _a - _b;\n    return d;\n  }\n}\n\ncontract SubtractionFactory {\n\n  function creatNewSub() public returns(address) {\n    SubtractionContract _subtraction = new SubtractionContract();\n\n    return address(_subtraction);\n  }\n}\n"
+      }
+    }
+  }
+}

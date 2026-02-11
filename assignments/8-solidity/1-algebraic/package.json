@@ -1,7 +1,18 @@
 {
-  "name": "1-Algebraic",
+  "name": "algebraic",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "deploy:sepolia-add": "hardhat ignition deploy ignition/modules/Add.ts --network sepolia",
+    "deploy:local-add": "hardhat ignition deploy ignition/modules/Add.ts",
+    "verify-add": "npx hardhat verify 0xC871d7eC6eB94F6841D8E1b0D6aB0C6DdAfE95f6 5 10 --network sepolia",
+    "deploy:sepolia-sub": "hardhat ignition deploy ignition/modules/Subtraction.ts --network sepolia",
+    "deploy:local-sub": "hardhat ignition deploy ignition/modules/Subtraction.ts",
+    "verify-sub": "npx hardhat verify 0x9FbCE115F60874985Bf5c207DC69e5b89B322C90 --network sepolia",
+    "deploy:sepolia-avg": "hardhat ignition deploy ignition/modules/Average.ts --network sepolia",
+    "deploy:local-avg": "hardhat ignition deploy ignition/modules/Average.ts",
+    "verify-avg": "npx hardhat verify 0x73b505b9Fe40B8E2e2D0399b6516A137Ed915790 5 10 --network sepolia"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^4.0.4",
     "@nomicfoundation/hardhat-ignition": "^3.0.7",
@@ -16,5 +27,9 @@
     "hardhat": "^3.1.7",
     "mocha": "^11.7.5",
     "typescript": "~5.8.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.4",
+    "viem": "^2.45.3"
   }
 }

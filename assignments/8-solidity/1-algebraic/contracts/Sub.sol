@@ -2,14 +2,13 @@
 pragma solidity ^0.8.28;
 
 contract SubtractionContract {
-  function subtract(uint a, uint b) public pure returns(uint) {
-    uint d = a - b;
+  function subtract(uint _a, uint _b) public pure returns(uint) {
+    uint d = _a - _b;
     return d;
   }
 }
 
 contract SubtractionFactory {
-  // SubtractionFactory subtraction;
 
   function creatNewSub() public returns(address) {
     SubtractionContract _subtraction = new SubtractionContract();
