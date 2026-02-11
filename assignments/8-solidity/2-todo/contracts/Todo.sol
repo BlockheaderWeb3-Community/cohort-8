@@ -65,11 +65,9 @@ contract Todo {
 
     if(block.timestamp > todo.deadline){
       todo.status = Status.Defaulted;
-
     } else {
       todo.status = Status.Done;
     }
-
   }
 
 }
