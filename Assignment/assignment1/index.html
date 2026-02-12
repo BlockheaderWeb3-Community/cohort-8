@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Gas Fee Estimator</h2>
+        <label>Gas Used</label>
+            <input id="gasUsed" type="number" value="21000" />
+
+        <label>Base Fee (ETH or GWEI)</label>
+            <input id="baseFee" type="number" value="" step="0.000000001" />
+
+        <label>Priority Fee (ETH or GWEI)</label>
+            <input id="priorityFee" type="number" value="" step="0.000000001" />
+
+        <label>Max Fee (ETH or GWEI)</label>
+            <input id="maxFee" type="number" value="25" step="0.000000001" />
+
+        <button onclick="calculateGas()">Estimate Gas Fee</button>
+
+    <div class="result" id="output"></div>
+</body>
+<script src="GasEstimation.js"></script> 
+</html>
