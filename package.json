@@ -1,0 +1,25 @@
+{
+  "name": "web3-cohort-8",
+  "version": "1.0.0",
+  "description": "Blockchain Development Bootcamp — Cohort 8",
+  "main": "index.js",
+  "scripts": {
+    "assignment-2": "cd assignments/2-gas-hash && ts-node ./hash.ts",
+    "assignment-3": "cd assignments/3-block-hash && ts-node blockHash.ts",
+    "assignment-6": "cd assignments/6-wallet-address && ts-node wallet-address.ts",
+    "assignment-7": "cd assignments/7-explorer-wallet && npm run dev",
+    "assignment-8": "cd assignments/8-escrow && npx hardhat compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olorunshogo/web3-cohort-8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Olorunshogo/web3-cohort-8/issues"
+  },
+  "homepage": "https://github.com/Olorunshogo/web3-cohort-8#readme"
+}
