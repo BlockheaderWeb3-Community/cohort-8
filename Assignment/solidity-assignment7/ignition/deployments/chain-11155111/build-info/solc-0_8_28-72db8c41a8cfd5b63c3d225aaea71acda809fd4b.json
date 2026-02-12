@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-72db8c41a8cfd5b63c3d225aaea71acda809fd4b",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Todo.sol": "project/contracts/Todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Todo.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract Todo {\n  uint public todoCounter;\n\n  enum TaskState {\n    Pending,\n    Completed,\n    Cancelled,\n    Defaulted\n  }\n\n  struct Task {\n    uint id;\n    address admin;\n    string text;\n    TaskState status;\n    uint deadline;\n  }\n\n  mapping(uint => Task) tasks;\n  event TaskCreated(string text, uint deadline);\n\n  function createTask(\n    string memory text,\n    uint deadline\n  ) external returns (uint) {\n    require(bytes(text).length > 0, 'Text cannot be empty');\n    require(deadline > (block.timestamp + 600), 'Invalid deadline');\n\n    todoCounter++;\n\n    tasks[todoCounter] = Task(\n      todoCounter,\n      msg.sender,\n      text,\n      TaskState.Pending,\n      deadline\n    );\n\n    emit TaskCreated(text, deadline);\n    return todoCounter;\n  }\n\n  function getTask(uint id) external view returns (Task memory) {\n    return tasks[id];\n  }\n\n  function updateTask(\n    uint id,\n    string memory text,\n    uint deadline\n  ) external returns (uint) {\n    require(bytes(text).length > 0, 'Text cannot be empty');\n    require(\n      deadline > (block.timestamp + 600),\n      'Deadline cannot be less than 10 minutes'\n    );\n    require(tasks[id].admin == msg.sender, 'Only admin can update task');\n    tasks[id] = Task(id, msg.sender, text, TaskState.Pending, deadline);\n    return id;\n  }\n\n  function doneTask(uint id) external returns (uint) {\n    require(tasks[id].admin == msg.sender, 'Only admin can complete task');\n    tasks[id].status = TaskState.Completed;\n    return id;\n  }\n}\n"
+      }
+    }
+  }
+}
