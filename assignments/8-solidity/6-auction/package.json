@@ -1,7 +1,12 @@
 {
-  "name": "7-auction",
+  "name": "auction",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "auction-deploy:sepolia": "hardhat ignition deploy ignition/modules/Auction.ts --network sepolia",
+    "auction-deploy:local": "hardhat ignition deploy ignition/modules/Auction.ts",
+    "auction-verify": "npx hardhat verify --network sepolia 0x08B9DE4721107A748CA9d96BD403Ced0F27c042E"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^4.0.4",
     "@nomicfoundation/hardhat-ignition": "^3.0.7",
@@ -16,5 +21,8 @@
     "hardhat": "^3.1.7",
     "mocha": "^11.7.5",
     "typescript": "~5.8.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.4"
   }
 }

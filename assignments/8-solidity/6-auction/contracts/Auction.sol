@@ -27,6 +27,8 @@ uint public auctionCounter;
     mapping(uint => mapping(address => uint)) public refunds;
 
     event AuctionInitialaized(uint id);
+    event BidPlaced(uint auctionId, address bidder, uint amount);
+
 
     constructor() {
 
@@ -80,12 +82,20 @@ uint public auctionCounter;
         // Reset bidder's pending refund since it's now active bid
         refunds[_auctionId][msg.sender] = 0;
 
+        emit BidPlaced(_auctionId, msg.sender, currentBid);
+
         auction.highestBid = currentBid;
         auction.highestBidder = msg.sender;
     }
 
     function endAuction(uint _auctionsId) public {
         Auction storage auction = auctions[_auctionsId];
+
+        require(
+            msg.sender == auction.owner || 
+            msg.sender == auction.highestBidder, 
+            "Not authorized"
+        );
 
         require(auction.status == AuctionStatus.OnGoing, "Auction not ended yet");
         require(block.timestamp >= auction.startTime + auction.duration, "Auction not ended yet");
@@ -109,8 +119,8 @@ uint public auctionCounter;
         require(sent, "Transfer failed");
     }
 
-    function refundBidders(address person) external view returns(uint){
-        return address(person).balance;
+    function refundBidders(uint _auctionId, address person) external view returns(uint){
+         return refunds[_auctionId][person];
     }
 
 }

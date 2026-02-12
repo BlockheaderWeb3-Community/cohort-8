@@ -8,6 +8,9 @@ To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide]
 
 Deployed Addresses
 
-TodoModule#Todo Contract Address - 0x5E7E18D13e9632828d4088441dD9A08F5853F68a
-Explorer Link: https://sourcify.dev/server/repo-ui/11155111/0x5E7E18D13e9632828d4088441dD9A08F5853F68a
+- TodoModule#Todo - `0x5E7E18D13e9632828d4088441dD9A08F5853F68a`
+  + Contract verified successfully on Sourcify!: [Explorer: **Todo** Link](https://sourcify.dev/server/repo-ui/11155111/0x5E7E18D13e9632828d4088441dD9A08F5853F68a)
+
+
+
 

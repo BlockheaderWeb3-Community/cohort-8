@@ -5,8 +5,7 @@
   "scripts": {
     "todo-deploy:sepolia": "hardhat ignition deploy ignition/modules/Todo.ts --network sepolia",
     "todo-deploy:local": "hardhat ignition deploy ignition/modules/Todo.ts",
-    "todo-verify": "npx hardhat verify 0x5E7E18D13e9632828d4088441dD9A08F5853F68a --network sepolia",
-    "deploy:sepolia-script": "node scripts/deploy.js"
+    "todo-verify": "npx hardhat verify 0x5E7E18D13e9632828d4088441dD9A08F5853F68a --network sepolia"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^4.0.4",
