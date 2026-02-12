@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-ff8cf6cec8dfd8e769a5719a7762483a7ecaa3fc",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Escrow2.sol": "project/contracts/Escrow2.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Escrow2.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract MilestoneEscrow {\n    address  client;\n    address  freelancer;\n    uint256  totalMilestones;\n    uint256  milestonesCounter;\n    uint256 ethPerMilestone;\n    bool  isJobActive;\n\n    event JobCreated(address indexed freelancer, uint256 totalMilestones, uint256 totalAmount);\n    event MilestoneApproved(uint256 milestoneIndex, uint256 amountReleased);\n    event JobCompleted();\n\n    modifier onlyClient() {\n        require(msg.sender == client, \"Only the client can perform this action\");\n        _;\n    }\n\n    constructor(address _freelancer, uint256 _totalMilestones, uint256 _ethPerMilestone) payable {\n        require(_freelancer != address(0), \"Invalid freelancer address\");\n\n        client = msg.sender;\n        freelancer = _freelancer;\n        totalMilestones = _totalMilestones;\n        ethPerMilestone = _ethPerMilestone;\n        isJobActive = true;\n\n        emit JobCreated(_freelancer, _totalMilestones, msg.value);\n    }\n\n\n    function approveMilestone() public onlyClient {\n        require(isJobActive, \"Job is already finished\");\n        require(milestonesCounter < totalMilestones, \"All milestones already paid\");\n\n        milestonesCounter++;\n        if (milestonesCounter == totalMilestones) {\n            isJobActive = false;\n            emit JobCompleted();\n        }\n\n        // Release the payment\n        (bool success, ) = freelancer.call{value: ethPerMilestone}(\"\");\n        require(success, \"Transfer failed\");\n\n        emit MilestoneApproved(milestonesCounter, ethPerMilestone);\n    }\n}"
+      }
+    }
+  }
+}
