@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-f5369441d1d934bd38b48f3b2ff71c2ebd9e9def",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Crowfunding.sol": "project/contracts/Crowfunding.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Crowfunding.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract Crowdfunding {\n\n    address public immutable owner;\n    uint256 public immutable targetAmount;\n    uint256 public immutable deadline;\n    \n    uint256 public totalRaised;\n\n   \n    mapping(address => uint256) public contributions;\n\n    // --- Events ---\n    event Contributed(address indexed contributor, uint256 amount);\n    event RefundClaimed(address indexed contributor, uint256 amount);\n    event GoalReached(uint256 totalAmount);\n\n    constructor(uint256 _targetAmount, uint256 _durationSeconds) payable {\n        owner = msg.sender;\n        targetAmount = _targetAmount;\n        deadline = block.timestamp + _durationSeconds;\n    }\n\n    // Investors Coming In\n    function contribute(uint256 _amount) external payable {\n        require(block.timestamp < deadline, \"Funding period has ended\");\n        require(msg.value == _amount, \"Sent ETH does not match _amount argument\");\n        require(msg.value > 0, \"Contribution must be greater than 0\");\n\n        contributions[msg.sender] += msg.value;\n        totalRaised += msg.value;\n\n        emit Contributed(msg.sender, msg.value);\n    }\n\n    // Contributors pulling there money because the was not reached\n    function refundButtom() external {\n        // Security Checks\n        require(block.timestamp >= deadline, \"Deadline has not reached\");\n        require(totalRaised < targetAmount, \"Target Achieved\");\n        \n        uint256 amountToRefund = contributions[msg.sender];\n        require(amountToRefund > 0, \"Baba You No Contribute Na\");\n\n        // This solves Double Refund\n        contributions[msg.sender] = 0;\n\n        // Processing Refund\n        (bool success, ) = payable(msg.sender).call{value: amountToRefund}(\"\");\n        require(success, \"Transfer failed\");\n\n        emit RefundClaimed(msg.sender, amountToRefund);\n    }\n\n    // Target Achieved Withdrawal Function\n    function withdrawFunds() external {\n        require(msg.sender == owner, \"Only the owner can withdraw\");\n        require(block.timestamp >= deadline, \"Wait until the deadline to withdraw\");\n        require(totalRaised >= targetAmount, \"Funding goal has not been reached\");\n\n        \n        (bool success, ) = payable(owner).call{value: totalRaised}(\"\");\n        require(success, \"Payout to owner failed\");\n\n        emit GoalReached(totalRaised);\n    }\n}"
+      }
+    }
+  }
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereum Block Explorer | Real-time Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'xs': '480px',
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155',
+                            accent: '#ef4444',
+                            success: '#10b981',
+                            address: '#34d399'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .address-text {
+            color: #34d399;
+        }
+
+        .truncate-address {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <nav class="border-b border-dark-border py-6 bg-dark-bg sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">🔐</span>
+                <h1 class="text-2xl font-bold tracking-tight">Ethereum <span class="text-white">Block Explorer</span>
+                </h1>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-400">
+                <a href="/" class="text-white border-b-2 border-dark-accent pb-1">Dashboard</a>
+                <a href="#" class="hover:text-white transition">Nodes</a>
+                <a href="#" class="hover:text-white transition">Network</a>
+                <a href="/rpc" class="hover:text-white transition">RPC Console</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Stats -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Price Stats -->
+            <div class="card p-6 rounded-xl shadow-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Ether Price</p>
+                    <span class="text-dark-success text-2xl"><i class="fab fa-ethereum"></i></span>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <h2 class="text-3xl font-bold" id="eth-price">${{ "{:,.2f}".format(stats.price) }}</h2>
+                    <span id="eth-change"
+                        class="text-sm font-semibold {{ 'text-red-500' if stats.change_24h < 0 else 'text-emerald-400' }}">
+                        ({{ "{:,.2f}".format(stats.change_24h) }}%)
+                    </span>
+                </div>
+            </div>
+
+            <!-- Market Cap -->
+            <div class="card p-6 rounded-xl shadow-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Market Cap</p>
+                    <span class="text-blue-400 text-2xl"><i class="fas fa-globe"></i></span>
+                </div>
+                <h2 class="text-3xl font-bold">$<span id="market-cap">{{ "{:,.0f}".format(stats.market_cap) }}</span>
+                </h2>
+            </div>
+
+            <!-- Last Block -->
+            <div class="card p-6 rounded-xl shadow-xl border-t-4 border-t-dark-accent">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Last Finalized Block</p>
+                    <span class="text-amber-400 text-2xl"><i class="fas fa-cube"></i></span>
+                </div>
+                <h2 class="text-3xl font-bold text-dark-accent" id="last-block-num">{{ latest_block_num }}</h2>
+            </div>
+        </div>
+
+        <!-- Banner inspired by image -->
+        <div
+            class="mt-8 bg-green-900/30 border border-green-800/50 rounded-lg p-4 text-green-400 text-sm flex items-center mb-8">
+            <i class="fas fa-check-circle mr-3"></i> Real-time Network Connection Successful!
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Latest Blocks -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold flex items-center">
+                        <span class="mr-2">📦</span> Latest Blocks
+                    </h3>
+                    <button
+                        class="bg-dark-accent hover:bg-red-600 transition text-white px-4 py-1 rounded text-xs font-bold uppercase">View
+                        All</button>
+                </div>
+                <div class="card rounded-xl overflow-hidden divide-y divide-dark-border" id="blocks-list">
+                    {% for block in blocks %}
+                    <div class="p-3 hover:bg-slate-800/50 transition cursor-pointer"
+                        onclick="window.location='/block/{{ block.number }}'">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-dark-address font-mono text-sm">Block #{{ block.number }}</span>
+                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest"><i
+                                    class="far fa-clock mr-1"></i> {{ block.timestamp | time_ago }}</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs">
+                            <div class="text-slate-400 truncate max-w-xs">
+                                Miner: <span class="address-text font-mono">{{ block.miner | format_address }}</span>
+                            </div>
+                            <div class="text-slate-300 font-medium">
+                                {{ block.transactions|length if block.transactions else 0 }} txns
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Latest Transactions -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold flex items-center">
+                        <span class="mr-2">💸</span> Recent Transactions
+                    </h3>
+                </div>
+                <div class="card rounded-xl overflow-hidden divide-y divide-dark-border" id="transactions-list">
+                    {% for tx in transactions %}
+                    <div class="p-3 hover:bg-slate-800/50 transition group">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-blue-400 text-[10px] font-mono truncate mr-4">TX# {{ tx.hash |
+                                format_address }}</span>
+                            <span
+                                class="bg-dark-bg px-2 py-0.5 rounded text-[8px] font-bold text-dark-success border border-dark-border">SUCCESS</span>
+                        </div>
+                        <div class="grid grid-cols-1 gap-0.5 text-[11px]">
+                            <div class="flex items-center">
+                                <span class="w-10 text-slate-500 text-[9px] font-bold uppercase">From:</span>
+                                <span class="address-text font-mono">{{ tx['from'] | format_address }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-10 text-slate-500 text-[9px] font-bold uppercase">To:</span>
+                                <span class="address-text font-mono">{{ tx['to'] | format_address if tx['to'] else
+                                    'Contract Creation' }}</span>
+                            </div>
+                        </div>
+                        <div class="mt-2 flex justify-end">
+                            <span
+                                class="text-white font-bold bg-slate-900/50 px-2 py-0.5 rounded border border-dark-border text-xs">
+                                {{ (tx.value / 10**18) | round(4) }} ETH
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Warning inspired by image -->
+        <div
+            class="mt-12 bg-yellow-900/20 border border-yellow-700/30 rounded-lg p-6 text-yellow-500 text-xs leading-relaxed">
+            <div class="flex items-center font-bold text-sm mb-2 uppercase tracking-tighter">
+                <i class="fas fa-exclamation-triangle mr-2"></i> Security Alert
+            </div>
+            This dashboard uses public API endpoints for educational purposes. Never paste your private keys or
+            mnemonics into any block explorer or wallet generator unless you are sure of its provenance. Data updates
+            every 10 seconds.
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-dark-border py-12 bg-slate-900/50">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm italic">Ethereum Block Explorer &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        async function updateDashboard() {
+            try {
+                const response = await fetch('/api/data');
+                const data = await response.json();
+
+                // Update Stats
+                document.getElementById('eth-price').innerText = '$' + data.stats.price.toLocaleString(undefined, { minimumFractionDigits: 2 });
+                const ethChange = document.getElementById('eth-change');
+                ethChange.innerText = `(${data.stats.change_24h.toFixed(2)}%)`;
+                ethChange.className = `text-sm font-semibold ${data.stats.change_24h < 0 ? 'text-red-500' : 'text-emerald-400'}`;
+                document.getElementById('market-cap').innerText = data.stats.market_cap.toLocaleString(undefined, { maximumFractionDigits: 0 });
+                document.getElementById('last-block-num').innerText = data.latest_block_num;
+
+                // Update Blocks
+                const blocksList = document.getElementById('blocks-list');
+                blocksList.innerHTML = data.blocks.map(block => `
+                    <div class="p-3 hover:bg-slate-800/50 transition cursor-pointer" onclick="window.location='/block/${block.number}'">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-dark-address font-mono text-sm">Block #${block.number}</span>
+                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest"><i class="far fa-clock mr-1"></i> ${block.time_ago}</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs">
+                            <div class="text-slate-400 truncate max-w-xs">
+                                Miner: <span class="address-text font-mono">${block.miner_fmt}</span>
+                            </div>
+                            <div class="text-slate-300 font-medium">
+                                ${block.transactions ? block.transactions.length : 0} txns
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Update Transactions
+                const transactionsList = document.getElementById('transactions-list');
+                transactionsList.innerHTML = data.transactions.map(tx => `
+                    <div class="p-3 hover:bg-slate-800/50 transition group">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-blue-400 text-[10px] font-mono truncate mr-4">TX# ${tx.hash_fmt}</span>
+                            <span class="bg-dark-bg px-2 py-0.5 rounded text-[8px] font-bold text-dark-success border border-dark-border">SUCCESS</span>
+                        </div>
+                        <div class="grid grid-cols-1 gap-0.5 text-[11px]">
+                            <div class="flex items-center">
+                                <span class="w-10 text-slate-500 text-[9px] font-bold uppercase">From:</span>
+                                <span class="address-text font-mono">${tx.from_fmt}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-10 text-slate-500 text-[9px] font-bold uppercase">To:</span>
+                                <span class="address-text font-mono">${tx.to_fmt}</span>
+                            </div>
+                        </div>
+                        <div class="mt-2 flex justify-end">
+                            <span class="text-white font-bold bg-slate-900/50 px-2 py-0.5 rounded border border-dark-border text-xs">
+                                ${tx.value_eth} ETH
+                            </span>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('Error updating dashboard:', error);
+            }
+        }
+
+        setInterval(updateDashboard, 10000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block #{{ block.number }} | Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155',
+                            accent: '#ef4444',
+                            success: '#10b981',
+                            address: '#34d399'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .address-text {
+            color: #34d399;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen pb-20">
+
+    <!-- Header -->
+    <nav class="border-b border-dark-border py-6 bg-dark-bg">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">🔐</span>
+                <a href="/" class="text-2xl font-bold tracking-tight">Ethereum <span class="text-white">Block
+                        Explorer</span></a>
+            </div>
+            <a href="/"
+                class="text-sm bg-slate-800 hover:bg-slate-700 transition px-4 py-2 rounded-lg border border-dark-border">
+                <i class="fas fa-arrow-left mr-2"></i> Dashboard
+            </a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div class="flex items-center space-x-3">
+                <span class="text-4xl">📦</span>
+                <div>
+                    <h1 class="text-3xl font-bold">Block Details</h1>
+                    <p class="text-slate-400 text-sm">Network identification and transaction payload</p>
+                </div>
+            </div>
+            <div
+                class="bg-dark-accent/20 text-dark-accent px-4 py-2 rounded-full border border-dark-accent/30 font-bold text-sm">
+                Height: {{ block.number }}
+            </div>
+        </div>
+
+        <div class="card rounded-2xl shadow-2xl divide-y divide-dark-border">
+            <!-- Header section of card -->
+            <div class="p-6 bg-slate-800/50">
+                <h3 class="font-bold flex items-center uppercase text-xs tracking-widest text-slate-500">
+                    <i class="fas fa-info-circle mr-2"></i> Overview
+                </h3>
+            </div>
+
+            <div class="p-8 space-y-8">
+                <!-- Hash -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-tighter">Block Hash</div>
+                    <div
+                        class="md:col-span-3 text-dark-address font-mono text-sm break-all bg-slate-900/50 p-3 rounded-lg border border-dark-border">
+                        {{ block.hash }}
+                    </div>
+                </div>
+
+                <!-- Timestamp -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-tighter">Timestamp</div>
+                    <div class="md:col-span-3 text-slate-200">
+                        <span class="bg-slate-700 px-3 py-1 rounded font-mono text-xs mr-2"><i class="far fa-clock"></i>
+                            {{ block.timestamp }}</span>
+                        <span class="text-xs text-slate-500 italic">(UNIX time)</span>
+                    </div>
+                </div>
+
+                <!-- Transactions -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-tighter">Transactions</div>
+                    <div class="md:col-span-3">
+                        <span
+                            class="text-white bg-blue-600/20 text-blue-400 px-4 py-1 rounded-full border border-blue-500/30 font-bold">
+                            {{ block.transactions|length }} Transactions INCLUDED
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Fee Recipient -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-tighter">Fee Recipient</div>
+                    <div class="md:col-span-3 flex items-center">
+                        <span class="address-text font-mono truncate mr-2">{{ block.miner }}</span>
+                        <span
+                            class="bg-green-900/40 text-green-400 text-[10px] px-2 py-0.5 rounded border border-green-800/50 uppercase font-bold">Verified
+                            Miner</span>
+                    </div>
+                </div>
+
+                <!-- Gas -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-tighter">Gas Usage</div>
+                    <div class="md:col-span-3">
+                        <div class="w-full bg-slate-900 rounded-full h-2.5 mb-2 border border-dark-border">
+                            <div class="bg-dark-accent h-2.5 rounded-full"
+                                style="width: {{ (block.gasUsed / block.gasLimit * 100)|round(0) }}%"></div>
+                        </div>
+                        <div class="flex justify-between text-[11px] font-bold text-slate-500">
+                            <span>USED: {{ "{:,.0f}".format(block.gasUsed) }}</span>
+                            <span>LIMIT: {{ "{:,.0f}".format(block.gasLimit) }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difficulty -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-tighter">Difficulty / Size</div>
+                    <div class="md:col-span-3 grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-dark-border">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Difficulty</p>
+                            <p class="text-lg font-bold">{{ block.difficulty }}</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-dark-border">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Block Size</p>
+                            <p class="text-lg font-bold">{{ block.size }} <span
+                                    class="text-xs text-slate-500">Bytes</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra Data -->
+                {% if block.extraData %}
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-tighter">Extra Data</div>
+                    <div
+                        class="md:col-span-3 text-xs text-slate-400 bg-slate-900 p-4 rounded-lg font-mono break-all border border-dark-border italic">
+                        {{ block.extraData }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Footer of card -->
+            <div class="p-6 bg-slate-800/30">
+                <div class="flex items-center text-xs text-slate-500 space-x-4">
+                    <div class="flex items-center"><i class="fas fa-link mr-2"></i> Parent: {{ block.parentHash |
+                        truncate(20) }}</div>
+                    <div class="flex items-center"><i class="fas fa-microchip mr-2"></i> Method: Proof of Stake</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warning inspired by image -->
+        <div
+            class="mt-8 bg-blue-900/20 border border-blue-800/30 rounded-lg p-4 text-blue-400 text-[10px] flex items-start">
+            <i class="fas fa-info-circle mt-1 mr-3"></i>
+            <div>
+                Data for this block was derived directly from the Ethereum mainnet. Some fields like Reward are
+                calculated based on the consensus layer status which might vary between RPC providers.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-dark-border py-12 bg-slate-900/50 text-center">
+        <p class="text-slate-500 text-xs italic">Ethereum Block Explorer &copy; 2026</p>
+    </footer>
+
+</body>
+
+</html>
