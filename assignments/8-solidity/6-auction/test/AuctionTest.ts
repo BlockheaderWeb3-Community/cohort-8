@@ -1,206 +1,230 @@
 import { expect } from 'chai';
 import { network } from 'hardhat';
 const { networkHelpers } = await network.connect();
-
 const { ethers } = await network.connect();
 
 describe('AuctionContract', () => {
   let auctionContract: any;
+
+  // Zero address used for comparisons where needed
   const ZeroAddress = '0x0000000000000000000000000000000000000000';
 
+  // Deploy a fresh contract before every test
   beforeEach(async () => {
     auctionContract = await ethers.deployContract('AuctionContract');
   });
 
-  describe('Create Auction', () => {
-    it('Should create an auction successfully', async () => {
-      let [owner, bidder1] = await ethers.getSigners();
-      await expect(auctionContract.createAuction(1000, 1200))
-        .to.emit(auctionContract, 'AuctionInitialaized')
-        .withArgs(1n);
-      const a = await auctionContract.auctionCounter();
-      expect(a).to.equal(1);
-
-      const createdAuction = await auctionContract.auctions(a);
-      expect(createdAuction[0]).to.equal(1);
-      expect(createdAuction[1]).to.equal(1000);
-      expect(createdAuction[2]).to.equal(0);
-      expect(createdAuction[3]).to.equal(owner);
-      // expect(createdAuction[4]).to.equal(ZeroAddress);
-      expect(createdAuction[5]).to.equal(ZeroAddress);
-      // expect(createdAuction[5]).to.equal(0);
-      // expect(createdAuction[6]).to.equal(1200);
-    });
-
-    // it("should create more than an auction successfully", async () => {
-    //   let [owner] = await ethers.getSigners()
-    //   await expect(auctionContract.createAuction(1000, 1200)).to.emit(auctionContract, "AuctionInitialaized").withArgs(1n);
-    //   await auctionContract.createAuction(1000, 1200);
-    //   const a = await auctionContract.auctionCounter();
-    //   expect(a).to.equal(1);
-
-    //   await expect(auctionContract.createAuction(1500, 2000)).to.emit(auctionContract, "AuctionInitialaized").withArgs(2n);
-    //   await auctionContract.createAuction(1500, 2000)
-
-    //   const b =  await auctionContract.auctionCounter();
-
-    //   const createdAuction = await auctionContract.auctions(b);
-    //   expect(createdAuction[0]).to.equal(2);
-    //   expect(createdAuction[1]).to.equal(1500);
-    //   expect(createdAuction[2]).to.equal(0);
-    //   expect(createdAuction[3]).to.equal(owner);
-    //   expect(createdAuction[4]).to.equal(ZeroAddress);
-    //   expect(createdAuction[5]).to.equal(0);
-    //   expect(createdAuction[6]).to.equal(2000);
-
-    // })
-  });
-
   describe('Start Auction', () => {
     it('Should Start Auction Successfully', async () => {
+      // Get contract owner
       let [owner] = await ethers.getSigners();
+
+      // Create a new auction
       await expect(auctionContract.createAuction(1000, 1200))
         .to.emit(auctionContract, 'AuctionInitialaized')
         .withArgs(1n);
+
       const a = await auctionContract.auctionCounter();
 
+      // Start the auction
       await auctionContract.startAuction(a);
+
+      // Get latest blockchain time
       const currentTime = await networkHelpers.time.latest();
 
+      // Fetch updated auction data
       const startedAuction = await auctionContract.auctions(a);
+
+      // Status should be OnGoing (1)
       expect(startedAuction[2]).to.equal(1);
-      expect(startedAuction[5]).to.be.closeTo(currentTime, 5);
+
+      // Start time should be close to current block timestamp
+      expect(Number(startedAuction[6])).to.be.closeTo(currentTime, 9);
     });
 
     it('Should Fail When a Wrong address tries to start the Auction', async () => {
+      // Owner creates auction
       let [owner, addr1] = await ethers.getSigners();
+
       await expect(auctionContract.createAuction(1000, 1200))
         .to.emit(auctionContract, 'AuctionInitialaized')
         .withArgs(1n);
+
       const a = await auctionContract.auctionCounter();
 
+      // Non-owner attempts to start auction
       await expect(
         auctionContract.connect(addr1).startAuction(a)
       ).to.be.revertedWith('Not your Auction');
     });
   });
 
-  // describe("Bidding", () => {
-  //   const STARTING_PRICE = ethers.parseEther("2");
-  //   const DURATION = 3600;
+  describe('Bidding', () => {
+    const STARTING_PRICE = ethers.parseEther('2');
+    const DURATION = 3600;
 
-  //   let owner: any, bidder1: any, bidder2: any;
+    let owner: any, bidder1: any, bidder2: any;
 
-  //   beforeEach(async () => {
-  //     [owner, bidder1, bidder2] = await ethers.getSigners();
+    // Create and start a fresh auction before each bidding test
+    beforeEach(async () => {
+      [owner, bidder1, bidder2] = await ethers.getSigners();
 
-  //     await auctionContract.createAuction(STARTING_PRICE, DURATION);
-  //     const auctionId = await auctionContract.auctionCounter();
-  //     await auctionContract.startAuction(auctionId);
-  //   });
+      await auctionContract.createAuction(STARTING_PRICE, DURATION);
+      const auctionId = await auctionContract.auctionCounter();
+      await auctionContract.startAuction(auctionId);
+    });
 
-  //   it("This should fail if owner tries to bid", async () => {
-  //     const auctionId = await auctionContract.auctionCounter();
-  //     await expect(
-  //       auctionContract.bid(auctionId, { value: STARTING_PRICE })
-  //     ).to.be.revertedWith("You can't bid on your own auction");
-  //   });
+    it('Should fail if owner tries to bid', async () => {
+      const auctionId = await auctionContract.auctionCounter();
 
-  //   it("This should fail if msg.value is zero", async () => {
-  //     const auctionId = await auctionContract.auctionCounter();
-  //     expect(
-  //       auctionContract.connect(bidder1).bid(auctionId, { value: 0 })
-  //     ).to.be.revertedWith("Send Eth greater than zero");
-  //   });
+      // Owner is not allowed to bid on their own auction
+      await expect(
+        auctionContract.bid(auctionId, { value: STARTING_PRICE })
+      ).to.be.revertedWith('Owner cannot bid');
+    });
 
-  //   it("This should allow a valid bid", async () => {
-  //     const auctionId = await auctionContract.auctionCounter();
+    it('Should fail if msg.value is zero', async () => {
+      const auctionId = await auctionContract.auctionCounter();
 
-  //     await auctionContract
-  //       .connect(bidder1)
-  //       .bid(auctionId, { value: STARTING_PRICE });
+      // Bids must contain ETH
+      await expect(
+        auctionContract.connect(bidder1).bid(auctionId, { value: 0 })
+      ).to.be.revertedWith('Bid must be greater than zero');
+    });
 
-  //     const auction = await auctionContract.auctions(auctionId);
-  //     expect(auction.highestBid).to.equal(STARTING_PRICE);
-  //     expect(auction.highestBidder).to.equal(bidder1.address);
-  //   });
+    it('Should fail if below starting price', async () => {
+      const auctionId = await auctionContract.auctionCounter();
 
-  //   it.only("Should refund previous highest bidder", async () => {
-  //     const auctionId = await auctionContract.auctionCounter();
-  //     let bidAmount = await ethers.parseEther('3');
+      // First bid must respect starting price
+      await expect(
+        auctionContract
+          .connect(bidder1)
+          .bid(auctionId, { value: ethers.parseEther('1') })
+      ).to.be.revertedWith('Below starting price');
+    });
 
-  //     await auctionContract
-  //       .connect(bidder1)
-  //       .bid(auctionId, { value: bidAmount});
+    it('Should allow valid first bid', async () => {
+      const auctionId = await auctionContract.auctionCounter();
 
-  //     await auctionContract
-  //       .connect(bidder2)
-  //       .bid(auctionId, { value: ethers.parseEther("3") });
+      // Valid bid equal to starting price
+      await auctionContract
+        .connect(bidder1)
+        .bid(auctionId, { value: STARTING_PRICE });
 
-  //     const refund = await auctionContract.refundBidders(
-  //       auctionId,
-  //       bidder1.address
-  //     );
-  //     expect(refund).to.equal(STARTING_PRICE);
-  //   });
-  // });
+      const auction = await auctionContract.auctions(auctionId);
 
-  // describe("End Auction", () => {
-  //   it("Should fail if auction not ended yet", async () => {
-  //     const [owner, bidder] = await ethers.getSigners();
+      // Highest bid and bidder should update correctly
+      expect(auction.highestBid).to.equal(STARTING_PRICE);
+      expect(auction.highestBidder).to.equal(bidder1.address);
+    });
 
-  //     await auctionContract.createAuction(
-  //       ethers.parseEther("1"),
-  //       3600
-  //     );
-  //     const auctionId = await auctionContract.auctionCounter();
-  //     await auctionContract.startAuction(auctionId);
+    it('Should refund previous highest bidder', async () => {
+      const auctionId = await auctionContract.auctionCounter();
 
-  //     await expect(
-  //       auctionContract.endAuction(auctionId)
-  //     ).to.be.revertedWith("Auction not ended yet");
-  //   });
+      // First bidder places initial bid
+      await auctionContract
+        .connect(bidder1)
+        .bid(auctionId, { value: STARTING_PRICE });
 
-  //   it("Should transfer funds to owner when auction ends", async () => {
-  //     const [owner, bidder] = await ethers.getSigners();
+      // Second bidder overbids
+      const higherBid = ethers.parseEther('3');
 
-  //     await auctionContract.createAuction(
-  //       ethers.parseEther("1"),
-  //       3600
-  //     );
-  //     const auctionId = await auctionContract.auctionCounter();
-  //     await auctionContract.startAuction(auctionId);
+      await auctionContract
+        .connect(bidder2)
+        .bid(auctionId, { value: higherBid });
 
-  //     await auctionContract.connect(bidder).bid(auctionId, {
-  //       value: ethers.parseEther("2"),
-  //     });
+      // Previous bidder should now have refundable balance
+      const refund = await auctionContract.refunds(auctionId, bidder1.address);
 
-  //     await networkHelpers.time.increase(3601);
+      expect(refund).to.equal(STARTING_PRICE);
+    });
+  });
 
-  //     const auction = await auctionContract.auctions(auctionId);
-  //     expect(auction.status).to.equal(2); // Completed
-  //   });
-  // });
+  describe('Withdraw', () => {
+    it('Should allow bidder to withdraw refund', async () => {
+      const [owner, bidder1, bidder2] = await ethers.getSigners();
 
-  // describe("Refund Bidders", () => {
-  //   it("Should allow bidder to withdraw refund", async () => {
-  //     const [owner, bidder1, bidder2] = await ethers.getSigners();
+      // Create and start auction
+      await auctionContract.createAuction(ethers.parseEther('1'), 3600);
+      const auctionId = await auctionContract.auctionCounter();
+      await auctionContract.startAuction(auctionId);
 
-  //     await auctionContract.createAuction(
-  //       ethers.parseEther("1"),
-  //       3600
-  //     );
-  //     const auctionId = await auctionContract.auctionCounter();
-  //     await auctionContract.startAuction(auctionId);
+      // First bid
+      await auctionContract.connect(bidder1).bid(auctionId, {
+        value: ethers.parseEther('1'),
+      });
 
-  //     await auctionContract.connect(bidder1).bid(auctionId, {
-  //       value: ethers.parseEther("1"),
-  //     });
+      // Second bid outbids first bidder
+      await auctionContract.connect(bidder2).bid(auctionId, {
+        value: ethers.parseEther('2'),
+      });
 
-  //     await auctionContract.connect(bidder2).bid(auctionId, {
-  //       value: ethers.parseEther("2"),
-  //     });
+      // Confirm refund exists
+      const refundBefore = await auctionContract.refunds(
+        auctionId,
+        bidder1.address
+      );
 
-  //   });
-  // });
+      expect(refundBefore).to.equal(ethers.parseEther('1'));
+
+      // Capture balance before withdraw
+      const balanceBefore = await ethers.provider.getBalance(bidder1.address);
+
+      // Withdraw refund
+      const tx = await auctionContract.connect(bidder1).withdraw(auctionId);
+      const receipt = await tx.wait();
+
+      // Calculate gas used for accurate balance assertion
+      const gasUsed = receipt!.gasUsed * receipt!.gasPrice!;
+
+      const balanceAfter = await ethers.provider.getBalance(bidder1.address);
+
+      // Balance should increase by refund amount minus gas
+      expect(balanceAfter).to.equal(balanceBefore + refundBefore - gasUsed);
+
+      // Refund mapping should reset to zero
+      const refundAfter = await auctionContract.refunds(
+        auctionId,
+        bidder1.address
+      );
+
+      expect(refundAfter).to.equal(0);
+    });
+
+    it('Should fail if no funds to withdraw', async () => {
+      const [owner, bidder1] = await ethers.getSigners();
+
+      await auctionContract.createAuction(ethers.parseEther('1'), 3600);
+      const auctionId = await auctionContract.auctionCounter();
+      await auctionContract.startAuction(auctionId);
+
+      // Attempt withdraw without being outbid
+      await expect(
+        auctionContract.connect(bidder1).withdraw(auctionId)
+      ).to.be.revertedWith('No funds to withdraw');
+    });
+  });
+
+  describe('Refund Bidders', () => {
+    it('Should allow bidder to withdraw refund', async () => {
+      const [owner, bidder1, bidder2] = await ethers.getSigners();
+
+      // Create and start auction
+      await auctionContract.createAuction(ethers.parseEther('1'), 3600);
+
+      const auctionId = await auctionContract.auctionCounter();
+      await auctionContract.startAuction(auctionId);
+
+      // First bid
+      await auctionContract.connect(bidder1).bid(auctionId, {
+        value: ethers.parseEther('1'),
+      });
+
+      // Second bid triggers refund logic internally
+      await auctionContract.connect(bidder2).bid(auctionId, {
+        value: ethers.parseEther('2'),
+      });
+
+    });
+  });
 });

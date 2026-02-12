@@ -55,54 +55,62 @@ uint public auctionCounter;
         a.startTime = block.timestamp;
     }
 
-    function bid(uint _auctionsId) public payable {
-        Auction storage auction = auctions[_auctionsId];
-        require(msg.sender != auction.owner, "You can't bid on your own auction");
-        require(msg.value > 0, "Send Eth greater than zero");
-        require(auction.status == AuctionStatus.OnGoing, "invalid Status");
+    function bid(uint _auctionId) external payable {
+        Auction storage auction = auctions[_auctionId];
 
-        uint totalBid = refunds[_auctionsId][msg.sender] += msg.value;
-        require(totalBid > auction.highestBid, "Bid must be higher than the current bidder");
+        require(auction.id != 0, "Auction does not exist");
+        require(auction.status == AuctionStatus.OnGoing, "Auction not active");
+        require(block.timestamp <= auction.startTime + auction.duration, "Auction ended");
+        require(msg.sender != auction.owner, "Owner cannot bid");
+        require(msg.value > 0, "Bid must be greater than zero");
 
-        // Clear pending returns for this bidder since we're using it
-        refunds[_auctionsId][msg.sender] = 0;
+        uint currentBid = refunds[_auctionId][msg.sender] + msg.value;
 
-        // Refunds the previous highest bidderj
-        if (auction.highestBidder != address(0) && auction.highestBidder != auction.owner) {
-            refunds[_auctionsId][auction.highestBidder] += auction.highestBid;
+        if (auction.highestBid == 0) {
+            require(currentBid >= auction.startingPrice, "Below starting price");
+        } else {
+            require(currentBid > auction.highestBid, "Bid too low");
         }
 
-        // Update highest bid
-        auction.highestBid = totalBid;
+        // Refund previous highest bidder
+        if (auction.highestBidder != address(0) && auction.highestBidder != msg.sender) {
+            refunds[_auctionId][auction.highestBidder] += auction.highestBid;
+        }
+
+        // Reset bidder's pending refund since it's now active bid
+        refunds[_auctionId][msg.sender] = 0;
+
+        auction.highestBid = currentBid;
         auction.highestBidder = msg.sender;
     }
 
-    // function withdraw(uint _auctionsId) payable public {
-    //     Auction storage auction = auctions[_auctionsId];
-    //     require(msg.sender != auction.owner, "You can't bid on your own auction");
-    //     require(msg.value > 0, "Send Eth greater than zero");
-    //     require(auction.status == AuctionStatus.OnGoing, "invalid Status");
+    function endAuction(uint _auctionsId) public {
+        Auction storage auction = auctions[_auctionsId];
 
-    //     uint totalBid = refunds[_auctionsId][msg.sender] += msg.value;
-    //     require(totalBid > auction.highestBid, "Bid must be higher than the current bidder");
+        require(auction.status == AuctionStatus.OnGoing, "Auction not ended yet");
+        require(block.timestamp >= auction.startTime + auction.duration, "Auction not ended yet");
 
-    //     // Clear pending returns for this bidder since we're using it
-    //     refunds[_auctionsId][msg.sender] = 0;
+        auction.status = AuctionStatus.Completed;
 
-    //     // Refunds the previous highest bidder
-    //     if (auction.highestBidder != address(0) && auction.highestBidder != auction.owner) {
-    //         refunds[_auctionsId][auction.highestBidder] += auction.highestBid;
-    //     }
+        // Transfer funds to owner
+        if (auction.highestBid > 0) {
+            (bool sent, ) = auction.owner.call{value: auction.highestBid}("");
+            require(sent, "Failed to send Ether to owner");
+        }
+    }
 
-    //     // Update highest bid
-    //     auction.highestBid = totalBid;
-    //     auction.highestBidder = msg.sender;
-    // }
+    function withdraw(uint _auctionId) external {
+        uint amount = refunds[_auctionId][msg.sender];
+        require(amount > 0, "No funds to withdraw");
 
-    function returnBalances(address person) external view returns(uint){
-        uint bal = address(person).balance;
+        refunds[_auctionId][msg.sender] = 0;
 
-        return bal;
+        (bool sent, ) = msg.sender.call{value: amount}("");
+        require(sent, "Transfer failed");
+    }
+
+    function refundBidders(address person) external view returns(uint){
+        return address(person).balance;
     }
 
 }
