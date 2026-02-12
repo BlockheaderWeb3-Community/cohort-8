@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-b01c4232f271fb8f2f6ba90cca58f1d20da0445b",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Timelock.sol": "project/contracts/Timelock.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Timelock.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract TimelockedVault {\n    struct Vault {\n        uint256 amount;\n        uint256 unlockTime;\n        bool status;\n    }\n\n    mapping(address => Vault) public vaults;\n\n\n\n    //Deposits ETH into a vault. \n    function deposit(uint256 _unlockTime) public payable {\n        require(msg.value > 0, \"Make a minimum deposit greater than 0Eth\");\n        require(_unlockTime > block.timestamp, \"Unlock time must be in the future\");\n\n        vaults[msg.sender] = Vault({\n            amount: msg.value,\n            unlockTime: _unlockTime,\n            status: true\n        });\n    }\n\n    // Withdraws the full balance after the timelock expires\n    function withdraw() public{\n        Vault storage userVault = vaults[msg.sender];\n\n        require(userVault.status, \"No active vault found\");\n        require(block.timestamp >= userVault.unlockTime, \"Vault is still locked\");\n\n        uint256 amount = userVault.amount;\n\n\n        (bool success, ) = payable(msg.sender).call{value: amount}(\"\");\n        require(success, \"Transfer failed\");\n\n    }\n}"
+      }
+    }
+  }
+}
