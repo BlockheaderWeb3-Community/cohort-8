@@ -2,10 +2,8 @@
 pragma solidity ^0.8.31;
 
 contract Escrow {
-  uint public transactAmount;
-  address public buyer;
-  address public seller;
-  address public escrowAgent;
+  uint public transactionCount = 1;
+  address public contractAddress;
 
   enum State {
     AWAITING_PAYMENT,
@@ -13,95 +11,117 @@ contract Escrow {
     AWAITING_FUNDS_DISBURSEMENT,
     COMPLETE
   }
-  State public currentState;
 
-  constructor(address _buyer, address _seller) {
-    require(_buyer != address(0), 'Buyer should be a valid address');
-    require(_seller != address(0), 'Seller should be a valid address');
-    require(_seller != msg.sender, 'Seller cannot be escrow agent');
-    require(_buyer != msg.sender, 'Buyer cannot be escrow agent');
-
-    escrowAgent = msg.sender;
-    buyer = _buyer;
-    seller = _seller;
-    currentState = State.AWAITING_PAYMENT;
+  struct Order {
+    uint id;
+    address buyer;
+    address seller;
+    uint amount;
+    State status;
   }
 
-  modifier onlyBuyer() {
-    require(msg.sender == buyer, 'Only buyer can call this function');
+  mapping(uint => Order) public orders;
+
+  constructor() {
+    contractAddress = msg.sender;
+  }
+
+  modifier notAddressZero(address _addr) {
+    require(_addr != address(0), 'Address cant be address zero');
     _;
   }
 
-  modifier onlySeller() {
-    require(msg.sender == seller, 'Only seller can call this function');
-    _;
-  }
-
-  modifier onlyEscrowAgent() {
-    require(msg.sender == escrowAgent, 'Only Escrow Agent can call this agent');
-    _;
-  }
-
-  modifier validState(State _state) {
-    require(_state == currentState, 'Invalid state');
-    _;
-  }
-
-  modifier paymentMade() {
+  modifier onlyBuyer(uint _id) {
     require(
-      address(this).balance >= transactAmount && address(this).balance > 0,
+      msg.sender == orders[_id].buyer,
+      'Only buyer can call this function'
+    );
+    _;
+  }
+
+  modifier onlySeller(uint _id) {
+    require(
+      msg.sender == orders[_id].seller,
+      'Only seller can call this function'
+    );
+    _;
+  }
+
+  modifier onlyContract() {
+    require(
+      msg.sender == contractAddress,
+      'Only Contract can call this function'
+    );
+    _;
+  }
+
+  modifier validState(uint _id, State _state) {
+    require(_state == orders[_id].status, 'Invalid state');
+    _;
+  }
+
+  modifier paymentMade(uint _id) {
+    require(
+      address(this).balance >= orders[_id].amount && address(this).balance > 0,
       'Amount not paid'
     );
     _;
   }
 
-  function deposit()
-    external
-    payable
-    onlyBuyer
-    validState(State.AWAITING_PAYMENT)
-  {
-    require(msg.value > 0, 'No ETH value is available');
-
-    transactAmount = msg.value;
-    currentState = State.AWAITING_DELIVERY;
+  function createOrder(address _buyer, address _seller) public {
+    require(_buyer != address(0), 'Address cant be address zero');
+    require(_seller != address(0), 'Address cant be address zero');
+    orders[transactionCount].id = transactionCount;
+    orders[transactionCount].buyer = _buyer;
+    orders[transactionCount].seller = _seller;
+    orders[transactionCount].status = State.AWAITING_PAYMENT;
+    transactionCount++;
   }
 
-  function makeDelivery()
-    external
-    paymentMade
-    onlySeller
-    validState(State.AWAITING_DELIVERY)
-  {
-    require(address(this).balance > 0, 'No payment made');
-
-    currentState = State.AWAITING_FUNDS_DISBURSEMENT;
+  function deposit(
+    uint _id
+  ) public payable onlyBuyer(_id) validState(_id, State.AWAITING_PAYMENT) {
+    orders[_id].amount = msg.value;
+    orders[_id].status = State.AWAITING_DELIVERY;
   }
 
-  function releaseFundsToSeller()
-    external
-    onlyEscrowAgent
-    paymentMade
-    validState(State.AWAITING_FUNDS_DISBURSEMENT)
+  function sendDelivery(
+    uint _transactionCount
+  )
+    public
+    paymentMade(_transactionCount)
+    validState(_transactionCount, State.AWAITING_DELIVERY)
   {
-    require(address(this).balance > 0, 'No ETH value is available');
+    orders[_transactionCount].status = State.AWAITING_FUNDS_DISBURSEMENT;
+  }
 
-    (bool success, ) = seller.call{value: address(this).balance}('');
+  function releaseFundsToSeller(
+    uint _id
+  )
+    external
+    onlyContract
+    paymentMade(_id)
+    validState(_id, State.AWAITING_FUNDS_DISBURSEMENT)
+  {
+    Order memory _order = orders[_id];
+
+    (bool success, ) = _order.seller.call{value: _order.amount}('');
     require(success, 'Transfer failed');
-    currentState = State.COMPLETE;
-    transactAmount = 0;
+    _order.status = State.COMPLETE;
+    orders[_id] = _order;
   }
 
-  function refundFundsToBuyer()
+  function refundFundsToBuyer(
+    uint _id
+  )
     external
-    onlyEscrowAgent
-    paymentMade
-    validState(State.AWAITING_DELIVERY)
+    onlyContract
+    paymentMade(_id)
+    validState(_id, State.AWAITING_DELIVERY)
   {
-    require(address(this).balance > 0, 'No ETH value is available');
+    Order storage _order = orders[_id];
 
-    (bool success, ) = buyer.call{value: address(this).balance}('');
+    (bool success, ) = _order.buyer.call{value: _order.amount}('');
     require(success, 'Refund failed');
-    transactAmount = 0;
   }
 }
