@@ -93,7 +93,7 @@ document.getElementById("loadBlock").addEventListener("click", async () => {
   container.textContent = "Loading latest blocks...";
 
   try {
-    const blocks = await getLatestBlocks(8);
+    const blocks = await getLatestBlocks(10);
     renderBlocks(blocks);
   } catch (err) {
     container.textContent = "Error fetching blocks";
