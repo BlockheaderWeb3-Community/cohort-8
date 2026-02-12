@@ -1,9 +1,37 @@
-.env
-.vscode/
 
-package-lock.json
-node_modules
+# --- Node / npm
+**/node_modules/
+**/package-lock.json
+**/npm-debug.log*
+**/pnpm-debug.log*
 
-# Rust build artifacts
-/target
-**/target
+# --- Env / secrets ---
+**/.env
+**/.env.*
+
+# --- Editors ---
+**/.vscode/
+**/.idea/
+
+# --- Build outputs ---
+**/dist/
+**/build/
+**/out/
+**/.cache/
+**/.turbo/
+
+# --- Rust ---
+**/target/
+**/*.rs.bk
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- React ---
+.react-router
+
+# 
+artifacts
+cache
+
