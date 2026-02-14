@@ -1,4 +1,3 @@
-
 import fs from 'node:fs';
 import { randomBytes, createHash } from 'node:crypto';
 import { keccak256, SigningKey } from 'ethers';
