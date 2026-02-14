@@ -88,10 +88,10 @@ contract Escrow {
         (bool success,) = seller.call{value: amount}(" ");
         require(success, "Transaction failed");
 
-        Seller memory sellerInstance = sellerStatMapping[seller];
+        Seller storage sellerInstance = sellerStatMapping[seller];
 
         sellerInstance.status = SellerStatus.COMPLETE;
-        sellerStatMapping[msg.sender] = sellerInstance;   
+        // sellerStatMapping[msg.sender] = sellerInstance;   
         
     }
 
