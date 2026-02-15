@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-be8794c3de0d2ca4bdc504a53d712e566990ec82",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/todo.sol": "project/contracts/todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/todo.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.26;\n\ncontract Todo {\n   uint todoCounter;\n\n   enum Status {\n    Pending,\n    Done,\n    Cancelled,\n    Defaulted\n   }\n\n   struct TodoList {\n    uint id;\n    address owner;\n    string text;\n    Status status;\n    uint deadline;\n   }\n\n   mapping (uint => TodoList) todos;\n\n   event TodoCreated(string text, uint deadline);\n   event MarkTodoAsDone(string text, Status status);\n\n   function createTodo(string memory _text, uint _deadline) external returns (uint) {\n    require(bytes(_text).length > 0, \"Empty text\");\n    require(_deadline > (block.timestamp + 600), \"Invalid deadline\");\n    require(msg.sender != address(0), \"Zero Address Used\");\n\n    todoCounter++;\n    todos[todoCounter] = TodoList(todoCounter, msg.sender, _text, Status.Pending, _deadline);\n\n    emit TodoCreated(_text, _deadline);\n\n    return todoCounter;\n   }\n\n   function markAsDone(uint _id) external returns(bool){\n    require((_id > 0) && (_id <= todoCounter), \"Invalid id\");\n    require(todos[_id].owner == msg.sender, \"Unauthorized\");\n    require(todos[_id].status == Status.Pending, \"Not Pending\");\n\n    if(block.timestamp > todos[_id].deadline){\n        todos[_id].status = Status.Defaulted;\n        return false;\n    }\n    todos[_id].status = Status.Done;\n    emit MarkTodoAsDone(todos[_id].text, Status.Done);\n    return true;\n   }\n\n   function updateTodo(uint _id) external returns (bool) {\n    require((_id > 0) && (_id <= todoCounter), \"Invalid id\");\n   }\n}\n"
+      }
+    }
+  }
+}
