@@ -1,0 +1,21 @@
+# Dependency directories
+node_modules/
+installed_contracts/
+
+# Hardhat files
+cache/
+artifacts/
+typechain-types/
+typechain/
+
+# Environment variables
+.env
+.env.local
+
+# Coverage reports
+coverage/
+coverage.json
+
+# Misc
+.DS_Store
+*.log
