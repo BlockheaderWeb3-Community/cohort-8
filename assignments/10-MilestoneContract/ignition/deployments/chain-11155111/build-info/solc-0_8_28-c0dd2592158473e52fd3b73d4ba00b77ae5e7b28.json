@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-c0dd2592158473e52fd3b73d4ba00b77ae5e7b28",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Milestone.sol": "project/contracts/Milestone.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Milestone.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract Milestone {\n    uint public jobCounter;\n\n    enum Status {\n        Not_Completed,\n        Completed\n    }\n\n    struct Job {\n        uint id;\n        address client;\n        address freelancer;\n        uint milestonesTotal;\n        uint milestonesDone;\n        uint ethPerMilestone;\n        Status status;\n    }\n\n    mapping(uint => Job) public jobs;\n\n    function createJob(address _freelancer, uint _milestones, uint _ethPerMilestone) external payable returns(uint) {\n        require(msg.value == _milestones * _ethPerMilestone, \"Must fund full contract upfront\");\n\n        jobCounter++;\n        jobs[jobCounter] = Job({\n            id: jobCounter,\n            client: msg.sender,\n            freelancer: _freelancer,\n            milestonesTotal: _milestones,\n            milestonesDone: 0,\n            ethPerMilestone: _ethPerMilestone,\n            status: Status.Not_Completed\n        });\n\n        return jobCounter;\n    }\n    \n    function tickMilestone(uint _id) external {\n        Job storage j = jobs[_id];\n        require(msg.sender == j.freelancer, \"Only freelancer can mark milestone\");\n        require(j.status == Status.Not_Completed, \"Job completed\");\n        require(j.milestonesDone < j.milestonesTotal, \"All milestones already done\");\n\n        j.milestonesDone += 1;\n    }\n\n    function confirmMilestone(uint _id) external {\n        Job storage j = jobs[_id];\n        require(msg.sender == j.client, \"Only client can confirm\");\n        require(j.milestonesDone > 0, \"No milestone to confirm\");\n        require(address(this).balance >= j.ethPerMilestone, \"Not enough funds\");\n\n        (bool success,) = j.freelancer.call{value: j.ethPerMilestone}(\"\");\n        require(success, \"Transfer failed\");\n\n        if (j.milestonesDone == j.milestonesTotal) {\n            j.status = Status.Completed;\n        }\n    }\n}"
+      }
+    }
+  }
+}
