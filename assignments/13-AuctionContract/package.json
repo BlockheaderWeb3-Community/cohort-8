@@ -1,5 +1,5 @@
 {
-  "name": "CrowdfundingContract",
+  "name": "AuctionContract",
   "version": "1.0.0",
   "type": "module",
   "devDependencies": {
