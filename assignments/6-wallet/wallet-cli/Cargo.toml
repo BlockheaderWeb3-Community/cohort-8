@@ -1,0 +1,12 @@
+[package]
+name = "wallet-cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+wallet-core = { path = "../wallet-core" }
+# Async runtime
+tokio = { version = "1.37", features = ["macros", "rt-multi-thread"] }
+
+# Hex encoding for CLI output
+hex = "0.4"

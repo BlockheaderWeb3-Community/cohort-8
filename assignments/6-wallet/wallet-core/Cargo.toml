@@ -1,0 +1,19 @@
+[package]
+name = "wallet-core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand = "0.8"
+sha2 = "0.10"
+sha3 = "0.10"
+pbkdf2 = { version = "0.12", features = ["simple"] }
+hex = "0.4"
+hmac = "0.12"
+bs58 = "0.5"
+secp256k1 = { version = "0.28", features = ["rand", "recovery"] }
+reqwest = { version = "0.11", features = ["json"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.0", features = ["full"] }
+rlp = "0.5"
