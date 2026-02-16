@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///Users/mac/Documents/cohort-8/assignments/7-block-explorer/src/components/QueryProvider.tsx"],"sourcesContent":["'use client';\n\nimport { QueryClient, QueryClientProvider } from '@tanstack/react-query';\nimport { ReactQueryDevtools } from '@tanstack/react-query-devtools';\nimport { useState } from 'react';\n\nexport function QueryProvider({ children }: { children: React.ReactNode }) {\n  const [queryClient] = useState(\n    () =>\n      new QueryClient({\n        defaultOptions: {\n          queries: {\n            staleTime: 1000 * 60 * 5, // 5 minutes\n            retry: 2,\n            refetchOnWindowFocus: false,\n          },\n        },\n      })\n  );\n\n  return (\n    <QueryClientProvider client={queryClient}>\n      {children}\n      <ReactQueryDevtools initialIsOpen={false} />\n    </QueryClientProvider>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;AAAA;AACA;AACA;AAJA;;;;;AAMO,SAAS,cAAc,EAAE,QAAQ,EAAiC;IACvE,MAAM,CAAC,YAAY,GAAG,IAAA,iNAAQ,EAC5B,IACE,IAAI,4LAAW,CAAC;YACd,gBAAgB;gBACd,SAAS;oBACP,WAAW,OAAO,KAAK;oBACvB,OAAO;oBACP,sBAAsB;gBACxB;YACF;QACF;IAGJ,qBACE,8OAAC,6MAAmB;QAAC,QAAQ;;YAC1B;0BACD,8OAAC,0MAAkB;gBAAC,eAAe;;;;;;;;;;;;AAGzC"}}]
+}
