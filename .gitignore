@@ -7,3 +7,4 @@ node_modules
 # Rust build artifacts
 /target
 **/target
+/arms_cache
