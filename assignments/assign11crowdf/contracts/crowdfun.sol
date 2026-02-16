@@ -11,6 +11,8 @@ contract SimpleCrowdfunding {
     // Track how much each address contributed
     mapping(address => uint256) public contributions;
 
+    // 
+
     bool public goalReached;
     bool public ownerPaid;
 
