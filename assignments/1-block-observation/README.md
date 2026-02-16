@@ -1,1 +1,0 @@
-(Block Explorer)[https://hackmd.io/@GhXpzopCT4GRIXOIrUHk6g/HkXUYNTHZg]
