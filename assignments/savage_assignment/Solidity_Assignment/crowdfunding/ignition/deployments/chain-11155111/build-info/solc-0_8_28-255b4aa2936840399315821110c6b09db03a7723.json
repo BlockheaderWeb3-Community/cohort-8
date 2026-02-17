@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-255b4aa2936840399315821110c6b09db03a7723",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/contribute.sol": "project/contracts/contribute.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/contribute.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\n\ncontract CrowdFunding{\n\n    struct Adashey{\n        address owner;\n        uint deadline;\n        uint targetAmount;\n        uint totalCollected;\n    }\n\n    // create a counter to give each pool a uinque ID\n    uint public poolCounter;\n    \n\n    // mapping the counter to the struct which contains the details of the pool\n    mapping(uint => Adashey) public fundingStorage;\n\n\n    // map pool ID to (contributor address to amount)\n    mapping(uint => mapping(address => uint)) public contributorsFunds;\n\n    function createPool(uint _deadline, uint _targetAmount) external returns(uint) {\n        require(_targetAmount > 0, \"Must be greater than zero\");\n        poolCounter++;\n        fundingStorage[poolCounter] = Adashey({\n            owner: msg.sender,\n            deadline: _deadline,\n            targetAmount: _targetAmount,\n            totalCollected: 0\n        });\n\n        return poolCounter;\n    }\n\n\n    function contribute(uint _id) external payable {\n        require(fundingStorage[_id].owner != address(0), \"Pool does not exist\");\n        require(block.timestamp < fundingStorage[_id].deadline, \"Deadline passed\");\n        require( msg.value > 0, \"Must send eth\");\n\n        // this line stores the amount each of the contributor contributed to the project in the mapping\n        contributorsFunds[_id][msg.sender] += msg.value;\n        // ths line refreshs the state of this transaction when a contributor contributes\n        fundingStorage[_id].totalCollected += msg.value;\n    }\n\n    function withdrawFunds(uint _id) external{\n        require(msg.sender == fundingStorage[_id].owner, \"Only owner can withdraw\");\n        require(fundingStorage[_id].totalCollected >= fundingStorage[_id].targetAmount, \"Target amount hasn't reached\");\n        require(block.timestamp >= fundingStorage[_id].deadline, \"Deadline hasn't reached\");\n        require(fundingStorage[_id].totalCollected > 0, \"Already Withdrawn\");\n\n        // Saves the total amount of contribution to this variable before reseting the state of the transaction\n        uint amount = fundingStorage[_id].totalCollected;\n\n        // prevent double withdraw \n        fundingStorage[_id].totalCollected = 0;  \n\n        (bool success,) = msg.sender.call{value: amount}(\"\");\n        require(success, \"Transafer failed\");\n    }\n\n\n\n    // this function refunds the money of the contributors back if they want a refund and if the target the project placed didn't complete and the deadline has passed\n    function refundFunds(uint _id) external {\n        require(block.timestamp <= fundingStorage[_id].deadline, \"Deadline has reached\");\n        require(contributorsFunds[_id][msg.sender] > 0, \"You didn't contribute or already refunded\");\n        require(fundingStorage[_id].totalCollected < fundingStorage[_id].targetAmount, \"Target amount has reached\");\n\n\n        // assigning the amount the contributor contributed to this varaible for easy access when attempting too refund. \n        uint amount = contributorsFunds[_id][msg.sender];\n\n        // setting the state to zero to avoid double request for refund after refund\n        contributorsFunds[_id][msg.sender] = 0;\n\n        (bool success,) = msg.sender.call{value: amount}(\"\");\n        require(success, \"Transafer failed\");\n\n    }\n\n\n\n\n\n}\n\n\n"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-76556d021f09e2963817e236d7c69cc7816237ed",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/escrow.sol": "project/contracts/escrow.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/escrow.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract EscrowSystem {\n\n   // Define State \n   enum SystemStatus {\n      AWAITING_DEPOSIT,\n      ALREADY_DEPOSITED,\n      ALREADY_DELIVERED,\n      COMPLETED\n   }\n\n   struct Transactions {\n      address buyer;\n      address seller;\n      uint amount;\n      SystemStatus status;\n      bool exists;\n   }\n\n   // Create Storage Sysytem: Building a system where each transaction  has a unique number, and the number let's you check your transaction in storage.  \n   mapping (uint => Transactions) public txStorage;\n\n\n   // Creating a counter: Tracking how many transactions gave been created so each gets a unique ID\n   uint public txCounter;\n\n\n   // This function creates a new transaction when ever it is called. \n   function newTransactions(address _buyer, address _seller, uint _amount) public  returns (uint) {\n      txCounter++; // This creates new IDs for transactions\n      txStorage[txCounter] = Transactions({ // Store new transactions at that ID\n         buyer: _buyer,\n         seller: _seller,\n         amount: _amount,\n         status: SystemStatus.AWAITING_DEPOSIT,\n         exists: true\n\n      });\n\n\n      return txCounter;  // Return the ID that was used\n   }\n\n\n   // this function is recieves the payment from the buyer. \n   function deposit(uint _id) public payable {\n      // this line is going into mapping/storage, to get a transaction and store it within storedTx.\n      // This helps us to get every data within the transaction struct by using the variable storedTx. \n      Transactions storage storedTx = txStorage[_id];\n      require(_id > 0 && _id <= txCounter, \"Invalid ID\");\n      require(storedTx.exists, \" Transaction doesn't exist\");\n      require(msg.sender == storedTx.buyer, \"Only buyer can make deposit\");\n      require(msg.value == storedTx.amount, \"Wrong amount sent\");\n      require(storedTx.status == SystemStatus.AWAITING_DEPOSIT, \"Already Deposited\");\n\n      // changing status to already deposited. for the buyer has already sent the money. \n      storedTx.status = SystemStatus.ALREADY_DEPOSITED;\n   }\n\n\n   // this function is to confrim that the delievery has been made \n   function confirmDelivery(uint _id) public {\n      Transactions storage storedTx = txStorage[_id];\n      require(_id > 0 && _id <= txCounter, \"Invalid ID\");\n      require(storedTx.exists, \"Transaction doesn't exist\");\n      require(msg.sender == storedTx.buyer, \"Only buyer can confirrm delivery\");\n      require(storedTx.status == SystemStatus.ALREADY_DEPOSITED, \"Awaiting deposit\");\n\n      storedTx.status = SystemStatus.ALREADY_DELIVERED;\n   }\n\n\n   // \n\n   function releaseFunds(uint _id) public{\n      Transactions storage storedTx = txStorage[_id];\n      require(_id > 0 && _id <= txCounter, \"Invalid ID\");\n      require(storedTx.exists, \"Transaction doesn't exist\");\n      require(storedTx.status == SystemStatus.ALREADY_DELIVERED, \"Awaiting delievery\");\n      require(msg.sender == storedTx.seller, \"Only seller can receive payment\");\n\n      // Change state before sending money\n      storedTx.status = SystemStatus.COMPLETED;\n\n      // Seller recieves payment\n      (bool success,) = storedTx.seller.call{value: storedTx.amount}(\"\");\n      require(success, \"Transafer failed\");\n\n   }\n}"
+      }
+    }
+  }
+}
