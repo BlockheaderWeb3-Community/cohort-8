@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Add this import map -->
+    <script type="importmap">
+      {
+        "imports": {
+          "ethers": "https://esm.run/ethers@6"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <h1>⬣ SAVAGEscan</h1>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-label">ETH Price:</span>
+          <span class="stat-value" id="ethPrice">$2,715.86</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Gas:</span>
+          <span class="stat-value" id="gasPrice">0.513 Gwei</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search by Address / Txn Hash / Block Number"
+      />
+      <button class="search-btn" onclick="handleSearch()">🔍 Search</button>
+    </div>
+
+    <!-- Main View -->
+    <div id="mainView">
+      <div class="container">
+        <!-- Latest Blocks -->
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Latest Blocks</h2>
+            <a class="view-all">VIEW ALL BLOCKS →</a>
+          </div>
+          <div id="blocksList">
+            <!-- Blocks will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Latest Transactions -->
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Latest Transactions</h2>
+            <a class="view-all">VIEW ALL TRANSACTIONS →</a>
+          </div>
+          <div id="transactionsList">
+            <!-- Transactions will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Block Detail View -->
+    <div id="blockDetail" class="detail-view">
+      <div class="back-btn" onclick="showMain()">← Back to Main</div>
+      <div class="detail-header">
+        <h2 class="detail-title">Block #<span id="blockNumber"></span></h2>
+        <p class="detail-subtitle"><span class="badge">Finalized</span></p>
+      </div>
+      <div class="detail-grid" id="blockDetailContent">
+        <!-- Block details will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Transaction Detail View -->
+    <div id="txDetail" class="detail-view">
+      <div class="back-btn" onclick="showMain()">← Back to Main</div>
+      <div class="detail-header">
+        <h2 class="detail-title">Transaction Details</h2>
+      </div>
+      <div class="detail-grid" id="txDetailContent">
+        <!-- Transaction details will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Address Detail View -->
+    <div id="addressDetail" class="detail-view">
+      <div class="back-btn" onclick="showMain()">← Back to Main</div>
+      <div class="detail-header">
+        <h2 class="detail-title">Address Details</h2>
+      </div>
+      <div class="detail-grid" id="addressDetailContent">
+        <!-- Address details will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Search Error Message -->
+    <div id="searchError" class="search-error">
+      <p>No results found. Please check your input and try again.</p>
+      <button onclick="closeError()">Close</button>
+    </div>
+
+    <script type="module" src="./explorerjs/main.js"></script>
+  </body>
+</html>
