@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-ecf55608c8684e91be74a4cf0f57b2e98ef3a5af",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/client.sol": "project/contracts/client.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/client.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.26;\n\ncontract MileStonePayment{\n    struct Mile {\n        address client;\n        address freelancer;\n        uint mileStones;\n        uint mileStoneDone;\n        uint ethPerMileStone;\n        bool isDone;\n    }\n\n\n    mapping ( uint => Mile) mileStoneStorage;\n\n    uint public mileCounter;\n\n    function  createJob(address _freelancer, uint _mileStones, uint _ethPerMileStone ) external payable returns (uint) {\n        mileCounter++;\n        mileStoneStorage[mileCounter] = Mile({\n            client: msg.sender,\n            freelancer: _freelancer,\n            mileStones: _mileStones,\n            ethPerMileStone: _ethPerMileStone,\n            isDone: false,\n            mileStoneDone: 0\n        });\n\n        return mileCounter;\n    }\n\n\n    function tickMileStone(uint _id) external {\n        Mile storage storedMiles = mileStoneStorage[_id];\n        require(msg.sender == storedMiles.freelancer, \"Only freelancer can tick mileStone\");\n        require(storedMiles.isDone == false, \"Job already completed\");\n        \n        storedMiles.mileStones += 1;\n\n    }\n\n    function confirmMileStone(uint _id) external {\n        Mile storage storedMiles = mileStoneStorage[_id];\n        require(msg.sender == storedMiles.client, \"Only client that can confrim milestone\");\n        require(storedMiles.isDone == false, \"Job already completed\");\n\n        (bool success,) = storedMiles.freelancer.call{value: storedMiles.ethPerMileStone}(\"\");\n        require(success, \"Transafer failed\");\n\n        storedMiles.mileStones == storedMiles.mileStoneDone;\n        storedMiles.isDone == true;\n\n    }\n\n\n\n\n\n}"
+      }
+    }
+  }
+}
