@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-826e89ed4ed0d8c6e79ccc41597ce7515278127f",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/time.sol": "project/contracts/time.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/time.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract TimeVault {\n   \n\n    // VaultData struct creates a template for storing each of the user's information. \n    struct vaultData {\n        address user;\n        uint vaultTime;\n        uint ethAmount;\n        bool isActive;\n    }\n\n\n\n    // This links each of the user's address to their vaultData like a database... where the key is the address. \n    mapping(address => vaultData) public vault;\n    mapping(address => bool) public hasWithdrawn;\n\n\n    // Deposit function locks creatres a vault for the user, deposit ETH into the vault \n    // and locks it for a specific time which the user sets. \n    function depositVault(uint vaultTime) external payable {\n        require(!vault[msg.sender].isActive, \"Has already depositied\");\n        vault[msg.sender] = vaultData( msg.sender, vaultTime, msg.value, true);\n        require(vaultTime > block.timestamp + 3600, \"Too Early\");\n        vault[msg.sender].isActive = true;\n        require(msg.value > 0, \"Eth must be greater than zero\");\n    }\n\n\n\n    // Withdraw function checks if every of the conditions are met, if true, \"gives user access to withdraw what was saved\",\n    // if false, \"throws error to user and waits  until conditions are met\"\n    function withdrawSavings() external {\n        require(vault[msg.sender].vaultTime <= block.timestamp, \"access granted!\");\n        require(!hasWithdrawn[msg.sender], \"Withdrawal already made\");\n        require(vault[msg.sender].ethAmount > 0, \"Insufficient balance\");\n\n        uint fullAmount = vault[msg.sender].ethAmount;\n        vault[msg.sender].ethAmount = 0;       \n        hasWithdrawn[msg.sender] = true;\n        vault[msg.sender].isActive = false;\n\n\n        (bool success, ) = payable(msg.sender).call{value: fullAmount}(\"\");\n        require(success, \"Transfer failed\");\n        \n    }\n\n\n\n\n\n}"
+      }
+    }
+  }
+}
