@@ -1,0 +1,1126 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/src/lib/api.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "etherscanApi",
+    ()=>etherscanApi
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
+;
+const ETHERSCAN_API_KEY = ("TURBOPACK compile-time value", "demo") || 'demo';
+const etherscanApi = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].create({
+    baseURL: ("TURBOPACK compile-time value", "https://ethereum-rpc.publicnode.com"),
+    params: {
+        apikey: ETHERSCAN_API_KEY
+    }
+});
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/utils/useEtherscanData.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useBlockDetails",
+    ()=>useBlockDetails,
+    "useEthereumStats",
+    ()=>useEthereumStats,
+    "useRecentTransactions",
+    ()=>useRecentTransactions
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/compiler-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useQuery.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/api.ts [app-client] (ecmascript)");
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature();
+'use client';
+;
+;
+;
+function useEthereumStats() {
+    _s();
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(2);
+    if ($[0] !== "adc48c6f59754be04a49a7fda6ab7b883bbd4a4b3f23c38bb1050006facfdf5b") {
+        for(let $i = 0; $i < 2; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "adc48c6f59754be04a49a7fda6ab7b883bbd4a4b3f23c38bb1050006facfdf5b";
+    }
+    let t0;
+    if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+        t0 = {
+            queryKey: [
+                "ethereum-stats"
+            ],
+            queryFn: _temp,
+            refetchInterval: 10000
+        };
+        $[1] = t0;
+    } else {
+        t0 = $[1];
+    }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])(t0);
+}
+_s(useEthereumStats, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+async function _temp() {
+    return {
+        ethPrice: 2628.88,
+        priceChange: -3.57,
+        totalTransactions: "3,232.75 M",
+        gasPrice: 0.105,
+        lastFinalizedBlock: 24354972,
+        lastSafeBlock: 24355004,
+        tps: 26.1
+    };
+}
+function useRecentTransactions() {
+    _s1();
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(2);
+    if ($[0] !== "adc48c6f59754be04a49a7fda6ab7b883bbd4a4b3f23c38bb1050006facfdf5b") {
+        for(let $i = 0; $i < 2; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "adc48c6f59754be04a49a7fda6ab7b883bbd4a4b3f23c38bb1050006facfdf5b";
+    }
+    let t0;
+    if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+        t0 = {
+            queryKey: [
+                "recent-transactions"
+            ],
+            queryFn: _temp2
+        };
+        $[1] = t0;
+    } else {
+        t0 = $[1];
+    }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])(t0);
+}
+_s1(useRecentTransactions, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+async function _temp2() {
+    return [
+        {
+            hash: "0x1234...5678",
+            from: "0xabcd...efgh",
+            to: "0xijkl...mnop",
+            value: "1.5 ETH",
+            timestamp: Date.now() - 3600000,
+            gasPrice: "0.105 Gwei"
+        }
+    ];
+}
+function useBlockDetails(blockNumber) {
+    _s2();
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(8);
+    if ($[0] !== "adc48c6f59754be04a49a7fda6ab7b883bbd4a4b3f23c38bb1050006facfdf5b") {
+        for(let $i = 0; $i < 8; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "adc48c6f59754be04a49a7fda6ab7b883bbd4a4b3f23c38bb1050006facfdf5b";
+    }
+    let t0;
+    let t1;
+    if ($[1] !== blockNumber) {
+        t0 = [
+            "block-details",
+            blockNumber
+        ];
+        t1 = async ()=>{
+            if (!blockNumber) {
+                throw new Error("Block number required");
+            }
+            const response = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["etherscanApi"].get("", {
+                params: {
+                    module: "proxy",
+                    action: "eth_getBlockByNumber",
+                    tag: `0x${blockNumber.toString(16)}`,
+                    boolean: "true"
+                }
+            });
+            return {
+                number: parseInt(response.data.result.number, 16),
+                timestamp: parseInt(response.data.result.timestamp, 16) * 1000,
+                miner: response.data.result.miner,
+                transactions: response.data.result.transactions,
+                gasUsed: parseInt(response.data.result.gasUsed, 16).toLocaleString(),
+                gasLimit: parseInt(response.data.result.gasLimit, 16).toLocaleString()
+            };
+        };
+        $[1] = blockNumber;
+        $[2] = t0;
+        $[3] = t1;
+    } else {
+        t0 = $[2];
+        t1 = $[3];
+    }
+    const t2 = !!blockNumber;
+    let t3;
+    if ($[4] !== t0 || $[5] !== t1 || $[6] !== t2) {
+        t3 = {
+            queryKey: t0,
+            queryFn: t1,
+            enabled: t2
+        };
+        $[4] = t0;
+        $[5] = t1;
+        $[6] = t2;
+        $[7] = t3;
+    } else {
+        t3 = $[7];
+    }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])(t3);
+}
+_s2(useBlockDetails, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/StatsGrid.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "StatsGrid",
+    ()=>StatsGrid
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/compiler-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/utils/useEtherscanData.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/activity.js [app-client] (ecmascript) <export default as Activity>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/flame.js [app-client] (ecmascript) <export default as Flame>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/box.js [app-client] (ecmascript) <export default as Box>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/zap.js [app-client] (ecmascript) <export default as Zap>");
+;
+var _s = __turbopack_context__.k.signature();
+'use client';
+;
+;
+;
+function StatsGrid() {
+    _s();
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(22);
+    if ($[0] !== "f37d202493749e8790bb6619ca1819686b03073b39f1997a642f058ea8be9e7c") {
+        for(let $i = 0; $i < 22; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "f37d202493749e8790bb6619ca1819686b03073b39f1997a642f058ea8be9e7c";
+    }
+    const { data: stats, isLoading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEthereumStats"])();
+    if (isLoading) {
+        let t0;
+        if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+            t0 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
+                children: [
+                    ...Array(4)
+                ].map(_StatsGridAnonymous)
+            }, void 0, false, {
+                fileName: "[project]/src/components/StatsGrid.tsx",
+                lineNumber: 21,
+                columnNumber: 12
+            }, this);
+            $[1] = t0;
+        } else {
+            t0 = $[1];
+        }
+        return t0;
+    }
+    const t0 = stats?.totalTransactions || "0";
+    const t1 = `${stats?.tps || 0} TPS`;
+    let t2;
+    if ($[2] !== t0 || $[3] !== t1) {
+        t2 = {
+            title: "Transactions",
+            value: t0,
+            subtitle: t1,
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__["Activity"],
+            color: "bg-blue-500"
+        };
+        $[2] = t0;
+        $[3] = t1;
+        $[4] = t2;
+    } else {
+        t2 = $[4];
+    }
+    const t3 = `${stats?.gasPrice || 0} Gwei`;
+    let t4;
+    if ($[5] !== t3) {
+        t4 = {
+            title: "Med Gas Price",
+            value: t3,
+            subtitle: "< $0.01",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"],
+            color: "bg-orange-500"
+        };
+        $[5] = t3;
+        $[6] = t4;
+    } else {
+        t4 = $[6];
+    }
+    let t5;
+    if ($[7] !== stats?.lastFinalizedBlock) {
+        t5 = stats?.lastFinalizedBlock.toLocaleString() || "0";
+        $[7] = stats?.lastFinalizedBlock;
+        $[8] = t5;
+    } else {
+        t5 = $[8];
+    }
+    let t6;
+    if ($[9] !== t5) {
+        t6 = {
+            title: "Last Finalized Block",
+            value: t5,
+            subtitle: "Finalized",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"],
+            color: "bg-green-500"
+        };
+        $[9] = t5;
+        $[10] = t6;
+    } else {
+        t6 = $[10];
+    }
+    let t7;
+    if ($[11] !== stats?.lastSafeBlock) {
+        t7 = stats?.lastSafeBlock.toLocaleString() || "0";
+        $[11] = stats?.lastSafeBlock;
+        $[12] = t7;
+    } else {
+        t7 = $[12];
+    }
+    let t8;
+    if ($[13] !== t7) {
+        t8 = {
+            title: "Last Safe Block",
+            value: t7,
+            subtitle: "Safe",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"],
+            color: "bg-purple-500"
+        };
+        $[13] = t7;
+        $[14] = t8;
+    } else {
+        t8 = $[14];
+    }
+    let t9;
+    if ($[15] !== t2 || $[16] !== t4 || $[17] !== t6 || $[18] !== t8) {
+        t9 = [
+            t2,
+            t4,
+            t6,
+            t8
+        ];
+        $[15] = t2;
+        $[16] = t4;
+        $[17] = t6;
+        $[18] = t8;
+        $[19] = t9;
+    } else {
+        t9 = $[19];
+    }
+    const statCards = t9;
+    let t10;
+    if ($[20] !== statCards) {
+        t10 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
+            children: statCards.map(_StatsGridStatCardsMap)
+        }, void 0, false, {
+            fileName: "[project]/src/components/StatsGrid.tsx",
+            lineNumber: 118,
+            columnNumber: 11
+        }, this);
+        $[20] = statCards;
+        $[21] = t10;
+    } else {
+        t10 = $[21];
+    }
+    return t10;
+}
+_s(StatsGrid, "JDw0n/C6ozSEaoKgXHJberzE2dc=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEthereumStats"]
+    ];
+});
+_c = StatsGrid;
+function _StatsGridStatCardsMap(stat) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "bg-white p-6 rounded-xl shadow",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex items-center justify-between",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-gray-500 text-sm",
+                            children: stat.title
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/StatsGrid.tsx",
+                            lineNumber: 127,
+                            columnNumber: 131
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-2xl font-bold mt-2",
+                            children: stat.value
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/StatsGrid.tsx",
+                            lineNumber: 127,
+                            columnNumber: 184
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-gray-400 text-sm mt-1",
+                            children: stat.subtitle
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/StatsGrid.tsx",
+                            lineNumber: 127,
+                            columnNumber: 239
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/StatsGrid.tsx",
+                    lineNumber: 127,
+                    columnNumber: 126
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: `${stat.color} p-3 rounded-full`,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(stat.icon, {
+                        className: "w-6 h-6 text-white"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/StatsGrid.tsx",
+                        lineNumber: 127,
+                        columnNumber: 356
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/components/StatsGrid.tsx",
+                    lineNumber: 127,
+                    columnNumber: 306
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/components/StatsGrid.tsx",
+            lineNumber: 127,
+            columnNumber: 75
+        }, this)
+    }, stat.title, false, {
+        fileName: "[project]/src/components/StatsGrid.tsx",
+        lineNumber: 127,
+        columnNumber: 10
+    }, this);
+}
+function _StatsGridAnonymous(_, i) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "h-32 bg-gray-200 animate-pulse rounded-xl"
+    }, i, false, {
+        fileName: "[project]/src/components/StatsGrid.tsx",
+        lineNumber: 130,
+        columnNumber: 10
+    }, this);
+}
+var _c;
+__turbopack_context__.k.register(_c, "StatsGrid");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/TransactionList.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TransactionList",
+    ()=>TransactionList
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/compiler-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/external-link.js [app-client] (ecmascript) <export default as ExternalLink>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplets$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplets$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/droplets.js [app-client] (ecmascript) <export default as Droplets>");
+'use client';
+;
+;
+;
+function TransactionList(t0) {
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(6);
+    if ($[0] !== "071b481f083600ceb8c6f4c1ea31a3d588cdb30b6a20682f213bbb593d322d66") {
+        for(let $i = 0; $i < 6; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "071b481f083600ceb8c6f4c1ea31a3d588cdb30b6a20682f213bbb593d322d66";
+    }
+    const { transactions } = t0;
+    let t1;
+    if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+        t1 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+            className: "bg-gray-50",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Transaction Hash"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/TransactionList.tsx",
+                        lineNumber: 22,
+                        columnNumber: 44
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "From / To"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/TransactionList.tsx",
+                        lineNumber: 22,
+                        columnNumber: 160
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Value"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/TransactionList.tsx",
+                        lineNumber: 22,
+                        columnNumber: 269
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                        className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                        children: "Gas Price"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/TransactionList.tsx",
+                        lineNumber: 22,
+                        columnNumber: 374
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/TransactionList.tsx",
+                lineNumber: 22,
+                columnNumber: 40
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/components/TransactionList.tsx",
+            lineNumber: 22,
+            columnNumber: 10
+        }, this);
+        $[1] = t1;
+    } else {
+        t1 = $[1];
+    }
+    let t2;
+    if ($[2] !== transactions) {
+        t2 = transactions.map(_TransactionListTransactionsMap);
+        $[2] = transactions;
+        $[3] = t2;
+    } else {
+        t2 = $[3];
+    }
+    let t3;
+    if ($[4] !== t2) {
+        t3 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "bg-white rounded-xl shadow overflow-hidden",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                className: "min-w-full divide-y divide-gray-200",
+                children: [
+                    t1,
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                        className: "bg-white divide-y divide-gray-200",
+                        children: t2
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/TransactionList.tsx",
+                        lineNumber: 37,
+                        columnNumber: 129
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/TransactionList.tsx",
+                lineNumber: 37,
+                columnNumber: 70
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/components/TransactionList.tsx",
+            lineNumber: 37,
+            columnNumber: 10
+        }, this);
+        $[4] = t2;
+        $[5] = t3;
+    } else {
+        t3 = $[5];
+    }
+    return t3;
+}
+_c = TransactionList;
+function _TransactionListTransactionsMap(tx) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+        className: "hover:bg-gray-50 transition",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                className: "px-6 py-4 whitespace-nowrap",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                        href: `/tx/${tx.hash}`,
+                        className: "text-blue-600 hover:text-blue-800 font-mono text-sm flex items-center",
+                        children: [
+                            tx.hash,
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
+                                className: "w-4 h-4 ml-1"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/TransactionList.tsx",
+                                lineNumber: 46,
+                                columnNumber: 265
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/TransactionList.tsx",
+                        lineNumber: 46,
+                        columnNumber: 147
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/components/TransactionList.tsx",
+                    lineNumber: 46,
+                    columnNumber: 112
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/TransactionList.tsx",
+                lineNumber: 46,
+                columnNumber: 68
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                className: "px-6 py-4",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "space-y-1",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "text-sm",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-gray-500",
+                                    children: "From:"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/TransactionList.tsx",
+                                    lineNumber: 46,
+                                    columnNumber: 399
+                                }, this),
+                                " ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "font-mono",
+                                    children: tx.from
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/TransactionList.tsx",
+                                    lineNumber: 46,
+                                    columnNumber: 448
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/TransactionList.tsx",
+                            lineNumber: 46,
+                            columnNumber: 374
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "text-sm",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-gray-500",
+                                    children: "To:"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/TransactionList.tsx",
+                                    lineNumber: 46,
+                                    columnNumber: 523
+                                }, this),
+                                " ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "font-mono",
+                                    children: tx.to
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/TransactionList.tsx",
+                                    lineNumber: 46,
+                                    columnNumber: 570
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/TransactionList.tsx",
+                            lineNumber: 46,
+                            columnNumber: 498
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/TransactionList.tsx",
+                    lineNumber: 46,
+                    columnNumber: 347
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/TransactionList.tsx",
+                lineNumber: 46,
+                columnNumber: 321
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                className: "px-6 py-4 whitespace-nowrap",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-lg font-semibold",
+                    children: tx.value
+                }, void 0, false, {
+                    fileName: "[project]/src/components/TransactionList.tsx",
+                    lineNumber: 46,
+                    columnNumber: 673
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/TransactionList.tsx",
+                lineNumber: 46,
+                columnNumber: 629
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                className: "px-6 py-4 whitespace-nowrap",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center text-gray-600",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$droplets$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Droplets$3e$__["Droplets"], {
+                            className: "w-4 h-4 mr-2"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/TransactionList.tsx",
+                            lineNumber: 46,
+                            columnNumber: 826
+                        }, this),
+                        tx.gasPrice
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/TransactionList.tsx",
+                    lineNumber: 46,
+                    columnNumber: 777
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/TransactionList.tsx",
+                lineNumber: 46,
+                columnNumber: 733
+            }, this)
+        ]
+    }, tx.hash, true, {
+        fileName: "[project]/src/components/TransactionList.tsx",
+        lineNumber: 46,
+        columnNumber: 10
+    }, this);
+}
+var _c;
+__turbopack_context__.k.register(_c, "TransactionList");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/app/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>HomePage
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/compiler-runtime.js [app-client] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '@/components/EthereumStatsCard'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$StatsGrid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/StatsGrid.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$TransactionList$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/TransactionList.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/utils/useEtherscanData.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-client] (ecmascript) <export default as TrendingUp>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-down.js [app-client] (ecmascript) <export default as TrendingDown>");
+;
+var _s = __turbopack_context__.k.signature();
+'use client';
+;
+;
+;
+;
+;
+;
+function HomePage() {
+    _s();
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(29);
+    if ($[0] !== "1c4133c9bae906ad65630c1d10e6b1cc96706b1b6f5805aee9d45dc8b39ba2f1") {
+        for(let $i = 0; $i < 29; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "1c4133c9bae906ad65630c1d10e6b1cc96706b1b6f5805aee9d45dc8b39ba2f1";
+    }
+    const { data: stats } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEthereumStats"])();
+    const { data: transactions, isLoading: transactionsLoading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRecentTransactions"])();
+    let t0;
+    if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+        t0 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+            className: "text-3xl font-bold text-gray-900",
+            children: "Ethereum (ETH) Blockchain Explorer"
+        }, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 26,
+            columnNumber: 10
+        }, this);
+        $[1] = t0;
+    } else {
+        t0 = $[1];
+    }
+    let t1;
+    if ($[2] !== stats) {
+        t1 = stats && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex items-center mt-2",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "text-2xl font-bold",
+                    children: [
+                        "$",
+                        stats.ethPrice.toFixed(2)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 33,
+                    columnNumber: 59
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: `ml-4 flex items-center ${stats.priceChange >= 0 ? "text-green-600" : "text-red-600"}`,
+                    children: [
+                        stats.priceChange >= 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
+                            className: "w-5 h-5 mr-1"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/page.tsx",
+                            lineNumber: 33,
+                            columnNumber: 262
+                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingDown$3e$__["TrendingDown"], {
+                            className: "w-5 h-5 mr-1"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/page.tsx",
+                            lineNumber: 33,
+                            columnNumber: 304
+                        }, this),
+                        stats.priceChange,
+                        "%"
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 33,
+                    columnNumber: 131
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 33,
+            columnNumber: 19
+        }, this);
+        $[2] = stats;
+        $[3] = t1;
+    } else {
+        t1 = $[3];
+    }
+    let t2;
+    if ($[4] !== t1) {
+        t2 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            children: [
+                t0,
+                t1
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 41,
+            columnNumber: 10
+        }, this);
+        $[4] = t1;
+        $[5] = t2;
+    } else {
+        t2 = $[5];
+    }
+    let t3;
+    if ($[6] === Symbol.for("react.memo_cache_sentinel")) {
+        t3 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+            className: "bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition",
+            children: "Connect Wallet"
+        }, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 49,
+            columnNumber: 10
+        }, this);
+        $[6] = t3;
+    } else {
+        t3 = $[6];
+    }
+    let t4;
+    if ($[7] !== t2) {
+        t4 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex items-center justify-between",
+                children: [
+                    t2,
+                    t3
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/page.tsx",
+                lineNumber: 56,
+                columnNumber: 85
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 56,
+            columnNumber: 10
+        }, this);
+        $[7] = t2;
+        $[8] = t4;
+    } else {
+        t4 = $[8];
+    }
+    let t5;
+    if ($[9] === Symbol.for("react.memo_cache_sentinel")) {
+        t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$StatsGrid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["StatsGrid"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 64,
+            columnNumber: 10
+        }, this);
+        $[9] = t5;
+    } else {
+        t5 = $[9];
+    }
+    let t6;
+    if ($[10] === Symbol.for("react.memo_cache_sentinel")) {
+        t6 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+            className: "text-xl font-semibold mb-4",
+            children: "Recent Transactions"
+        }, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 71,
+            columnNumber: 10
+        }, this);
+        $[10] = t6;
+    } else {
+        t6 = $[10];
+    }
+    let t7;
+    if ($[11] !== transactions || $[12] !== transactionsLoading) {
+        t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "lg:col-span-2",
+            children: [
+                t6,
+                transactionsLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "space-y-4",
+                    children: [
+                        ...Array(5)
+                    ].map(_HomePageAnonymous)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 78,
+                    columnNumber: 68
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$TransactionList$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TransactionList"], {
+                    transactions: transactions || []
+                }, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 78,
+                    columnNumber: 143
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 78,
+            columnNumber: 10
+        }, this);
+        $[11] = transactions;
+        $[12] = transactionsLoading;
+        $[13] = t7;
+    } else {
+        t7 = $[13];
+    }
+    let t8;
+    if ($[14] === Symbol.for("react.memo_cache_sentinel")) {
+        t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+            className: "text-xl font-semibold mb-4",
+            children: "Latest Blocks"
+        }, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 87,
+            columnNumber: 10
+        }, this);
+        $[14] = t8;
+    } else {
+        t8 = $[14];
+    }
+    let t9;
+    if ($[15] !== stats) {
+        t9 = stats && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(EthereumStatsCard, {
+                    title: "Last Finalized Block",
+                    value: stats.lastFinalizedBlock.toLocaleString(),
+                    change: "+1",
+                    changeType: "positive"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 94,
+                    columnNumber: 21
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(EthereumStatsCard, {
+                    title: "Last Safe Block",
+                    value: stats.lastSafeBlock.toLocaleString(),
+                    change: "+32",
+                    changeType: "positive"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 94,
+                    columnNumber: 155
+                }, this)
+            ]
+        }, void 0, true);
+        $[15] = stats;
+        $[16] = t9;
+    } else {
+        t9 = $[16];
+    }
+    let t10;
+    if ($[17] !== t9) {
+        t10 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "space-y-4",
+            children: t9
+        }, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 102,
+            columnNumber: 11
+        }, this);
+        $[17] = t9;
+        $[18] = t10;
+    } else {
+        t10 = $[18];
+    }
+    let t11;
+    if ($[19] === Symbol.for("react.memo_cache_sentinel")) {
+        t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+            className: "font-semibold text-lg mb-2",
+            children: "Transaction History (14 days)"
+        }, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 110,
+            columnNumber: 11
+        }, this);
+        $[19] = t11;
+    } else {
+        t11 = $[19];
+    }
+    let t12;
+    if ($[20] === Symbol.for("react.memo_cache_sentinel")) {
+        t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "mt-8 p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl",
+            children: [
+                t11,
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "h-48 flex items-end space-x-1",
+                    children: [
+                        ...Array(14)
+                    ].map(_HomePageAnonymous2)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 117,
+                    columnNumber: 97
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 117,
+            columnNumber: 11
+        }, this);
+        $[20] = t12;
+    } else {
+        t12 = $[20];
+    }
+    let t13;
+    if ($[21] !== t10) {
+        t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            children: [
+                t8,
+                t10,
+                t12
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 124,
+            columnNumber: 11
+        }, this);
+        $[21] = t10;
+        $[22] = t13;
+    } else {
+        t13 = $[22];
+    }
+    let t14;
+    if ($[23] !== t13 || $[24] !== t7) {
+        t14 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "grid grid-cols-1 lg:grid-cols-3 gap-8",
+            children: [
+                t7,
+                t13
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 132,
+            columnNumber: 11
+        }, this);
+        $[23] = t13;
+        $[24] = t7;
+        $[25] = t14;
+    } else {
+        t14 = $[25];
+    }
+    let t15;
+    if ($[26] !== t14 || $[27] !== t4) {
+        t15 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "space-y-8",
+            children: [
+                t4,
+                t5,
+                t14
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 141,
+            columnNumber: 11
+        }, this);
+        $[26] = t14;
+        $[27] = t4;
+        $[28] = t15;
+    } else {
+        t15 = $[28];
+    }
+    return t15;
+}
+_s(HomePage, "IZR9Qk7LgXVLeafeAMVinF+xHuo=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEthereumStats"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$useEtherscanData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRecentTransactions"]
+    ];
+});
+_c = HomePage;
+function _HomePageAnonymous2(__0, i_0) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex-1 bg-gradient-to-t from-blue-500 to-blue-300 rounded-t",
+        style: {
+            height: `${30 + Math.random() * 70}%`
+        }
+    }, i_0, false, {
+        fileName: "[project]/src/app/page.tsx",
+        lineNumber: 151,
+        columnNumber: 10
+    }, this);
+}
+function _HomePageAnonymous(_, i) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "h-16 bg-gray-200 animate-pulse rounded"
+    }, i, false, {
+        fileName: "[project]/src/app/page.tsx",
+        lineNumber: 156,
+        columnNumber: 10
+    }, this);
+}
+var _c;
+__turbopack_context__.k.register(_c, "HomePage");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+]);
+
+//# sourceMappingURL=src_eae3ba3d._.js.map

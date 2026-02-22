@@ -1,0 +1,12660 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/cjs/react-jsx-dev-runtime.development.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+/**
+ * @license React
+ * react-jsx-dev-runtime.development.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "use strict";
+"production" !== ("TURBOPACK compile-time value", "development") && function() {
+    function getComponentNameFromType(type) {
+        if (null == type) return null;
+        if ("function" === typeof type) return type.$$typeof === REACT_CLIENT_REFERENCE ? null : type.displayName || type.name || null;
+        if ("string" === typeof type) return type;
+        switch(type){
+            case REACT_FRAGMENT_TYPE:
+                return "Fragment";
+            case REACT_PROFILER_TYPE:
+                return "Profiler";
+            case REACT_STRICT_MODE_TYPE:
+                return "StrictMode";
+            case REACT_SUSPENSE_TYPE:
+                return "Suspense";
+            case REACT_SUSPENSE_LIST_TYPE:
+                return "SuspenseList";
+            case REACT_ACTIVITY_TYPE:
+                return "Activity";
+            case REACT_VIEW_TRANSITION_TYPE:
+                return "ViewTransition";
+        }
+        if ("object" === typeof type) switch("number" === typeof type.tag && console.error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."), type.$$typeof){
+            case REACT_PORTAL_TYPE:
+                return "Portal";
+            case REACT_CONTEXT_TYPE:
+                return type.displayName || "Context";
+            case REACT_CONSUMER_TYPE:
+                return (type._context.displayName || "Context") + ".Consumer";
+            case REACT_FORWARD_REF_TYPE:
+                var innerType = type.render;
+                type = type.displayName;
+                type || (type = innerType.displayName || innerType.name || "", type = "" !== type ? "ForwardRef(" + type + ")" : "ForwardRef");
+                return type;
+            case REACT_MEMO_TYPE:
+                return innerType = type.displayName || null, null !== innerType ? innerType : getComponentNameFromType(type.type) || "Memo";
+            case REACT_LAZY_TYPE:
+                innerType = type._payload;
+                type = type._init;
+                try {
+                    return getComponentNameFromType(type(innerType));
+                } catch (x) {}
+        }
+        return null;
+    }
+    function testStringCoercion(value) {
+        return "" + value;
+    }
+    function checkKeyStringCoercion(value) {
+        try {
+            testStringCoercion(value);
+            var JSCompiler_inline_result = !1;
+        } catch (e) {
+            JSCompiler_inline_result = !0;
+        }
+        if (JSCompiler_inline_result) {
+            JSCompiler_inline_result = console;
+            var JSCompiler_temp_const = JSCompiler_inline_result.error;
+            var JSCompiler_inline_result$jscomp$0 = "function" === typeof Symbol && Symbol.toStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+            JSCompiler_temp_const.call(JSCompiler_inline_result, "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.", JSCompiler_inline_result$jscomp$0);
+            return testStringCoercion(value);
+        }
+    }
+    function getTaskName(type) {
+        if (type === REACT_FRAGMENT_TYPE) return "<>";
+        if ("object" === typeof type && null !== type && type.$$typeof === REACT_LAZY_TYPE) return "<...>";
+        try {
+            var name = getComponentNameFromType(type);
+            return name ? "<" + name + ">" : "<...>";
+        } catch (x) {
+            return "<...>";
+        }
+    }
+    function getOwner() {
+        var dispatcher = ReactSharedInternals.A;
+        return null === dispatcher ? null : dispatcher.getOwner();
+    }
+    function UnknownOwner() {
+        return Error("react-stack-top-frame");
+    }
+    function hasValidKey(config) {
+        if (hasOwnProperty.call(config, "key")) {
+            var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+            if (getter && getter.isReactWarning) return !1;
+        }
+        return void 0 !== config.key;
+    }
+    function defineKeyPropWarningGetter(props, displayName) {
+        function warnAboutAccessingKey() {
+            specialPropKeyWarningShown || (specialPropKeyWarningShown = !0, console.error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)", displayName));
+        }
+        warnAboutAccessingKey.isReactWarning = !0;
+        Object.defineProperty(props, "key", {
+            get: warnAboutAccessingKey,
+            configurable: !0
+        });
+    }
+    function elementRefGetterWithDeprecationWarning() {
+        var componentName = getComponentNameFromType(this.type);
+        didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = !0, console.error("Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."));
+        componentName = this.props.ref;
+        return void 0 !== componentName ? componentName : null;
+    }
+    function ReactElement(type, key, props, owner, debugStack, debugTask) {
+        var refProp = props.ref;
+        type = {
+            $$typeof: REACT_ELEMENT_TYPE,
+            type: type,
+            key: key,
+            props: props,
+            _owner: owner
+        };
+        null !== (void 0 !== refProp ? refProp : null) ? Object.defineProperty(type, "ref", {
+            enumerable: !1,
+            get: elementRefGetterWithDeprecationWarning
+        }) : Object.defineProperty(type, "ref", {
+            enumerable: !1,
+            value: null
+        });
+        type._store = {};
+        Object.defineProperty(type._store, "validated", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: 0
+        });
+        Object.defineProperty(type, "_debugInfo", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: null
+        });
+        Object.defineProperty(type, "_debugStack", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: debugStack
+        });
+        Object.defineProperty(type, "_debugTask", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: debugTask
+        });
+        Object.freeze && (Object.freeze(type.props), Object.freeze(type));
+        return type;
+    }
+    function jsxDEVImpl(type, config, maybeKey, isStaticChildren, debugStack, debugTask) {
+        var children = config.children;
+        if (void 0 !== children) if (isStaticChildren) if (isArrayImpl(children)) {
+            for(isStaticChildren = 0; isStaticChildren < children.length; isStaticChildren++)validateChildKeys(children[isStaticChildren]);
+            Object.freeze && Object.freeze(children);
+        } else console.error("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
+        else validateChildKeys(children);
+        if (hasOwnProperty.call(config, "key")) {
+            children = getComponentNameFromType(type);
+            var keys = Object.keys(config).filter(function(k) {
+                return "key" !== k;
+            });
+            isStaticChildren = 0 < keys.length ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
+            didWarnAboutKeySpread[children + isStaticChildren] || (keys = 0 < keys.length ? "{" + keys.join(": ..., ") + ": ...}" : "{}", console.error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', isStaticChildren, children, keys, children), didWarnAboutKeySpread[children + isStaticChildren] = !0);
+        }
+        children = null;
+        void 0 !== maybeKey && (checkKeyStringCoercion(maybeKey), children = "" + maybeKey);
+        hasValidKey(config) && (checkKeyStringCoercion(config.key), children = "" + config.key);
+        if ("key" in config) {
+            maybeKey = {};
+            for(var propName in config)"key" !== propName && (maybeKey[propName] = config[propName]);
+        } else maybeKey = config;
+        children && defineKeyPropWarningGetter(maybeKey, "function" === typeof type ? type.displayName || type.name || "Unknown" : type);
+        return ReactElement(type, children, maybeKey, getOwner(), debugStack, debugTask);
+    }
+    function validateChildKeys(node) {
+        isValidElement(node) ? node._store && (node._store.validated = 1) : "object" === typeof node && null !== node && node.$$typeof === REACT_LAZY_TYPE && ("fulfilled" === node._payload.status ? isValidElement(node._payload.value) && node._payload.value._store && (node._payload.value._store.validated = 1) : node._store && (node._store.validated = 1));
+    }
+    function isValidElement(object) {
+        return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
+    }
+    var React = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+        return null;
+    };
+    React = {
+        react_stack_bottom_frame: function(callStackForError) {
+            return callStackForError();
+        }
+    };
+    var specialPropKeyWarningShown;
+    var didWarnAboutElementRef = {};
+    var unknownOwnerDebugStack = React.react_stack_bottom_frame.bind(React, UnknownOwner)();
+    var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
+    var didWarnAboutKeySpread = {};
+    exports.Fragment = REACT_FRAGMENT_TYPE;
+    exports.jsxDEV = function(type, config, maybeKey, isStaticChildren) {
+        var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        if (trackActualOwner) {
+            var previousStackTraceLimit = Error.stackTraceLimit;
+            Error.stackTraceLimit = 10;
+            var debugStackDEV = Error("react-stack-top-frame");
+            Error.stackTraceLimit = previousStackTraceLimit;
+        } else debugStackDEV = unknownOwnerDebugStack;
+        return jsxDEVImpl(type, config, maybeKey, isStaticChildren, debugStackDEV, trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask);
+    };
+}();
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+'use strict';
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    module.exports = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/cjs/react-jsx-dev-runtime.development.js [app-client] (ecmascript)");
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/cjs/react-compiler-runtime.development.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+/**
+ * @license React
+ * react-compiler-runtime.development.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "use strict";
+"production" !== ("TURBOPACK compile-time value", "development") && function() {
+    var ReactSharedInternals = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)").__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+    exports.c = function(size) {
+        var dispatcher = ReactSharedInternals.H;
+        null === dispatcher && console.error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.");
+        return dispatcher.useMemoCache(size);
+    };
+}();
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/compiler-runtime.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ 'use strict';
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    module.exports = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/cjs/react-compiler-runtime.development.js [app-client] (ecmascript)");
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/timeoutManager.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TimeoutManager",
+    ()=>TimeoutManager,
+    "defaultTimeoutProvider",
+    ()=>defaultTimeoutProvider,
+    "systemSetTimeoutZero",
+    ()=>systemSetTimeoutZero,
+    "timeoutManager",
+    ()=>timeoutManager
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+// src/timeoutManager.ts
+var defaultTimeoutProvider = {
+    // We need the wrapper function syntax below instead of direct references to
+    // global setTimeout etc.
+    //
+    // BAD: `setTimeout: setTimeout`
+    // GOOD: `setTimeout: (cb, delay) => setTimeout(cb, delay)`
+    //
+    // If we use direct references here, then anything that wants to spy on or
+    // replace the global setTimeout (like tests) won't work since we'll already
+    // have a hard reference to the original implementation at the time when this
+    // file was imported.
+    setTimeout: (callback, delay)=>setTimeout(callback, delay),
+    clearTimeout: (timeoutId)=>clearTimeout(timeoutId),
+    setInterval: (callback, delay)=>setInterval(callback, delay),
+    clearInterval: (intervalId)=>clearInterval(intervalId)
+};
+var TimeoutManager = class {
+    // We cannot have TimeoutManager<T> as we must instantiate it with a concrete
+    // type at app boot; and if we leave that type, then any new timer provider
+    // would need to support ReturnType<typeof setTimeout>, which is infeasible.
+    //
+    // We settle for type safety for the TimeoutProvider type, and accept that
+    // this class is unsafe internally to allow for extension.
+    #provider = defaultTimeoutProvider;
+    #providerCalled = false;
+    setTimeoutProvider(provider) {
+        if ("TURBOPACK compile-time truthy", 1) {
+            if (this.#providerCalled && provider !== this.#provider) {
+                console.error(`[timeoutManager]: Switching provider after calls to previous provider might result in unexpected behavior.`, {
+                    previous: this.#provider,
+                    provider
+                });
+            }
+        }
+        this.#provider = provider;
+        if (("TURBOPACK compile-time value", "development") !== "production") {
+            this.#providerCalled = false;
+        }
+    }
+    setTimeout(callback, delay) {
+        if (("TURBOPACK compile-time value", "development") !== "production") {
+            this.#providerCalled = true;
+        }
+        return this.#provider.setTimeout(callback, delay);
+    }
+    clearTimeout(timeoutId) {
+        this.#provider.clearTimeout(timeoutId);
+    }
+    setInterval(callback, delay) {
+        if (("TURBOPACK compile-time value", "development") !== "production") {
+            this.#providerCalled = true;
+        }
+        return this.#provider.setInterval(callback, delay);
+    }
+    clearInterval(intervalId) {
+        this.#provider.clearInterval(intervalId);
+    }
+};
+var timeoutManager = new TimeoutManager();
+function systemSetTimeoutZero(callback) {
+    setTimeout(callback, 0);
+}
+;
+ //# sourceMappingURL=timeoutManager.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "addConsumeAwareSignal",
+    ()=>addConsumeAwareSignal,
+    "addToEnd",
+    ()=>addToEnd,
+    "addToStart",
+    ()=>addToStart,
+    "ensureQueryFn",
+    ()=>ensureQueryFn,
+    "functionalUpdate",
+    ()=>functionalUpdate,
+    "hashKey",
+    ()=>hashKey,
+    "hashQueryKeyByOptions",
+    ()=>hashQueryKeyByOptions,
+    "isPlainArray",
+    ()=>isPlainArray,
+    "isPlainObject",
+    ()=>isPlainObject,
+    "isServer",
+    ()=>isServer,
+    "isValidTimeout",
+    ()=>isValidTimeout,
+    "keepPreviousData",
+    ()=>keepPreviousData,
+    "matchMutation",
+    ()=>matchMutation,
+    "matchQuery",
+    ()=>matchQuery,
+    "noop",
+    ()=>noop,
+    "partialMatchKey",
+    ()=>partialMatchKey,
+    "replaceData",
+    ()=>replaceData,
+    "replaceEqualDeep",
+    ()=>replaceEqualDeep,
+    "resolveEnabled",
+    ()=>resolveEnabled,
+    "resolveStaleTime",
+    ()=>resolveStaleTime,
+    "shallowEqualObjects",
+    ()=>shallowEqualObjects,
+    "shouldThrowError",
+    ()=>shouldThrowError,
+    "skipToken",
+    ()=>skipToken,
+    "sleep",
+    ()=>sleep,
+    "timeUntilStale",
+    ()=>timeUntilStale
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+// src/utils.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$timeoutManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/timeoutManager.js [app-client] (ecmascript)");
+;
+var isServer = typeof window === "undefined" || "Deno" in globalThis;
+function noop() {}
+function functionalUpdate(updater, input) {
+    return typeof updater === "function" ? updater(input) : updater;
+}
+function isValidTimeout(value) {
+    return typeof value === "number" && value >= 0 && value !== Infinity;
+}
+function timeUntilStale(updatedAt, staleTime) {
+    return Math.max(updatedAt + (staleTime || 0) - Date.now(), 0);
+}
+function resolveStaleTime(staleTime, query) {
+    return typeof staleTime === "function" ? staleTime(query) : staleTime;
+}
+function resolveEnabled(enabled, query) {
+    return typeof enabled === "function" ? enabled(query) : enabled;
+}
+function matchQuery(filters, query) {
+    const { type = "all", exact, fetchStatus, predicate, queryKey, stale } = filters;
+    if (queryKey) {
+        if (exact) {
+            if (query.queryHash !== hashQueryKeyByOptions(queryKey, query.options)) {
+                return false;
+            }
+        } else if (!partialMatchKey(query.queryKey, queryKey)) {
+            return false;
+        }
+    }
+    if (type !== "all") {
+        const isActive = query.isActive();
+        if (type === "active" && !isActive) {
+            return false;
+        }
+        if (type === "inactive" && isActive) {
+            return false;
+        }
+    }
+    if (typeof stale === "boolean" && query.isStale() !== stale) {
+        return false;
+    }
+    if (fetchStatus && fetchStatus !== query.state.fetchStatus) {
+        return false;
+    }
+    if (predicate && !predicate(query)) {
+        return false;
+    }
+    return true;
+}
+function matchMutation(filters, mutation) {
+    const { exact, status, predicate, mutationKey } = filters;
+    if (mutationKey) {
+        if (!mutation.options.mutationKey) {
+            return false;
+        }
+        if (exact) {
+            if (hashKey(mutation.options.mutationKey) !== hashKey(mutationKey)) {
+                return false;
+            }
+        } else if (!partialMatchKey(mutation.options.mutationKey, mutationKey)) {
+            return false;
+        }
+    }
+    if (status && mutation.state.status !== status) {
+        return false;
+    }
+    if (predicate && !predicate(mutation)) {
+        return false;
+    }
+    return true;
+}
+function hashQueryKeyByOptions(queryKey, options) {
+    const hashFn = options?.queryKeyHashFn || hashKey;
+    return hashFn(queryKey);
+}
+function hashKey(queryKey) {
+    return JSON.stringify(queryKey, (_, val)=>isPlainObject(val) ? Object.keys(val).sort().reduce((result, key)=>{
+            result[key] = val[key];
+            return result;
+        }, {}) : val);
+}
+function partialMatchKey(a, b) {
+    if (a === b) {
+        return true;
+    }
+    if (typeof a !== typeof b) {
+        return false;
+    }
+    if (a && b && typeof a === "object" && typeof b === "object") {
+        return Object.keys(b).every((key)=>partialMatchKey(a[key], b[key]));
+    }
+    return false;
+}
+var hasOwn = Object.prototype.hasOwnProperty;
+function replaceEqualDeep(a, b, depth = 0) {
+    if (a === b) {
+        return a;
+    }
+    if (depth > 500) return b;
+    const array = isPlainArray(a) && isPlainArray(b);
+    if (!array && !(isPlainObject(a) && isPlainObject(b))) return b;
+    const aItems = array ? a : Object.keys(a);
+    const aSize = aItems.length;
+    const bItems = array ? b : Object.keys(b);
+    const bSize = bItems.length;
+    const copy = array ? new Array(bSize) : {};
+    let equalItems = 0;
+    for(let i = 0; i < bSize; i++){
+        const key = array ? i : bItems[i];
+        const aItem = a[key];
+        const bItem = b[key];
+        if (aItem === bItem) {
+            copy[key] = aItem;
+            if (array ? i < aSize : hasOwn.call(a, key)) equalItems++;
+            continue;
+        }
+        if (aItem === null || bItem === null || typeof aItem !== "object" || typeof bItem !== "object") {
+            copy[key] = bItem;
+            continue;
+        }
+        const v = replaceEqualDeep(aItem, bItem, depth + 1);
+        copy[key] = v;
+        if (v === aItem) equalItems++;
+    }
+    return aSize === bSize && equalItems === aSize ? a : copy;
+}
+function shallowEqualObjects(a, b) {
+    if (!b || Object.keys(a).length !== Object.keys(b).length) {
+        return false;
+    }
+    for(const key in a){
+        if (a[key] !== b[key]) {
+            return false;
+        }
+    }
+    return true;
+}
+function isPlainArray(value) {
+    return Array.isArray(value) && value.length === Object.keys(value).length;
+}
+function isPlainObject(o) {
+    if (!hasObjectPrototype(o)) {
+        return false;
+    }
+    const ctor = o.constructor;
+    if (ctor === void 0) {
+        return true;
+    }
+    const prot = ctor.prototype;
+    if (!hasObjectPrototype(prot)) {
+        return false;
+    }
+    if (!prot.hasOwnProperty("isPrototypeOf")) {
+        return false;
+    }
+    if (Object.getPrototypeOf(o) !== Object.prototype) {
+        return false;
+    }
+    return true;
+}
+function hasObjectPrototype(o) {
+    return Object.prototype.toString.call(o) === "[object Object]";
+}
+function sleep(timeout) {
+    return new Promise((resolve)=>{
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$timeoutManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["timeoutManager"].setTimeout(resolve, timeout);
+    });
+}
+function replaceData(prevData, data, options) {
+    if (typeof options.structuralSharing === "function") {
+        return options.structuralSharing(prevData, data);
+    } else if (options.structuralSharing !== false) {
+        if ("TURBOPACK compile-time truthy", 1) {
+            try {
+                return replaceEqualDeep(prevData, data);
+            } catch (error) {
+                console.error(`Structural sharing requires data to be JSON serializable. To fix this, turn off structuralSharing or return JSON-serializable data from your queryFn. [${options.queryHash}]: ${error}`);
+                throw error;
+            }
+        }
+        return replaceEqualDeep(prevData, data);
+    }
+    return data;
+}
+function keepPreviousData(previousData) {
+    return previousData;
+}
+function addToEnd(items, item, max = 0) {
+    const newItems = [
+        ...items,
+        item
+    ];
+    return max && newItems.length > max ? newItems.slice(1) : newItems;
+}
+function addToStart(items, item, max = 0) {
+    const newItems = [
+        item,
+        ...items
+    ];
+    return max && newItems.length > max ? newItems.slice(0, -1) : newItems;
+}
+var skipToken = /* @__PURE__ */ Symbol();
+function ensureQueryFn(options, fetchOptions) {
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (options.queryFn === skipToken) {
+            console.error(`Attempted to invoke queryFn when set to skipToken. This is likely a configuration error. Query hash: '${options.queryHash}'`);
+        }
+    }
+    if (!options.queryFn && fetchOptions?.initialPromise) {
+        return ()=>fetchOptions.initialPromise;
+    }
+    if (!options.queryFn || options.queryFn === skipToken) {
+        return ()=>Promise.reject(new Error(`Missing queryFn: '${options.queryHash}'`));
+    }
+    return options.queryFn;
+}
+function shouldThrowError(throwOnError, params) {
+    if (typeof throwOnError === "function") {
+        return throwOnError(...params);
+    }
+    return !!throwOnError;
+}
+function addConsumeAwareSignal(object, getSignal, onCancelled) {
+    let consumed = false;
+    let signal;
+    Object.defineProperty(object, "signal", {
+        enumerable: true,
+        get: ()=>{
+            signal ??= getSignal();
+            if (consumed) {
+                return signal;
+            }
+            consumed = true;
+            if (signal.aborted) {
+                onCancelled();
+            } else {
+                signal.addEventListener("abort", onCancelled, {
+                    once: true
+                });
+            }
+            return signal;
+        }
+    });
+    return object;
+}
+;
+ //# sourceMappingURL=utils.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/notifyManager.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "createNotifyManager",
+    ()=>createNotifyManager,
+    "defaultScheduler",
+    ()=>defaultScheduler,
+    "notifyManager",
+    ()=>notifyManager
+]);
+// src/notifyManager.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$timeoutManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/timeoutManager.js [app-client] (ecmascript)");
+;
+var defaultScheduler = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$timeoutManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["systemSetTimeoutZero"];
+function createNotifyManager() {
+    let queue = [];
+    let transactions = 0;
+    let notifyFn = (callback)=>{
+        callback();
+    };
+    let batchNotifyFn = (callback)=>{
+        callback();
+    };
+    let scheduleFn = defaultScheduler;
+    const schedule = (callback)=>{
+        if (transactions) {
+            queue.push(callback);
+        } else {
+            scheduleFn(()=>{
+                notifyFn(callback);
+            });
+        }
+    };
+    const flush = ()=>{
+        const originalQueue = queue;
+        queue = [];
+        if (originalQueue.length) {
+            scheduleFn(()=>{
+                batchNotifyFn(()=>{
+                    originalQueue.forEach((callback)=>{
+                        notifyFn(callback);
+                    });
+                });
+            });
+        }
+    };
+    return {
+        batch: (callback)=>{
+            let result;
+            transactions++;
+            try {
+                result = callback();
+            } finally{
+                transactions--;
+                if (!transactions) {
+                    flush();
+                }
+            }
+            return result;
+        },
+        /**
+     * All calls to the wrapped function will be batched.
+     */ batchCalls: (callback)=>{
+            return (...args)=>{
+                schedule(()=>{
+                    callback(...args);
+                });
+            };
+        },
+        schedule,
+        /**
+     * Use this method to set a custom notify function.
+     * This can be used to for example wrap notifications with `React.act` while running tests.
+     */ setNotifyFunction: (fn)=>{
+            notifyFn = fn;
+        },
+        /**
+     * Use this method to set a custom function to batch notifications together into a single tick.
+     * By default React Query will use the batch function provided by ReactDOM or React Native.
+     */ setBatchNotifyFunction: (fn)=>{
+            batchNotifyFn = fn;
+        },
+        setScheduler: (fn)=>{
+            scheduleFn = fn;
+        }
+    };
+}
+var notifyManager = createNotifyManager();
+;
+ //# sourceMappingURL=notifyManager.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/subscribable.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Subscribable",
+    ()=>Subscribable
+]);
+// src/subscribable.ts
+var Subscribable = class {
+    constructor(){
+        this.listeners = /* @__PURE__ */ new Set();
+        this.subscribe = this.subscribe.bind(this);
+    }
+    subscribe(listener) {
+        this.listeners.add(listener);
+        this.onSubscribe();
+        return ()=>{
+            this.listeners.delete(listener);
+            this.onUnsubscribe();
+        };
+    }
+    hasListeners() {
+        return this.listeners.size > 0;
+    }
+    onSubscribe() {}
+    onUnsubscribe() {}
+};
+;
+ //# sourceMappingURL=subscribable.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/focusManager.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "FocusManager",
+    ()=>FocusManager,
+    "focusManager",
+    ()=>focusManager
+]);
+// src/focusManager.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/subscribable.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+;
+;
+var FocusManager = class extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Subscribable"] {
+    #focused;
+    #cleanup;
+    #setup;
+    constructor(){
+        super();
+        this.#setup = (onFocus)=>{
+            if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["isServer"] && window.addEventListener) {
+                const listener = ()=>onFocus();
+                window.addEventListener("visibilitychange", listener, false);
+                return ()=>{
+                    window.removeEventListener("visibilitychange", listener);
+                };
+            }
+            return;
+        };
+    }
+    onSubscribe() {
+        if (!this.#cleanup) {
+            this.setEventListener(this.#setup);
+        }
+    }
+    onUnsubscribe() {
+        if (!this.hasListeners()) {
+            this.#cleanup?.();
+            this.#cleanup = void 0;
+        }
+    }
+    setEventListener(setup) {
+        this.#setup = setup;
+        this.#cleanup?.();
+        this.#cleanup = setup((focused)=>{
+            if (typeof focused === "boolean") {
+                this.setFocused(focused);
+            } else {
+                this.onFocus();
+            }
+        });
+    }
+    setFocused(focused) {
+        const changed = this.#focused !== focused;
+        if (changed) {
+            this.#focused = focused;
+            this.onFocus();
+        }
+    }
+    onFocus() {
+        const isFocused = this.isFocused();
+        this.listeners.forEach((listener)=>{
+            listener(isFocused);
+        });
+    }
+    isFocused() {
+        if (typeof this.#focused === "boolean") {
+            return this.#focused;
+        }
+        return globalThis.document?.visibilityState !== "hidden";
+    }
+};
+var focusManager = new FocusManager();
+;
+ //# sourceMappingURL=focusManager.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/onlineManager.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "OnlineManager",
+    ()=>OnlineManager,
+    "onlineManager",
+    ()=>onlineManager
+]);
+// src/onlineManager.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/subscribable.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+;
+;
+var OnlineManager = class extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Subscribable"] {
+    #online = true;
+    #cleanup;
+    #setup;
+    constructor(){
+        super();
+        this.#setup = (onOnline)=>{
+            if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["isServer"] && window.addEventListener) {
+                const onlineListener = ()=>onOnline(true);
+                const offlineListener = ()=>onOnline(false);
+                window.addEventListener("online", onlineListener, false);
+                window.addEventListener("offline", offlineListener, false);
+                return ()=>{
+                    window.removeEventListener("online", onlineListener);
+                    window.removeEventListener("offline", offlineListener);
+                };
+            }
+            return;
+        };
+    }
+    onSubscribe() {
+        if (!this.#cleanup) {
+            this.setEventListener(this.#setup);
+        }
+    }
+    onUnsubscribe() {
+        if (!this.hasListeners()) {
+            this.#cleanup?.();
+            this.#cleanup = void 0;
+        }
+    }
+    setEventListener(setup) {
+        this.#setup = setup;
+        this.#cleanup?.();
+        this.#cleanup = setup(this.setOnline.bind(this));
+    }
+    setOnline(online) {
+        const changed = this.#online !== online;
+        if (changed) {
+            this.#online = online;
+            this.listeners.forEach((listener)=>{
+                listener(online);
+            });
+        }
+    }
+    isOnline() {
+        return this.#online;
+    }
+};
+var onlineManager = new OnlineManager();
+;
+ //# sourceMappingURL=onlineManager.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/thenable.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "pendingThenable",
+    ()=>pendingThenable,
+    "tryResolveSync",
+    ()=>tryResolveSync
+]);
+// src/thenable.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+;
+function pendingThenable() {
+    let resolve;
+    let reject;
+    const thenable = new Promise((_resolve, _reject)=>{
+        resolve = _resolve;
+        reject = _reject;
+    });
+    thenable.status = "pending";
+    thenable.catch(()=>{});
+    function finalize(data) {
+        Object.assign(thenable, data);
+        delete thenable.resolve;
+        delete thenable.reject;
+    }
+    thenable.resolve = (value)=>{
+        finalize({
+            status: "fulfilled",
+            value
+        });
+        resolve(value);
+    };
+    thenable.reject = (reason)=>{
+        finalize({
+            status: "rejected",
+            reason
+        });
+        reject(reason);
+    };
+    return thenable;
+}
+function tryResolveSync(promise) {
+    let data;
+    promise.then((result)=>{
+        data = result;
+        return result;
+    }, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"])?.catch(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]);
+    if (data !== void 0) {
+        return {
+            data
+        };
+    }
+    return void 0;
+}
+;
+ //# sourceMappingURL=thenable.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/retryer.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "CancelledError",
+    ()=>CancelledError,
+    "canFetch",
+    ()=>canFetch,
+    "createRetryer",
+    ()=>createRetryer,
+    "isCancelledError",
+    ()=>isCancelledError
+]);
+// src/retryer.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$focusManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/focusManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/onlineManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$thenable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/thenable.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+;
+;
+;
+;
+function defaultRetryDelay(failureCount) {
+    return Math.min(1e3 * 2 ** failureCount, 3e4);
+}
+function canFetch(networkMode) {
+    return (networkMode ?? "online") === "online" ? __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onlineManager"].isOnline() : true;
+}
+var CancelledError = class extends Error {
+    constructor(options){
+        super("CancelledError");
+        this.revert = options?.revert;
+        this.silent = options?.silent;
+    }
+};
+function isCancelledError(value) {
+    return value instanceof CancelledError;
+}
+function createRetryer(config) {
+    let isRetryCancelled = false;
+    let failureCount = 0;
+    let continueFn;
+    const thenable = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$thenable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["pendingThenable"])();
+    const isResolved = ()=>thenable.status !== "pending";
+    const cancel = (cancelOptions)=>{
+        if (!isResolved()) {
+            const error = new CancelledError(cancelOptions);
+            reject(error);
+            config.onCancel?.(error);
+        }
+    };
+    const cancelRetry = ()=>{
+        isRetryCancelled = true;
+    };
+    const continueRetry = ()=>{
+        isRetryCancelled = false;
+    };
+    const canContinue = ()=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$focusManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["focusManager"].isFocused() && (config.networkMode === "always" || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onlineManager"].isOnline()) && config.canRun();
+    const canStart = ()=>canFetch(config.networkMode) && config.canRun();
+    const resolve = (value)=>{
+        if (!isResolved()) {
+            continueFn?.();
+            thenable.resolve(value);
+        }
+    };
+    const reject = (value)=>{
+        if (!isResolved()) {
+            continueFn?.();
+            thenable.reject(value);
+        }
+    };
+    const pause = ()=>{
+        return new Promise((continueResolve)=>{
+            continueFn = (value)=>{
+                if (isResolved() || canContinue()) {
+                    continueResolve(value);
+                }
+            };
+            config.onPause?.();
+        }).then(()=>{
+            continueFn = void 0;
+            if (!isResolved()) {
+                config.onContinue?.();
+            }
+        });
+    };
+    const run = ()=>{
+        if (isResolved()) {
+            return;
+        }
+        let promiseOrValue;
+        const initialPromise = failureCount === 0 ? config.initialPromise : void 0;
+        try {
+            promiseOrValue = initialPromise ?? config.fn();
+        } catch (error) {
+            promiseOrValue = Promise.reject(error);
+        }
+        Promise.resolve(promiseOrValue).then(resolve).catch((error)=>{
+            if (isResolved()) {
+                return;
+            }
+            const retry = config.retry ?? (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["isServer"] ? 0 : 3);
+            const retryDelay = config.retryDelay ?? defaultRetryDelay;
+            const delay = typeof retryDelay === "function" ? retryDelay(failureCount, error) : retryDelay;
+            const shouldRetry = retry === true || typeof retry === "number" && failureCount < retry || typeof retry === "function" && retry(failureCount, error);
+            if (isRetryCancelled || !shouldRetry) {
+                reject(error);
+                return;
+            }
+            failureCount++;
+            config.onFail?.(failureCount, error);
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["sleep"])(delay).then(()=>{
+                return canContinue() ? void 0 : pause();
+            }).then(()=>{
+                if (isRetryCancelled) {
+                    reject(error);
+                } else {
+                    run();
+                }
+            });
+        });
+    };
+    return {
+        promise: thenable,
+        status: ()=>thenable.status,
+        cancel,
+        continue: ()=>{
+            continueFn?.();
+            return thenable;
+        },
+        cancelRetry,
+        continueRetry,
+        canStart,
+        start: ()=>{
+            if (canStart()) {
+                run();
+            } else {
+                pause().then(run);
+            }
+            return thenable;
+        }
+    };
+}
+;
+ //# sourceMappingURL=retryer.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/removable.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Removable",
+    ()=>Removable
+]);
+// src/removable.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$timeoutManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/timeoutManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+;
+;
+var Removable = class {
+    #gcTimeout;
+    destroy() {
+        this.clearGcTimeout();
+    }
+    scheduleGc() {
+        this.clearGcTimeout();
+        if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["isValidTimeout"])(this.gcTime)) {
+            this.#gcTimeout = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$timeoutManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["timeoutManager"].setTimeout(()=>{
+                this.optionalRemove();
+            }, this.gcTime);
+        }
+    }
+    updateGcTime(newGcTime) {
+        this.gcTime = Math.max(this.gcTime || 0, newGcTime ?? (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["isServer"] ? Infinity : 5 * 60 * 1e3));
+    }
+    clearGcTimeout() {
+        if (this.#gcTimeout) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$timeoutManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["timeoutManager"].clearTimeout(this.#gcTimeout);
+            this.#gcTimeout = void 0;
+        }
+    }
+};
+;
+ //# sourceMappingURL=removable.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/query.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Query",
+    ()=>Query,
+    "fetchState",
+    ()=>fetchState
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+// src/query.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/notifyManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$retryer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/retryer.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$removable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/removable.js [app-client] (ecmascript)");
+;
+;
+;
+;
+var Query = class extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$removable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Removable"] {
+    #initialState;
+    #revertState;
+    #cache;
+    #client;
+    #retryer;
+    #defaultOptions;
+    #abortSignalConsumed;
+    constructor(config){
+        super();
+        this.#abortSignalConsumed = false;
+        this.#defaultOptions = config.defaultOptions;
+        this.setOptions(config.options);
+        this.observers = [];
+        this.#client = config.client;
+        this.#cache = this.#client.getQueryCache();
+        this.queryKey = config.queryKey;
+        this.queryHash = config.queryHash;
+        this.#initialState = getDefaultState(this.options);
+        this.state = config.state ?? this.#initialState;
+        this.scheduleGc();
+    }
+    get meta() {
+        return this.options.meta;
+    }
+    get promise() {
+        return this.#retryer?.promise;
+    }
+    setOptions(options) {
+        this.options = {
+            ...this.#defaultOptions,
+            ...options
+        };
+        this.updateGcTime(this.options.gcTime);
+        if (this.state && this.state.data === void 0) {
+            const defaultState = getDefaultState(this.options);
+            if (defaultState.data !== void 0) {
+                this.setState(successState(defaultState.data, defaultState.dataUpdatedAt));
+                this.#initialState = defaultState;
+            }
+        }
+    }
+    optionalRemove() {
+        if (!this.observers.length && this.state.fetchStatus === "idle") {
+            this.#cache.remove(this);
+        }
+    }
+    setData(newData, options) {
+        const data = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["replaceData"])(this.state.data, newData, this.options);
+        this.#dispatch({
+            data,
+            type: "success",
+            dataUpdatedAt: options?.updatedAt,
+            manual: options?.manual
+        });
+        return data;
+    }
+    setState(state, setStateOptions) {
+        this.#dispatch({
+            type: "setState",
+            state,
+            setStateOptions
+        });
+    }
+    cancel(options) {
+        const promise = this.#retryer?.promise;
+        this.#retryer?.cancel(options);
+        return promise ? promise.then(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]).catch(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]) : Promise.resolve();
+    }
+    destroy() {
+        super.destroy();
+        this.cancel({
+            silent: true
+        });
+    }
+    reset() {
+        this.destroy();
+        this.setState(this.#initialState);
+    }
+    isActive() {
+        return this.observers.some((observer)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["resolveEnabled"])(observer.options.enabled, this) !== false);
+    }
+    isDisabled() {
+        if (this.getObserversCount() > 0) {
+            return !this.isActive();
+        }
+        return this.options.queryFn === __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["skipToken"] || this.state.dataUpdateCount + this.state.errorUpdateCount === 0;
+    }
+    isStatic() {
+        if (this.getObserversCount() > 0) {
+            return this.observers.some((observer)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["resolveStaleTime"])(observer.options.staleTime, this) === "static");
+        }
+        return false;
+    }
+    isStale() {
+        if (this.getObserversCount() > 0) {
+            return this.observers.some((observer)=>observer.getCurrentResult().isStale);
+        }
+        return this.state.data === void 0 || this.state.isInvalidated;
+    }
+    isStaleByTime(staleTime = 0) {
+        if (this.state.data === void 0) {
+            return true;
+        }
+        if (staleTime === "static") {
+            return false;
+        }
+        if (this.state.isInvalidated) {
+            return true;
+        }
+        return !(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["timeUntilStale"])(this.state.dataUpdatedAt, staleTime);
+    }
+    onFocus() {
+        const observer = this.observers.find((x)=>x.shouldFetchOnWindowFocus());
+        observer?.refetch({
+            cancelRefetch: false
+        });
+        this.#retryer?.continue();
+    }
+    onOnline() {
+        const observer = this.observers.find((x)=>x.shouldFetchOnReconnect());
+        observer?.refetch({
+            cancelRefetch: false
+        });
+        this.#retryer?.continue();
+    }
+    addObserver(observer) {
+        if (!this.observers.includes(observer)) {
+            this.observers.push(observer);
+            this.clearGcTimeout();
+            this.#cache.notify({
+                type: "observerAdded",
+                query: this,
+                observer
+            });
+        }
+    }
+    removeObserver(observer) {
+        if (this.observers.includes(observer)) {
+            this.observers = this.observers.filter((x)=>x !== observer);
+            if (!this.observers.length) {
+                if (this.#retryer) {
+                    if (this.#abortSignalConsumed) {
+                        this.#retryer.cancel({
+                            revert: true
+                        });
+                    } else {
+                        this.#retryer.cancelRetry();
+                    }
+                }
+                this.scheduleGc();
+            }
+            this.#cache.notify({
+                type: "observerRemoved",
+                query: this,
+                observer
+            });
+        }
+    }
+    getObserversCount() {
+        return this.observers.length;
+    }
+    invalidate() {
+        if (!this.state.isInvalidated) {
+            this.#dispatch({
+                type: "invalidate"
+            });
+        }
+    }
+    async fetch(options, fetchOptions) {
+        if (this.state.fetchStatus !== "idle" && // If the promise in the retryer is already rejected, we have to definitely
+        // re-start the fetch; there is a chance that the query is still in a
+        // pending state when that happens
+        this.#retryer?.status() !== "rejected") {
+            if (this.state.data !== void 0 && fetchOptions?.cancelRefetch) {
+                this.cancel({
+                    silent: true
+                });
+            } else if (this.#retryer) {
+                this.#retryer.continueRetry();
+                return this.#retryer.promise;
+            }
+        }
+        if (options) {
+            this.setOptions(options);
+        }
+        if (!this.options.queryFn) {
+            const observer = this.observers.find((x)=>x.options.queryFn);
+            if (observer) {
+                this.setOptions(observer.options);
+            }
+        }
+        if ("TURBOPACK compile-time truthy", 1) {
+            if (!Array.isArray(this.options.queryKey)) {
+                console.error(`As of v4, queryKey needs to be an Array. If you are using a string like 'repoData', please change it to an Array, e.g. ['repoData']`);
+            }
+        }
+        const abortController = new AbortController();
+        const addSignalProperty = (object)=>{
+            Object.defineProperty(object, "signal", {
+                enumerable: true,
+                get: ()=>{
+                    this.#abortSignalConsumed = true;
+                    return abortController.signal;
+                }
+            });
+        };
+        const fetchFn = ()=>{
+            const queryFn = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ensureQueryFn"])(this.options, fetchOptions);
+            const createQueryFnContext = ()=>{
+                const queryFnContext2 = {
+                    client: this.#client,
+                    queryKey: this.queryKey,
+                    meta: this.meta
+                };
+                addSignalProperty(queryFnContext2);
+                return queryFnContext2;
+            };
+            const queryFnContext = createQueryFnContext();
+            this.#abortSignalConsumed = false;
+            if (this.options.persister) {
+                return this.options.persister(queryFn, queryFnContext, this);
+            }
+            return queryFn(queryFnContext);
+        };
+        const createFetchContext = ()=>{
+            const context2 = {
+                fetchOptions,
+                options: this.options,
+                queryKey: this.queryKey,
+                client: this.#client,
+                state: this.state,
+                fetchFn
+            };
+            addSignalProperty(context2);
+            return context2;
+        };
+        const context = createFetchContext();
+        this.options.behavior?.onFetch(context, this);
+        this.#revertState = this.state;
+        if (this.state.fetchStatus === "idle" || this.state.fetchMeta !== context.fetchOptions?.meta) {
+            this.#dispatch({
+                type: "fetch",
+                meta: context.fetchOptions?.meta
+            });
+        }
+        this.#retryer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$retryer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createRetryer"])({
+            initialPromise: fetchOptions?.initialPromise,
+            fn: context.fetchFn,
+            onCancel: (error)=>{
+                if (error instanceof __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$retryer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CancelledError"] && error.revert) {
+                    this.setState({
+                        ...this.#revertState,
+                        fetchStatus: "idle"
+                    });
+                }
+                abortController.abort();
+            },
+            onFail: (failureCount, error)=>{
+                this.#dispatch({
+                    type: "failed",
+                    failureCount,
+                    error
+                });
+            },
+            onPause: ()=>{
+                this.#dispatch({
+                    type: "pause"
+                });
+            },
+            onContinue: ()=>{
+                this.#dispatch({
+                    type: "continue"
+                });
+            },
+            retry: context.options.retry,
+            retryDelay: context.options.retryDelay,
+            networkMode: context.options.networkMode,
+            canRun: ()=>true
+        });
+        try {
+            const data = await this.#retryer.start();
+            if (data === void 0) {
+                if ("TURBOPACK compile-time truthy", 1) {
+                    console.error(`Query data cannot be undefined. Please make sure to return a value other than undefined from your query function. Affected query key: ${this.queryHash}`);
+                }
+                throw new Error(`${this.queryHash} data is undefined`);
+            }
+            this.setData(data);
+            this.#cache.config.onSuccess?.(data, this);
+            this.#cache.config.onSettled?.(data, this.state.error, this);
+            return data;
+        } catch (error) {
+            if (error instanceof __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$retryer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CancelledError"]) {
+                if (error.silent) {
+                    return this.#retryer.promise;
+                } else if (error.revert) {
+                    if (this.state.data === void 0) {
+                        throw error;
+                    }
+                    return this.state.data;
+                }
+            }
+            this.#dispatch({
+                type: "error",
+                error
+            });
+            this.#cache.config.onError?.(error, this);
+            this.#cache.config.onSettled?.(this.state.data, error, this);
+            throw error;
+        } finally{
+            this.scheduleGc();
+        }
+    }
+    #dispatch(action) {
+        const reducer = (state)=>{
+            switch(action.type){
+                case "failed":
+                    return {
+                        ...state,
+                        fetchFailureCount: action.failureCount,
+                        fetchFailureReason: action.error
+                    };
+                case "pause":
+                    return {
+                        ...state,
+                        fetchStatus: "paused"
+                    };
+                case "continue":
+                    return {
+                        ...state,
+                        fetchStatus: "fetching"
+                    };
+                case "fetch":
+                    return {
+                        ...state,
+                        ...fetchState(state.data, this.options),
+                        fetchMeta: action.meta ?? null
+                    };
+                case "success":
+                    const newState = {
+                        ...state,
+                        ...successState(action.data, action.dataUpdatedAt),
+                        dataUpdateCount: state.dataUpdateCount + 1,
+                        ...!action.manual && {
+                            fetchStatus: "idle",
+                            fetchFailureCount: 0,
+                            fetchFailureReason: null
+                        }
+                    };
+                    this.#revertState = action.manual ? newState : void 0;
+                    return newState;
+                case "error":
+                    const error = action.error;
+                    return {
+                        ...state,
+                        error,
+                        errorUpdateCount: state.errorUpdateCount + 1,
+                        errorUpdatedAt: Date.now(),
+                        fetchFailureCount: state.fetchFailureCount + 1,
+                        fetchFailureReason: error,
+                        fetchStatus: "idle",
+                        status: "error",
+                        // flag existing data as invalidated if we get a background error
+                        // note that "no data" always means stale so we can set unconditionally here
+                        isInvalidated: true
+                    };
+                case "invalidate":
+                    return {
+                        ...state,
+                        isInvalidated: true
+                    };
+                case "setState":
+                    return {
+                        ...state,
+                        ...action.state
+                    };
+            }
+        };
+        this.state = reducer(this.state);
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.observers.forEach((observer)=>{
+                observer.onQueryUpdate();
+            });
+            this.#cache.notify({
+                query: this,
+                type: "updated",
+                action
+            });
+        });
+    }
+};
+function fetchState(data, options) {
+    return {
+        fetchFailureCount: 0,
+        fetchFailureReason: null,
+        fetchStatus: (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$retryer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["canFetch"])(options.networkMode) ? "fetching" : "paused",
+        ...data === void 0 && {
+            error: null,
+            status: "pending"
+        }
+    };
+}
+function successState(data, dataUpdatedAt) {
+    return {
+        data,
+        dataUpdatedAt: dataUpdatedAt ?? Date.now(),
+        error: null,
+        isInvalidated: false,
+        status: "success"
+    };
+}
+function getDefaultState(options) {
+    const data = typeof options.initialData === "function" ? options.initialData() : options.initialData;
+    const hasData = data !== void 0;
+    const initialDataUpdatedAt = hasData ? typeof options.initialDataUpdatedAt === "function" ? options.initialDataUpdatedAt() : options.initialDataUpdatedAt : 0;
+    return {
+        data,
+        dataUpdateCount: 0,
+        dataUpdatedAt: hasData ? initialDataUpdatedAt ?? Date.now() : 0,
+        error: null,
+        errorUpdateCount: 0,
+        errorUpdatedAt: 0,
+        fetchFailureCount: 0,
+        fetchFailureReason: null,
+        fetchMeta: null,
+        isInvalidated: false,
+        status: hasData ? "success" : "pending",
+        fetchStatus: "idle"
+    };
+}
+;
+ //# sourceMappingURL=query.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/queryCache.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "QueryCache",
+    ()=>QueryCache
+]);
+// src/queryCache.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$query$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/query.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/notifyManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/subscribable.js [app-client] (ecmascript)");
+;
+;
+;
+;
+var QueryCache = class extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Subscribable"] {
+    constructor(config = {}){
+        super();
+        this.config = config;
+        this.#queries = /* @__PURE__ */ new Map();
+    }
+    #queries;
+    build(client, options, state) {
+        const queryKey = options.queryKey;
+        const queryHash = options.queryHash ?? (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["hashQueryKeyByOptions"])(queryKey, options);
+        let query = this.get(queryHash);
+        if (!query) {
+            query = new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$query$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Query"]({
+                client,
+                queryKey,
+                queryHash,
+                options: client.defaultQueryOptions(options),
+                state,
+                defaultOptions: client.getQueryDefaults(queryKey)
+            });
+            this.add(query);
+        }
+        return query;
+    }
+    add(query) {
+        if (!this.#queries.has(query.queryHash)) {
+            this.#queries.set(query.queryHash, query);
+            this.notify({
+                type: "added",
+                query
+            });
+        }
+    }
+    remove(query) {
+        const queryInMap = this.#queries.get(query.queryHash);
+        if (queryInMap) {
+            query.destroy();
+            if (queryInMap === query) {
+                this.#queries.delete(query.queryHash);
+            }
+            this.notify({
+                type: "removed",
+                query
+            });
+        }
+    }
+    clear() {
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.getAll().forEach((query)=>{
+                this.remove(query);
+            });
+        });
+    }
+    get(queryHash) {
+        return this.#queries.get(queryHash);
+    }
+    getAll() {
+        return [
+            ...this.#queries.values()
+        ];
+    }
+    find(filters) {
+        const defaultedFilters = {
+            exact: true,
+            ...filters
+        };
+        return this.getAll().find((query)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["matchQuery"])(defaultedFilters, query));
+    }
+    findAll(filters = {}) {
+        const queries = this.getAll();
+        return Object.keys(filters).length > 0 ? queries.filter((query)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["matchQuery"])(filters, query)) : queries;
+    }
+    notify(event) {
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.listeners.forEach((listener)=>{
+                listener(event);
+            });
+        });
+    }
+    onFocus() {
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.getAll().forEach((query)=>{
+                query.onFocus();
+            });
+        });
+    }
+    onOnline() {
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.getAll().forEach((query)=>{
+                query.onOnline();
+            });
+        });
+    }
+};
+;
+ //# sourceMappingURL=queryCache.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/mutation.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Mutation",
+    ()=>Mutation,
+    "getDefaultState",
+    ()=>getDefaultState
+]);
+// src/mutation.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/notifyManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$removable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/removable.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$retryer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/retryer.js [app-client] (ecmascript)");
+;
+;
+;
+var Mutation = class extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$removable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Removable"] {
+    #client;
+    #observers;
+    #mutationCache;
+    #retryer;
+    constructor(config){
+        super();
+        this.#client = config.client;
+        this.mutationId = config.mutationId;
+        this.#mutationCache = config.mutationCache;
+        this.#observers = [];
+        this.state = config.state || getDefaultState();
+        this.setOptions(config.options);
+        this.scheduleGc();
+    }
+    setOptions(options) {
+        this.options = options;
+        this.updateGcTime(this.options.gcTime);
+    }
+    get meta() {
+        return this.options.meta;
+    }
+    addObserver(observer) {
+        if (!this.#observers.includes(observer)) {
+            this.#observers.push(observer);
+            this.clearGcTimeout();
+            this.#mutationCache.notify({
+                type: "observerAdded",
+                mutation: this,
+                observer
+            });
+        }
+    }
+    removeObserver(observer) {
+        this.#observers = this.#observers.filter((x)=>x !== observer);
+        this.scheduleGc();
+        this.#mutationCache.notify({
+            type: "observerRemoved",
+            mutation: this,
+            observer
+        });
+    }
+    optionalRemove() {
+        if (!this.#observers.length) {
+            if (this.state.status === "pending") {
+                this.scheduleGc();
+            } else {
+                this.#mutationCache.remove(this);
+            }
+        }
+    }
+    continue() {
+        return this.#retryer?.continue() ?? // continuing a mutation assumes that variables are set, mutation must have been dehydrated before
+        this.execute(this.state.variables);
+    }
+    async execute(variables) {
+        const onContinue = ()=>{
+            this.#dispatch({
+                type: "continue"
+            });
+        };
+        const mutationFnContext = {
+            client: this.#client,
+            meta: this.options.meta,
+            mutationKey: this.options.mutationKey
+        };
+        this.#retryer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$retryer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createRetryer"])({
+            fn: ()=>{
+                if (!this.options.mutationFn) {
+                    return Promise.reject(new Error("No mutationFn found"));
+                }
+                return this.options.mutationFn(variables, mutationFnContext);
+            },
+            onFail: (failureCount, error)=>{
+                this.#dispatch({
+                    type: "failed",
+                    failureCount,
+                    error
+                });
+            },
+            onPause: ()=>{
+                this.#dispatch({
+                    type: "pause"
+                });
+            },
+            onContinue,
+            retry: this.options.retry ?? 0,
+            retryDelay: this.options.retryDelay,
+            networkMode: this.options.networkMode,
+            canRun: ()=>this.#mutationCache.canRun(this)
+        });
+        const restored = this.state.status === "pending";
+        const isPaused = !this.#retryer.canStart();
+        try {
+            if (restored) {
+                onContinue();
+            } else {
+                this.#dispatch({
+                    type: "pending",
+                    variables,
+                    isPaused
+                });
+                if (this.#mutationCache.config.onMutate) {
+                    await this.#mutationCache.config.onMutate(variables, this, mutationFnContext);
+                }
+                const context = await this.options.onMutate?.(variables, mutationFnContext);
+                if (context !== this.state.context) {
+                    this.#dispatch({
+                        type: "pending",
+                        context,
+                        variables,
+                        isPaused
+                    });
+                }
+            }
+            const data = await this.#retryer.start();
+            await this.#mutationCache.config.onSuccess?.(data, variables, this.state.context, this, mutationFnContext);
+            await this.options.onSuccess?.(data, variables, this.state.context, mutationFnContext);
+            await this.#mutationCache.config.onSettled?.(data, null, this.state.variables, this.state.context, this, mutationFnContext);
+            await this.options.onSettled?.(data, null, variables, this.state.context, mutationFnContext);
+            this.#dispatch({
+                type: "success",
+                data
+            });
+            return data;
+        } catch (error) {
+            try {
+                await this.#mutationCache.config.onError?.(error, variables, this.state.context, this, mutationFnContext);
+            } catch (e) {
+                void Promise.reject(e);
+            }
+            try {
+                await this.options.onError?.(error, variables, this.state.context, mutationFnContext);
+            } catch (e) {
+                void Promise.reject(e);
+            }
+            try {
+                await this.#mutationCache.config.onSettled?.(void 0, error, this.state.variables, this.state.context, this, mutationFnContext);
+            } catch (e) {
+                void Promise.reject(e);
+            }
+            try {
+                await this.options.onSettled?.(void 0, error, variables, this.state.context, mutationFnContext);
+            } catch (e) {
+                void Promise.reject(e);
+            }
+            this.#dispatch({
+                type: "error",
+                error
+            });
+            throw error;
+        } finally{
+            this.#mutationCache.runNext(this);
+        }
+    }
+    #dispatch(action) {
+        const reducer = (state)=>{
+            switch(action.type){
+                case "failed":
+                    return {
+                        ...state,
+                        failureCount: action.failureCount,
+                        failureReason: action.error
+                    };
+                case "pause":
+                    return {
+                        ...state,
+                        isPaused: true
+                    };
+                case "continue":
+                    return {
+                        ...state,
+                        isPaused: false
+                    };
+                case "pending":
+                    return {
+                        ...state,
+                        context: action.context,
+                        data: void 0,
+                        failureCount: 0,
+                        failureReason: null,
+                        error: null,
+                        isPaused: action.isPaused,
+                        status: "pending",
+                        variables: action.variables,
+                        submittedAt: Date.now()
+                    };
+                case "success":
+                    return {
+                        ...state,
+                        data: action.data,
+                        failureCount: 0,
+                        failureReason: null,
+                        error: null,
+                        status: "success",
+                        isPaused: false
+                    };
+                case "error":
+                    return {
+                        ...state,
+                        data: void 0,
+                        error: action.error,
+                        failureCount: state.failureCount + 1,
+                        failureReason: action.error,
+                        isPaused: false,
+                        status: "error"
+                    };
+            }
+        };
+        this.state = reducer(this.state);
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.#observers.forEach((observer)=>{
+                observer.onMutationUpdate(action);
+            });
+            this.#mutationCache.notify({
+                mutation: this,
+                type: "updated",
+                action
+            });
+        });
+    }
+};
+function getDefaultState() {
+    return {
+        context: void 0,
+        data: void 0,
+        error: null,
+        failureCount: 0,
+        failureReason: null,
+        isPaused: false,
+        status: "idle",
+        variables: void 0,
+        submittedAt: 0
+    };
+}
+;
+ //# sourceMappingURL=mutation.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/mutationCache.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "MutationCache",
+    ()=>MutationCache
+]);
+// src/mutationCache.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/notifyManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$mutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/mutation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/subscribable.js [app-client] (ecmascript)");
+;
+;
+;
+;
+var MutationCache = class extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$subscribable$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Subscribable"] {
+    constructor(config = {}){
+        super();
+        this.config = config;
+        this.#mutations = /* @__PURE__ */ new Set();
+        this.#scopes = /* @__PURE__ */ new Map();
+        this.#mutationId = 0;
+    }
+    #mutations;
+    #scopes;
+    #mutationId;
+    build(client, options, state) {
+        const mutation = new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$mutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Mutation"]({
+            client,
+            mutationCache: this,
+            mutationId: ++this.#mutationId,
+            options: client.defaultMutationOptions(options),
+            state
+        });
+        this.add(mutation);
+        return mutation;
+    }
+    add(mutation) {
+        this.#mutations.add(mutation);
+        const scope = scopeFor(mutation);
+        if (typeof scope === "string") {
+            const scopedMutations = this.#scopes.get(scope);
+            if (scopedMutations) {
+                scopedMutations.push(mutation);
+            } else {
+                this.#scopes.set(scope, [
+                    mutation
+                ]);
+            }
+        }
+        this.notify({
+            type: "added",
+            mutation
+        });
+    }
+    remove(mutation) {
+        if (this.#mutations.delete(mutation)) {
+            const scope = scopeFor(mutation);
+            if (typeof scope === "string") {
+                const scopedMutations = this.#scopes.get(scope);
+                if (scopedMutations) {
+                    if (scopedMutations.length > 1) {
+                        const index = scopedMutations.indexOf(mutation);
+                        if (index !== -1) {
+                            scopedMutations.splice(index, 1);
+                        }
+                    } else if (scopedMutations[0] === mutation) {
+                        this.#scopes.delete(scope);
+                    }
+                }
+            }
+        }
+        this.notify({
+            type: "removed",
+            mutation
+        });
+    }
+    canRun(mutation) {
+        const scope = scopeFor(mutation);
+        if (typeof scope === "string") {
+            const mutationsWithSameScope = this.#scopes.get(scope);
+            const firstPendingMutation = mutationsWithSameScope?.find((m)=>m.state.status === "pending");
+            return !firstPendingMutation || firstPendingMutation === mutation;
+        } else {
+            return true;
+        }
+    }
+    runNext(mutation) {
+        const scope = scopeFor(mutation);
+        if (typeof scope === "string") {
+            const foundMutation = this.#scopes.get(scope)?.find((m)=>m !== mutation && m.state.isPaused);
+            return foundMutation?.continue() ?? Promise.resolve();
+        } else {
+            return Promise.resolve();
+        }
+    }
+    clear() {
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.#mutations.forEach((mutation)=>{
+                this.notify({
+                    type: "removed",
+                    mutation
+                });
+            });
+            this.#mutations.clear();
+            this.#scopes.clear();
+        });
+    }
+    getAll() {
+        return Array.from(this.#mutations);
+    }
+    find(filters) {
+        const defaultedFilters = {
+            exact: true,
+            ...filters
+        };
+        return this.getAll().find((mutation)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["matchMutation"])(defaultedFilters, mutation));
+    }
+    findAll(filters = {}) {
+        return this.getAll().filter((mutation)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["matchMutation"])(filters, mutation));
+    }
+    notify(event) {
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.listeners.forEach((listener)=>{
+                listener(event);
+            });
+        });
+    }
+    resumePausedMutations() {
+        const pausedMutations = this.getAll().filter((x)=>x.state.isPaused);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>Promise.all(pausedMutations.map((mutation)=>mutation.continue().catch(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]))));
+    }
+};
+function scopeFor(mutation) {
+    return mutation.options.scope?.id;
+}
+;
+ //# sourceMappingURL=mutationCache.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "hasNextPage",
+    ()=>hasNextPage,
+    "hasPreviousPage",
+    ()=>hasPreviousPage,
+    "infiniteQueryBehavior",
+    ()=>infiniteQueryBehavior
+]);
+// src/infiniteQueryBehavior.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+;
+function infiniteQueryBehavior(pages) {
+    return {
+        onFetch: (context, query)=>{
+            const options = context.options;
+            const direction = context.fetchOptions?.meta?.fetchMore?.direction;
+            const oldPages = context.state.data?.pages || [];
+            const oldPageParams = context.state.data?.pageParams || [];
+            let result = {
+                pages: [],
+                pageParams: []
+            };
+            let currentPage = 0;
+            const fetchFn = async ()=>{
+                let cancelled = false;
+                const addSignalProperty = (object)=>{
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addConsumeAwareSignal"])(object, ()=>context.signal, ()=>cancelled = true);
+                };
+                const queryFn = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ensureQueryFn"])(context.options, context.fetchOptions);
+                const fetchPage = async (data, param, previous)=>{
+                    if (cancelled) {
+                        return Promise.reject();
+                    }
+                    if (param == null && data.pages.length) {
+                        return Promise.resolve(data);
+                    }
+                    const createQueryFnContext = ()=>{
+                        const queryFnContext2 = {
+                            client: context.client,
+                            queryKey: context.queryKey,
+                            pageParam: param,
+                            direction: previous ? "backward" : "forward",
+                            meta: context.options.meta
+                        };
+                        addSignalProperty(queryFnContext2);
+                        return queryFnContext2;
+                    };
+                    const queryFnContext = createQueryFnContext();
+                    const page = await queryFn(queryFnContext);
+                    const { maxPages } = context.options;
+                    const addTo = previous ? __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addToStart"] : __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addToEnd"];
+                    return {
+                        pages: addTo(data.pages, page, maxPages),
+                        pageParams: addTo(data.pageParams, param, maxPages)
+                    };
+                };
+                if (direction && oldPages.length) {
+                    const previous = direction === "backward";
+                    const pageParamFn = previous ? getPreviousPageParam : getNextPageParam;
+                    const oldData = {
+                        pages: oldPages,
+                        pageParams: oldPageParams
+                    };
+                    const param = pageParamFn(options, oldData);
+                    result = await fetchPage(oldData, param, previous);
+                } else {
+                    const remainingPages = pages ?? oldPages.length;
+                    do {
+                        const param = currentPage === 0 ? oldPageParams[0] ?? options.initialPageParam : getNextPageParam(options, result);
+                        if (currentPage > 0 && param == null) {
+                            break;
+                        }
+                        result = await fetchPage(result, param);
+                        currentPage++;
+                    }while (currentPage < remainingPages)
+                }
+                return result;
+            };
+            if (context.options.persister) {
+                context.fetchFn = ()=>{
+                    return context.options.persister?.(fetchFn, {
+                        client: context.client,
+                        queryKey: context.queryKey,
+                        meta: context.options.meta,
+                        signal: context.signal
+                    }, query);
+                };
+            } else {
+                context.fetchFn = fetchFn;
+            }
+        }
+    };
+}
+function getNextPageParam(options, { pages, pageParams }) {
+    const lastIndex = pages.length - 1;
+    return pages.length > 0 ? options.getNextPageParam(pages[lastIndex], pages, pageParams[lastIndex], pageParams) : void 0;
+}
+function getPreviousPageParam(options, { pages, pageParams }) {
+    return pages.length > 0 ? options.getPreviousPageParam?.(pages[0], pages, pageParams[0], pageParams) : void 0;
+}
+function hasNextPage(options, data) {
+    if (!data) return false;
+    return getNextPageParam(options, data) != null;
+}
+function hasPreviousPage(options, data) {
+    if (!data || !options.getPreviousPageParam) return false;
+    return getPreviousPageParam(options, data) != null;
+}
+;
+ //# sourceMappingURL=infiniteQueryBehavior.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/queryClient.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "QueryClient",
+    ()=>QueryClient
+]);
+// src/queryClient.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$queryCache$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/queryCache.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$mutationCache$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/mutationCache.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$focusManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/focusManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/onlineManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/notifyManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$infiniteQueryBehavior$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js [app-client] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+var QueryClient = class {
+    #queryCache;
+    #mutationCache;
+    #defaultOptions;
+    #queryDefaults;
+    #mutationDefaults;
+    #mountCount;
+    #unsubscribeFocus;
+    #unsubscribeOnline;
+    constructor(config = {}){
+        this.#queryCache = config.queryCache || new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$queryCache$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["QueryCache"]();
+        this.#mutationCache = config.mutationCache || new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$mutationCache$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MutationCache"]();
+        this.#defaultOptions = config.defaultOptions || {};
+        this.#queryDefaults = /* @__PURE__ */ new Map();
+        this.#mutationDefaults = /* @__PURE__ */ new Map();
+        this.#mountCount = 0;
+    }
+    mount() {
+        this.#mountCount++;
+        if (this.#mountCount !== 1) return;
+        this.#unsubscribeFocus = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$focusManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["focusManager"].subscribe(async (focused)=>{
+            if (focused) {
+                await this.resumePausedMutations();
+                this.#queryCache.onFocus();
+            }
+        });
+        this.#unsubscribeOnline = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onlineManager"].subscribe(async (online)=>{
+            if (online) {
+                await this.resumePausedMutations();
+                this.#queryCache.onOnline();
+            }
+        });
+    }
+    unmount() {
+        this.#mountCount--;
+        if (this.#mountCount !== 0) return;
+        this.#unsubscribeFocus?.();
+        this.#unsubscribeFocus = void 0;
+        this.#unsubscribeOnline?.();
+        this.#unsubscribeOnline = void 0;
+    }
+    isFetching(filters) {
+        return this.#queryCache.findAll({
+            ...filters,
+            fetchStatus: "fetching"
+        }).length;
+    }
+    isMutating(filters) {
+        return this.#mutationCache.findAll({
+            ...filters,
+            status: "pending"
+        }).length;
+    }
+    /**
+   * Imperative (non-reactive) way to retrieve data for a QueryKey.
+   * Should only be used in callbacks or functions where reading the latest data is necessary, e.g. for optimistic updates.
+   *
+   * Hint: Do not use this function inside a component, because it won't receive updates.
+   * Use `useQuery` to create a `QueryObserver` that subscribes to changes.
+   */ getQueryData(queryKey) {
+        const options = this.defaultQueryOptions({
+            queryKey
+        });
+        return this.#queryCache.get(options.queryHash)?.state.data;
+    }
+    ensureQueryData(options) {
+        const defaultedOptions = this.defaultQueryOptions(options);
+        const query = this.#queryCache.build(this, defaultedOptions);
+        const cachedData = query.state.data;
+        if (cachedData === void 0) {
+            return this.fetchQuery(options);
+        }
+        if (options.revalidateIfStale && query.isStaleByTime((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["resolveStaleTime"])(defaultedOptions.staleTime, query))) {
+            void this.prefetchQuery(defaultedOptions);
+        }
+        return Promise.resolve(cachedData);
+    }
+    getQueriesData(filters) {
+        return this.#queryCache.findAll(filters).map(({ queryKey, state })=>{
+            const data = state.data;
+            return [
+                queryKey,
+                data
+            ];
+        });
+    }
+    setQueryData(queryKey, updater, options) {
+        const defaultedOptions = this.defaultQueryOptions({
+            queryKey
+        });
+        const query = this.#queryCache.get(defaultedOptions.queryHash);
+        const prevData = query?.state.data;
+        const data = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["functionalUpdate"])(updater, prevData);
+        if (data === void 0) {
+            return void 0;
+        }
+        return this.#queryCache.build(this, defaultedOptions).setData(data, {
+            ...options,
+            manual: true
+        });
+    }
+    setQueriesData(filters, updater, options) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>this.#queryCache.findAll(filters).map(({ queryKey })=>[
+                    queryKey,
+                    this.setQueryData(queryKey, updater, options)
+                ]));
+    }
+    getQueryState(queryKey) {
+        const options = this.defaultQueryOptions({
+            queryKey
+        });
+        return this.#queryCache.get(options.queryHash)?.state;
+    }
+    removeQueries(filters) {
+        const queryCache = this.#queryCache;
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            queryCache.findAll(filters).forEach((query)=>{
+                queryCache.remove(query);
+            });
+        });
+    }
+    resetQueries(filters, options) {
+        const queryCache = this.#queryCache;
+        return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            queryCache.findAll(filters).forEach((query)=>{
+                query.reset();
+            });
+            return this.refetchQueries({
+                type: "active",
+                ...filters
+            }, options);
+        });
+    }
+    cancelQueries(filters, cancelOptions = {}) {
+        const defaultedCancelOptions = {
+            revert: true,
+            ...cancelOptions
+        };
+        const promises = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>this.#queryCache.findAll(filters).map((query)=>query.cancel(defaultedCancelOptions)));
+        return Promise.all(promises).then(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]).catch(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]);
+    }
+    invalidateQueries(filters, options = {}) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>{
+            this.#queryCache.findAll(filters).forEach((query)=>{
+                query.invalidate();
+            });
+            if (filters?.refetchType === "none") {
+                return Promise.resolve();
+            }
+            return this.refetchQueries({
+                ...filters,
+                type: filters?.refetchType ?? filters?.type ?? "active"
+            }, options);
+        });
+    }
+    refetchQueries(filters, options = {}) {
+        const fetchOptions = {
+            ...options,
+            cancelRefetch: options.cancelRefetch ?? true
+        };
+        const promises = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$notifyManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["notifyManager"].batch(()=>this.#queryCache.findAll(filters).filter((query)=>!query.isDisabled() && !query.isStatic()).map((query)=>{
+                let promise = query.fetch(void 0, fetchOptions);
+                if (!fetchOptions.throwOnError) {
+                    promise = promise.catch(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]);
+                }
+                return query.state.fetchStatus === "paused" ? Promise.resolve() : promise;
+            }));
+        return Promise.all(promises).then(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]);
+    }
+    fetchQuery(options) {
+        const defaultedOptions = this.defaultQueryOptions(options);
+        if (defaultedOptions.retry === void 0) {
+            defaultedOptions.retry = false;
+        }
+        const query = this.#queryCache.build(this, defaultedOptions);
+        return query.isStaleByTime((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["resolveStaleTime"])(defaultedOptions.staleTime, query)) ? query.fetch(defaultedOptions) : Promise.resolve(query.state.data);
+    }
+    prefetchQuery(options) {
+        return this.fetchQuery(options).then(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]).catch(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]);
+    }
+    fetchInfiniteQuery(options) {
+        options.behavior = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$infiniteQueryBehavior$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["infiniteQueryBehavior"])(options.pages);
+        return this.fetchQuery(options);
+    }
+    prefetchInfiniteQuery(options) {
+        return this.fetchInfiniteQuery(options).then(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]).catch(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["noop"]);
+    }
+    ensureInfiniteQueryData(options) {
+        options.behavior = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$infiniteQueryBehavior$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["infiniteQueryBehavior"])(options.pages);
+        return this.ensureQueryData(options);
+    }
+    resumePausedMutations() {
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onlineManager"].isOnline()) {
+            return this.#mutationCache.resumePausedMutations();
+        }
+        return Promise.resolve();
+    }
+    getQueryCache() {
+        return this.#queryCache;
+    }
+    getMutationCache() {
+        return this.#mutationCache;
+    }
+    getDefaultOptions() {
+        return this.#defaultOptions;
+    }
+    setDefaultOptions(options) {
+        this.#defaultOptions = options;
+    }
+    setQueryDefaults(queryKey, options) {
+        this.#queryDefaults.set((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["hashKey"])(queryKey), {
+            queryKey,
+            defaultOptions: options
+        });
+    }
+    getQueryDefaults(queryKey) {
+        const defaults = [
+            ...this.#queryDefaults.values()
+        ];
+        const result = {};
+        defaults.forEach((queryDefault)=>{
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["partialMatchKey"])(queryKey, queryDefault.queryKey)) {
+                Object.assign(result, queryDefault.defaultOptions);
+            }
+        });
+        return result;
+    }
+    setMutationDefaults(mutationKey, options) {
+        this.#mutationDefaults.set((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["hashKey"])(mutationKey), {
+            mutationKey,
+            defaultOptions: options
+        });
+    }
+    getMutationDefaults(mutationKey) {
+        const defaults = [
+            ...this.#mutationDefaults.values()
+        ];
+        const result = {};
+        defaults.forEach((queryDefault)=>{
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["partialMatchKey"])(mutationKey, queryDefault.mutationKey)) {
+                Object.assign(result, queryDefault.defaultOptions);
+            }
+        });
+        return result;
+    }
+    defaultQueryOptions(options) {
+        if (options._defaulted) {
+            return options;
+        }
+        const defaultedOptions = {
+            ...this.#defaultOptions.queries,
+            ...this.getQueryDefaults(options.queryKey),
+            ...options,
+            _defaulted: true
+        };
+        if (!defaultedOptions.queryHash) {
+            defaultedOptions.queryHash = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["hashQueryKeyByOptions"])(defaultedOptions.queryKey, defaultedOptions);
+        }
+        if (defaultedOptions.refetchOnReconnect === void 0) {
+            defaultedOptions.refetchOnReconnect = defaultedOptions.networkMode !== "always";
+        }
+        if (defaultedOptions.throwOnError === void 0) {
+            defaultedOptions.throwOnError = !!defaultedOptions.suspense;
+        }
+        if (!defaultedOptions.networkMode && defaultedOptions.persister) {
+            defaultedOptions.networkMode = "offlineFirst";
+        }
+        if (defaultedOptions.queryFn === __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["skipToken"]) {
+            defaultedOptions.enabled = false;
+        }
+        return defaultedOptions;
+    }
+    defaultMutationOptions(options) {
+        if (options?._defaulted) {
+            return options;
+        }
+        return {
+            ...this.#defaultOptions.mutations,
+            ...options?.mutationKey && this.getMutationDefaults(options.mutationKey),
+            ...options,
+            _defaulted: true
+        };
+    }
+    clear() {
+        this.#queryCache.clear();
+        this.#mutationCache.clear();
+    }
+};
+;
+ //# sourceMappingURL=queryClient.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "QueryClientContext",
+    ()=>QueryClientContext,
+    "QueryClientProvider",
+    ()=>QueryClientProvider,
+    "useQueryClient",
+    ()=>useQueryClient
+]);
+// src/QueryClientProvider.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/jsx-runtime.js [app-client] (ecmascript)");
+"use client";
+;
+;
+var QueryClientContext = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"](void 0);
+var useQueryClient = (queryClient)=>{
+    const client = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"](QueryClientContext);
+    if (queryClient) {
+        return queryClient;
+    }
+    if (!client) {
+        throw new Error("No QueryClient set, use QueryClientProvider to set one");
+    }
+    return client;
+};
+var QueryClientProvider = ({ client, children })=>{
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "QueryClientProvider.useEffect": ()=>{
+            client.mount();
+            return ({
+                "QueryClientProvider.useEffect": ()=>{
+                    client.unmount();
+                }
+            })["QueryClientProvider.useEffect"];
+        }
+    }["QueryClientProvider.useEffect"], [
+        client
+    ]);
+    return /* @__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsx"])(QueryClientContext.Provider, {
+        value: client,
+        children
+    });
+};
+;
+ //# sourceMappingURL=QueryClientProvider.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "QueryErrorResetBoundary",
+    ()=>QueryErrorResetBoundary,
+    "useQueryErrorResetBoundary",
+    ()=>useQueryErrorResetBoundary
+]);
+// src/QueryErrorResetBoundary.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/jsx-runtime.js [app-client] (ecmascript)");
+"use client";
+;
+;
+function createValue() {
+    let isReset = false;
+    return {
+        clearReset: ()=>{
+            isReset = false;
+        },
+        reset: ()=>{
+            isReset = true;
+        },
+        isReset: ()=>{
+            return isReset;
+        }
+    };
+}
+var QueryErrorResetBoundaryContext = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"](createValue());
+var useQueryErrorResetBoundary = ()=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"](QueryErrorResetBoundaryContext);
+var QueryErrorResetBoundary = ({ children })=>{
+    const [value] = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"]({
+        "QueryErrorResetBoundary.useState": ()=>createValue()
+    }["QueryErrorResetBoundary.useState"]);
+    return /* @__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsx"])(QueryErrorResetBoundaryContext.Provider, {
+        value,
+        children: typeof children === "function" ? children(value) : children
+    });
+};
+;
+ //# sourceMappingURL=QueryErrorResetBoundary.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-devtools/build/chunk/6FXOYLZD.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "$TRACK",
+    ()=>$TRACK,
+    "DEV",
+    ()=>DEV,
+    "Dynamic",
+    ()=>Dynamic,
+    "For",
+    ()=>For,
+    "Index",
+    ()=>Index,
+    "Match",
+    ()=>Match,
+    "Portal",
+    ()=>Portal,
+    "Show",
+    ()=>Show,
+    "Switch",
+    ()=>Switch,
+    "addEventListener",
+    ()=>addEventListener,
+    "batch",
+    ()=>batch,
+    "className",
+    ()=>className,
+    "clearDelegatedEvents",
+    ()=>clearDelegatedEvents,
+    "convertRemToPixels",
+    ()=>convertRemToPixels,
+    "createComponent",
+    ()=>createComponent,
+    "createComputed",
+    ()=>createComputed,
+    "createContext",
+    ()=>createContext,
+    "createEffect",
+    ()=>createEffect,
+    "createMemo",
+    ()=>createMemo,
+    "createRenderEffect",
+    ()=>createRenderEffect,
+    "createRoot",
+    ()=>createRoot,
+    "createSignal",
+    ()=>createSignal,
+    "createUniqueId",
+    ()=>createUniqueId,
+    "delegateEvents",
+    ()=>delegateEvents,
+    "deleteNestedDataByPath",
+    ()=>deleteNestedDataByPath,
+    "displayValue",
+    ()=>displayValue,
+    "getMutationStatusColor",
+    ()=>getMutationStatusColor,
+    "getOwner",
+    ()=>getOwner,
+    "getPreferredColorScheme",
+    ()=>getPreferredColorScheme,
+    "getQueryStatusColor",
+    ()=>getQueryStatusColor,
+    "getQueryStatusColorByLabel",
+    ()=>getQueryStatusColorByLabel,
+    "getQueryStatusLabel",
+    ()=>getQueryStatusLabel,
+    "getSidedProp",
+    ()=>getSidedProp,
+    "insert",
+    ()=>insert,
+    "isServer",
+    ()=>isServer,
+    "lazy",
+    ()=>lazy,
+    "memo",
+    ()=>memo,
+    "mergeProps",
+    ()=>mergeProps,
+    "mutationSortFns",
+    ()=>mutationSortFns,
+    "on",
+    ()=>on,
+    "onCleanup",
+    ()=>onCleanup,
+    "onMount",
+    ()=>onMount,
+    "render",
+    ()=>render,
+    "serialize",
+    ()=>serialize,
+    "setAttribute",
+    ()=>setAttribute,
+    "setupStyleSheet",
+    ()=>setupStyleSheet,
+    "sortFns",
+    ()=>sortFns,
+    "splitProps",
+    ()=>splitProps,
+    "spread",
+    ()=>spread,
+    "stringify",
+    ()=>stringify,
+    "template",
+    ()=>template,
+    "untrack",
+    ()=>untrack,
+    "updateNestedDataByPath",
+    ()=>updateNestedDataByPath,
+    "use",
+    ()=>use,
+    "useContext",
+    ()=>useContext,
+    "useTransition",
+    ()=>useTransition
+]);
+// ../../node_modules/.pnpm/solid-js@1.9.7/node_modules/solid-js/dist/solid.js
+var sharedConfig = {
+    context: void 0,
+    registry: void 0,
+    effects: void 0,
+    done: false,
+    getContextId () {
+        return getContextId(this.context.count);
+    },
+    getNextContextId () {
+        return getContextId(this.context.count++);
+    }
+};
+function getContextId(count) {
+    const num = String(count), len = num.length - 1;
+    return sharedConfig.context.id + (len ? String.fromCharCode(96 + len) : "") + num;
+}
+function setHydrateContext(context) {
+    sharedConfig.context = context;
+}
+function nextHydrateContext() {
+    return {
+        ...sharedConfig.context,
+        id: sharedConfig.getNextContextId(),
+        count: 0
+    };
+}
+var IS_DEV = false;
+var equalFn = (a, b)=>a === b;
+var $PROXY = /* @__PURE__ */ Symbol("solid-proxy");
+var SUPPORTS_PROXY = typeof Proxy === "function";
+var $TRACK = /* @__PURE__ */ Symbol("solid-track");
+var signalOptions = {
+    equals: equalFn
+};
+var ERROR = null;
+var runEffects = runQueue;
+var STALE = 1;
+var PENDING = 2;
+var UNOWNED = {
+    owned: null,
+    cleanups: null,
+    context: null,
+    owner: null
+};
+var NO_INIT = {};
+var Owner = null;
+var Transition = null;
+var Scheduler = null;
+var ExternalSourceConfig = null;
+var Listener = null;
+var Updates = null;
+var Effects = null;
+var ExecCount = 0;
+function createRoot(fn, detachedOwner) {
+    const listener = Listener, owner = Owner, unowned = fn.length === 0, current = detachedOwner === void 0 ? owner : detachedOwner, root = unowned ? UNOWNED : {
+        owned: null,
+        cleanups: null,
+        context: current ? current.context : null,
+        owner: current
+    }, updateFn = unowned ? fn : ()=>fn(()=>untrack(()=>cleanNode(root)));
+    Owner = root;
+    Listener = null;
+    try {
+        return runUpdates(updateFn, true);
+    } finally{
+        Listener = listener;
+        Owner = owner;
+    }
+}
+function createSignal(value, options) {
+    options = options ? Object.assign({}, signalOptions, options) : signalOptions;
+    const s = {
+        value,
+        observers: null,
+        observerSlots: null,
+        comparator: options.equals || void 0
+    };
+    const setter = (value2)=>{
+        if (typeof value2 === "function") {
+            if (Transition && Transition.running && Transition.sources.has(s)) value2 = value2(s.tValue);
+            else value2 = value2(s.value);
+        }
+        return writeSignal(s, value2);
+    };
+    return [
+        readSignal.bind(s),
+        setter
+    ];
+}
+function createComputed(fn, value, options) {
+    const c = createComputation(fn, value, true, STALE);
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else updateComputation(c);
+}
+function createRenderEffect(fn, value, options) {
+    const c = createComputation(fn, value, false, STALE);
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else updateComputation(c);
+}
+function createEffect(fn, value, options) {
+    runEffects = runUserEffects;
+    const c = createComputation(fn, value, false, STALE), s = SuspenseContext && useContext(SuspenseContext);
+    if (s) c.suspense = s;
+    if (!options || !options.render) c.user = true;
+    Effects ? Effects.push(c) : updateComputation(c);
+}
+function createMemo(fn, value, options) {
+    options = options ? Object.assign({}, signalOptions, options) : signalOptions;
+    const c = createComputation(fn, value, true, 0);
+    c.observers = null;
+    c.observerSlots = null;
+    c.comparator = options.equals || void 0;
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else updateComputation(c);
+    return readSignal.bind(c);
+}
+function isPromise(v) {
+    return v && typeof v === "object" && "then" in v;
+}
+function createResource(pSource, pFetcher, pOptions) {
+    let source;
+    let fetcher;
+    let options;
+    {
+        source = true;
+        fetcher = pSource;
+        options = {};
+    }
+    let pr = null, initP = NO_INIT, id = null, loadedUnderTransition = false, scheduled = false, resolved = "initialValue" in options, dynamic = typeof source === "function" && createMemo(source);
+    const contexts = /* @__PURE__ */ new Set(), [value, setValue] = (options.storage || createSignal)(options.initialValue), [error, setError] = createSignal(void 0), [track, trigger] = createSignal(void 0, {
+        equals: false
+    }), [state, setState] = createSignal(resolved ? "ready" : "unresolved");
+    if (sharedConfig.context) {
+        id = sharedConfig.getNextContextId();
+        if (options.ssrLoadFrom === "initial") initP = options.initialValue;
+        else if (sharedConfig.load && sharedConfig.has(id)) initP = sharedConfig.load(id);
+    }
+    function loadEnd(p, v, error2, key) {
+        if (pr === p) {
+            pr = null;
+            key !== void 0 && (resolved = true);
+            if ((p === initP || v === initP) && options.onHydrated) queueMicrotask(()=>options.onHydrated(key, {
+                    value: v
+                }));
+            initP = NO_INIT;
+            if (Transition && p && loadedUnderTransition) {
+                Transition.promises.delete(p);
+                loadedUnderTransition = false;
+                runUpdates(()=>{
+                    Transition.running = true;
+                    completeLoad(v, error2);
+                }, false);
+            } else completeLoad(v, error2);
+        }
+        return v;
+    }
+    function completeLoad(v, err) {
+        runUpdates(()=>{
+            if (err === void 0) setValue(()=>v);
+            setState(err !== void 0 ? "errored" : resolved ? "ready" : "unresolved");
+            setError(err);
+            for (const c of contexts.keys())c.decrement();
+            contexts.clear();
+        }, false);
+    }
+    function read() {
+        const c = SuspenseContext && useContext(SuspenseContext), v = value(), err = error();
+        if (err !== void 0 && !pr) throw err;
+        if (Listener && !Listener.user && c) {
+            createComputed(()=>{
+                track();
+                if (pr) {
+                    if (c.resolved && Transition && loadedUnderTransition) Transition.promises.add(pr);
+                    else if (!contexts.has(c)) {
+                        c.increment();
+                        contexts.add(c);
+                    }
+                }
+            });
+        }
+        return v;
+    }
+    function load(refetching = true) {
+        if (refetching !== false && scheduled) return;
+        scheduled = false;
+        const lookup = dynamic ? dynamic() : source;
+        loadedUnderTransition = Transition && Transition.running;
+        if (lookup == null || lookup === false) {
+            loadEnd(pr, untrack(value));
+            return;
+        }
+        if (Transition && pr) Transition.promises.delete(pr);
+        let error2;
+        const p = initP !== NO_INIT ? initP : untrack(()=>{
+            try {
+                return fetcher(lookup, {
+                    value: value(),
+                    refetching
+                });
+            } catch (fetcherError) {
+                error2 = fetcherError;
+            }
+        });
+        if (error2 !== void 0) {
+            loadEnd(pr, void 0, castError(error2), lookup);
+            return;
+        } else if (!isPromise(p)) {
+            loadEnd(pr, p, void 0, lookup);
+            return p;
+        }
+        pr = p;
+        if ("v" in p) {
+            if (p.s === 1) loadEnd(pr, p.v, void 0, lookup);
+            else loadEnd(pr, void 0, castError(p.v), lookup);
+            return p;
+        }
+        scheduled = true;
+        queueMicrotask(()=>scheduled = false);
+        runUpdates(()=>{
+            setState(resolved ? "refreshing" : "pending");
+            trigger();
+        }, false);
+        return p.then((v)=>loadEnd(p, v, void 0, lookup), (e)=>loadEnd(p, void 0, castError(e), lookup));
+    }
+    Object.defineProperties(read, {
+        state: {
+            get: ()=>state()
+        },
+        error: {
+            get: ()=>error()
+        },
+        loading: {
+            get () {
+                const s = state();
+                return s === "pending" || s === "refreshing";
+            }
+        },
+        latest: {
+            get () {
+                if (!resolved) return read();
+                const err = error();
+                if (err && !pr) throw err;
+                return value();
+            }
+        }
+    });
+    let owner = Owner;
+    if (dynamic) createComputed(()=>(owner = Owner, load(false)));
+    else load(false);
+    return [
+        read,
+        {
+            refetch: (info)=>runWithOwner(owner, ()=>load(info)),
+            mutate: setValue
+        }
+    ];
+}
+function batch(fn) {
+    return runUpdates(fn, false);
+}
+function untrack(fn) {
+    if (!ExternalSourceConfig && Listener === null) return fn();
+    const listener = Listener;
+    Listener = null;
+    try {
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        return fn();
+    } finally{
+        Listener = listener;
+    }
+}
+function on(deps, fn, options) {
+    const isArray3 = Array.isArray(deps);
+    let prevInput;
+    let defer = options && options.defer;
+    return (prevValue)=>{
+        let input;
+        if (isArray3) {
+            input = Array(deps.length);
+            for(let i = 0; i < deps.length; i++)input[i] = deps[i]();
+        } else input = deps();
+        if (defer) {
+            defer = false;
+            return prevValue;
+        }
+        const result = untrack(()=>fn(input, prevInput, prevValue));
+        prevInput = input;
+        return result;
+    };
+}
+function onMount(fn) {
+    createEffect(()=>untrack(fn));
+}
+function onCleanup(fn) {
+    if (Owner === null) ;
+    else if (Owner.cleanups === null) Owner.cleanups = [
+        fn
+    ];
+    else Owner.cleanups.push(fn);
+    return fn;
+}
+function getOwner() {
+    return Owner;
+}
+function runWithOwner(o, fn) {
+    const prev = Owner;
+    const prevListener = Listener;
+    Owner = o;
+    Listener = null;
+    try {
+        return runUpdates(fn, true);
+    } catch (err) {
+        handleError(err);
+    } finally{
+        Owner = prev;
+        Listener = prevListener;
+    }
+}
+function startTransition(fn) {
+    if (Transition && Transition.running) {
+        fn();
+        return Transition.done;
+    }
+    const l = Listener;
+    const o = Owner;
+    return Promise.resolve().then(()=>{
+        Listener = l;
+        Owner = o;
+        let t;
+        if (Scheduler || SuspenseContext) {
+            t = Transition || (Transition = {
+                sources: /* @__PURE__ */ new Set(),
+                effects: [],
+                promises: /* @__PURE__ */ new Set(),
+                disposed: /* @__PURE__ */ new Set(),
+                queue: /* @__PURE__ */ new Set(),
+                running: true
+            });
+            t.done || (t.done = new Promise((res)=>t.resolve = res));
+            t.running = true;
+        }
+        runUpdates(fn, false);
+        Listener = Owner = null;
+        return t ? t.done : void 0;
+    });
+}
+var [transPending, setTransPending] = /* @__PURE__ */ createSignal(false);
+function useTransition() {
+    return [
+        transPending,
+        startTransition
+    ];
+}
+function createContext(defaultValue, options) {
+    const id = /* @__PURE__ */ Symbol("context");
+    return {
+        id,
+        Provider: createProvider(id),
+        defaultValue
+    };
+}
+function useContext(context) {
+    let value;
+    return Owner && Owner.context && (value = Owner.context[context.id]) !== void 0 ? value : context.defaultValue;
+}
+function children(fn) {
+    const children2 = createMemo(fn);
+    const memo2 = createMemo(()=>resolveChildren(children2()));
+    memo2.toArray = ()=>{
+        const c = memo2();
+        return Array.isArray(c) ? c : c != null ? [
+            c
+        ] : [];
+    };
+    return memo2;
+}
+var SuspenseContext;
+function readSignal() {
+    const runningTransition = Transition && Transition.running;
+    if (this.sources && (runningTransition ? this.tState : this.state)) {
+        if ((runningTransition ? this.tState : this.state) === STALE) updateComputation(this);
+        else {
+            const updates = Updates;
+            Updates = null;
+            runUpdates(()=>lookUpstream(this), false);
+            Updates = updates;
+        }
+    }
+    if (Listener) {
+        const sSlot = this.observers ? this.observers.length : 0;
+        if (!Listener.sources) {
+            Listener.sources = [
+                this
+            ];
+            Listener.sourceSlots = [
+                sSlot
+            ];
+        } else {
+            Listener.sources.push(this);
+            Listener.sourceSlots.push(sSlot);
+        }
+        if (!this.observers) {
+            this.observers = [
+                Listener
+            ];
+            this.observerSlots = [
+                Listener.sources.length - 1
+            ];
+        } else {
+            this.observers.push(Listener);
+            this.observerSlots.push(Listener.sources.length - 1);
+        }
+    }
+    if (runningTransition && Transition.sources.has(this)) return this.tValue;
+    return this.value;
+}
+function writeSignal(node, value, isComp) {
+    let current = Transition && Transition.running && Transition.sources.has(node) ? node.tValue : node.value;
+    if (!node.comparator || !node.comparator(current, value)) {
+        if (Transition) {
+            const TransitionRunning = Transition.running;
+            if (TransitionRunning || !isComp && Transition.sources.has(node)) {
+                Transition.sources.add(node);
+                node.tValue = value;
+            }
+            if (!TransitionRunning) node.value = value;
+        } else node.value = value;
+        if (node.observers && node.observers.length) {
+            runUpdates(()=>{
+                for(let i = 0; i < node.observers.length; i += 1){
+                    const o = node.observers[i];
+                    const TransitionRunning = Transition && Transition.running;
+                    if (TransitionRunning && Transition.disposed.has(o)) continue;
+                    if (TransitionRunning ? !o.tState : !o.state) {
+                        if (o.pure) Updates.push(o);
+                        else Effects.push(o);
+                        if (o.observers) markDownstream(o);
+                    }
+                    if (!TransitionRunning) o.state = STALE;
+                    else o.tState = STALE;
+                }
+                if (Updates.length > 1e6) {
+                    Updates = [];
+                    if (IS_DEV) ;
+                    throw new Error();
+                }
+            }, false);
+        }
+    }
+    return value;
+}
+function updateComputation(node) {
+    if (!node.fn) return;
+    cleanNode(node);
+    const time = ExecCount;
+    runComputation(node, Transition && Transition.running && Transition.sources.has(node) ? node.tValue : node.value, time);
+    if (Transition && !Transition.running && Transition.sources.has(node)) {
+        queueMicrotask(()=>{
+            runUpdates(()=>{
+                Transition && (Transition.running = true);
+                Listener = Owner = node;
+                runComputation(node, node.tValue, time);
+                Listener = Owner = null;
+            }, false);
+        });
+    }
+}
+function runComputation(node, value, time) {
+    let nextValue;
+    const owner = Owner, listener = Listener;
+    Listener = Owner = node;
+    try {
+        nextValue = node.fn(value);
+    } catch (err) {
+        if (node.pure) {
+            if (Transition && Transition.running) {
+                node.tState = STALE;
+                node.tOwned && node.tOwned.forEach(cleanNode);
+                node.tOwned = void 0;
+            } else {
+                node.state = STALE;
+                node.owned && node.owned.forEach(cleanNode);
+                node.owned = null;
+            }
+        }
+        node.updatedAt = time + 1;
+        return handleError(err);
+    } finally{
+        Listener = listener;
+        Owner = owner;
+    }
+    if (!node.updatedAt || node.updatedAt <= time) {
+        if (node.updatedAt != null && "observers" in node) {
+            writeSignal(node, nextValue, true);
+        } else if (Transition && Transition.running && node.pure) {
+            Transition.sources.add(node);
+            node.tValue = nextValue;
+        } else node.value = nextValue;
+        node.updatedAt = time;
+    }
+}
+function createComputation(fn, init, pure, state = STALE, options) {
+    const c = {
+        fn,
+        state,
+        updatedAt: null,
+        owned: null,
+        sources: null,
+        sourceSlots: null,
+        cleanups: null,
+        value: init,
+        owner: Owner,
+        context: Owner ? Owner.context : null,
+        pure
+    };
+    if (Transition && Transition.running) {
+        c.state = 0;
+        c.tState = state;
+    }
+    if (Owner === null) ;
+    else if (Owner !== UNOWNED) {
+        if (Transition && Transition.running && Owner.pure) {
+            if (!Owner.tOwned) Owner.tOwned = [
+                c
+            ];
+            else Owner.tOwned.push(c);
+        } else {
+            if (!Owner.owned) Owner.owned = [
+                c
+            ];
+            else Owner.owned.push(c);
+        }
+    }
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    return c;
+}
+function runTop(node) {
+    const runningTransition = Transition && Transition.running;
+    if ((runningTransition ? node.tState : node.state) === 0) return;
+    if ((runningTransition ? node.tState : node.state) === PENDING) return lookUpstream(node);
+    if (node.suspense && untrack(node.suspense.inFallback)) return node.suspense.effects.push(node);
+    const ancestors = [
+        node
+    ];
+    while((node = node.owner) && (!node.updatedAt || node.updatedAt < ExecCount)){
+        if (runningTransition && Transition.disposed.has(node)) return;
+        if (runningTransition ? node.tState : node.state) ancestors.push(node);
+    }
+    for(let i = ancestors.length - 1; i >= 0; i--){
+        node = ancestors[i];
+        if (runningTransition) {
+            let top = node, prev = ancestors[i + 1];
+            while((top = top.owner) && top !== prev){
+                if (Transition.disposed.has(top)) return;
+            }
+        }
+        if ((runningTransition ? node.tState : node.state) === STALE) {
+            updateComputation(node);
+        } else if ((runningTransition ? node.tState : node.state) === PENDING) {
+            const updates = Updates;
+            Updates = null;
+            runUpdates(()=>lookUpstream(node, ancestors[0]), false);
+            Updates = updates;
+        }
+    }
+}
+function runUpdates(fn, init) {
+    if (Updates) return fn();
+    let wait = false;
+    if (!init) Updates = [];
+    if (Effects) wait = true;
+    else Effects = [];
+    ExecCount++;
+    try {
+        const res = fn();
+        completeUpdates(wait);
+        return res;
+    } catch (err) {
+        if (!wait) Effects = null;
+        Updates = null;
+        handleError(err);
+    }
+}
+function completeUpdates(wait) {
+    if (Updates) {
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        else runQueue(Updates);
+        Updates = null;
+    }
+    if (wait) return;
+    let res;
+    if (Transition) {
+        if (!Transition.promises.size && !Transition.queue.size) {
+            const sources = Transition.sources;
+            const disposed = Transition.disposed;
+            Effects.push.apply(Effects, Transition.effects);
+            res = Transition.resolve;
+            for (const e2 of Effects){
+                "tState" in e2 && (e2.state = e2.tState);
+                delete e2.tState;
+            }
+            Transition = null;
+            runUpdates(()=>{
+                for (const d of disposed)cleanNode(d);
+                for (const v of sources){
+                    v.value = v.tValue;
+                    if (v.owned) {
+                        for(let i = 0, len = v.owned.length; i < len; i++)cleanNode(v.owned[i]);
+                    }
+                    if (v.tOwned) v.owned = v.tOwned;
+                    delete v.tValue;
+                    delete v.tOwned;
+                    v.tState = 0;
+                }
+                setTransPending(false);
+            }, false);
+        } else if (Transition.running) {
+            Transition.running = false;
+            Transition.effects.push.apply(Transition.effects, Effects);
+            Effects = null;
+            setTransPending(true);
+            return;
+        }
+    }
+    const e = Effects;
+    Effects = null;
+    if (e.length) runUpdates(()=>runEffects(e), false);
+    if (res) res();
+}
+function runQueue(queue) {
+    for(let i = 0; i < queue.length; i++)runTop(queue[i]);
+}
+function scheduleQueue(queue) {
+    for(let i = 0; i < queue.length; i++){
+        const item = queue[i];
+        const tasks = Transition.queue;
+        if (!tasks.has(item)) {
+            tasks.add(item);
+            Scheduler(()=>{
+                tasks.delete(item);
+                runUpdates(()=>{
+                    Transition.running = true;
+                    runTop(item);
+                }, false);
+                Transition && (Transition.running = false);
+            });
+        }
+    }
+}
+function runUserEffects(queue) {
+    let i, userLength = 0;
+    for(i = 0; i < queue.length; i++){
+        const e = queue[i];
+        if (!e.user) runTop(e);
+        else queue[userLength++] = e;
+    }
+    if (sharedConfig.context) {
+        if (sharedConfig.count) {
+            sharedConfig.effects || (sharedConfig.effects = []);
+            sharedConfig.effects.push(...queue.slice(0, userLength));
+            return;
+        }
+        setHydrateContext();
+    }
+    if (sharedConfig.effects && (sharedConfig.done || !sharedConfig.count)) {
+        queue = [
+            ...sharedConfig.effects,
+            ...queue
+        ];
+        userLength += sharedConfig.effects.length;
+        delete sharedConfig.effects;
+    }
+    for(i = 0; i < userLength; i++)runTop(queue[i]);
+}
+function lookUpstream(node, ignore) {
+    const runningTransition = Transition && Transition.running;
+    if (runningTransition) node.tState = 0;
+    else node.state = 0;
+    for(let i = 0; i < node.sources.length; i += 1){
+        const source = node.sources[i];
+        if (source.sources) {
+            const state = runningTransition ? source.tState : source.state;
+            if (state === STALE) {
+                if (source !== ignore && (!source.updatedAt || source.updatedAt < ExecCount)) runTop(source);
+            } else if (state === PENDING) lookUpstream(source, ignore);
+        }
+    }
+}
+function markDownstream(node) {
+    const runningTransition = Transition && Transition.running;
+    for(let i = 0; i < node.observers.length; i += 1){
+        const o = node.observers[i];
+        if (runningTransition ? !o.tState : !o.state) {
+            if (runningTransition) o.tState = PENDING;
+            else o.state = PENDING;
+            if (o.pure) Updates.push(o);
+            else Effects.push(o);
+            o.observers && markDownstream(o);
+        }
+    }
+}
+function cleanNode(node) {
+    let i;
+    if (node.sources) {
+        while(node.sources.length){
+            const source = node.sources.pop(), index = node.sourceSlots.pop(), obs = source.observers;
+            if (obs && obs.length) {
+                const n = obs.pop(), s = source.observerSlots.pop();
+                if (index < obs.length) {
+                    n.sourceSlots[s] = index;
+                    obs[index] = n;
+                    source.observerSlots[index] = s;
+                }
+            }
+        }
+    }
+    if (node.tOwned) {
+        for(i = node.tOwned.length - 1; i >= 0; i--)cleanNode(node.tOwned[i]);
+        delete node.tOwned;
+    }
+    if (Transition && Transition.running && node.pure) {
+        reset(node, true);
+    } else if (node.owned) {
+        for(i = node.owned.length - 1; i >= 0; i--)cleanNode(node.owned[i]);
+        node.owned = null;
+    }
+    if (node.cleanups) {
+        for(i = node.cleanups.length - 1; i >= 0; i--)node.cleanups[i]();
+        node.cleanups = null;
+    }
+    if (Transition && Transition.running) node.tState = 0;
+    else node.state = 0;
+}
+function reset(node, top) {
+    if (!top) {
+        node.tState = 0;
+        Transition.disposed.add(node);
+    }
+    if (node.owned) {
+        for(let i = 0; i < node.owned.length; i++)reset(node.owned[i]);
+    }
+}
+function castError(err) {
+    if (err instanceof Error) return err;
+    return new Error(typeof err === "string" ? err : "Unknown error", {
+        cause: err
+    });
+}
+function runErrors(err, fns, owner) {
+    try {
+        for (const f of fns)f(err);
+    } catch (e) {
+        handleError(e, owner && owner.owner || null);
+    }
+}
+function handleError(err, owner = Owner) {
+    const fns = ERROR && owner && owner.context && owner.context[ERROR];
+    const error = castError(err);
+    if (!fns) throw error;
+    if (Effects) Effects.push({
+        fn () {
+            runErrors(error, fns, owner);
+        },
+        state: STALE
+    });
+    else runErrors(error, fns, owner);
+}
+function resolveChildren(children2) {
+    if (typeof children2 === "function" && !children2.length) return resolveChildren(children2());
+    if (Array.isArray(children2)) {
+        const results = [];
+        for(let i = 0; i < children2.length; i++){
+            const result = resolveChildren(children2[i]);
+            Array.isArray(result) ? results.push.apply(results, result) : results.push(result);
+        }
+        return results;
+    }
+    return children2;
+}
+function createProvider(id, options) {
+    return function provider(props) {
+        let res;
+        createRenderEffect(()=>res = untrack(()=>{
+                Owner.context = {
+                    ...Owner.context,
+                    [id]: props.value
+                };
+                return children(()=>props.children);
+            }), void 0);
+        return res;
+    };
+}
+var FALLBACK = /* @__PURE__ */ Symbol("fallback");
+function dispose(d) {
+    for(let i = 0; i < d.length; i++)d[i]();
+}
+function mapArray(list, mapFn, options = {}) {
+    let items = [], mapped = [], disposers = [], len = 0, indexes = mapFn.length > 1 ? [] : null;
+    onCleanup(()=>dispose(disposers));
+    return ()=>{
+        let newItems = list() || [], newLen = newItems.length, i, j;
+        newItems[$TRACK];
+        return untrack(()=>{
+            let newIndices, newIndicesNext, temp, tempdisposers, tempIndexes, start, end, newEnd, item;
+            if (newLen === 0) {
+                if (len !== 0) {
+                    dispose(disposers);
+                    disposers = [];
+                    items = [];
+                    mapped = [];
+                    len = 0;
+                    indexes && (indexes = []);
+                }
+                if (options.fallback) {
+                    items = [
+                        FALLBACK
+                    ];
+                    mapped[0] = createRoot((disposer)=>{
+                        disposers[0] = disposer;
+                        return options.fallback();
+                    });
+                    len = 1;
+                }
+            } else if (len === 0) {
+                mapped = new Array(newLen);
+                for(j = 0; j < newLen; j++){
+                    items[j] = newItems[j];
+                    mapped[j] = createRoot(mapper);
+                }
+                len = newLen;
+            } else {
+                temp = new Array(newLen);
+                tempdisposers = new Array(newLen);
+                indexes && (tempIndexes = new Array(newLen));
+                for(start = 0, end = Math.min(len, newLen); start < end && items[start] === newItems[start]; start++);
+                for(end = len - 1, newEnd = newLen - 1; end >= start && newEnd >= start && items[end] === newItems[newEnd]; end--, newEnd--){
+                    temp[newEnd] = mapped[end];
+                    tempdisposers[newEnd] = disposers[end];
+                    indexes && (tempIndexes[newEnd] = indexes[end]);
+                }
+                newIndices = /* @__PURE__ */ new Map();
+                newIndicesNext = new Array(newEnd + 1);
+                for(j = newEnd; j >= start; j--){
+                    item = newItems[j];
+                    i = newIndices.get(item);
+                    newIndicesNext[j] = i === void 0 ? -1 : i;
+                    newIndices.set(item, j);
+                }
+                for(i = start; i <= end; i++){
+                    item = items[i];
+                    j = newIndices.get(item);
+                    if (j !== void 0 && j !== -1) {
+                        temp[j] = mapped[i];
+                        tempdisposers[j] = disposers[i];
+                        indexes && (tempIndexes[j] = indexes[i]);
+                        j = newIndicesNext[j];
+                        newIndices.set(item, j);
+                    } else disposers[i]();
+                }
+                for(j = start; j < newLen; j++){
+                    if (j in temp) {
+                        mapped[j] = temp[j];
+                        disposers[j] = tempdisposers[j];
+                        if (indexes) {
+                            indexes[j] = tempIndexes[j];
+                            indexes[j](j);
+                        }
+                    } else mapped[j] = createRoot(mapper);
+                }
+                mapped = mapped.slice(0, len = newLen);
+                items = newItems.slice(0);
+            }
+            return mapped;
+        });
+        //TURBOPACK unreachable
+        ;
+        function mapper(disposer) {
+            disposers[j] = disposer;
+            if (indexes) {
+                const [s, set] = createSignal(j);
+                indexes[j] = set;
+                return mapFn(newItems[j], s);
+            }
+            return mapFn(newItems[j]);
+        }
+    };
+}
+function indexArray(list, mapFn, options = {}) {
+    let items = [], mapped = [], disposers = [], signals = [], len = 0, i;
+    onCleanup(()=>dispose(disposers));
+    return ()=>{
+        const newItems = list() || [], newLen = newItems.length;
+        newItems[$TRACK];
+        return untrack(()=>{
+            if (newLen === 0) {
+                if (len !== 0) {
+                    dispose(disposers);
+                    disposers = [];
+                    items = [];
+                    mapped = [];
+                    len = 0;
+                    signals = [];
+                }
+                if (options.fallback) {
+                    items = [
+                        FALLBACK
+                    ];
+                    mapped[0] = createRoot((disposer)=>{
+                        disposers[0] = disposer;
+                        return options.fallback();
+                    });
+                    len = 1;
+                }
+                return mapped;
+            }
+            if (items[0] === FALLBACK) {
+                disposers[0]();
+                disposers = [];
+                items = [];
+                mapped = [];
+                len = 0;
+            }
+            for(i = 0; i < newLen; i++){
+                if (i < items.length && items[i] !== newItems[i]) {
+                    signals[i](()=>newItems[i]);
+                } else if (i >= items.length) {
+                    mapped[i] = createRoot(mapper);
+                }
+            }
+            for(; i < items.length; i++){
+                disposers[i]();
+            }
+            len = signals.length = disposers.length = newLen;
+            items = newItems.slice(0);
+            return mapped = mapped.slice(0, len);
+        });
+        //TURBOPACK unreachable
+        ;
+        function mapper(disposer) {
+            disposers[i] = disposer;
+            const [s, set] = createSignal(newItems[i]);
+            signals[i] = set;
+            return mapFn(s, i);
+        }
+    };
+}
+var hydrationEnabled = false;
+function createComponent(Comp, props) {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    return untrack(()=>Comp(props || {}));
+}
+function trueFn() {
+    return true;
+}
+var propTraps = {
+    get (_, property, receiver) {
+        if (property === $PROXY) return receiver;
+        return _.get(property);
+    },
+    has (_, property) {
+        if (property === $PROXY) return true;
+        return _.has(property);
+    },
+    set: trueFn,
+    deleteProperty: trueFn,
+    getOwnPropertyDescriptor (_, property) {
+        return {
+            configurable: true,
+            enumerable: true,
+            get () {
+                return _.get(property);
+            },
+            set: trueFn,
+            deleteProperty: trueFn
+        };
+    },
+    ownKeys (_) {
+        return _.keys();
+    }
+};
+function resolveSource(s) {
+    return !(s = typeof s === "function" ? s() : s) ? {} : s;
+}
+function resolveSources() {
+    for(let i = 0, length = this.length; i < length; ++i){
+        const v = this[i]();
+        if (v !== void 0) return v;
+    }
+}
+function mergeProps(...sources) {
+    let proxy = false;
+    for(let i = 0; i < sources.length; i++){
+        const s = sources[i];
+        proxy = proxy || !!s && $PROXY in s;
+        sources[i] = typeof s === "function" ? (proxy = true, createMemo(s)) : s;
+    }
+    if (SUPPORTS_PROXY && proxy) {
+        return new Proxy({
+            get (property) {
+                for(let i = sources.length - 1; i >= 0; i--){
+                    const v = resolveSource(sources[i])[property];
+                    if (v !== void 0) return v;
+                }
+            },
+            has (property) {
+                for(let i = sources.length - 1; i >= 0; i--){
+                    if (property in resolveSource(sources[i])) return true;
+                }
+                return false;
+            },
+            keys () {
+                const keys = [];
+                for(let i = 0; i < sources.length; i++)keys.push(...Object.keys(resolveSource(sources[i])));
+                return [
+                    ...new Set(keys)
+                ];
+            }
+        }, propTraps);
+    }
+    const sourcesMap = {};
+    const defined = /* @__PURE__ */ Object.create(null);
+    for(let i = sources.length - 1; i >= 0; i--){
+        const source = sources[i];
+        if (!source) continue;
+        const sourceKeys = Object.getOwnPropertyNames(source);
+        for(let i2 = sourceKeys.length - 1; i2 >= 0; i2--){
+            const key = sourceKeys[i2];
+            if (key === "__proto__" || key === "constructor") continue;
+            const desc = Object.getOwnPropertyDescriptor(source, key);
+            if (!defined[key]) {
+                defined[key] = desc.get ? {
+                    enumerable: true,
+                    configurable: true,
+                    get: resolveSources.bind(sourcesMap[key] = [
+                        desc.get.bind(source)
+                    ])
+                } : desc.value !== void 0 ? desc : void 0;
+            } else {
+                const sources2 = sourcesMap[key];
+                if (sources2) {
+                    if (desc.get) sources2.push(desc.get.bind(source));
+                    else if (desc.value !== void 0) sources2.push(()=>desc.value);
+                }
+            }
+        }
+    }
+    const target = {};
+    const definedKeys = Object.keys(defined);
+    for(let i = definedKeys.length - 1; i >= 0; i--){
+        const key = definedKeys[i], desc = defined[key];
+        if (desc && desc.get) Object.defineProperty(target, key, desc);
+        else target[key] = desc ? desc.value : void 0;
+    }
+    return target;
+}
+function splitProps(props, ...keys) {
+    if (SUPPORTS_PROXY && $PROXY in props) {
+        const blocked = new Set(keys.length > 1 ? keys.flat() : keys[0]);
+        const res = keys.map((k)=>{
+            return new Proxy({
+                get (property) {
+                    return k.includes(property) ? props[property] : void 0;
+                },
+                has (property) {
+                    return k.includes(property) && property in props;
+                },
+                keys () {
+                    return k.filter((property)=>property in props);
+                }
+            }, propTraps);
+        });
+        res.push(new Proxy({
+            get (property) {
+                return blocked.has(property) ? void 0 : props[property];
+            },
+            has (property) {
+                return blocked.has(property) ? false : property in props;
+            },
+            keys () {
+                return Object.keys(props).filter((k)=>!blocked.has(k));
+            }
+        }, propTraps));
+        return res;
+    }
+    const otherObject = {};
+    const objects = keys.map(()=>({}));
+    for (const propName of Object.getOwnPropertyNames(props)){
+        const desc = Object.getOwnPropertyDescriptor(props, propName);
+        const isDefaultDesc = !desc.get && !desc.set && desc.enumerable && desc.writable && desc.configurable;
+        let blocked = false;
+        let objectIndex = 0;
+        for (const k of keys){
+            if (k.includes(propName)) {
+                blocked = true;
+                isDefaultDesc ? objects[objectIndex][propName] = desc.value : Object.defineProperty(objects[objectIndex], propName, desc);
+            }
+            ++objectIndex;
+        }
+        if (!blocked) {
+            isDefaultDesc ? otherObject[propName] = desc.value : Object.defineProperty(otherObject, propName, desc);
+        }
+    }
+    return [
+        ...objects,
+        otherObject
+    ];
+}
+function lazy(fn) {
+    let comp;
+    let p;
+    const wrap = (props)=>{
+        const ctx = sharedConfig.context;
+        if (ctx) {
+            const [s, set] = createSignal();
+            sharedConfig.count || (sharedConfig.count = 0);
+            sharedConfig.count++;
+            (p || (p = fn())).then((mod)=>{
+                !sharedConfig.done && setHydrateContext(ctx);
+                sharedConfig.count--;
+                set(()=>mod.default);
+                setHydrateContext();
+            });
+            comp = s;
+        } else if (!comp) {
+            const [s] = createResource(()=>(p || (p = fn())).then((mod)=>mod.default));
+            comp = s;
+        }
+        let Comp;
+        return createMemo(()=>(Comp = comp()) ? untrack(()=>{
+                if (IS_DEV) ;
+                if (!ctx || sharedConfig.done) return Comp(props);
+                const c = sharedConfig.context;
+                setHydrateContext(ctx);
+                const r = Comp(props);
+                setHydrateContext(c);
+                return r;
+            }) : "");
+    };
+    wrap.preload = ()=>p || ((p = fn()).then((mod)=>comp = ()=>mod.default), p);
+    return wrap;
+}
+var counter = 0;
+function createUniqueId() {
+    const ctx = sharedConfig.context;
+    return ctx ? sharedConfig.getNextContextId() : `cl-${counter++}`;
+}
+var narrowedError = (name)=>`Stale read from <${name}>.`;
+function For(props) {
+    const fallback = "fallback" in props && {
+        fallback: ()=>props.fallback
+    };
+    return createMemo(mapArray(()=>props.each, props.children, fallback || void 0));
+}
+function Index(props) {
+    const fallback = "fallback" in props && {
+        fallback: ()=>props.fallback
+    };
+    return createMemo(indexArray(()=>props.each, props.children, fallback || void 0));
+}
+function Show(props) {
+    const keyed = props.keyed;
+    const conditionValue = createMemo(()=>props.when, void 0, void 0);
+    const condition = keyed ? conditionValue : createMemo(conditionValue, void 0, {
+        equals: (a, b)=>!a === !b
+    });
+    return createMemo(()=>{
+        const c = condition();
+        if (c) {
+            const child = props.children;
+            const fn = typeof child === "function" && child.length > 0;
+            return fn ? untrack(()=>child(keyed ? c : ()=>{
+                    if (!untrack(condition)) throw narrowedError("Show");
+                    return conditionValue();
+                })) : child;
+        }
+        return props.fallback;
+    }, void 0, void 0);
+}
+function Switch(props) {
+    const chs = children(()=>props.children);
+    const switchFunc = createMemo(()=>{
+        const ch = chs();
+        const mps = Array.isArray(ch) ? ch : [
+            ch
+        ];
+        let func = ()=>void 0;
+        for(let i = 0; i < mps.length; i++){
+            const index = i;
+            const mp = mps[i];
+            const prevFunc = func;
+            const conditionValue = createMemo(()=>prevFunc() ? void 0 : mp.when, void 0, void 0);
+            const condition = mp.keyed ? conditionValue : createMemo(conditionValue, void 0, {
+                equals: (a, b)=>!a === !b
+            });
+            func = ()=>prevFunc() || (condition() ? [
+                    index,
+                    conditionValue,
+                    mp
+                ] : void 0);
+        }
+        return func;
+    });
+    return createMemo(()=>{
+        const sel = switchFunc()();
+        if (!sel) return props.fallback;
+        const [index, conditionValue, mp] = sel;
+        const child = mp.children;
+        const fn = typeof child === "function" && child.length > 0;
+        return fn ? untrack(()=>child(mp.keyed ? conditionValue() : ()=>{
+                if (untrack(switchFunc)()?.[0] !== index) throw narrowedError("Match");
+                return conditionValue();
+            })) : child;
+    }, void 0, void 0);
+}
+function Match(props) {
+    return props;
+}
+var DEV = void 0;
+// ../../node_modules/.pnpm/solid-js@1.9.7/node_modules/solid-js/web/dist/web.js
+var booleans = [
+    "allowfullscreen",
+    "async",
+    "autofocus",
+    "autoplay",
+    "checked",
+    "controls",
+    "default",
+    "disabled",
+    "formnovalidate",
+    "hidden",
+    "indeterminate",
+    "inert",
+    "ismap",
+    "loop",
+    "multiple",
+    "muted",
+    "nomodule",
+    "novalidate",
+    "open",
+    "playsinline",
+    "readonly",
+    "required",
+    "reversed",
+    "seamless",
+    "selected"
+];
+var Properties = /* @__PURE__ */ new Set([
+    "className",
+    "value",
+    "readOnly",
+    "noValidate",
+    "formNoValidate",
+    "isMap",
+    "noModule",
+    "playsInline",
+    ...booleans
+]);
+var ChildProperties = /* @__PURE__ */ new Set([
+    "innerHTML",
+    "textContent",
+    "innerText",
+    "children"
+]);
+var Aliases = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(null), {
+    className: "class",
+    htmlFor: "for"
+});
+var PropAliases = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(null), {
+    class: "className",
+    novalidate: {
+        $: "noValidate",
+        FORM: 1
+    },
+    formnovalidate: {
+        $: "formNoValidate",
+        BUTTON: 1,
+        INPUT: 1
+    },
+    ismap: {
+        $: "isMap",
+        IMG: 1
+    },
+    nomodule: {
+        $: "noModule",
+        SCRIPT: 1
+    },
+    playsinline: {
+        $: "playsInline",
+        VIDEO: 1
+    },
+    readonly: {
+        $: "readOnly",
+        INPUT: 1,
+        TEXTAREA: 1
+    }
+});
+function getPropAlias(prop, tagName) {
+    const a = PropAliases[prop];
+    return typeof a === "object" ? a[tagName] ? a["$"] : void 0 : a;
+}
+var DelegatedEvents = /* @__PURE__ */ new Set([
+    "beforeinput",
+    "click",
+    "dblclick",
+    "contextmenu",
+    "focusin",
+    "focusout",
+    "input",
+    "keydown",
+    "keyup",
+    "mousedown",
+    "mousemove",
+    "mouseout",
+    "mouseover",
+    "mouseup",
+    "pointerdown",
+    "pointermove",
+    "pointerout",
+    "pointerover",
+    "pointerup",
+    "touchend",
+    "touchmove",
+    "touchstart"
+]);
+var SVGElements = /* @__PURE__ */ new Set([
+    "altGlyph",
+    "altGlyphDef",
+    "altGlyphItem",
+    "animate",
+    "animateColor",
+    "animateMotion",
+    "animateTransform",
+    "circle",
+    "clipPath",
+    "color-profile",
+    "cursor",
+    "defs",
+    "desc",
+    "ellipse",
+    "feBlend",
+    "feColorMatrix",
+    "feComponentTransfer",
+    "feComposite",
+    "feConvolveMatrix",
+    "feDiffuseLighting",
+    "feDisplacementMap",
+    "feDistantLight",
+    "feDropShadow",
+    "feFlood",
+    "feFuncA",
+    "feFuncB",
+    "feFuncG",
+    "feFuncR",
+    "feGaussianBlur",
+    "feImage",
+    "feMerge",
+    "feMergeNode",
+    "feMorphology",
+    "feOffset",
+    "fePointLight",
+    "feSpecularLighting",
+    "feSpotLight",
+    "feTile",
+    "feTurbulence",
+    "filter",
+    "font",
+    "font-face",
+    "font-face-format",
+    "font-face-name",
+    "font-face-src",
+    "font-face-uri",
+    "foreignObject",
+    "g",
+    "glyph",
+    "glyphRef",
+    "hkern",
+    "image",
+    "line",
+    "linearGradient",
+    "marker",
+    "mask",
+    "metadata",
+    "missing-glyph",
+    "mpath",
+    "path",
+    "pattern",
+    "polygon",
+    "polyline",
+    "radialGradient",
+    "rect",
+    "set",
+    "stop",
+    "svg",
+    "switch",
+    "symbol",
+    "text",
+    "textPath",
+    "tref",
+    "tspan",
+    "use",
+    "view",
+    "vkern"
+]);
+var SVGNamespace = {
+    xlink: "http://www.w3.org/1999/xlink",
+    xml: "http://www.w3.org/XML/1998/namespace"
+};
+var memo = (fn)=>createMemo(()=>fn());
+function reconcileArrays(parentNode, a, b) {
+    let bLength = b.length, aEnd = a.length, bEnd = bLength, aStart = 0, bStart = 0, after = a[aEnd - 1].nextSibling, map = null;
+    while(aStart < aEnd || bStart < bEnd){
+        if (a[aStart] === b[bStart]) {
+            aStart++;
+            bStart++;
+            continue;
+        }
+        while(a[aEnd - 1] === b[bEnd - 1]){
+            aEnd--;
+            bEnd--;
+        }
+        if (aEnd === aStart) {
+            const node = bEnd < bLength ? bStart ? b[bStart - 1].nextSibling : b[bEnd - bStart] : after;
+            while(bStart < bEnd)parentNode.insertBefore(b[bStart++], node);
+        } else if (bEnd === bStart) {
+            while(aStart < aEnd){
+                if (!map || !map.has(a[aStart])) a[aStart].remove();
+                aStart++;
+            }
+        } else if (a[aStart] === b[bEnd - 1] && b[bStart] === a[aEnd - 1]) {
+            const node = a[--aEnd].nextSibling;
+            parentNode.insertBefore(b[bStart++], a[aStart++].nextSibling);
+            parentNode.insertBefore(b[--bEnd], node);
+            a[aEnd] = b[bEnd];
+        } else {
+            if (!map) {
+                map = /* @__PURE__ */ new Map();
+                let i = bStart;
+                while(i < bEnd)map.set(b[i], i++);
+            }
+            const index = map.get(a[aStart]);
+            if (index != null) {
+                if (bStart < index && index < bEnd) {
+                    let i = aStart, sequence = 1, t;
+                    while(++i < aEnd && i < bEnd){
+                        if ((t = map.get(a[i])) == null || t !== index + sequence) break;
+                        sequence++;
+                    }
+                    if (sequence > index - bStart) {
+                        const node = a[aStart];
+                        while(bStart < index)parentNode.insertBefore(b[bStart++], node);
+                    } else parentNode.replaceChild(b[bStart++], a[aStart++]);
+                } else aStart++;
+            } else a[aStart++].remove();
+        }
+    }
+}
+var $$EVENTS = "_$DX_DELEGATE";
+function render(code, element, init, options = {}) {
+    let disposer;
+    createRoot((dispose2)=>{
+        disposer = dispose2;
+        element === document ? code() : insert(element, code(), element.firstChild ? null : void 0, init);
+    }, options.owner);
+    return ()=>{
+        disposer();
+        element.textContent = "";
+    };
+}
+function template(html, isImportNode, isSVG, isMathML) {
+    let node;
+    const create = ()=>{
+        const t = isMathML ? document.createElementNS("http://www.w3.org/1998/Math/MathML", "template") : document.createElement("template");
+        t.innerHTML = html;
+        return isSVG ? t.content.firstChild.firstChild : isMathML ? t.firstChild : t.content.firstChild;
+    };
+    const fn = isImportNode ? ()=>untrack(()=>document.importNode(node || (node = create()), true)) : ()=>(node || (node = create())).cloneNode(true);
+    fn.cloneNode = fn;
+    return fn;
+}
+function delegateEvents(eventNames, document2 = window.document) {
+    const e = document2[$$EVENTS] || (document2[$$EVENTS] = /* @__PURE__ */ new Set());
+    for(let i = 0, l = eventNames.length; i < l; i++){
+        const name = eventNames[i];
+        if (!e.has(name)) {
+            e.add(name);
+            document2.addEventListener(name, eventHandler);
+        }
+    }
+}
+function clearDelegatedEvents(document2 = window.document) {
+    if (document2[$$EVENTS]) {
+        for (let name of document2[$$EVENTS].keys())document2.removeEventListener(name, eventHandler);
+        delete document2[$$EVENTS];
+    }
+}
+function setAttribute(node, name, value) {
+    if (isHydrating(node)) return;
+    if (value == null) node.removeAttribute(name);
+    else node.setAttribute(name, value);
+}
+function setAttributeNS(node, namespace, name, value) {
+    if (isHydrating(node)) return;
+    if (value == null) node.removeAttributeNS(namespace, name);
+    else node.setAttributeNS(namespace, name, value);
+}
+function setBoolAttribute(node, name, value) {
+    if (isHydrating(node)) return;
+    value ? node.setAttribute(name, "") : node.removeAttribute(name);
+}
+function className(node, value) {
+    if (isHydrating(node)) return;
+    if (value == null) node.removeAttribute("class");
+    else node.className = value;
+}
+function addEventListener(node, name, handler, delegate) {
+    if (delegate) {
+        if (Array.isArray(handler)) {
+            node[`$$${name}`] = handler[0];
+            node[`$$${name}Data`] = handler[1];
+        } else node[`$$${name}`] = handler;
+    } else if (Array.isArray(handler)) {
+        const handlerFn = handler[0];
+        node.addEventListener(name, handler[0] = (e)=>handlerFn.call(node, handler[1], e));
+    } else node.addEventListener(name, handler, typeof handler !== "function" && handler);
+}
+function classList(node, value, prev = {}) {
+    const classKeys = Object.keys(value || {}), prevKeys = Object.keys(prev);
+    let i, len;
+    for(i = 0, len = prevKeys.length; i < len; i++){
+        const key = prevKeys[i];
+        if (!key || key === "undefined" || value[key]) continue;
+        toggleClassKey(node, key, false);
+        delete prev[key];
+    }
+    for(i = 0, len = classKeys.length; i < len; i++){
+        const key = classKeys[i], classValue = !!value[key];
+        if (!key || key === "undefined" || prev[key] === classValue || !classValue) continue;
+        toggleClassKey(node, key, true);
+        prev[key] = classValue;
+    }
+    return prev;
+}
+function style(node, value, prev) {
+    if (!value) return prev ? setAttribute(node, "style") : value;
+    const nodeStyle = node.style;
+    if (typeof value === "string") return nodeStyle.cssText = value;
+    typeof prev === "string" && (nodeStyle.cssText = prev = void 0);
+    prev || (prev = {});
+    value || (value = {});
+    let v, s;
+    for(s in prev){
+        value[s] == null && nodeStyle.removeProperty(s);
+        delete prev[s];
+    }
+    for(s in value){
+        v = value[s];
+        if (v !== prev[s]) {
+            nodeStyle.setProperty(s, v);
+            prev[s] = v;
+        }
+    }
+    return prev;
+}
+function spread(node, props = {}, isSVG, skipChildren) {
+    const prevProps = {};
+    if (!skipChildren) {
+        createRenderEffect(()=>prevProps.children = insertExpression(node, props.children, prevProps.children));
+    }
+    createRenderEffect(()=>typeof props.ref === "function" && use(props.ref, node));
+    createRenderEffect(()=>assign(node, props, isSVG, true, prevProps, true));
+    return prevProps;
+}
+function use(fn, element, arg) {
+    return untrack(()=>fn(element, arg));
+}
+function insert(parent, accessor, marker, initial) {
+    if (marker !== void 0 && !initial) initial = [];
+    if (typeof accessor !== "function") return insertExpression(parent, accessor, initial, marker);
+    createRenderEffect((current)=>insertExpression(parent, accessor(), current, marker), initial);
+}
+function assign(node, props, isSVG, skipChildren, prevProps = {}, skipRef = false) {
+    props || (props = {});
+    for(const prop in prevProps){
+        if (!(prop in props)) {
+            if (prop === "children") continue;
+            prevProps[prop] = assignProp(node, prop, null, prevProps[prop], isSVG, skipRef, props);
+        }
+    }
+    for(const prop in props){
+        if (prop === "children") {
+            continue;
+        }
+        const value = props[prop];
+        prevProps[prop] = assignProp(node, prop, value, prevProps[prop], isSVG, skipRef, props);
+    }
+}
+function getNextElement(template2) {
+    let node, key, hydrating = isHydrating();
+    if (!hydrating || !(node = sharedConfig.registry.get(key = getHydrationKey()))) {
+        return template2();
+    }
+    if (sharedConfig.completed) sharedConfig.completed.add(node);
+    sharedConfig.registry.delete(key);
+    return node;
+}
+function isHydrating(node) {
+    return !!sharedConfig.context && !sharedConfig.done && (!node || node.isConnected);
+}
+function toPropertyName(name) {
+    return name.toLowerCase().replace(/-([a-z])/g, (_, w)=>w.toUpperCase());
+}
+function toggleClassKey(node, key, value) {
+    const classNames = key.trim().split(/\s+/);
+    for(let i = 0, nameLen = classNames.length; i < nameLen; i++)node.classList.toggle(classNames[i], value);
+}
+function assignProp(node, prop, value, prev, isSVG, skipRef, props) {
+    let isCE, isProp, isChildProp, propAlias, forceProp;
+    if (prop === "style") return style(node, value, prev);
+    if (prop === "classList") return classList(node, value, prev);
+    if (value === prev) return prev;
+    if (prop === "ref") {
+        if (!skipRef) value(node);
+    } else if (prop.slice(0, 3) === "on:") {
+        const e = prop.slice(3);
+        prev && node.removeEventListener(e, prev, typeof prev !== "function" && prev);
+        value && node.addEventListener(e, value, typeof value !== "function" && value);
+    } else if (prop.slice(0, 10) === "oncapture:") {
+        const e = prop.slice(10);
+        prev && node.removeEventListener(e, prev, true);
+        value && node.addEventListener(e, value, true);
+    } else if (prop.slice(0, 2) === "on") {
+        const name = prop.slice(2).toLowerCase();
+        const delegate = DelegatedEvents.has(name);
+        if (!delegate && prev) {
+            const h = Array.isArray(prev) ? prev[0] : prev;
+            node.removeEventListener(name, h);
+        }
+        if (delegate || value) {
+            addEventListener(node, name, value, delegate);
+            delegate && delegateEvents([
+                name
+            ]);
+        }
+    } else if (prop.slice(0, 5) === "attr:") {
+        setAttribute(node, prop.slice(5), value);
+    } else if (prop.slice(0, 5) === "bool:") {
+        setBoolAttribute(node, prop.slice(5), value);
+    } else if ((forceProp = prop.slice(0, 5) === "prop:") || (isChildProp = ChildProperties.has(prop)) || !isSVG && ((propAlias = getPropAlias(prop, node.tagName)) || (isProp = Properties.has(prop))) || (isCE = node.nodeName.includes("-") || "is" in props)) {
+        if (forceProp) {
+            prop = prop.slice(5);
+            isProp = true;
+        } else if (isHydrating(node)) return value;
+        if (prop === "class" || prop === "className") className(node, value);
+        else if (isCE && !isProp && !isChildProp) node[toPropertyName(prop)] = value;
+        else node[propAlias || prop] = value;
+    } else {
+        const ns = isSVG && prop.indexOf(":") > -1 && SVGNamespace[prop.split(":")[0]];
+        if (ns) setAttributeNS(node, ns, prop, value);
+        else setAttribute(node, Aliases[prop] || prop, value);
+    }
+    return value;
+}
+function eventHandler(e) {
+    if (sharedConfig.registry && sharedConfig.events) {
+        if (sharedConfig.events.find(([el, ev])=>ev === e)) return;
+    }
+    let node = e.target;
+    const key = `$$${e.type}`;
+    const oriTarget = e.target;
+    const oriCurrentTarget = e.currentTarget;
+    const retarget = (value)=>Object.defineProperty(e, "target", {
+            configurable: true,
+            value
+        });
+    const handleNode = ()=>{
+        const handler = node[key];
+        if (handler && !node.disabled) {
+            const data = node[`${key}Data`];
+            data !== void 0 ? handler.call(node, data, e) : handler.call(node, e);
+            if (e.cancelBubble) return;
+        }
+        node.host && typeof node.host !== "string" && !node.host._$host && node.contains(e.target) && retarget(node.host);
+        return true;
+    };
+    const walkUpTree = ()=>{
+        while(handleNode() && (node = node._$host || node.parentNode || node.host));
+    };
+    Object.defineProperty(e, "currentTarget", {
+        configurable: true,
+        get () {
+            return node || document;
+        }
+    });
+    if (sharedConfig.registry && !sharedConfig.done) sharedConfig.done = _$HY.done = true;
+    if (e.composedPath) {
+        const path = e.composedPath();
+        retarget(path[0]);
+        for(let i = 0; i < path.length - 2; i++){
+            node = path[i];
+            if (!handleNode()) break;
+            if (node._$host) {
+                node = node._$host;
+                walkUpTree();
+                break;
+            }
+            if (node.parentNode === oriCurrentTarget) {
+                break;
+            }
+        }
+    } else walkUpTree();
+    retarget(oriTarget);
+}
+function insertExpression(parent, value, current, marker, unwrapArray) {
+    const hydrating = isHydrating(parent);
+    if (hydrating) {
+        !current && (current = [
+            ...parent.childNodes
+        ]);
+        let cleaned = [];
+        for(let i = 0; i < current.length; i++){
+            const node = current[i];
+            if (node.nodeType === 8 && node.data.slice(0, 2) === "!$") node.remove();
+            else cleaned.push(node);
+        }
+        current = cleaned;
+    }
+    while(typeof current === "function")current = current();
+    if (value === current) return current;
+    const t = typeof value, multi = marker !== void 0;
+    parent = multi && current[0] && current[0].parentNode || parent;
+    if (t === "string" || t === "number") {
+        if (hydrating) return current;
+        if (t === "number") {
+            value = value.toString();
+            if (value === current) return current;
+        }
+        if (multi) {
+            let node = current[0];
+            if (node && node.nodeType === 3) {
+                node.data !== value && (node.data = value);
+            } else node = document.createTextNode(value);
+            current = cleanChildren(parent, current, marker, node);
+        } else {
+            if (current !== "" && typeof current === "string") {
+                current = parent.firstChild.data = value;
+            } else current = parent.textContent = value;
+        }
+    } else if (value == null || t === "boolean") {
+        if (hydrating) return current;
+        current = cleanChildren(parent, current, marker);
+    } else if (t === "function") {
+        createRenderEffect(()=>{
+            let v = value();
+            while(typeof v === "function")v = v();
+            current = insertExpression(parent, v, current, marker);
+        });
+        return ()=>current;
+    } else if (Array.isArray(value)) {
+        const array = [];
+        const currentArray = current && Array.isArray(current);
+        if (normalizeIncomingArray(array, value, current, unwrapArray)) {
+            createRenderEffect(()=>current = insertExpression(parent, array, current, marker, true));
+            return ()=>current;
+        }
+        if (hydrating) {
+            if (!array.length) return current;
+            if (marker === void 0) return current = [
+                ...parent.childNodes
+            ];
+            let node = array[0];
+            if (node.parentNode !== parent) return current;
+            const nodes = [
+                node
+            ];
+            while((node = node.nextSibling) !== marker)nodes.push(node);
+            return current = nodes;
+        }
+        if (array.length === 0) {
+            current = cleanChildren(parent, current, marker);
+            if (multi) return current;
+        } else if (currentArray) {
+            if (current.length === 0) {
+                appendNodes(parent, array, marker);
+            } else reconcileArrays(parent, current, array);
+        } else {
+            current && cleanChildren(parent);
+            appendNodes(parent, array);
+        }
+        current = array;
+    } else if (value.nodeType) {
+        if (hydrating && value.parentNode) return current = multi ? [
+            value
+        ] : value;
+        if (Array.isArray(current)) {
+            if (multi) return current = cleanChildren(parent, current, marker, value);
+            cleanChildren(parent, current, null, value);
+        } else if (current == null || current === "" || !parent.firstChild) {
+            parent.appendChild(value);
+        } else parent.replaceChild(value, parent.firstChild);
+        current = value;
+    } else ;
+    return current;
+}
+function normalizeIncomingArray(normalized, array, current, unwrap) {
+    let dynamic = false;
+    for(let i = 0, len = array.length; i < len; i++){
+        let item = array[i], prev = current && current[normalized.length], t;
+        if (item == null || item === true || item === false) ;
+        else if ((t = typeof item) === "object" && item.nodeType) {
+            normalized.push(item);
+        } else if (Array.isArray(item)) {
+            dynamic = normalizeIncomingArray(normalized, item, prev) || dynamic;
+        } else if (t === "function") {
+            if (unwrap) {
+                while(typeof item === "function")item = item();
+                dynamic = normalizeIncomingArray(normalized, Array.isArray(item) ? item : [
+                    item
+                ], Array.isArray(prev) ? prev : [
+                    prev
+                ]) || dynamic;
+            } else {
+                normalized.push(item);
+                dynamic = true;
+            }
+        } else {
+            const value = String(item);
+            if (prev && prev.nodeType === 3 && prev.data === value) normalized.push(prev);
+            else normalized.push(document.createTextNode(value));
+        }
+    }
+    return dynamic;
+}
+function appendNodes(parent, array, marker = null) {
+    for(let i = 0, len = array.length; i < len; i++)parent.insertBefore(array[i], marker);
+}
+function cleanChildren(parent, current, marker, replacement) {
+    if (marker === void 0) return parent.textContent = "";
+    const node = replacement || document.createTextNode("");
+    if (current.length) {
+        let inserted = false;
+        for(let i = current.length - 1; i >= 0; i--){
+            const el = current[i];
+            if (node !== el) {
+                const isParent = el.parentNode === parent;
+                if (!inserted && !i) isParent ? parent.replaceChild(node, el) : parent.insertBefore(node, marker);
+                else isParent && el.remove();
+            } else inserted = true;
+        }
+    } else parent.insertBefore(node, marker);
+    return [
+        node
+    ];
+}
+function getHydrationKey() {
+    return sharedConfig.getNextContextId();
+}
+var isServer = false;
+var SVG_NAMESPACE = "http://www.w3.org/2000/svg";
+function createElement(tagName, isSVG = false) {
+    return isSVG ? document.createElementNS(SVG_NAMESPACE, tagName) : document.createElement(tagName);
+}
+function Portal(props) {
+    const { useShadow } = props, marker = document.createTextNode(""), mount = ()=>props.mount || document.body, owner = getOwner();
+    let content;
+    let hydrating = !!sharedConfig.context;
+    createEffect(()=>{
+        if (hydrating) getOwner().user = hydrating = false;
+        content || (content = runWithOwner(owner, ()=>createMemo(()=>props.children)));
+        const el = mount();
+        if (el instanceof HTMLHeadElement) {
+            const [clean, setClean] = createSignal(false);
+            const cleanup = ()=>setClean(true);
+            createRoot((dispose2)=>insert(el, ()=>!clean() ? content() : dispose2(), null));
+            onCleanup(cleanup);
+        } else {
+            const container = createElement(props.isSVG ? "g" : "div", props.isSVG), renderRoot = useShadow && container.attachShadow ? container.attachShadow({
+                mode: "open"
+            }) : container;
+            Object.defineProperty(container, "_$host", {
+                get () {
+                    return marker.parentNode;
+                },
+                configurable: true
+            });
+            insert(renderRoot, content);
+            el.appendChild(container);
+            props.ref && props.ref(container);
+            onCleanup(()=>el.removeChild(container));
+        }
+    }, void 0, {
+        render: !hydrating
+    });
+    return marker;
+}
+function createDynamic(component, props) {
+    const cached = createMemo(component);
+    return createMemo(()=>{
+        const component2 = cached();
+        switch(typeof component2){
+            case "function":
+                return untrack(()=>component2(props));
+            case "string":
+                const isSvg = SVGElements.has(component2);
+                const el = sharedConfig.context ? getNextElement() : createElement(component2, isSvg);
+                spread(el, props, isSvg);
+                return el;
+        }
+    });
+}
+function Dynamic(props) {
+    const [, others] = splitProps(props, [
+        "component"
+    ]);
+    return createDynamic(()=>props.component, others);
+}
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/double-indexed-kv.js
+var DoubleIndexedKV = class {
+    constructor(){
+        this.keyToValue = /* @__PURE__ */ new Map();
+        this.valueToKey = /* @__PURE__ */ new Map();
+    }
+    set(key, value) {
+        this.keyToValue.set(key, value);
+        this.valueToKey.set(value, key);
+    }
+    getByKey(key) {
+        return this.keyToValue.get(key);
+    }
+    getByValue(value) {
+        return this.valueToKey.get(value);
+    }
+    clear() {
+        this.keyToValue.clear();
+        this.valueToKey.clear();
+    }
+};
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/registry.js
+var Registry = class {
+    constructor(generateIdentifier){
+        this.generateIdentifier = generateIdentifier;
+        this.kv = new DoubleIndexedKV();
+    }
+    register(value, identifier) {
+        if (this.kv.getByValue(value)) {
+            return;
+        }
+        if (!identifier) {
+            identifier = this.generateIdentifier(value);
+        }
+        this.kv.set(identifier, value);
+    }
+    clear() {
+        this.kv.clear();
+    }
+    getIdentifier(value) {
+        return this.kv.getByValue(value);
+    }
+    getValue(identifier) {
+        return this.kv.getByKey(identifier);
+    }
+};
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/class-registry.js
+var ClassRegistry = class extends Registry {
+    constructor(){
+        super((c)=>c.name);
+        this.classToAllowedProps = /* @__PURE__ */ new Map();
+    }
+    register(value, options) {
+        if (typeof options === "object") {
+            if (options.allowProps) {
+                this.classToAllowedProps.set(value, options.allowProps);
+            }
+            super.register(value, options.identifier);
+        } else {
+            super.register(value, options);
+        }
+    }
+    getAllowedProps(value) {
+        return this.classToAllowedProps.get(value);
+    }
+};
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/util.js
+function valuesOfObj(record) {
+    if ("values" in Object) {
+        return Object.values(record);
+    }
+    const values = [];
+    for(const key in record){
+        if (record.hasOwnProperty(key)) {
+            values.push(record[key]);
+        }
+    }
+    return values;
+}
+function find(record, predicate) {
+    const values = valuesOfObj(record);
+    if ("find" in values) {
+        return values.find(predicate);
+    }
+    const valuesNotNever = values;
+    for(let i = 0; i < valuesNotNever.length; i++){
+        const value = valuesNotNever[i];
+        if (predicate(value)) {
+            return value;
+        }
+    }
+    return void 0;
+}
+function forEach(record, run) {
+    Object.entries(record).forEach(([key, value])=>run(value, key));
+}
+function includes(arr, value) {
+    return arr.indexOf(value) !== -1;
+}
+function findArr(record, predicate) {
+    for(let i = 0; i < record.length; i++){
+        const value = record[i];
+        if (predicate(value)) {
+            return value;
+        }
+    }
+    return void 0;
+}
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/custom-transformer-registry.js
+var CustomTransformerRegistry = class {
+    constructor(){
+        this.transfomers = {};
+    }
+    register(transformer) {
+        this.transfomers[transformer.name] = transformer;
+    }
+    findApplicable(v) {
+        return find(this.transfomers, (transformer)=>transformer.isApplicable(v));
+    }
+    findByName(name) {
+        return this.transfomers[name];
+    }
+};
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/is.js
+var getType = (payload)=>Object.prototype.toString.call(payload).slice(8, -1);
+var isUndefined = (payload)=>typeof payload === "undefined";
+var isNull = (payload)=>payload === null;
+var isPlainObject = (payload)=>{
+    if (typeof payload !== "object" || payload === null) return false;
+    if (payload === Object.prototype) return false;
+    if (Object.getPrototypeOf(payload) === null) return true;
+    return Object.getPrototypeOf(payload) === Object.prototype;
+};
+var isEmptyObject = (payload)=>isPlainObject(payload) && Object.keys(payload).length === 0;
+var isArray = (payload)=>Array.isArray(payload);
+var isString = (payload)=>typeof payload === "string";
+var isNumber = (payload)=>typeof payload === "number" && !isNaN(payload);
+var isBoolean = (payload)=>typeof payload === "boolean";
+var isRegExp = (payload)=>payload instanceof RegExp;
+var isMap = (payload)=>payload instanceof Map;
+var isSet = (payload)=>payload instanceof Set;
+var isSymbol = (payload)=>getType(payload) === "Symbol";
+var isDate = (payload)=>payload instanceof Date && !isNaN(payload.valueOf());
+var isError = (payload)=>payload instanceof Error;
+var isNaNValue = (payload)=>typeof payload === "number" && isNaN(payload);
+var isPrimitive = (payload)=>isBoolean(payload) || isNull(payload) || isUndefined(payload) || isNumber(payload) || isString(payload) || isSymbol(payload);
+var isBigint = (payload)=>typeof payload === "bigint";
+var isInfinite = (payload)=>payload === Infinity || payload === -Infinity;
+var isTypedArray = (payload)=>ArrayBuffer.isView(payload) && !(payload instanceof DataView);
+var isURL = (payload)=>payload instanceof URL;
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/pathstringifier.js
+var escapeKey = (key)=>key.replace(/\./g, "\\.");
+var stringifyPath = (path)=>path.map(String).map(escapeKey).join(".");
+var parsePath = (string)=>{
+    const result = [];
+    let segment = "";
+    for(let i = 0; i < string.length; i++){
+        let char = string.charAt(i);
+        const isEscapedDot = char === "\\" && string.charAt(i + 1) === ".";
+        if (isEscapedDot) {
+            segment += ".";
+            i++;
+            continue;
+        }
+        const isEndOfSegment = char === ".";
+        if (isEndOfSegment) {
+            result.push(segment);
+            segment = "";
+            continue;
+        }
+        segment += char;
+    }
+    const lastSegment = segment;
+    result.push(lastSegment);
+    return result;
+};
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/transformer.js
+function simpleTransformation(isApplicable, annotation, transform, untransform) {
+    return {
+        isApplicable,
+        annotation,
+        transform,
+        untransform
+    };
+}
+var simpleRules = [
+    simpleTransformation(isUndefined, "undefined", ()=>null, ()=>void 0),
+    simpleTransformation(isBigint, "bigint", (v)=>v.toString(), (v)=>{
+        if (typeof BigInt !== "undefined") {
+            return BigInt(v);
+        }
+        console.error("Please add a BigInt polyfill.");
+        return v;
+    }),
+    simpleTransformation(isDate, "Date", (v)=>v.toISOString(), (v)=>new Date(v)),
+    simpleTransformation(isError, "Error", (v, superJson)=>{
+        const baseError = {
+            name: v.name,
+            message: v.message
+        };
+        superJson.allowedErrorProps.forEach((prop)=>{
+            baseError[prop] = v[prop];
+        });
+        return baseError;
+    }, (v, superJson)=>{
+        const e = new Error(v.message);
+        e.name = v.name;
+        e.stack = v.stack;
+        superJson.allowedErrorProps.forEach((prop)=>{
+            e[prop] = v[prop];
+        });
+        return e;
+    }),
+    simpleTransformation(isRegExp, "regexp", (v)=>"" + v, (regex)=>{
+        const body = regex.slice(1, regex.lastIndexOf("/"));
+        const flags = regex.slice(regex.lastIndexOf("/") + 1);
+        return new RegExp(body, flags);
+    }),
+    simpleTransformation(isSet, "set", // (sets only exist in es6+)
+    // eslint-disable-next-line es5/no-es6-methods
+    (v)=>[
+            ...v.values()
+        ], (v)=>new Set(v)),
+    simpleTransformation(isMap, "map", (v)=>[
+            ...v.entries()
+        ], (v)=>new Map(v)),
+    simpleTransformation((v)=>isNaNValue(v) || isInfinite(v), "number", (v)=>{
+        if (isNaNValue(v)) {
+            return "NaN";
+        }
+        if (v > 0) {
+            return "Infinity";
+        } else {
+            return "-Infinity";
+        }
+    }, Number),
+    simpleTransformation((v)=>v === 0 && 1 / v === -Infinity, "number", ()=>{
+        return "-0";
+    }, Number),
+    simpleTransformation(isURL, "URL", (v)=>v.toString(), (v)=>new URL(v))
+];
+function compositeTransformation(isApplicable, annotation, transform, untransform) {
+    return {
+        isApplicable,
+        annotation,
+        transform,
+        untransform
+    };
+}
+var symbolRule = compositeTransformation((s, superJson)=>{
+    if (isSymbol(s)) {
+        const isRegistered = !!superJson.symbolRegistry.getIdentifier(s);
+        return isRegistered;
+    }
+    return false;
+}, (s, superJson)=>{
+    const identifier = superJson.symbolRegistry.getIdentifier(s);
+    return [
+        "symbol",
+        identifier
+    ];
+}, (v)=>v.description, (_, a, superJson)=>{
+    const value = superJson.symbolRegistry.getValue(a[1]);
+    if (!value) {
+        throw new Error("Trying to deserialize unknown symbol");
+    }
+    return value;
+});
+var constructorToName = [
+    Int8Array,
+    Uint8Array,
+    Int16Array,
+    Uint16Array,
+    Int32Array,
+    Uint32Array,
+    Float32Array,
+    Float64Array,
+    Uint8ClampedArray
+].reduce((obj, ctor)=>{
+    obj[ctor.name] = ctor;
+    return obj;
+}, {});
+var typedArrayRule = compositeTransformation(isTypedArray, (v)=>[
+        "typed-array",
+        v.constructor.name
+    ], (v)=>[
+        ...v
+    ], (v, a)=>{
+    const ctor = constructorToName[a[1]];
+    if (!ctor) {
+        throw new Error("Trying to deserialize unknown typed array");
+    }
+    return new ctor(v);
+});
+function isInstanceOfRegisteredClass(potentialClass, superJson) {
+    if (potentialClass?.constructor) {
+        const isRegistered = !!superJson.classRegistry.getIdentifier(potentialClass.constructor);
+        return isRegistered;
+    }
+    return false;
+}
+var classRule = compositeTransformation(isInstanceOfRegisteredClass, (clazz, superJson)=>{
+    const identifier = superJson.classRegistry.getIdentifier(clazz.constructor);
+    return [
+        "class",
+        identifier
+    ];
+}, (clazz, superJson)=>{
+    const allowedProps = superJson.classRegistry.getAllowedProps(clazz.constructor);
+    if (!allowedProps) {
+        return {
+            ...clazz
+        };
+    }
+    const result = {};
+    allowedProps.forEach((prop)=>{
+        result[prop] = clazz[prop];
+    });
+    return result;
+}, (v, a, superJson)=>{
+    const clazz = superJson.classRegistry.getValue(a[1]);
+    if (!clazz) {
+        throw new Error(`Trying to deserialize unknown class '${a[1]}' - check https://github.com/blitz-js/superjson/issues/116#issuecomment-773996564`);
+    }
+    return Object.assign(Object.create(clazz.prototype), v);
+});
+var customRule = compositeTransformation((value, superJson)=>{
+    return !!superJson.customTransformerRegistry.findApplicable(value);
+}, (value, superJson)=>{
+    const transformer = superJson.customTransformerRegistry.findApplicable(value);
+    return [
+        "custom",
+        transformer.name
+    ];
+}, (value, superJson)=>{
+    const transformer = superJson.customTransformerRegistry.findApplicable(value);
+    return transformer.serialize(value);
+}, (v, a, superJson)=>{
+    const transformer = superJson.customTransformerRegistry.findByName(a[1]);
+    if (!transformer) {
+        throw new Error("Trying to deserialize unknown custom value");
+    }
+    return transformer.deserialize(v);
+});
+var compositeRules = [
+    classRule,
+    symbolRule,
+    customRule,
+    typedArrayRule
+];
+var transformValue = (value, superJson)=>{
+    const applicableCompositeRule = findArr(compositeRules, (rule)=>rule.isApplicable(value, superJson));
+    if (applicableCompositeRule) {
+        return {
+            value: applicableCompositeRule.transform(value, superJson),
+            type: applicableCompositeRule.annotation(value, superJson)
+        };
+    }
+    const applicableSimpleRule = findArr(simpleRules, (rule)=>rule.isApplicable(value, superJson));
+    if (applicableSimpleRule) {
+        return {
+            value: applicableSimpleRule.transform(value, superJson),
+            type: applicableSimpleRule.annotation
+        };
+    }
+    return void 0;
+};
+var simpleRulesByAnnotation = {};
+simpleRules.forEach((rule)=>{
+    simpleRulesByAnnotation[rule.annotation] = rule;
+});
+var untransformValue = (json, type, superJson)=>{
+    if (isArray(type)) {
+        switch(type[0]){
+            case "symbol":
+                return symbolRule.untransform(json, type, superJson);
+            case "class":
+                return classRule.untransform(json, type, superJson);
+            case "custom":
+                return customRule.untransform(json, type, superJson);
+            case "typed-array":
+                return typedArrayRule.untransform(json, type, superJson);
+            default:
+                throw new Error("Unknown transformation: " + type);
+        }
+    } else {
+        const transformation = simpleRulesByAnnotation[type];
+        if (!transformation) {
+            throw new Error("Unknown transformation: " + type);
+        }
+        return transformation.untransform(json, superJson);
+    }
+};
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/accessDeep.js
+var getNthKey = (value, n)=>{
+    if (n > value.size) throw new Error("index out of bounds");
+    const keys = value.keys();
+    while(n > 0){
+        keys.next();
+        n--;
+    }
+    return keys.next().value;
+};
+function validatePath(path) {
+    if (includes(path, "__proto__")) {
+        throw new Error("__proto__ is not allowed as a property");
+    }
+    if (includes(path, "prototype")) {
+        throw new Error("prototype is not allowed as a property");
+    }
+    if (includes(path, "constructor")) {
+        throw new Error("constructor is not allowed as a property");
+    }
+}
+var getDeep = (object, path)=>{
+    validatePath(path);
+    for(let i = 0; i < path.length; i++){
+        const key = path[i];
+        if (isSet(object)) {
+            object = getNthKey(object, +key);
+        } else if (isMap(object)) {
+            const row = +key;
+            const type = +path[++i] === 0 ? "key" : "value";
+            const keyOfRow = getNthKey(object, row);
+            switch(type){
+                case "key":
+                    object = keyOfRow;
+                    break;
+                case "value":
+                    object = object.get(keyOfRow);
+                    break;
+            }
+        } else {
+            object = object[key];
+        }
+    }
+    return object;
+};
+var setDeep = (object, path, mapper)=>{
+    validatePath(path);
+    if (path.length === 0) {
+        return mapper(object);
+    }
+    let parent = object;
+    for(let i = 0; i < path.length - 1; i++){
+        const key = path[i];
+        if (isArray(parent)) {
+            const index = +key;
+            parent = parent[index];
+        } else if (isPlainObject(parent)) {
+            parent = parent[key];
+        } else if (isSet(parent)) {
+            const row = +key;
+            parent = getNthKey(parent, row);
+        } else if (isMap(parent)) {
+            const isEnd = i === path.length - 2;
+            if (isEnd) {
+                break;
+            }
+            const row = +key;
+            const type = +path[++i] === 0 ? "key" : "value";
+            const keyOfRow = getNthKey(parent, row);
+            switch(type){
+                case "key":
+                    parent = keyOfRow;
+                    break;
+                case "value":
+                    parent = parent.get(keyOfRow);
+                    break;
+            }
+        }
+    }
+    const lastKey = path[path.length - 1];
+    if (isArray(parent)) {
+        parent[+lastKey] = mapper(parent[+lastKey]);
+    } else if (isPlainObject(parent)) {
+        parent[lastKey] = mapper(parent[lastKey]);
+    }
+    if (isSet(parent)) {
+        const oldValue = getNthKey(parent, +lastKey);
+        const newValue = mapper(oldValue);
+        if (oldValue !== newValue) {
+            parent.delete(oldValue);
+            parent.add(newValue);
+        }
+    }
+    if (isMap(parent)) {
+        const row = +path[path.length - 2];
+        const keyToRow = getNthKey(parent, row);
+        const type = +lastKey === 0 ? "key" : "value";
+        switch(type){
+            case "key":
+                {
+                    const newKey = mapper(keyToRow);
+                    parent.set(newKey, parent.get(keyToRow));
+                    if (newKey !== keyToRow) {
+                        parent.delete(keyToRow);
+                    }
+                    break;
+                }
+            case "value":
+                {
+                    parent.set(keyToRow, mapper(parent.get(keyToRow)));
+                    break;
+                }
+        }
+    }
+    return object;
+};
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/plainer.js
+function traverse(tree, walker2, origin = []) {
+    if (!tree) {
+        return;
+    }
+    if (!isArray(tree)) {
+        forEach(tree, (subtree, key)=>traverse(subtree, walker2, [
+                ...origin,
+                ...parsePath(key)
+            ]));
+        return;
+    }
+    const [nodeValue, children2] = tree;
+    if (children2) {
+        forEach(children2, (child, key)=>{
+            traverse(child, walker2, [
+                ...origin,
+                ...parsePath(key)
+            ]);
+        });
+    }
+    walker2(nodeValue, origin);
+}
+function applyValueAnnotations(plain, annotations, superJson) {
+    traverse(annotations, (type, path)=>{
+        plain = setDeep(plain, path, (v)=>untransformValue(v, type, superJson));
+    });
+    return plain;
+}
+function applyReferentialEqualityAnnotations(plain, annotations) {
+    function apply(identicalPaths, path) {
+        const object = getDeep(plain, parsePath(path));
+        identicalPaths.map(parsePath).forEach((identicalObjectPath)=>{
+            plain = setDeep(plain, identicalObjectPath, ()=>object);
+        });
+    }
+    if (isArray(annotations)) {
+        const [root, other] = annotations;
+        root.forEach((identicalPath)=>{
+            plain = setDeep(plain, parsePath(identicalPath), ()=>plain);
+        });
+        if (other) {
+            forEach(other, apply);
+        }
+    } else {
+        forEach(annotations, apply);
+    }
+    return plain;
+}
+var isDeep = (object, superJson)=>isPlainObject(object) || isArray(object) || isMap(object) || isSet(object) || isInstanceOfRegisteredClass(object, superJson);
+function addIdentity(object, path, identities) {
+    const existingSet = identities.get(object);
+    if (existingSet) {
+        existingSet.push(path);
+    } else {
+        identities.set(object, [
+            path
+        ]);
+    }
+}
+function generateReferentialEqualityAnnotations(identitites, dedupe) {
+    const result = {};
+    let rootEqualityPaths = void 0;
+    identitites.forEach((paths)=>{
+        if (paths.length <= 1) {
+            return;
+        }
+        if (!dedupe) {
+            paths = paths.map((path)=>path.map(String)).sort((a, b)=>a.length - b.length);
+        }
+        const [representativePath, ...identicalPaths] = paths;
+        if (representativePath.length === 0) {
+            rootEqualityPaths = identicalPaths.map(stringifyPath);
+        } else {
+            result[stringifyPath(representativePath)] = identicalPaths.map(stringifyPath);
+        }
+    });
+    if (rootEqualityPaths) {
+        if (isEmptyObject(result)) {
+            return [
+                rootEqualityPaths
+            ];
+        } else {
+            return [
+                rootEqualityPaths,
+                result
+            ];
+        }
+    } else {
+        return isEmptyObject(result) ? void 0 : result;
+    }
+}
+var walker = (object, identities, superJson, dedupe, path = [], objectsInThisPath = [], seenObjects = /* @__PURE__ */ new Map())=>{
+    const primitive = isPrimitive(object);
+    if (!primitive) {
+        addIdentity(object, path, identities);
+        const seen = seenObjects.get(object);
+        if (seen) {
+            return dedupe ? {
+                transformedValue: null
+            } : seen;
+        }
+    }
+    if (!isDeep(object, superJson)) {
+        const transformed2 = transformValue(object, superJson);
+        const result2 = transformed2 ? {
+            transformedValue: transformed2.value,
+            annotations: [
+                transformed2.type
+            ]
+        } : {
+            transformedValue: object
+        };
+        if (!primitive) {
+            seenObjects.set(object, result2);
+        }
+        return result2;
+    }
+    if (includes(objectsInThisPath, object)) {
+        return {
+            transformedValue: null
+        };
+    }
+    const transformationResult = transformValue(object, superJson);
+    const transformed = transformationResult?.value ?? object;
+    const transformedValue = isArray(transformed) ? [] : {};
+    const innerAnnotations = {};
+    forEach(transformed, (value, index)=>{
+        if (index === "__proto__" || index === "constructor" || index === "prototype") {
+            throw new Error(`Detected property ${index}. This is a prototype pollution risk, please remove it from your object.`);
+        }
+        const recursiveResult = walker(value, identities, superJson, dedupe, [
+            ...path,
+            index
+        ], [
+            ...objectsInThisPath,
+            object
+        ], seenObjects);
+        transformedValue[index] = recursiveResult.transformedValue;
+        if (isArray(recursiveResult.annotations)) {
+            innerAnnotations[index] = recursiveResult.annotations;
+        } else if (isPlainObject(recursiveResult.annotations)) {
+            forEach(recursiveResult.annotations, (tree, key)=>{
+                innerAnnotations[escapeKey(index) + "." + key] = tree;
+            });
+        }
+    });
+    const result = isEmptyObject(innerAnnotations) ? {
+        transformedValue,
+        annotations: !!transformationResult ? [
+            transformationResult.type
+        ] : void 0
+    } : {
+        transformedValue,
+        annotations: !!transformationResult ? [
+            transformationResult.type,
+            innerAnnotations
+        ] : innerAnnotations
+    };
+    if (!primitive) {
+        seenObjects.set(object, result);
+    }
+    return result;
+};
+// ../../node_modules/.pnpm/is-what@4.1.16/node_modules/is-what/dist/index.js
+function getType2(payload) {
+    return Object.prototype.toString.call(payload).slice(8, -1);
+}
+function isArray2(payload) {
+    return getType2(payload) === "Array";
+}
+function isPlainObject2(payload) {
+    if (getType2(payload) !== "Object") return false;
+    const prototype = Object.getPrototypeOf(payload);
+    return !!prototype && prototype.constructor === Object && prototype === Object.prototype;
+}
+// ../../node_modules/.pnpm/copy-anything@3.0.5/node_modules/copy-anything/dist/index.js
+function assignProp2(carry, key, newVal, originalObject, includeNonenumerable) {
+    const propType = ({}).propertyIsEnumerable.call(originalObject, key) ? "enumerable" : "nonenumerable";
+    if (propType === "enumerable") carry[key] = newVal;
+    if (includeNonenumerable && propType === "nonenumerable") {
+        Object.defineProperty(carry, key, {
+            value: newVal,
+            enumerable: false,
+            writable: true,
+            configurable: true
+        });
+    }
+}
+function copy(target, options = {}) {
+    if (isArray2(target)) {
+        return target.map((item)=>copy(item, options));
+    }
+    if (!isPlainObject2(target)) {
+        return target;
+    }
+    const props = Object.getOwnPropertyNames(target);
+    const symbols = Object.getOwnPropertySymbols(target);
+    return [
+        ...props,
+        ...symbols
+    ].reduce((carry, key)=>{
+        if (isArray2(options.props) && !options.props.includes(key)) {
+            return carry;
+        }
+        const val = target[key];
+        const newVal = copy(val, options);
+        assignProp2(carry, key, newVal, target, options.nonenumerable);
+        return carry;
+    }, {});
+}
+// ../../node_modules/.pnpm/superjson@2.2.2/node_modules/superjson/dist/index.js
+var SuperJSON = class {
+    /**
+   * @param dedupeReferentialEqualities  If true, SuperJSON will make sure only one instance of referentially equal objects are serialized and the rest are replaced with `null`.
+   */ constructor({ dedupe = false } = {}){
+        this.classRegistry = new ClassRegistry();
+        this.symbolRegistry = new Registry((s)=>s.description ?? "");
+        this.customTransformerRegistry = new CustomTransformerRegistry();
+        this.allowedErrorProps = [];
+        this.dedupe = dedupe;
+    }
+    serialize(object) {
+        const identities = /* @__PURE__ */ new Map();
+        const output = walker(object, identities, this, this.dedupe);
+        const res = {
+            json: output.transformedValue
+        };
+        if (output.annotations) {
+            res.meta = {
+                ...res.meta,
+                values: output.annotations
+            };
+        }
+        const equalityAnnotations = generateReferentialEqualityAnnotations(identities, this.dedupe);
+        if (equalityAnnotations) {
+            res.meta = {
+                ...res.meta,
+                referentialEqualities: equalityAnnotations
+            };
+        }
+        return res;
+    }
+    deserialize(payload) {
+        const { json, meta } = payload;
+        let result = copy(json);
+        if (meta?.values) {
+            result = applyValueAnnotations(result, meta.values, this);
+        }
+        if (meta?.referentialEqualities) {
+            result = applyReferentialEqualityAnnotations(result, meta.referentialEqualities);
+        }
+        return result;
+    }
+    stringify(object) {
+        return JSON.stringify(this.serialize(object));
+    }
+    parse(string) {
+        return this.deserialize(JSON.parse(string));
+    }
+    registerClass(v, options) {
+        this.classRegistry.register(v, options);
+    }
+    registerSymbol(v, identifier) {
+        this.symbolRegistry.register(v, identifier);
+    }
+    registerCustom(transformer, name) {
+        this.customTransformerRegistry.register({
+            name,
+            ...transformer
+        });
+    }
+    allowErrorProps(...props) {
+        this.allowedErrorProps.push(...props);
+    }
+};
+SuperJSON.defaultInstance = new SuperJSON();
+SuperJSON.serialize = SuperJSON.defaultInstance.serialize.bind(SuperJSON.defaultInstance);
+SuperJSON.deserialize = SuperJSON.defaultInstance.deserialize.bind(SuperJSON.defaultInstance);
+SuperJSON.stringify = SuperJSON.defaultInstance.stringify.bind(SuperJSON.defaultInstance);
+SuperJSON.parse = SuperJSON.defaultInstance.parse.bind(SuperJSON.defaultInstance);
+SuperJSON.registerClass = SuperJSON.defaultInstance.registerClass.bind(SuperJSON.defaultInstance);
+SuperJSON.registerSymbol = SuperJSON.defaultInstance.registerSymbol.bind(SuperJSON.defaultInstance);
+SuperJSON.registerCustom = SuperJSON.defaultInstance.registerCustom.bind(SuperJSON.defaultInstance);
+SuperJSON.allowErrorProps = SuperJSON.defaultInstance.allowErrorProps.bind(SuperJSON.defaultInstance);
+var serialize = SuperJSON.serialize;
+SuperJSON.deserialize;
+var stringify = SuperJSON.stringify;
+SuperJSON.parse;
+SuperJSON.registerClass;
+SuperJSON.registerCustom;
+SuperJSON.registerSymbol;
+SuperJSON.allowErrorProps;
+// src/utils.tsx
+function getQueryStatusLabel(query) {
+    return query.state.fetchStatus === "fetching" ? "fetching" : !query.getObserversCount() ? "inactive" : query.state.fetchStatus === "paused" ? "paused" : query.isStale() ? "stale" : "fresh";
+}
+function getSidedProp(prop, side) {
+    return `${prop}${side.charAt(0).toUpperCase() + side.slice(1)}`;
+}
+function getQueryStatusColor({ queryState, observerCount, isStale }) {
+    return queryState.fetchStatus === "fetching" ? "blue" : !observerCount ? "gray" : queryState.fetchStatus === "paused" ? "purple" : isStale ? "yellow" : "green";
+}
+function getMutationStatusColor({ status, isPaused }) {
+    return isPaused ? "purple" : status === "error" ? "red" : status === "pending" ? "yellow" : status === "success" ? "green" : "gray";
+}
+function getQueryStatusColorByLabel(label) {
+    return label === "fresh" ? "green" : label === "stale" ? "yellow" : label === "paused" ? "purple" : label === "inactive" ? "gray" : "blue";
+}
+var displayValue = (value, beautify = false)=>{
+    const { json } = serialize(value);
+    return JSON.stringify(json, null, beautify ? 2 : void 0);
+};
+var getStatusRank = (q)=>q.state.fetchStatus !== "idle" ? 0 : !q.getObserversCount() ? 3 : q.isStale() ? 2 : 1;
+var queryHashSort = (a, b)=>a.queryHash.localeCompare(b.queryHash);
+var dateSort = (a, b)=>a.state.dataUpdatedAt < b.state.dataUpdatedAt ? 1 : -1;
+var statusAndDateSort = (a, b)=>{
+    if (getStatusRank(a) === getStatusRank(b)) {
+        return dateSort(a, b);
+    }
+    return getStatusRank(a) > getStatusRank(b) ? 1 : -1;
+};
+var sortFns = {
+    status: statusAndDateSort,
+    "query hash": queryHashSort,
+    "last updated": dateSort
+};
+var getMutationStatusRank = (m)=>m.state.isPaused ? 0 : m.state.status === "error" ? 2 : m.state.status === "pending" ? 1 : 3;
+var mutationDateSort = (a, b)=>a.state.submittedAt < b.state.submittedAt ? 1 : -1;
+var mutationStatusSort = (a, b)=>{
+    if (getMutationStatusRank(a) === getMutationStatusRank(b)) {
+        return mutationDateSort(a, b);
+    }
+    return getMutationStatusRank(a) > getMutationStatusRank(b) ? 1 : -1;
+};
+var mutationSortFns = {
+    status: mutationStatusSort,
+    "last updated": mutationDateSort
+};
+var convertRemToPixels = (rem)=>{
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+};
+var getPreferredColorScheme = ()=>{
+    const [colorScheme, setColorScheme] = createSignal("dark");
+    onMount(()=>{
+        const query = window.matchMedia("(prefers-color-scheme: dark)");
+        setColorScheme(query.matches ? "dark" : "light");
+        const listener = (e)=>{
+            setColorScheme(e.matches ? "dark" : "light");
+        };
+        query.addEventListener("change", listener);
+        onCleanup(()=>query.removeEventListener("change", listener));
+    });
+    return colorScheme;
+};
+var updateNestedDataByPath = (oldData, updatePath, value)=>{
+    if (updatePath.length === 0) {
+        return value;
+    }
+    if (oldData instanceof Map) {
+        const newData = new Map(oldData);
+        if (updatePath.length === 1) {
+            newData.set(updatePath[0], value);
+            return newData;
+        }
+        const [head, ...tail] = updatePath;
+        newData.set(head, updateNestedDataByPath(newData.get(head), tail, value));
+        return newData;
+    }
+    if (oldData instanceof Set) {
+        const setAsArray = updateNestedDataByPath(Array.from(oldData), updatePath, value);
+        return new Set(setAsArray);
+    }
+    if (Array.isArray(oldData)) {
+        const newData = [
+            ...oldData
+        ];
+        if (updatePath.length === 1) {
+            newData[updatePath[0]] = value;
+            return newData;
+        }
+        const [head, ...tail] = updatePath;
+        newData[head] = updateNestedDataByPath(newData[head], tail, value);
+        return newData;
+    }
+    if (oldData instanceof Object) {
+        const newData = {
+            ...oldData
+        };
+        if (updatePath.length === 1) {
+            newData[updatePath[0]] = value;
+            return newData;
+        }
+        const [head, ...tail] = updatePath;
+        newData[head] = updateNestedDataByPath(newData[head], tail, value);
+        return newData;
+    }
+    return oldData;
+};
+var deleteNestedDataByPath = (oldData, deletePath)=>{
+    if (oldData instanceof Map) {
+        const newData = new Map(oldData);
+        if (deletePath.length === 1) {
+            newData.delete(deletePath[0]);
+            return newData;
+        }
+        const [head, ...tail] = deletePath;
+        newData.set(head, deleteNestedDataByPath(newData.get(head), tail));
+        return newData;
+    }
+    if (oldData instanceof Set) {
+        const setAsArray = deleteNestedDataByPath(Array.from(oldData), deletePath);
+        return new Set(setAsArray);
+    }
+    if (Array.isArray(oldData)) {
+        const newData = [
+            ...oldData
+        ];
+        if (deletePath.length === 1) {
+            return newData.filter((_, idx)=>idx.toString() !== deletePath[0]);
+        }
+        const [head, ...tail] = deletePath;
+        newData[head] = deleteNestedDataByPath(newData[head], tail);
+        return newData;
+    }
+    if (oldData instanceof Object) {
+        const newData = {
+            ...oldData
+        };
+        if (deletePath.length === 1) {
+            delete newData[deletePath[0]];
+            return newData;
+        }
+        const [head, ...tail] = deletePath;
+        newData[head] = deleteNestedDataByPath(newData[head], tail);
+        return newData;
+    }
+    return oldData;
+};
+var setupStyleSheet = (nonce, target)=>{
+    if (!nonce) return;
+    const styleExists = document.querySelector("#_goober") || target?.querySelector("#_goober");
+    if (styleExists) return;
+    const styleTag = document.createElement("style");
+    const textNode = document.createTextNode("");
+    styleTag.appendChild(textNode);
+    styleTag.id = "_goober";
+    styleTag.setAttribute("nonce", nonce);
+    if (target) {
+        target.appendChild(styleTag);
+    } else {
+        document.head.appendChild(styleTag);
+    }
+};
+;
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/query-devtools/build/dev.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TanstackQueryDevtools",
+    ()=>TanstackQueryDevtools,
+    "TanstackQueryDevtoolsPanel",
+    ()=>TanstackQueryDevtoolsPanel
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-devtools/build/chunk/6FXOYLZD.js [app-client] (ecmascript)");
+;
+// src/TanstackQueryDevtools.tsx
+var TanstackQueryDevtools = class {
+    #client;
+    #onlineManager;
+    #queryFlavor;
+    #version;
+    #isMounted = false;
+    #styleNonce;
+    #shadowDOMTarget;
+    #buttonPosition;
+    #position;
+    #initialIsOpen;
+    #errorTypes;
+    #hideDisabledQueries;
+    #Component;
+    #theme;
+    #dispose;
+    constructor(config){
+        const { client, queryFlavor, version, onlineManager, buttonPosition, position, initialIsOpen, errorTypes, styleNonce, shadowDOMTarget, hideDisabledQueries, theme } = config;
+        this.#client = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(client);
+        this.#queryFlavor = queryFlavor;
+        this.#version = version;
+        this.#onlineManager = onlineManager;
+        this.#styleNonce = styleNonce;
+        this.#shadowDOMTarget = shadowDOMTarget;
+        this.#buttonPosition = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(buttonPosition);
+        this.#position = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(position);
+        this.#initialIsOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(initialIsOpen);
+        this.#errorTypes = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(errorTypes);
+        this.#hideDisabledQueries = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(hideDisabledQueries);
+        this.#theme = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(theme);
+    }
+    setButtonPosition(position) {
+        this.#buttonPosition[1](position);
+    }
+    setPosition(position) {
+        this.#position[1](position);
+    }
+    setInitialIsOpen(isOpen) {
+        this.#initialIsOpen[1](isOpen);
+    }
+    setErrorTypes(errorTypes) {
+        this.#errorTypes[1](errorTypes);
+    }
+    setClient(client) {
+        this.#client[1](client);
+    }
+    setTheme(theme) {
+        this.#theme[1](theme);
+    }
+    mount(el) {
+        if (this.#isMounted) {
+            throw new Error("Devtools is already mounted");
+        }
+        const dispose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["render"])(()=>{
+            const _self$ = this;
+            const [btnPosition] = this.#buttonPosition;
+            const [pos] = this.#position;
+            const [isOpen] = this.#initialIsOpen;
+            const [errors] = this.#errorTypes;
+            const [hideDisabledQueries] = this.#hideDisabledQueries;
+            const [queryClient] = this.#client;
+            const [theme] = this.#theme;
+            let Devtools;
+            if (this.#Component) {
+                Devtools = this.#Component;
+            } else {
+                Devtools = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["lazy"])(()=>__turbopack_context__.A("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-devtools/build/DevtoolsComponent/B5PP2USH.js [app-client] (ecmascript, async loader)"));
+                this.#Component = Devtools;
+            }
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setupStyleSheet"])(this.#styleNonce, this.#shadowDOMTarget);
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createComponent"])(Devtools, (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["mergeProps"])({
+                get queryFlavor () {
+                    return _self$.#queryFlavor;
+                },
+                get version () {
+                    return _self$.#version;
+                },
+                get onlineManager () {
+                    return _self$.#onlineManager;
+                },
+                get shadowDOMTarget () {
+                    return _self$.#shadowDOMTarget;
+                }
+            }, {
+                get client () {
+                    return queryClient();
+                },
+                get buttonPosition () {
+                    return btnPosition();
+                },
+                get position () {
+                    return pos();
+                },
+                get initialIsOpen () {
+                    return isOpen();
+                },
+                get errorTypes () {
+                    return errors();
+                },
+                get hideDisabledQueries () {
+                    return hideDisabledQueries();
+                },
+                get theme () {
+                    return theme();
+                }
+            }));
+        }, el);
+        this.#isMounted = true;
+        this.#dispose = dispose;
+    }
+    unmount() {
+        if (!this.#isMounted) {
+            throw new Error("Devtools is not mounted");
+        }
+        this.#dispose?.();
+        this.#isMounted = false;
+    }
+};
+// src/TanstackQueryDevtoolsPanel.tsx
+var TanstackQueryDevtoolsPanel = class {
+    #client;
+    #onlineManager;
+    #queryFlavor;
+    #version;
+    #isMounted = false;
+    #styleNonce;
+    #shadowDOMTarget;
+    #buttonPosition;
+    #position;
+    #initialIsOpen;
+    #errorTypes;
+    #hideDisabledQueries;
+    #onClose;
+    #Component;
+    #theme;
+    #dispose;
+    constructor(config){
+        const { client, queryFlavor, version, onlineManager, buttonPosition, position, initialIsOpen, errorTypes, styleNonce, shadowDOMTarget, onClose, hideDisabledQueries, theme } = config;
+        this.#client = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(client);
+        this.#queryFlavor = queryFlavor;
+        this.#version = version;
+        this.#onlineManager = onlineManager;
+        this.#styleNonce = styleNonce;
+        this.#shadowDOMTarget = shadowDOMTarget;
+        this.#buttonPosition = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(buttonPosition);
+        this.#position = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(position);
+        this.#initialIsOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(initialIsOpen);
+        this.#errorTypes = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(errorTypes);
+        this.#hideDisabledQueries = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(hideDisabledQueries);
+        this.#onClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(onClose);
+        this.#theme = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createSignal"])(theme);
+    }
+    setButtonPosition(position) {
+        this.#buttonPosition[1](position);
+    }
+    setPosition(position) {
+        this.#position[1](position);
+    }
+    setInitialIsOpen(isOpen) {
+        this.#initialIsOpen[1](isOpen);
+    }
+    setErrorTypes(errorTypes) {
+        this.#errorTypes[1](errorTypes);
+    }
+    setClient(client) {
+        this.#client[1](client);
+    }
+    setOnClose(onClose) {
+        this.#onClose[1](()=>onClose);
+    }
+    setTheme(theme) {
+        this.#theme[1](theme);
+    }
+    mount(el) {
+        if (this.#isMounted) {
+            throw new Error("Devtools is already mounted");
+        }
+        const dispose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["render"])(()=>{
+            const _self$ = this;
+            const [btnPosition] = this.#buttonPosition;
+            const [pos] = this.#position;
+            const [isOpen] = this.#initialIsOpen;
+            const [errors] = this.#errorTypes;
+            const [hideDisabledQueries] = this.#hideDisabledQueries;
+            const [queryClient] = this.#client;
+            const [onClose] = this.#onClose;
+            const [theme] = this.#theme;
+            let Devtools;
+            if (this.#Component) {
+                Devtools = this.#Component;
+            } else {
+                Devtools = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["lazy"])(()=>__turbopack_context__.A("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-devtools/build/DevtoolsPanelComponent/WI32IQVE.js [app-client] (ecmascript, async loader)"));
+                this.#Component = Devtools;
+            }
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setupStyleSheet"])(this.#styleNonce, this.#shadowDOMTarget);
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createComponent"])(Devtools, (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$chunk$2f$6FXOYLZD$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["mergeProps"])({
+                get queryFlavor () {
+                    return _self$.#queryFlavor;
+                },
+                get version () {
+                    return _self$.#version;
+                },
+                get onlineManager () {
+                    return _self$.#onlineManager;
+                },
+                get shadowDOMTarget () {
+                    return _self$.#shadowDOMTarget;
+                }
+            }, {
+                get client () {
+                    return queryClient();
+                },
+                get buttonPosition () {
+                    return btnPosition();
+                },
+                get position () {
+                    return pos();
+                },
+                get initialIsOpen () {
+                    return isOpen();
+                },
+                get errorTypes () {
+                    return errors();
+                },
+                get hideDisabledQueries () {
+                    return hideDisabledQueries();
+                },
+                get onClose () {
+                    return onClose();
+                },
+                get theme () {
+                    return theme();
+                }
+            }));
+        }, el);
+        this.#isMounted = true;
+        this.#dispose = dispose;
+    }
+    unmount() {
+        if (!this.#isMounted) {
+            throw new Error("Devtools is not mounted");
+        }
+        this.#dispose?.();
+        this.#isMounted = false;
+    }
+};
+;
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtools.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ReactQueryDevtools",
+    ()=>ReactQueryDevtools
+]);
+// src/ReactQueryDevtools.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/onlineManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$dev$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-devtools/build/dev.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/jsx-runtime.js [app-client] (ecmascript)");
+"use client";
+;
+;
+;
+;
+function ReactQueryDevtools(props) {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])(props.client);
+    const ref = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"](null);
+    const { buttonPosition, position, initialIsOpen, errorTypes, styleNonce, shadowDOMTarget, hideDisabledQueries, theme } = props;
+    const [devtools] = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$dev$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TanstackQueryDevtools"]({
+        client: queryClient,
+        queryFlavor: "React Query",
+        version: "5",
+        onlineManager: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onlineManager"],
+        buttonPosition,
+        position,
+        initialIsOpen,
+        errorTypes,
+        styleNonce,
+        shadowDOMTarget,
+        hideDisabledQueries,
+        theme
+    }));
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtools.useEffect": ()=>{
+            devtools.setClient(queryClient);
+        }
+    }["ReactQueryDevtools.useEffect"], [
+        queryClient,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtools.useEffect": ()=>{
+            if (buttonPosition) {
+                devtools.setButtonPosition(buttonPosition);
+            }
+        }
+    }["ReactQueryDevtools.useEffect"], [
+        buttonPosition,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtools.useEffect": ()=>{
+            if (position) {
+                devtools.setPosition(position);
+            }
+        }
+    }["ReactQueryDevtools.useEffect"], [
+        position,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtools.useEffect": ()=>{
+            devtools.setInitialIsOpen(initialIsOpen || false);
+        }
+    }["ReactQueryDevtools.useEffect"], [
+        initialIsOpen,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtools.useEffect": ()=>{
+            devtools.setErrorTypes(errorTypes || []);
+        }
+    }["ReactQueryDevtools.useEffect"], [
+        errorTypes,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtools.useEffect": ()=>{
+            devtools.setTheme(theme);
+        }
+    }["ReactQueryDevtools.useEffect"], [
+        theme,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtools.useEffect": ()=>{
+            if (ref.current) {
+                devtools.mount(ref.current);
+            }
+            return ({
+                "ReactQueryDevtools.useEffect": ()=>{
+                    devtools.unmount();
+                }
+            })["ReactQueryDevtools.useEffect"];
+        }
+    }["ReactQueryDevtools.useEffect"], [
+        devtools
+    ]);
+    return /* @__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsx"])("div", {
+        dir: "ltr",
+        className: "tsqd-parent-container",
+        ref
+    });
+}
+;
+ //# sourceMappingURL=ReactQueryDevtools.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtoolsPanel.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ReactQueryDevtoolsPanel",
+    ()=>ReactQueryDevtoolsPanel
+]);
+// src/ReactQueryDevtoolsPanel.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-core/build/modern/onlineManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$dev$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/query-devtools/build/dev.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/jsx-runtime.js [app-client] (ecmascript)");
+"use client";
+;
+;
+;
+;
+function ReactQueryDevtoolsPanel(props) {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])(props.client);
+    const ref = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"](null);
+    const { errorTypes, styleNonce, shadowDOMTarget, hideDisabledQueries, theme } = props;
+    const [devtools] = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$devtools$2f$build$2f$dev$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TanstackQueryDevtoolsPanel"]({
+        client: queryClient,
+        queryFlavor: "React Query",
+        version: "5",
+        onlineManager: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$query$2d$core$2f$build$2f$modern$2f$onlineManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onlineManager"],
+        buttonPosition: "bottom-left",
+        position: "bottom",
+        initialIsOpen: true,
+        errorTypes,
+        styleNonce,
+        shadowDOMTarget,
+        onClose: props.onClose,
+        hideDisabledQueries,
+        theme
+    }));
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtoolsPanel.useEffect": ()=>{
+            devtools.setClient(queryClient);
+        }
+    }["ReactQueryDevtoolsPanel.useEffect"], [
+        queryClient,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtoolsPanel.useEffect": ()=>{
+            devtools.setOnClose(props.onClose ?? ({
+                "ReactQueryDevtoolsPanel.useEffect": ()=>{}
+            })["ReactQueryDevtoolsPanel.useEffect"]);
+        }
+    }["ReactQueryDevtoolsPanel.useEffect"], [
+        props.onClose,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtoolsPanel.useEffect": ()=>{
+            devtools.setErrorTypes(errorTypes || []);
+        }
+    }["ReactQueryDevtoolsPanel.useEffect"], [
+        errorTypes,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtoolsPanel.useEffect": ()=>{
+            devtools.setTheme(theme);
+        }
+    }["ReactQueryDevtoolsPanel.useEffect"], [
+        theme,
+        devtools
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "ReactQueryDevtoolsPanel.useEffect": ()=>{
+            if (ref.current) {
+                devtools.mount(ref.current);
+            }
+            return ({
+                "ReactQueryDevtoolsPanel.useEffect": ()=>{
+                    devtools.unmount();
+                }
+            })["ReactQueryDevtoolsPanel.useEffect"];
+        }
+    }["ReactQueryDevtoolsPanel.useEffect"], [
+        devtools
+    ]);
+    return /* @__PURE__ */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsx"])("div", {
+        style: {
+            height: "500px",
+            ...props.style
+        },
+        className: "tsqd-parent-container",
+        ref
+    });
+}
+;
+ //# sourceMappingURL=ReactQueryDevtoolsPanel.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query-devtools/build/modern/index.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ReactQueryDevtools",
+    ()=>ReactQueryDevtools2,
+    "ReactQueryDevtoolsPanel",
+    ()=>ReactQueryDevtoolsPanel2
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+// src/index.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2d$devtools$2f$build$2f$modern$2f$ReactQueryDevtools$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtools.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2d$devtools$2f$build$2f$modern$2f$ReactQueryDevtoolsPanel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtoolsPanel.js [app-client] (ecmascript)");
+"use client";
+;
+;
+var ReactQueryDevtools2 = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2d$devtools$2f$build$2f$modern$2f$ReactQueryDevtools$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ReactQueryDevtools"];
+var ReactQueryDevtoolsPanel2 = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f40$tanstack$2f$react$2d$query$2d$devtools$2f$build$2f$modern$2f$ReactQueryDevtoolsPanel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ReactQueryDevtoolsPanel"];
+;
+ //# sourceMappingURL=index.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/react-error-boundary/dist/react-error-boundary.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ErrorBoundary",
+    ()=>m,
+    "ErrorBoundaryContext",
+    ()=>h,
+    "getErrorMessage",
+    ()=>S,
+    "useErrorBoundary",
+    ()=>k,
+    "withErrorBoundary",
+    ()=>w
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+"use client";
+;
+const h = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"])(null), c = {
+    didCatch: !1,
+    error: null
+};
+class m extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Component"] {
+    constructor(e){
+        super(e), this.resetErrorBoundary = this.resetErrorBoundary.bind(this), this.state = c;
+    }
+    static getDerivedStateFromError(e) {
+        return {
+            didCatch: !0,
+            error: e
+        };
+    }
+    resetErrorBoundary(...e) {
+        const { error: t } = this.state;
+        t !== null && (this.props.onReset?.({
+            args: e,
+            reason: "imperative-api"
+        }), this.setState(c));
+    }
+    componentDidCatch(e, t) {
+        this.props.onError?.(e, t);
+    }
+    componentDidUpdate(e, t) {
+        const { didCatch: o } = this.state, { resetKeys: s } = this.props;
+        o && t.error !== null && C(e.resetKeys, s) && (this.props.onReset?.({
+            next: s,
+            prev: e.resetKeys,
+            reason: "keys"
+        }), this.setState(c));
+    }
+    render() {
+        const { children: e, fallbackRender: t, FallbackComponent: o, fallback: s } = this.props, { didCatch: n, error: a } = this.state;
+        let i = e;
+        if (n) {
+            const u = {
+                error: a,
+                resetErrorBoundary: this.resetErrorBoundary
+            };
+            if (typeof t == "function") i = t(u);
+            else if (o) i = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"])(o, u);
+            else if (s !== void 0) i = s;
+            else throw a;
+        }
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"])(h.Provider, {
+            value: {
+                didCatch: n,
+                error: a,
+                resetErrorBoundary: this.resetErrorBoundary
+            }
+        }, i);
+    }
+}
+function C(r = [], e = []) {
+    return r.length !== e.length || r.some((t, o)=>!Object.is(t, e[o]));
+}
+function g(r) {
+    return r !== null && typeof r == "object" && "didCatch" in r && typeof r.didCatch == "boolean" && "error" in r && "resetErrorBoundary" in r && typeof r.resetErrorBoundary == "function";
+}
+function x(r) {
+    if (!g(r)) throw new Error("ErrorBoundaryContext not found");
+}
+function k() {
+    const r = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"])(h);
+    x(r);
+    const { error: e, resetErrorBoundary: t } = r, [o, s] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        error: null,
+        hasError: !1
+    }), n = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])(()=>({
+            error: e,
+            resetBoundary: ()=>{
+                t(), s({
+                    error: null,
+                    hasError: !1
+                });
+            },
+            showBoundary: (a)=>s({
+                    error: a,
+                    hasError: !0
+                })
+        }), [
+        e,
+        t
+    ]);
+    if (o.hasError) throw o.error;
+    return n;
+}
+function S(r) {
+    switch(typeof r){
+        case "object":
+            {
+                if (r !== null && "message" in r && typeof r.message == "string") return r.message;
+                break;
+            }
+        case "string":
+            return r;
+    }
+}
+function w(r, e) {
+    const t = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["forwardRef"])((s, n)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"])(m, e, (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"])(r, {
+            ...s,
+            ref: n
+        }))), o = r.displayName || r.name || "Unknown";
+    return t.displayName = `withErrorBoundary(${o})`, t;
+}
+;
+ //# sourceMappingURL=react-error-boundary.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/bind.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>bind
+]);
+'use strict';
+function bind(fn, thisArg) {
+    return function wrap() {
+        return fn.apply(thisArg, arguments);
+    };
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$bind$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/bind.js [app-client] (ecmascript)");
+'use strict';
+;
+// utils is a library of generic helper functions non-specific to axios
+const { toString } = Object.prototype;
+const { getPrototypeOf } = Object;
+const { iterator, toStringTag } = Symbol;
+const kindOf = ((cache)=>(thing)=>{
+        const str = toString.call(thing);
+        return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
+    })(Object.create(null));
+const kindOfTest = (type)=>{
+    type = type.toLowerCase();
+    return (thing)=>kindOf(thing) === type;
+};
+const typeOfTest = (type)=>(thing)=>typeof thing === type;
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ *
+ * @returns {boolean} True if value is an Array, otherwise false
+ */ const { isArray } = Array;
+/**
+ * Determine if a value is undefined
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */ const isUndefined = typeOfTest('undefined');
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */ function isBuffer(val) {
+    return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && isFunction(val.constructor.isBuffer) && val.constructor.isBuffer(val);
+}
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */ const isArrayBuffer = kindOfTest('ArrayBuffer');
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */ function isArrayBufferView(val) {
+    let result;
+    if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView) {
+        result = ArrayBuffer.isView(val);
+    } else {
+        result = val && val.buffer && isArrayBuffer(val.buffer);
+    }
+    return result;
+}
+/**
+ * Determine if a value is a String
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a String, otherwise false
+ */ const isString = typeOfTest('string');
+/**
+ * Determine if a value is a Function
+ *
+ * @param {*} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */ const isFunction = typeOfTest('function');
+/**
+ * Determine if a value is a Number
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Number, otherwise false
+ */ const isNumber = typeOfTest('number');
+/**
+ * Determine if a value is an Object
+ *
+ * @param {*} thing The value to test
+ *
+ * @returns {boolean} True if value is an Object, otherwise false
+ */ const isObject = (thing)=>thing !== null && typeof thing === 'object';
+/**
+ * Determine if a value is a Boolean
+ *
+ * @param {*} thing The value to test
+ * @returns {boolean} True if value is a Boolean, otherwise false
+ */ const isBoolean = (thing)=>thing === true || thing === false;
+/**
+ * Determine if a value is a plain Object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a plain Object, otherwise false
+ */ const isPlainObject = (val)=>{
+    if (kindOf(val) !== 'object') {
+        return false;
+    }
+    const prototype = getPrototypeOf(val);
+    return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(toStringTag in val) && !(iterator in val);
+};
+/**
+ * Determine if a value is an empty object (safely handles Buffers)
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is an empty object, otherwise false
+ */ const isEmptyObject = (val)=>{
+    // Early return for non-objects or Buffers to prevent RangeError
+    if (!isObject(val) || isBuffer(val)) {
+        return false;
+    }
+    try {
+        return Object.keys(val).length === 0 && Object.getPrototypeOf(val) === Object.prototype;
+    } catch (e) {
+        // Fallback for any other objects that might cause RangeError with Object.keys()
+        return false;
+    }
+};
+/**
+ * Determine if a value is a Date
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Date, otherwise false
+ */ const isDate = kindOfTest('Date');
+/**
+ * Determine if a value is a File
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a File, otherwise false
+ */ const isFile = kindOfTest('File');
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */ const isBlob = kindOfTest('Blob');
+/**
+ * Determine if a value is a FileList
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a File, otherwise false
+ */ const isFileList = kindOfTest('FileList');
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */ const isStream = (val)=>isObject(val) && isFunction(val.pipe);
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {*} thing The value to test
+ *
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */ const isFormData = (thing)=>{
+    let kind;
+    return thing && (typeof FormData === 'function' && thing instanceof FormData || isFunction(thing.append) && ((kind = kindOf(thing)) === 'formdata' || kind === 'object' && isFunction(thing.toString) && thing.toString() === '[object FormData]'));
+};
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */ const isURLSearchParams = kindOfTest('URLSearchParams');
+const [isReadableStream, isRequest, isResponse, isHeaders] = [
+    'ReadableStream',
+    'Request',
+    'Response',
+    'Headers'
+].map(kindOfTest);
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ *
+ * @returns {String} The String freed of excess whitespace
+ */ const trim = (str)=>str.trim ? str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array<unknown>} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ *
+ * @param {Object} [options]
+ * @param {Boolean} [options.allOwnKeys = false]
+ * @returns {any}
+ */ function forEach(obj, fn, { allOwnKeys = false } = {}) {
+    // Don't bother if no value provided
+    if (obj === null || typeof obj === 'undefined') {
+        return;
+    }
+    let i;
+    let l;
+    // Force an array if not already something iterable
+    if (typeof obj !== 'object') {
+        /*eslint no-param-reassign:0*/ obj = [
+            obj
+        ];
+    }
+    if (isArray(obj)) {
+        // Iterate over array values
+        for(i = 0, l = obj.length; i < l; i++){
+            fn.call(null, obj[i], i, obj);
+        }
+    } else {
+        // Buffer check
+        if (isBuffer(obj)) {
+            return;
+        }
+        // Iterate over object keys
+        const keys = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
+        const len = keys.length;
+        let key;
+        for(i = 0; i < len; i++){
+            key = keys[i];
+            fn.call(null, obj[key], key, obj);
+        }
+    }
+}
+function findKey(obj, key) {
+    if (isBuffer(obj)) {
+        return null;
+    }
+    key = key.toLowerCase();
+    const keys = Object.keys(obj);
+    let i = keys.length;
+    let _key;
+    while(i-- > 0){
+        _key = keys[i];
+        if (key === _key.toLowerCase()) {
+            return _key;
+        }
+    }
+    return null;
+}
+const _global = (()=>{
+    /*eslint no-undef:0*/ if (typeof globalThis !== "undefined") return globalThis;
+    return typeof self !== "undefined" ? self : typeof window !== 'undefined' ? window : /*TURBOPACK member replacement*/ __turbopack_context__.g;
+})();
+const isContextDefined = (context)=>!isUndefined(context) && context !== _global;
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * const result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ *
+ * @returns {Object} Result of all merge properties
+ */ function merge() {
+    const { caseless, skipUndefined } = isContextDefined(this) && this || {};
+    const result = {};
+    const assignValue = (val, key)=>{
+        const targetKey = caseless && findKey(result, key) || key;
+        if (isPlainObject(result[targetKey]) && isPlainObject(val)) {
+            result[targetKey] = merge(result[targetKey], val);
+        } else if (isPlainObject(val)) {
+            result[targetKey] = merge({}, val);
+        } else if (isArray(val)) {
+            result[targetKey] = val.slice();
+        } else if (!skipUndefined || !isUndefined(val)) {
+            result[targetKey] = val;
+        }
+    };
+    for(let i = 0, l = arguments.length; i < l; i++){
+        arguments[i] && forEach(arguments[i], assignValue);
+    }
+    return result;
+}
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ *
+ * @param {Object} [options]
+ * @param {Boolean} [options.allOwnKeys]
+ * @returns {Object} The resulting value of object a
+ */ const extend = (a, b, thisArg, { allOwnKeys } = {})=>{
+    forEach(b, (val, key)=>{
+        if (thisArg && isFunction(val)) {
+            Object.defineProperty(a, key, {
+                value: (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$bind$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(val, thisArg),
+                writable: true,
+                enumerable: true,
+                configurable: true
+            });
+        } else {
+            Object.defineProperty(a, key, {
+                value: val,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            });
+        }
+    }, {
+        allOwnKeys
+    });
+    return a;
+};
+/**
+ * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
+ *
+ * @param {string} content with BOM
+ *
+ * @returns {string} content value without BOM
+ */ const stripBOM = (content)=>{
+    if (content.charCodeAt(0) === 0xFEFF) {
+        content = content.slice(1);
+    }
+    return content;
+};
+/**
+ * Inherit the prototype methods from one constructor into another
+ * @param {function} constructor
+ * @param {function} superConstructor
+ * @param {object} [props]
+ * @param {object} [descriptors]
+ *
+ * @returns {void}
+ */ const inherits = (constructor, superConstructor, props, descriptors)=>{
+    constructor.prototype = Object.create(superConstructor.prototype, descriptors);
+    Object.defineProperty(constructor.prototype, 'constructor', {
+        value: constructor,
+        writable: true,
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(constructor, 'super', {
+        value: superConstructor.prototype
+    });
+    props && Object.assign(constructor.prototype, props);
+};
+/**
+ * Resolve object with deep prototype chain to a flat object
+ * @param {Object} sourceObj source object
+ * @param {Object} [destObj]
+ * @param {Function|Boolean} [filter]
+ * @param {Function} [propFilter]
+ *
+ * @returns {Object}
+ */ const toFlatObject = (sourceObj, destObj, filter, propFilter)=>{
+    let props;
+    let i;
+    let prop;
+    const merged = {};
+    destObj = destObj || {};
+    // eslint-disable-next-line no-eq-null,eqeqeq
+    if (sourceObj == null) return destObj;
+    do {
+        props = Object.getOwnPropertyNames(sourceObj);
+        i = props.length;
+        while(i-- > 0){
+            prop = props[i];
+            if ((!propFilter || propFilter(prop, sourceObj, destObj)) && !merged[prop]) {
+                destObj[prop] = sourceObj[prop];
+                merged[prop] = true;
+            }
+        }
+        sourceObj = filter !== false && getPrototypeOf(sourceObj);
+    }while (sourceObj && (!filter || filter(sourceObj, destObj)) && sourceObj !== Object.prototype)
+    return destObj;
+};
+/**
+ * Determines whether a string ends with the characters of a specified string
+ *
+ * @param {String} str
+ * @param {String} searchString
+ * @param {Number} [position= 0]
+ *
+ * @returns {boolean}
+ */ const endsWith = (str, searchString, position)=>{
+    str = String(str);
+    if (position === undefined || position > str.length) {
+        position = str.length;
+    }
+    position -= searchString.length;
+    const lastIndex = str.indexOf(searchString, position);
+    return lastIndex !== -1 && lastIndex === position;
+};
+/**
+ * Returns new array from array like object or null if failed
+ *
+ * @param {*} [thing]
+ *
+ * @returns {?Array}
+ */ const toArray = (thing)=>{
+    if (!thing) return null;
+    if (isArray(thing)) return thing;
+    let i = thing.length;
+    if (!isNumber(i)) return null;
+    const arr = new Array(i);
+    while(i-- > 0){
+        arr[i] = thing[i];
+    }
+    return arr;
+};
+/**
+ * Checking if the Uint8Array exists and if it does, it returns a function that checks if the
+ * thing passed in is an instance of Uint8Array
+ *
+ * @param {TypedArray}
+ *
+ * @returns {Array}
+ */ // eslint-disable-next-line func-names
+const isTypedArray = ((TypedArray)=>{
+    // eslint-disable-next-line func-names
+    return (thing)=>{
+        return TypedArray && thing instanceof TypedArray;
+    };
+})(typeof Uint8Array !== 'undefined' && getPrototypeOf(Uint8Array));
+/**
+ * For each entry in the object, call the function with the key and value.
+ *
+ * @param {Object<any, any>} obj - The object to iterate over.
+ * @param {Function} fn - The function to call for each entry.
+ *
+ * @returns {void}
+ */ const forEachEntry = (obj, fn)=>{
+    const generator = obj && obj[iterator];
+    const _iterator = generator.call(obj);
+    let result;
+    while((result = _iterator.next()) && !result.done){
+        const pair = result.value;
+        fn.call(obj, pair[0], pair[1]);
+    }
+};
+/**
+ * It takes a regular expression and a string, and returns an array of all the matches
+ *
+ * @param {string} regExp - The regular expression to match against.
+ * @param {string} str - The string to search.
+ *
+ * @returns {Array<boolean>}
+ */ const matchAll = (regExp, str)=>{
+    let matches;
+    const arr = [];
+    while((matches = regExp.exec(str)) !== null){
+        arr.push(matches);
+    }
+    return arr;
+};
+/* Checking if the kindOfTest function returns true when passed an HTMLFormElement. */ const isHTMLForm = kindOfTest('HTMLFormElement');
+const toCamelCase = (str)=>{
+    return str.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g, function replacer(m, p1, p2) {
+        return p1.toUpperCase() + p2;
+    });
+};
+/* Creating a function that will check if an object has a property. */ const hasOwnProperty = (({ hasOwnProperty })=>(obj, prop)=>hasOwnProperty.call(obj, prop))(Object.prototype);
+/**
+ * Determine if a value is a RegExp object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a RegExp object, otherwise false
+ */ const isRegExp = kindOfTest('RegExp');
+const reduceDescriptors = (obj, reducer)=>{
+    const descriptors = Object.getOwnPropertyDescriptors(obj);
+    const reducedDescriptors = {};
+    forEach(descriptors, (descriptor, name)=>{
+        let ret;
+        if ((ret = reducer(descriptor, name, obj)) !== false) {
+            reducedDescriptors[name] = ret || descriptor;
+        }
+    });
+    Object.defineProperties(obj, reducedDescriptors);
+};
+/**
+ * Makes all methods read-only
+ * @param {Object} obj
+ */ const freezeMethods = (obj)=>{
+    reduceDescriptors(obj, (descriptor, name)=>{
+        // skip restricted props in strict mode
+        if (isFunction(obj) && [
+            'arguments',
+            'caller',
+            'callee'
+        ].indexOf(name) !== -1) {
+            return false;
+        }
+        const value = obj[name];
+        if (!isFunction(value)) return;
+        descriptor.enumerable = false;
+        if ('writable' in descriptor) {
+            descriptor.writable = false;
+            return;
+        }
+        if (!descriptor.set) {
+            descriptor.set = ()=>{
+                throw Error('Can not rewrite read-only method \'' + name + '\'');
+            };
+        }
+    });
+};
+const toObjectSet = (arrayOrString, delimiter)=>{
+    const obj = {};
+    const define = (arr)=>{
+        arr.forEach((value)=>{
+            obj[value] = true;
+        });
+    };
+    isArray(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter));
+    return obj;
+};
+const noop = ()=>{};
+const toFiniteNumber = (value, defaultValue)=>{
+    return value != null && Number.isFinite(value = +value) ? value : defaultValue;
+};
+/**
+ * If the thing is a FormData object, return true, otherwise return false.
+ *
+ * @param {unknown} thing - The thing to check.
+ *
+ * @returns {boolean}
+ */ function isSpecCompliantForm(thing) {
+    return !!(thing && isFunction(thing.append) && thing[toStringTag] === 'FormData' && thing[iterator]);
+}
+const toJSONObject = (obj)=>{
+    const stack = new Array(10);
+    const visit = (source, i)=>{
+        if (isObject(source)) {
+            if (stack.indexOf(source) >= 0) {
+                return;
+            }
+            //Buffer check
+            if (isBuffer(source)) {
+                return source;
+            }
+            if (!('toJSON' in source)) {
+                stack[i] = source;
+                const target = isArray(source) ? [] : {};
+                forEach(source, (value, key)=>{
+                    const reducedValue = visit(value, i + 1);
+                    !isUndefined(reducedValue) && (target[key] = reducedValue);
+                });
+                stack[i] = undefined;
+                return target;
+            }
+        }
+        return source;
+    };
+    return visit(obj, 0);
+};
+const isAsyncFn = kindOfTest('AsyncFunction');
+const isThenable = (thing)=>thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
+// original code
+// https://github.com/DigitalBrainJS/AxiosPromise/blob/16deab13710ec09779922131f3fa5954320f83ab/lib/utils.js#L11-L34
+const _setImmediate = ((setImmediateSupported, postMessageSupported)=>{
+    if (setImmediateSupported) {
+        return setImmediate;
+    }
+    return postMessageSupported ? ((token, callbacks)=>{
+        _global.addEventListener("message", ({ source, data })=>{
+            if (source === _global && data === token) {
+                callbacks.length && callbacks.shift()();
+            }
+        }, false);
+        return (cb)=>{
+            callbacks.push(cb);
+            _global.postMessage(token, "*");
+        };
+    })(`axios@${Math.random()}`, []) : (cb)=>setTimeout(cb);
+})(typeof setImmediate === 'function', isFunction(_global.postMessage));
+const asap = typeof queueMicrotask !== 'undefined' ? queueMicrotask.bind(_global) : typeof __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"] !== 'undefined' && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].nextTick || _setImmediate;
+// *********************
+const isIterable = (thing)=>thing != null && isFunction(thing[iterator]);
+const __TURBOPACK__default__export__ = {
+    isArray,
+    isArrayBuffer,
+    isBuffer,
+    isFormData,
+    isArrayBufferView,
+    isString,
+    isNumber,
+    isBoolean,
+    isObject,
+    isPlainObject,
+    isEmptyObject,
+    isReadableStream,
+    isRequest,
+    isResponse,
+    isHeaders,
+    isUndefined,
+    isDate,
+    isFile,
+    isBlob,
+    isRegExp,
+    isFunction,
+    isStream,
+    isURLSearchParams,
+    isTypedArray,
+    isFileList,
+    forEach,
+    merge,
+    extend,
+    trim,
+    stripBOM,
+    inherits,
+    toFlatObject,
+    kindOf,
+    kindOfTest,
+    endsWith,
+    toArray,
+    forEachEntry,
+    matchAll,
+    isHTMLForm,
+    hasOwnProperty,
+    hasOwnProp: hasOwnProperty,
+    reduceDescriptors,
+    freezeMethods,
+    toObjectSet,
+    toCamelCase,
+    noop,
+    toFiniteNumber,
+    findKey,
+    global: _global,
+    isContextDefined,
+    isSpecCompliantForm,
+    toJSONObject,
+    isAsyncFn,
+    isThenable,
+    setImmediate: _setImmediate,
+    asap,
+    isIterable
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/buffer/index.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+(function() {
+    var e = {
+        675: function(e, r) {
+            "use strict";
+            r.byteLength = byteLength;
+            r.toByteArray = toByteArray;
+            r.fromByteArray = fromByteArray;
+            var t = [];
+            var f = [];
+            var n = typeof Uint8Array !== "undefined" ? Uint8Array : Array;
+            var i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+            for(var o = 0, u = i.length; o < u; ++o){
+                t[o] = i[o];
+                f[i.charCodeAt(o)] = o;
+            }
+            f["-".charCodeAt(0)] = 62;
+            f["_".charCodeAt(0)] = 63;
+            function getLens(e) {
+                var r = e.length;
+                if (r % 4 > 0) {
+                    throw new Error("Invalid string. Length must be a multiple of 4");
+                }
+                var t = e.indexOf("=");
+                if (t === -1) t = r;
+                var f = t === r ? 0 : 4 - t % 4;
+                return [
+                    t,
+                    f
+                ];
+            }
+            function byteLength(e) {
+                var r = getLens(e);
+                var t = r[0];
+                var f = r[1];
+                return (t + f) * 3 / 4 - f;
+            }
+            function _byteLength(e, r, t) {
+                return (r + t) * 3 / 4 - t;
+            }
+            function toByteArray(e) {
+                var r;
+                var t = getLens(e);
+                var i = t[0];
+                var o = t[1];
+                var u = new n(_byteLength(e, i, o));
+                var a = 0;
+                var s = o > 0 ? i - 4 : i;
+                var h;
+                for(h = 0; h < s; h += 4){
+                    r = f[e.charCodeAt(h)] << 18 | f[e.charCodeAt(h + 1)] << 12 | f[e.charCodeAt(h + 2)] << 6 | f[e.charCodeAt(h + 3)];
+                    u[a++] = r >> 16 & 255;
+                    u[a++] = r >> 8 & 255;
+                    u[a++] = r & 255;
+                }
+                if (o === 2) {
+                    r = f[e.charCodeAt(h)] << 2 | f[e.charCodeAt(h + 1)] >> 4;
+                    u[a++] = r & 255;
+                }
+                if (o === 1) {
+                    r = f[e.charCodeAt(h)] << 10 | f[e.charCodeAt(h + 1)] << 4 | f[e.charCodeAt(h + 2)] >> 2;
+                    u[a++] = r >> 8 & 255;
+                    u[a++] = r & 255;
+                }
+                return u;
+            }
+            function tripletToBase64(e) {
+                return t[e >> 18 & 63] + t[e >> 12 & 63] + t[e >> 6 & 63] + t[e & 63];
+            }
+            function encodeChunk(e, r, t) {
+                var f;
+                var n = [];
+                for(var i = r; i < t; i += 3){
+                    f = (e[i] << 16 & 16711680) + (e[i + 1] << 8 & 65280) + (e[i + 2] & 255);
+                    n.push(tripletToBase64(f));
+                }
+                return n.join("");
+            }
+            function fromByteArray(e) {
+                var r;
+                var f = e.length;
+                var n = f % 3;
+                var i = [];
+                var o = 16383;
+                for(var u = 0, a = f - n; u < a; u += o){
+                    i.push(encodeChunk(e, u, u + o > a ? a : u + o));
+                }
+                if (n === 1) {
+                    r = e[f - 1];
+                    i.push(t[r >> 2] + t[r << 4 & 63] + "==");
+                } else if (n === 2) {
+                    r = (e[f - 2] << 8) + e[f - 1];
+                    i.push(t[r >> 10] + t[r >> 4 & 63] + t[r << 2 & 63] + "=");
+                }
+                return i.join("");
+            }
+        },
+        72: function(e, r, t) {
+            "use strict";
+            /*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */ var f = t(675);
+            var n = t(783);
+            var i = typeof Symbol === "function" && typeof Symbol.for === "function" ? Symbol.for("nodejs.util.inspect.custom") : null;
+            r.Buffer = Buffer;
+            r.SlowBuffer = SlowBuffer;
+            r.INSPECT_MAX_BYTES = 50;
+            var o = 2147483647;
+            r.kMaxLength = o;
+            Buffer.TYPED_ARRAY_SUPPORT = typedArraySupport();
+            if (!Buffer.TYPED_ARRAY_SUPPORT && typeof console !== "undefined" && typeof console.error === "function") {
+                console.error("This browser lacks typed array (Uint8Array) support which is required by " + "`buffer` v5.x. Use `buffer` v4.x if you require old browser support.");
+            }
+            function typedArraySupport() {
+                try {
+                    var e = new Uint8Array(1);
+                    var r = {
+                        foo: function() {
+                            return 42;
+                        }
+                    };
+                    Object.setPrototypeOf(r, Uint8Array.prototype);
+                    Object.setPrototypeOf(e, r);
+                    return e.foo() === 42;
+                } catch (e) {
+                    return false;
+                }
+            }
+            Object.defineProperty(Buffer.prototype, "parent", {
+                enumerable: true,
+                get: function() {
+                    if (!Buffer.isBuffer(this)) return undefined;
+                    return this.buffer;
+                }
+            });
+            Object.defineProperty(Buffer.prototype, "offset", {
+                enumerable: true,
+                get: function() {
+                    if (!Buffer.isBuffer(this)) return undefined;
+                    return this.byteOffset;
+                }
+            });
+            function createBuffer(e) {
+                if (e > o) {
+                    throw new RangeError('The value "' + e + '" is invalid for option "size"');
+                }
+                var r = new Uint8Array(e);
+                Object.setPrototypeOf(r, Buffer.prototype);
+                return r;
+            }
+            function Buffer(e, r, t) {
+                if (typeof e === "number") {
+                    if (typeof r === "string") {
+                        throw new TypeError('The "string" argument must be of type string. Received type number');
+                    }
+                    return allocUnsafe(e);
+                }
+                return from(e, r, t);
+            }
+            Buffer.poolSize = 8192;
+            function from(e, r, t) {
+                if (typeof e === "string") {
+                    return fromString(e, r);
+                }
+                if (ArrayBuffer.isView(e)) {
+                    return fromArrayLike(e);
+                }
+                if (e == null) {
+                    throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, " + "or Array-like Object. Received type " + typeof e);
+                }
+                if (isInstance(e, ArrayBuffer) || e && isInstance(e.buffer, ArrayBuffer)) {
+                    return fromArrayBuffer(e, r, t);
+                }
+                if (typeof SharedArrayBuffer !== "undefined" && (isInstance(e, SharedArrayBuffer) || e && isInstance(e.buffer, SharedArrayBuffer))) {
+                    return fromArrayBuffer(e, r, t);
+                }
+                if (typeof e === "number") {
+                    throw new TypeError('The "value" argument must not be of type number. Received type number');
+                }
+                var f = e.valueOf && e.valueOf();
+                if (f != null && f !== e) {
+                    return Buffer.from(f, r, t);
+                }
+                var n = fromObject(e);
+                if (n) return n;
+                if (typeof Symbol !== "undefined" && Symbol.toPrimitive != null && typeof e[Symbol.toPrimitive] === "function") {
+                    return Buffer.from(e[Symbol.toPrimitive]("string"), r, t);
+                }
+                throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, " + "or Array-like Object. Received type " + typeof e);
+            }
+            Buffer.from = function(e, r, t) {
+                return from(e, r, t);
+            };
+            Object.setPrototypeOf(Buffer.prototype, Uint8Array.prototype);
+            Object.setPrototypeOf(Buffer, Uint8Array);
+            function assertSize(e) {
+                if (typeof e !== "number") {
+                    throw new TypeError('"size" argument must be of type number');
+                } else if (e < 0) {
+                    throw new RangeError('The value "' + e + '" is invalid for option "size"');
+                }
+            }
+            function alloc(e, r, t) {
+                assertSize(e);
+                if (e <= 0) {
+                    return createBuffer(e);
+                }
+                if (r !== undefined) {
+                    return typeof t === "string" ? createBuffer(e).fill(r, t) : createBuffer(e).fill(r);
+                }
+                return createBuffer(e);
+            }
+            Buffer.alloc = function(e, r, t) {
+                return alloc(e, r, t);
+            };
+            function allocUnsafe(e) {
+                assertSize(e);
+                return createBuffer(e < 0 ? 0 : checked(e) | 0);
+            }
+            Buffer.allocUnsafe = function(e) {
+                return allocUnsafe(e);
+            };
+            Buffer.allocUnsafeSlow = function(e) {
+                return allocUnsafe(e);
+            };
+            function fromString(e, r) {
+                if (typeof r !== "string" || r === "") {
+                    r = "utf8";
+                }
+                if (!Buffer.isEncoding(r)) {
+                    throw new TypeError("Unknown encoding: " + r);
+                }
+                var t = byteLength(e, r) | 0;
+                var f = createBuffer(t);
+                var n = f.write(e, r);
+                if (n !== t) {
+                    f = f.slice(0, n);
+                }
+                return f;
+            }
+            function fromArrayLike(e) {
+                var r = e.length < 0 ? 0 : checked(e.length) | 0;
+                var t = createBuffer(r);
+                for(var f = 0; f < r; f += 1){
+                    t[f] = e[f] & 255;
+                }
+                return t;
+            }
+            function fromArrayBuffer(e, r, t) {
+                if (r < 0 || e.byteLength < r) {
+                    throw new RangeError('"offset" is outside of buffer bounds');
+                }
+                if (e.byteLength < r + (t || 0)) {
+                    throw new RangeError('"length" is outside of buffer bounds');
+                }
+                var f;
+                if (r === undefined && t === undefined) {
+                    f = new Uint8Array(e);
+                } else if (t === undefined) {
+                    f = new Uint8Array(e, r);
+                } else {
+                    f = new Uint8Array(e, r, t);
+                }
+                Object.setPrototypeOf(f, Buffer.prototype);
+                return f;
+            }
+            function fromObject(e) {
+                if (Buffer.isBuffer(e)) {
+                    var r = checked(e.length) | 0;
+                    var t = createBuffer(r);
+                    if (t.length === 0) {
+                        return t;
+                    }
+                    e.copy(t, 0, 0, r);
+                    return t;
+                }
+                if (e.length !== undefined) {
+                    if (typeof e.length !== "number" || numberIsNaN(e.length)) {
+                        return createBuffer(0);
+                    }
+                    return fromArrayLike(e);
+                }
+                if (e.type === "Buffer" && Array.isArray(e.data)) {
+                    return fromArrayLike(e.data);
+                }
+            }
+            function checked(e) {
+                if (e >= o) {
+                    throw new RangeError("Attempt to allocate Buffer larger than maximum " + "size: 0x" + o.toString(16) + " bytes");
+                }
+                return e | 0;
+            }
+            function SlowBuffer(e) {
+                if (+e != e) {
+                    e = 0;
+                }
+                return Buffer.alloc(+e);
+            }
+            Buffer.isBuffer = function isBuffer(e) {
+                return e != null && e._isBuffer === true && e !== Buffer.prototype;
+            };
+            Buffer.compare = function compare(e, r) {
+                if (isInstance(e, Uint8Array)) e = Buffer.from(e, e.offset, e.byteLength);
+                if (isInstance(r, Uint8Array)) r = Buffer.from(r, r.offset, r.byteLength);
+                if (!Buffer.isBuffer(e) || !Buffer.isBuffer(r)) {
+                    throw new TypeError('The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array');
+                }
+                if (e === r) return 0;
+                var t = e.length;
+                var f = r.length;
+                for(var n = 0, i = Math.min(t, f); n < i; ++n){
+                    if (e[n] !== r[n]) {
+                        t = e[n];
+                        f = r[n];
+                        break;
+                    }
+                }
+                if (t < f) return -1;
+                if (f < t) return 1;
+                return 0;
+            };
+            Buffer.isEncoding = function isEncoding(e) {
+                switch(String(e).toLowerCase()){
+                    case "hex":
+                    case "utf8":
+                    case "utf-8":
+                    case "ascii":
+                    case "latin1":
+                    case "binary":
+                    case "base64":
+                    case "ucs2":
+                    case "ucs-2":
+                    case "utf16le":
+                    case "utf-16le":
+                        return true;
+                    default:
+                        return false;
+                }
+            };
+            Buffer.concat = function concat(e, r) {
+                if (!Array.isArray(e)) {
+                    throw new TypeError('"list" argument must be an Array of Buffers');
+                }
+                if (e.length === 0) {
+                    return Buffer.alloc(0);
+                }
+                var t;
+                if (r === undefined) {
+                    r = 0;
+                    for(t = 0; t < e.length; ++t){
+                        r += e[t].length;
+                    }
+                }
+                var f = Buffer.allocUnsafe(r);
+                var n = 0;
+                for(t = 0; t < e.length; ++t){
+                    var i = e[t];
+                    if (isInstance(i, Uint8Array)) {
+                        i = Buffer.from(i);
+                    }
+                    if (!Buffer.isBuffer(i)) {
+                        throw new TypeError('"list" argument must be an Array of Buffers');
+                    }
+                    i.copy(f, n);
+                    n += i.length;
+                }
+                return f;
+            };
+            function byteLength(e, r) {
+                if (Buffer.isBuffer(e)) {
+                    return e.length;
+                }
+                if (ArrayBuffer.isView(e) || isInstance(e, ArrayBuffer)) {
+                    return e.byteLength;
+                }
+                if (typeof e !== "string") {
+                    throw new TypeError('The "string" argument must be one of type string, Buffer, or ArrayBuffer. ' + "Received type " + typeof e);
+                }
+                var t = e.length;
+                var f = arguments.length > 2 && arguments[2] === true;
+                if (!f && t === 0) return 0;
+                var n = false;
+                for(;;){
+                    switch(r){
+                        case "ascii":
+                        case "latin1":
+                        case "binary":
+                            return t;
+                        case "utf8":
+                        case "utf-8":
+                            return utf8ToBytes(e).length;
+                        case "ucs2":
+                        case "ucs-2":
+                        case "utf16le":
+                        case "utf-16le":
+                            return t * 2;
+                        case "hex":
+                            return t >>> 1;
+                        case "base64":
+                            return base64ToBytes(e).length;
+                        default:
+                            if (n) {
+                                return f ? -1 : utf8ToBytes(e).length;
+                            }
+                            r = ("" + r).toLowerCase();
+                            n = true;
+                    }
+                }
+            }
+            Buffer.byteLength = byteLength;
+            function slowToString(e, r, t) {
+                var f = false;
+                if (r === undefined || r < 0) {
+                    r = 0;
+                }
+                if (r > this.length) {
+                    return "";
+                }
+                if (t === undefined || t > this.length) {
+                    t = this.length;
+                }
+                if (t <= 0) {
+                    return "";
+                }
+                t >>>= 0;
+                r >>>= 0;
+                if (t <= r) {
+                    return "";
+                }
+                if (!e) e = "utf8";
+                while(true){
+                    switch(e){
+                        case "hex":
+                            return hexSlice(this, r, t);
+                        case "utf8":
+                        case "utf-8":
+                            return utf8Slice(this, r, t);
+                        case "ascii":
+                            return asciiSlice(this, r, t);
+                        case "latin1":
+                        case "binary":
+                            return latin1Slice(this, r, t);
+                        case "base64":
+                            return base64Slice(this, r, t);
+                        case "ucs2":
+                        case "ucs-2":
+                        case "utf16le":
+                        case "utf-16le":
+                            return utf16leSlice(this, r, t);
+                        default:
+                            if (f) throw new TypeError("Unknown encoding: " + e);
+                            e = (e + "").toLowerCase();
+                            f = true;
+                    }
+                }
+            }
+            Buffer.prototype._isBuffer = true;
+            function swap(e, r, t) {
+                var f = e[r];
+                e[r] = e[t];
+                e[t] = f;
+            }
+            Buffer.prototype.swap16 = function swap16() {
+                var e = this.length;
+                if (e % 2 !== 0) {
+                    throw new RangeError("Buffer size must be a multiple of 16-bits");
+                }
+                for(var r = 0; r < e; r += 2){
+                    swap(this, r, r + 1);
+                }
+                return this;
+            };
+            Buffer.prototype.swap32 = function swap32() {
+                var e = this.length;
+                if (e % 4 !== 0) {
+                    throw new RangeError("Buffer size must be a multiple of 32-bits");
+                }
+                for(var r = 0; r < e; r += 4){
+                    swap(this, r, r + 3);
+                    swap(this, r + 1, r + 2);
+                }
+                return this;
+            };
+            Buffer.prototype.swap64 = function swap64() {
+                var e = this.length;
+                if (e % 8 !== 0) {
+                    throw new RangeError("Buffer size must be a multiple of 64-bits");
+                }
+                for(var r = 0; r < e; r += 8){
+                    swap(this, r, r + 7);
+                    swap(this, r + 1, r + 6);
+                    swap(this, r + 2, r + 5);
+                    swap(this, r + 3, r + 4);
+                }
+                return this;
+            };
+            Buffer.prototype.toString = function toString() {
+                var e = this.length;
+                if (e === 0) return "";
+                if (arguments.length === 0) return utf8Slice(this, 0, e);
+                return slowToString.apply(this, arguments);
+            };
+            Buffer.prototype.toLocaleString = Buffer.prototype.toString;
+            Buffer.prototype.equals = function equals(e) {
+                if (!Buffer.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
+                if (this === e) return true;
+                return Buffer.compare(this, e) === 0;
+            };
+            Buffer.prototype.inspect = function inspect() {
+                var e = "";
+                var t = r.INSPECT_MAX_BYTES;
+                e = this.toString("hex", 0, t).replace(/(.{2})/g, "$1 ").trim();
+                if (this.length > t) e += " ... ";
+                return "<Buffer " + e + ">";
+            };
+            if (i) {
+                Buffer.prototype[i] = Buffer.prototype.inspect;
+            }
+            Buffer.prototype.compare = function compare(e, r, t, f, n) {
+                if (isInstance(e, Uint8Array)) {
+                    e = Buffer.from(e, e.offset, e.byteLength);
+                }
+                if (!Buffer.isBuffer(e)) {
+                    throw new TypeError('The "target" argument must be one of type Buffer or Uint8Array. ' + "Received type " + typeof e);
+                }
+                if (r === undefined) {
+                    r = 0;
+                }
+                if (t === undefined) {
+                    t = e ? e.length : 0;
+                }
+                if (f === undefined) {
+                    f = 0;
+                }
+                if (n === undefined) {
+                    n = this.length;
+                }
+                if (r < 0 || t > e.length || f < 0 || n > this.length) {
+                    throw new RangeError("out of range index");
+                }
+                if (f >= n && r >= t) {
+                    return 0;
+                }
+                if (f >= n) {
+                    return -1;
+                }
+                if (r >= t) {
+                    return 1;
+                }
+                r >>>= 0;
+                t >>>= 0;
+                f >>>= 0;
+                n >>>= 0;
+                if (this === e) return 0;
+                var i = n - f;
+                var o = t - r;
+                var u = Math.min(i, o);
+                var a = this.slice(f, n);
+                var s = e.slice(r, t);
+                for(var h = 0; h < u; ++h){
+                    if (a[h] !== s[h]) {
+                        i = a[h];
+                        o = s[h];
+                        break;
+                    }
+                }
+                if (i < o) return -1;
+                if (o < i) return 1;
+                return 0;
+            };
+            function bidirectionalIndexOf(e, r, t, f, n) {
+                if (e.length === 0) return -1;
+                if (typeof t === "string") {
+                    f = t;
+                    t = 0;
+                } else if (t > 2147483647) {
+                    t = 2147483647;
+                } else if (t < -2147483648) {
+                    t = -2147483648;
+                }
+                t = +t;
+                if (numberIsNaN(t)) {
+                    t = n ? 0 : e.length - 1;
+                }
+                if (t < 0) t = e.length + t;
+                if (t >= e.length) {
+                    if (n) return -1;
+                    else t = e.length - 1;
+                } else if (t < 0) {
+                    if (n) t = 0;
+                    else return -1;
+                }
+                if (typeof r === "string") {
+                    r = Buffer.from(r, f);
+                }
+                if (Buffer.isBuffer(r)) {
+                    if (r.length === 0) {
+                        return -1;
+                    }
+                    return arrayIndexOf(e, r, t, f, n);
+                } else if (typeof r === "number") {
+                    r = r & 255;
+                    if (typeof Uint8Array.prototype.indexOf === "function") {
+                        if (n) {
+                            return Uint8Array.prototype.indexOf.call(e, r, t);
+                        } else {
+                            return Uint8Array.prototype.lastIndexOf.call(e, r, t);
+                        }
+                    }
+                    return arrayIndexOf(e, [
+                        r
+                    ], t, f, n);
+                }
+                throw new TypeError("val must be string, number or Buffer");
+            }
+            function arrayIndexOf(e, r, t, f, n) {
+                var i = 1;
+                var o = e.length;
+                var u = r.length;
+                if (f !== undefined) {
+                    f = String(f).toLowerCase();
+                    if (f === "ucs2" || f === "ucs-2" || f === "utf16le" || f === "utf-16le") {
+                        if (e.length < 2 || r.length < 2) {
+                            return -1;
+                        }
+                        i = 2;
+                        o /= 2;
+                        u /= 2;
+                        t /= 2;
+                    }
+                }
+                function read(e, r) {
+                    if (i === 1) {
+                        return e[r];
+                    } else {
+                        return e.readUInt16BE(r * i);
+                    }
+                }
+                var a;
+                if (n) {
+                    var s = -1;
+                    for(a = t; a < o; a++){
+                        if (read(e, a) === read(r, s === -1 ? 0 : a - s)) {
+                            if (s === -1) s = a;
+                            if (a - s + 1 === u) return s * i;
+                        } else {
+                            if (s !== -1) a -= a - s;
+                            s = -1;
+                        }
+                    }
+                } else {
+                    if (t + u > o) t = o - u;
+                    for(a = t; a >= 0; a--){
+                        var h = true;
+                        for(var c = 0; c < u; c++){
+                            if (read(e, a + c) !== read(r, c)) {
+                                h = false;
+                                break;
+                            }
+                        }
+                        if (h) return a;
+                    }
+                }
+                return -1;
+            }
+            Buffer.prototype.includes = function includes(e, r, t) {
+                return this.indexOf(e, r, t) !== -1;
+            };
+            Buffer.prototype.indexOf = function indexOf(e, r, t) {
+                return bidirectionalIndexOf(this, e, r, t, true);
+            };
+            Buffer.prototype.lastIndexOf = function lastIndexOf(e, r, t) {
+                return bidirectionalIndexOf(this, e, r, t, false);
+            };
+            function hexWrite(e, r, t, f) {
+                t = Number(t) || 0;
+                var n = e.length - t;
+                if (!f) {
+                    f = n;
+                } else {
+                    f = Number(f);
+                    if (f > n) {
+                        f = n;
+                    }
+                }
+                var i = r.length;
+                if (f > i / 2) {
+                    f = i / 2;
+                }
+                for(var o = 0; o < f; ++o){
+                    var u = parseInt(r.substr(o * 2, 2), 16);
+                    if (numberIsNaN(u)) return o;
+                    e[t + o] = u;
+                }
+                return o;
+            }
+            function utf8Write(e, r, t, f) {
+                return blitBuffer(utf8ToBytes(r, e.length - t), e, t, f);
+            }
+            function asciiWrite(e, r, t, f) {
+                return blitBuffer(asciiToBytes(r), e, t, f);
+            }
+            function latin1Write(e, r, t, f) {
+                return asciiWrite(e, r, t, f);
+            }
+            function base64Write(e, r, t, f) {
+                return blitBuffer(base64ToBytes(r), e, t, f);
+            }
+            function ucs2Write(e, r, t, f) {
+                return blitBuffer(utf16leToBytes(r, e.length - t), e, t, f);
+            }
+            Buffer.prototype.write = function write(e, r, t, f) {
+                if (r === undefined) {
+                    f = "utf8";
+                    t = this.length;
+                    r = 0;
+                } else if (t === undefined && typeof r === "string") {
+                    f = r;
+                    t = this.length;
+                    r = 0;
+                } else if (isFinite(r)) {
+                    r = r >>> 0;
+                    if (isFinite(t)) {
+                        t = t >>> 0;
+                        if (f === undefined) f = "utf8";
+                    } else {
+                        f = t;
+                        t = undefined;
+                    }
+                } else {
+                    throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
+                }
+                var n = this.length - r;
+                if (t === undefined || t > n) t = n;
+                if (e.length > 0 && (t < 0 || r < 0) || r > this.length) {
+                    throw new RangeError("Attempt to write outside buffer bounds");
+                }
+                if (!f) f = "utf8";
+                var i = false;
+                for(;;){
+                    switch(f){
+                        case "hex":
+                            return hexWrite(this, e, r, t);
+                        case "utf8":
+                        case "utf-8":
+                            return utf8Write(this, e, r, t);
+                        case "ascii":
+                            return asciiWrite(this, e, r, t);
+                        case "latin1":
+                        case "binary":
+                            return latin1Write(this, e, r, t);
+                        case "base64":
+                            return base64Write(this, e, r, t);
+                        case "ucs2":
+                        case "ucs-2":
+                        case "utf16le":
+                        case "utf-16le":
+                            return ucs2Write(this, e, r, t);
+                        default:
+                            if (i) throw new TypeError("Unknown encoding: " + f);
+                            f = ("" + f).toLowerCase();
+                            i = true;
+                    }
+                }
+            };
+            Buffer.prototype.toJSON = function toJSON() {
+                return {
+                    type: "Buffer",
+                    data: Array.prototype.slice.call(this._arr || this, 0)
+                };
+            };
+            function base64Slice(e, r, t) {
+                if (r === 0 && t === e.length) {
+                    return f.fromByteArray(e);
+                } else {
+                    return f.fromByteArray(e.slice(r, t));
+                }
+            }
+            function utf8Slice(e, r, t) {
+                t = Math.min(e.length, t);
+                var f = [];
+                var n = r;
+                while(n < t){
+                    var i = e[n];
+                    var o = null;
+                    var u = i > 239 ? 4 : i > 223 ? 3 : i > 191 ? 2 : 1;
+                    if (n + u <= t) {
+                        var a, s, h, c;
+                        switch(u){
+                            case 1:
+                                if (i < 128) {
+                                    o = i;
+                                }
+                                break;
+                            case 2:
+                                a = e[n + 1];
+                                if ((a & 192) === 128) {
+                                    c = (i & 31) << 6 | a & 63;
+                                    if (c > 127) {
+                                        o = c;
+                                    }
+                                }
+                                break;
+                            case 3:
+                                a = e[n + 1];
+                                s = e[n + 2];
+                                if ((a & 192) === 128 && (s & 192) === 128) {
+                                    c = (i & 15) << 12 | (a & 63) << 6 | s & 63;
+                                    if (c > 2047 && (c < 55296 || c > 57343)) {
+                                        o = c;
+                                    }
+                                }
+                                break;
+                            case 4:
+                                a = e[n + 1];
+                                s = e[n + 2];
+                                h = e[n + 3];
+                                if ((a & 192) === 128 && (s & 192) === 128 && (h & 192) === 128) {
+                                    c = (i & 15) << 18 | (a & 63) << 12 | (s & 63) << 6 | h & 63;
+                                    if (c > 65535 && c < 1114112) {
+                                        o = c;
+                                    }
+                                }
+                        }
+                    }
+                    if (o === null) {
+                        o = 65533;
+                        u = 1;
+                    } else if (o > 65535) {
+                        o -= 65536;
+                        f.push(o >>> 10 & 1023 | 55296);
+                        o = 56320 | o & 1023;
+                    }
+                    f.push(o);
+                    n += u;
+                }
+                return decodeCodePointsArray(f);
+            }
+            var u = 4096;
+            function decodeCodePointsArray(e) {
+                var r = e.length;
+                if (r <= u) {
+                    return String.fromCharCode.apply(String, e);
+                }
+                var t = "";
+                var f = 0;
+                while(f < r){
+                    t += String.fromCharCode.apply(String, e.slice(f, f += u));
+                }
+                return t;
+            }
+            function asciiSlice(e, r, t) {
+                var f = "";
+                t = Math.min(e.length, t);
+                for(var n = r; n < t; ++n){
+                    f += String.fromCharCode(e[n] & 127);
+                }
+                return f;
+            }
+            function latin1Slice(e, r, t) {
+                var f = "";
+                t = Math.min(e.length, t);
+                for(var n = r; n < t; ++n){
+                    f += String.fromCharCode(e[n]);
+                }
+                return f;
+            }
+            function hexSlice(e, r, t) {
+                var f = e.length;
+                if (!r || r < 0) r = 0;
+                if (!t || t < 0 || t > f) t = f;
+                var n = "";
+                for(var i = r; i < t; ++i){
+                    n += s[e[i]];
+                }
+                return n;
+            }
+            function utf16leSlice(e, r, t) {
+                var f = e.slice(r, t);
+                var n = "";
+                for(var i = 0; i < f.length; i += 2){
+                    n += String.fromCharCode(f[i] + f[i + 1] * 256);
+                }
+                return n;
+            }
+            Buffer.prototype.slice = function slice(e, r) {
+                var t = this.length;
+                e = ~~e;
+                r = r === undefined ? t : ~~r;
+                if (e < 0) {
+                    e += t;
+                    if (e < 0) e = 0;
+                } else if (e > t) {
+                    e = t;
+                }
+                if (r < 0) {
+                    r += t;
+                    if (r < 0) r = 0;
+                } else if (r > t) {
+                    r = t;
+                }
+                if (r < e) r = e;
+                var f = this.subarray(e, r);
+                Object.setPrototypeOf(f, Buffer.prototype);
+                return f;
+            };
+            function checkOffset(e, r, t) {
+                if (e % 1 !== 0 || e < 0) throw new RangeError("offset is not uint");
+                if (e + r > t) throw new RangeError("Trying to access beyond buffer length");
+            }
+            Buffer.prototype.readUIntLE = function readUIntLE(e, r, t) {
+                e = e >>> 0;
+                r = r >>> 0;
+                if (!t) checkOffset(e, r, this.length);
+                var f = this[e];
+                var n = 1;
+                var i = 0;
+                while(++i < r && (n *= 256)){
+                    f += this[e + i] * n;
+                }
+                return f;
+            };
+            Buffer.prototype.readUIntBE = function readUIntBE(e, r, t) {
+                e = e >>> 0;
+                r = r >>> 0;
+                if (!t) {
+                    checkOffset(e, r, this.length);
+                }
+                var f = this[e + --r];
+                var n = 1;
+                while(r > 0 && (n *= 256)){
+                    f += this[e + --r] * n;
+                }
+                return f;
+            };
+            Buffer.prototype.readUInt8 = function readUInt8(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 1, this.length);
+                return this[e];
+            };
+            Buffer.prototype.readUInt16LE = function readUInt16LE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 2, this.length);
+                return this[e] | this[e + 1] << 8;
+            };
+            Buffer.prototype.readUInt16BE = function readUInt16BE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 2, this.length);
+                return this[e] << 8 | this[e + 1];
+            };
+            Buffer.prototype.readUInt32LE = function readUInt32LE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 4, this.length);
+                return (this[e] | this[e + 1] << 8 | this[e + 2] << 16) + this[e + 3] * 16777216;
+            };
+            Buffer.prototype.readUInt32BE = function readUInt32BE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 4, this.length);
+                return this[e] * 16777216 + (this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3]);
+            };
+            Buffer.prototype.readIntLE = function readIntLE(e, r, t) {
+                e = e >>> 0;
+                r = r >>> 0;
+                if (!t) checkOffset(e, r, this.length);
+                var f = this[e];
+                var n = 1;
+                var i = 0;
+                while(++i < r && (n *= 256)){
+                    f += this[e + i] * n;
+                }
+                n *= 128;
+                if (f >= n) f -= Math.pow(2, 8 * r);
+                return f;
+            };
+            Buffer.prototype.readIntBE = function readIntBE(e, r, t) {
+                e = e >>> 0;
+                r = r >>> 0;
+                if (!t) checkOffset(e, r, this.length);
+                var f = r;
+                var n = 1;
+                var i = this[e + --f];
+                while(f > 0 && (n *= 256)){
+                    i += this[e + --f] * n;
+                }
+                n *= 128;
+                if (i >= n) i -= Math.pow(2, 8 * r);
+                return i;
+            };
+            Buffer.prototype.readInt8 = function readInt8(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 1, this.length);
+                if (!(this[e] & 128)) return this[e];
+                return (255 - this[e] + 1) * -1;
+            };
+            Buffer.prototype.readInt16LE = function readInt16LE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 2, this.length);
+                var t = this[e] | this[e + 1] << 8;
+                return t & 32768 ? t | 4294901760 : t;
+            };
+            Buffer.prototype.readInt16BE = function readInt16BE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 2, this.length);
+                var t = this[e + 1] | this[e] << 8;
+                return t & 32768 ? t | 4294901760 : t;
+            };
+            Buffer.prototype.readInt32LE = function readInt32LE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 4, this.length);
+                return this[e] | this[e + 1] << 8 | this[e + 2] << 16 | this[e + 3] << 24;
+            };
+            Buffer.prototype.readInt32BE = function readInt32BE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 4, this.length);
+                return this[e] << 24 | this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3];
+            };
+            Buffer.prototype.readFloatLE = function readFloatLE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 4, this.length);
+                return n.read(this, e, true, 23, 4);
+            };
+            Buffer.prototype.readFloatBE = function readFloatBE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 4, this.length);
+                return n.read(this, e, false, 23, 4);
+            };
+            Buffer.prototype.readDoubleLE = function readDoubleLE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 8, this.length);
+                return n.read(this, e, true, 52, 8);
+            };
+            Buffer.prototype.readDoubleBE = function readDoubleBE(e, r) {
+                e = e >>> 0;
+                if (!r) checkOffset(e, 8, this.length);
+                return n.read(this, e, false, 52, 8);
+            };
+            function checkInt(e, r, t, f, n, i) {
+                if (!Buffer.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
+                if (r > n || r < i) throw new RangeError('"value" argument is out of bounds');
+                if (t + f > e.length) throw new RangeError("Index out of range");
+            }
+            Buffer.prototype.writeUIntLE = function writeUIntLE(e, r, t, f) {
+                e = +e;
+                r = r >>> 0;
+                t = t >>> 0;
+                if (!f) {
+                    var n = Math.pow(2, 8 * t) - 1;
+                    checkInt(this, e, r, t, n, 0);
+                }
+                var i = 1;
+                var o = 0;
+                this[r] = e & 255;
+                while(++o < t && (i *= 256)){
+                    this[r + o] = e / i & 255;
+                }
+                return r + t;
+            };
+            Buffer.prototype.writeUIntBE = function writeUIntBE(e, r, t, f) {
+                e = +e;
+                r = r >>> 0;
+                t = t >>> 0;
+                if (!f) {
+                    var n = Math.pow(2, 8 * t) - 1;
+                    checkInt(this, e, r, t, n, 0);
+                }
+                var i = t - 1;
+                var o = 1;
+                this[r + i] = e & 255;
+                while(--i >= 0 && (o *= 256)){
+                    this[r + i] = e / o & 255;
+                }
+                return r + t;
+            };
+            Buffer.prototype.writeUInt8 = function writeUInt8(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 1, 255, 0);
+                this[r] = e & 255;
+                return r + 1;
+            };
+            Buffer.prototype.writeUInt16LE = function writeUInt16LE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 2, 65535, 0);
+                this[r] = e & 255;
+                this[r + 1] = e >>> 8;
+                return r + 2;
+            };
+            Buffer.prototype.writeUInt16BE = function writeUInt16BE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 2, 65535, 0);
+                this[r] = e >>> 8;
+                this[r + 1] = e & 255;
+                return r + 2;
+            };
+            Buffer.prototype.writeUInt32LE = function writeUInt32LE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 4, 4294967295, 0);
+                this[r + 3] = e >>> 24;
+                this[r + 2] = e >>> 16;
+                this[r + 1] = e >>> 8;
+                this[r] = e & 255;
+                return r + 4;
+            };
+            Buffer.prototype.writeUInt32BE = function writeUInt32BE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 4, 4294967295, 0);
+                this[r] = e >>> 24;
+                this[r + 1] = e >>> 16;
+                this[r + 2] = e >>> 8;
+                this[r + 3] = e & 255;
+                return r + 4;
+            };
+            Buffer.prototype.writeIntLE = function writeIntLE(e, r, t, f) {
+                e = +e;
+                r = r >>> 0;
+                if (!f) {
+                    var n = Math.pow(2, 8 * t - 1);
+                    checkInt(this, e, r, t, n - 1, -n);
+                }
+                var i = 0;
+                var o = 1;
+                var u = 0;
+                this[r] = e & 255;
+                while(++i < t && (o *= 256)){
+                    if (e < 0 && u === 0 && this[r + i - 1] !== 0) {
+                        u = 1;
+                    }
+                    this[r + i] = (e / o >> 0) - u & 255;
+                }
+                return r + t;
+            };
+            Buffer.prototype.writeIntBE = function writeIntBE(e, r, t, f) {
+                e = +e;
+                r = r >>> 0;
+                if (!f) {
+                    var n = Math.pow(2, 8 * t - 1);
+                    checkInt(this, e, r, t, n - 1, -n);
+                }
+                var i = t - 1;
+                var o = 1;
+                var u = 0;
+                this[r + i] = e & 255;
+                while(--i >= 0 && (o *= 256)){
+                    if (e < 0 && u === 0 && this[r + i + 1] !== 0) {
+                        u = 1;
+                    }
+                    this[r + i] = (e / o >> 0) - u & 255;
+                }
+                return r + t;
+            };
+            Buffer.prototype.writeInt8 = function writeInt8(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 1, 127, -128);
+                if (e < 0) e = 255 + e + 1;
+                this[r] = e & 255;
+                return r + 1;
+            };
+            Buffer.prototype.writeInt16LE = function writeInt16LE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 2, 32767, -32768);
+                this[r] = e & 255;
+                this[r + 1] = e >>> 8;
+                return r + 2;
+            };
+            Buffer.prototype.writeInt16BE = function writeInt16BE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 2, 32767, -32768);
+                this[r] = e >>> 8;
+                this[r + 1] = e & 255;
+                return r + 2;
+            };
+            Buffer.prototype.writeInt32LE = function writeInt32LE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 4, 2147483647, -2147483648);
+                this[r] = e & 255;
+                this[r + 1] = e >>> 8;
+                this[r + 2] = e >>> 16;
+                this[r + 3] = e >>> 24;
+                return r + 4;
+            };
+            Buffer.prototype.writeInt32BE = function writeInt32BE(e, r, t) {
+                e = +e;
+                r = r >>> 0;
+                if (!t) checkInt(this, e, r, 4, 2147483647, -2147483648);
+                if (e < 0) e = 4294967295 + e + 1;
+                this[r] = e >>> 24;
+                this[r + 1] = e >>> 16;
+                this[r + 2] = e >>> 8;
+                this[r + 3] = e & 255;
+                return r + 4;
+            };
+            function checkIEEE754(e, r, t, f, n, i) {
+                if (t + f > e.length) throw new RangeError("Index out of range");
+                if (t < 0) throw new RangeError("Index out of range");
+            }
+            function writeFloat(e, r, t, f, i) {
+                r = +r;
+                t = t >>> 0;
+                if (!i) {
+                    checkIEEE754(e, r, t, 4, 34028234663852886e22, -34028234663852886e22);
+                }
+                n.write(e, r, t, f, 23, 4);
+                return t + 4;
+            }
+            Buffer.prototype.writeFloatLE = function writeFloatLE(e, r, t) {
+                return writeFloat(this, e, r, true, t);
+            };
+            Buffer.prototype.writeFloatBE = function writeFloatBE(e, r, t) {
+                return writeFloat(this, e, r, false, t);
+            };
+            function writeDouble(e, r, t, f, i) {
+                r = +r;
+                t = t >>> 0;
+                if (!i) {
+                    checkIEEE754(e, r, t, 8, 17976931348623157e292, -17976931348623157e292);
+                }
+                n.write(e, r, t, f, 52, 8);
+                return t + 8;
+            }
+            Buffer.prototype.writeDoubleLE = function writeDoubleLE(e, r, t) {
+                return writeDouble(this, e, r, true, t);
+            };
+            Buffer.prototype.writeDoubleBE = function writeDoubleBE(e, r, t) {
+                return writeDouble(this, e, r, false, t);
+            };
+            Buffer.prototype.copy = function copy(e, r, t, f) {
+                if (!Buffer.isBuffer(e)) throw new TypeError("argument should be a Buffer");
+                if (!t) t = 0;
+                if (!f && f !== 0) f = this.length;
+                if (r >= e.length) r = e.length;
+                if (!r) r = 0;
+                if (f > 0 && f < t) f = t;
+                if (f === t) return 0;
+                if (e.length === 0 || this.length === 0) return 0;
+                if (r < 0) {
+                    throw new RangeError("targetStart out of bounds");
+                }
+                if (t < 0 || t >= this.length) throw new RangeError("Index out of range");
+                if (f < 0) throw new RangeError("sourceEnd out of bounds");
+                if (f > this.length) f = this.length;
+                if (e.length - r < f - t) {
+                    f = e.length - r + t;
+                }
+                var n = f - t;
+                if (this === e && typeof Uint8Array.prototype.copyWithin === "function") {
+                    this.copyWithin(r, t, f);
+                } else if (this === e && t < r && r < f) {
+                    for(var i = n - 1; i >= 0; --i){
+                        e[i + r] = this[i + t];
+                    }
+                } else {
+                    Uint8Array.prototype.set.call(e, this.subarray(t, f), r);
+                }
+                return n;
+            };
+            Buffer.prototype.fill = function fill(e, r, t, f) {
+                if (typeof e === "string") {
+                    if (typeof r === "string") {
+                        f = r;
+                        r = 0;
+                        t = this.length;
+                    } else if (typeof t === "string") {
+                        f = t;
+                        t = this.length;
+                    }
+                    if (f !== undefined && typeof f !== "string") {
+                        throw new TypeError("encoding must be a string");
+                    }
+                    if (typeof f === "string" && !Buffer.isEncoding(f)) {
+                        throw new TypeError("Unknown encoding: " + f);
+                    }
+                    if (e.length === 1) {
+                        var n = e.charCodeAt(0);
+                        if (f === "utf8" && n < 128 || f === "latin1") {
+                            e = n;
+                        }
+                    }
+                } else if (typeof e === "number") {
+                    e = e & 255;
+                } else if (typeof e === "boolean") {
+                    e = Number(e);
+                }
+                if (r < 0 || this.length < r || this.length < t) {
+                    throw new RangeError("Out of range index");
+                }
+                if (t <= r) {
+                    return this;
+                }
+                r = r >>> 0;
+                t = t === undefined ? this.length : t >>> 0;
+                if (!e) e = 0;
+                var i;
+                if (typeof e === "number") {
+                    for(i = r; i < t; ++i){
+                        this[i] = e;
+                    }
+                } else {
+                    var o = Buffer.isBuffer(e) ? e : Buffer.from(e, f);
+                    var u = o.length;
+                    if (u === 0) {
+                        throw new TypeError('The value "' + e + '" is invalid for argument "value"');
+                    }
+                    for(i = 0; i < t - r; ++i){
+                        this[i + r] = o[i % u];
+                    }
+                }
+                return this;
+            };
+            var a = /[^+/0-9A-Za-z-_]/g;
+            function base64clean(e) {
+                e = e.split("=")[0];
+                e = e.trim().replace(a, "");
+                if (e.length < 2) return "";
+                while(e.length % 4 !== 0){
+                    e = e + "=";
+                }
+                return e;
+            }
+            function utf8ToBytes(e, r) {
+                r = r || Infinity;
+                var t;
+                var f = e.length;
+                var n = null;
+                var i = [];
+                for(var o = 0; o < f; ++o){
+                    t = e.charCodeAt(o);
+                    if (t > 55295 && t < 57344) {
+                        if (!n) {
+                            if (t > 56319) {
+                                if ((r -= 3) > -1) i.push(239, 191, 189);
+                                continue;
+                            } else if (o + 1 === f) {
+                                if ((r -= 3) > -1) i.push(239, 191, 189);
+                                continue;
+                            }
+                            n = t;
+                            continue;
+                        }
+                        if (t < 56320) {
+                            if ((r -= 3) > -1) i.push(239, 191, 189);
+                            n = t;
+                            continue;
+                        }
+                        t = (n - 55296 << 10 | t - 56320) + 65536;
+                    } else if (n) {
+                        if ((r -= 3) > -1) i.push(239, 191, 189);
+                    }
+                    n = null;
+                    if (t < 128) {
+                        if ((r -= 1) < 0) break;
+                        i.push(t);
+                    } else if (t < 2048) {
+                        if ((r -= 2) < 0) break;
+                        i.push(t >> 6 | 192, t & 63 | 128);
+                    } else if (t < 65536) {
+                        if ((r -= 3) < 0) break;
+                        i.push(t >> 12 | 224, t >> 6 & 63 | 128, t & 63 | 128);
+                    } else if (t < 1114112) {
+                        if ((r -= 4) < 0) break;
+                        i.push(t >> 18 | 240, t >> 12 & 63 | 128, t >> 6 & 63 | 128, t & 63 | 128);
+                    } else {
+                        throw new Error("Invalid code point");
+                    }
+                }
+                return i;
+            }
+            function asciiToBytes(e) {
+                var r = [];
+                for(var t = 0; t < e.length; ++t){
+                    r.push(e.charCodeAt(t) & 255);
+                }
+                return r;
+            }
+            function utf16leToBytes(e, r) {
+                var t, f, n;
+                var i = [];
+                for(var o = 0; o < e.length; ++o){
+                    if ((r -= 2) < 0) break;
+                    t = e.charCodeAt(o);
+                    f = t >> 8;
+                    n = t % 256;
+                    i.push(n);
+                    i.push(f);
+                }
+                return i;
+            }
+            function base64ToBytes(e) {
+                return f.toByteArray(base64clean(e));
+            }
+            function blitBuffer(e, r, t, f) {
+                for(var n = 0; n < f; ++n){
+                    if (n + t >= r.length || n >= e.length) break;
+                    r[n + t] = e[n];
+                }
+                return n;
+            }
+            function isInstance(e, r) {
+                return e instanceof r || e != null && e.constructor != null && e.constructor.name != null && e.constructor.name === r.name;
+            }
+            function numberIsNaN(e) {
+                return e !== e;
+            }
+            var s = function() {
+                var e = "0123456789abcdef";
+                var r = new Array(256);
+                for(var t = 0; t < 16; ++t){
+                    var f = t * 16;
+                    for(var n = 0; n < 16; ++n){
+                        r[f + n] = e[t] + e[n];
+                    }
+                }
+                return r;
+            }();
+        },
+        783: function(e, r) {
+            /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */ r.read = function(e, r, t, f, n) {
+                var i, o;
+                var u = n * 8 - f - 1;
+                var a = (1 << u) - 1;
+                var s = a >> 1;
+                var h = -7;
+                var c = t ? n - 1 : 0;
+                var l = t ? -1 : 1;
+                var p = e[r + c];
+                c += l;
+                i = p & (1 << -h) - 1;
+                p >>= -h;
+                h += u;
+                for(; h > 0; i = i * 256 + e[r + c], c += l, h -= 8){}
+                o = i & (1 << -h) - 1;
+                i >>= -h;
+                h += f;
+                for(; h > 0; o = o * 256 + e[r + c], c += l, h -= 8){}
+                if (i === 0) {
+                    i = 1 - s;
+                } else if (i === a) {
+                    return o ? NaN : (p ? -1 : 1) * Infinity;
+                } else {
+                    o = o + Math.pow(2, f);
+                    i = i - s;
+                }
+                return (p ? -1 : 1) * o * Math.pow(2, i - f);
+            };
+            r.write = function(e, r, t, f, n, i) {
+                var o, u, a;
+                var s = i * 8 - n - 1;
+                var h = (1 << s) - 1;
+                var c = h >> 1;
+                var l = n === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0;
+                var p = f ? 0 : i - 1;
+                var y = f ? 1 : -1;
+                var g = r < 0 || r === 0 && 1 / r < 0 ? 1 : 0;
+                r = Math.abs(r);
+                if (isNaN(r) || r === Infinity) {
+                    u = isNaN(r) ? 1 : 0;
+                    o = h;
+                } else {
+                    o = Math.floor(Math.log(r) / Math.LN2);
+                    if (r * (a = Math.pow(2, -o)) < 1) {
+                        o--;
+                        a *= 2;
+                    }
+                    if (o + c >= 1) {
+                        r += l / a;
+                    } else {
+                        r += l * Math.pow(2, 1 - c);
+                    }
+                    if (r * a >= 2) {
+                        o++;
+                        a /= 2;
+                    }
+                    if (o + c >= h) {
+                        u = 0;
+                        o = h;
+                    } else if (o + c >= 1) {
+                        u = (r * a - 1) * Math.pow(2, n);
+                        o = o + c;
+                    } else {
+                        u = r * Math.pow(2, c - 1) * Math.pow(2, n);
+                        o = 0;
+                    }
+                }
+                for(; n >= 8; e[t + p] = u & 255, p += y, u /= 256, n -= 8){}
+                o = o << n | u;
+                s += n;
+                for(; s > 0; e[t + p] = o & 255, p += y, o /= 256, s -= 8){}
+                e[t + p - y] |= g * 128;
+            };
+        }
+    };
+    var r = {};
+    function __nccwpck_require__(t) {
+        var f = r[t];
+        if (f !== undefined) {
+            return f.exports;
+        }
+        var n = r[t] = {
+            exports: {}
+        };
+        var i = true;
+        try {
+            e[t](n, n.exports, __nccwpck_require__);
+            i = false;
+        } finally{
+            if (i) delete r[t];
+        }
+        return n.exports;
+    }
+    if (typeof __nccwpck_require__ !== "undefined") __nccwpck_require__.ab = ("TURBOPACK compile-time value", "/ROOT/assignments/7-block-explorer/node_modules/next/dist/compiled/buffer") + "/";
+    var t = __nccwpck_require__(72);
+    module.exports = t;
+})();
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+'use strict';
+;
+class AxiosError extends Error {
+    static from(error, code, config, request, response, customProps) {
+        const axiosError = new AxiosError(error.message, code || error.code, config, request, response);
+        axiosError.cause = error;
+        axiosError.name = error.name;
+        customProps && Object.assign(axiosError, customProps);
+        return axiosError;
+    }
+    /**
+     * Create an Error with the specified message, config, error code, request and response.
+     *
+     * @param {string} message The error message.
+     * @param {string} [code] The error code (for example, 'ECONNABORTED').
+     * @param {Object} [config] The config.
+     * @param {Object} [request] The request.
+     * @param {Object} [response] The response.
+     *
+     * @returns {Error} The created error.
+     */ constructor(message, code, config, request, response){
+        super(message);
+        this.name = 'AxiosError';
+        this.isAxiosError = true;
+        code && (this.code = code);
+        config && (this.config = config);
+        request && (this.request = request);
+        if (response) {
+            this.response = response;
+            this.status = response.status;
+        }
+    }
+    toJSON() {
+        return {
+            // Standard
+            message: this.message,
+            name: this.name,
+            // Microsoft
+            description: this.description,
+            number: this.number,
+            // Mozilla
+            fileName: this.fileName,
+            lineNumber: this.lineNumber,
+            columnNumber: this.columnNumber,
+            stack: this.stack,
+            // Axios
+            config: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toJSONObject(this.config),
+            code: this.code,
+            status: this.status
+        };
+    }
+}
+// This can be changed to static properties as soon as the parser options in .eslint.cjs are updated.
+AxiosError.ERR_BAD_OPTION_VALUE = 'ERR_BAD_OPTION_VALUE';
+AxiosError.ERR_BAD_OPTION = 'ERR_BAD_OPTION';
+AxiosError.ECONNABORTED = 'ECONNABORTED';
+AxiosError.ETIMEDOUT = 'ETIMEDOUT';
+AxiosError.ERR_NETWORK = 'ERR_NETWORK';
+AxiosError.ERR_FR_TOO_MANY_REDIRECTS = 'ERR_FR_TOO_MANY_REDIRECTS';
+AxiosError.ERR_DEPRECATED = 'ERR_DEPRECATED';
+AxiosError.ERR_BAD_RESPONSE = 'ERR_BAD_RESPONSE';
+AxiosError.ERR_BAD_REQUEST = 'ERR_BAD_REQUEST';
+AxiosError.ERR_CANCELED = 'ERR_CANCELED';
+AxiosError.ERR_NOT_SUPPORT = 'ERR_NOT_SUPPORT';
+AxiosError.ERR_INVALID_URL = 'ERR_INVALID_URL';
+const __TURBOPACK__default__export__ = AxiosError;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/null.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// eslint-disable-next-line strict
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+const __TURBOPACK__default__export__ = null;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/toFormData.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$buffer$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/buffer/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+// temporary hotfix to avoid circular references until AxiosURLSearchParams is refactored
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$null$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/null.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+;
+/**
+ * Determines if the given thing is a array or js object.
+ *
+ * @param {string} thing - The object or array to be visited.
+ *
+ * @returns {boolean}
+ */ function isVisitable(thing) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isPlainObject(thing) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(thing);
+}
+/**
+ * It removes the brackets from the end of a string
+ *
+ * @param {string} key - The key of the parameter.
+ *
+ * @returns {string} the key without the brackets.
+ */ function removeBrackets(key) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].endsWith(key, '[]') ? key.slice(0, -2) : key;
+}
+/**
+ * It takes a path, a key, and a boolean, and returns a string
+ *
+ * @param {string} path - The path to the current key.
+ * @param {string} key - The key of the current object being iterated over.
+ * @param {string} dots - If true, the key will be rendered with dots instead of brackets.
+ *
+ * @returns {string} The path to the current key.
+ */ function renderKey(path, key, dots) {
+    if (!path) return key;
+    return path.concat(key).map(function each(token, i) {
+        // eslint-disable-next-line no-param-reassign
+        token = removeBrackets(token);
+        return !dots && i ? '[' + token + ']' : token;
+    }).join(dots ? '.' : '');
+}
+/**
+ * If the array is an array and none of its elements are visitable, then it's a flat array.
+ *
+ * @param {Array<any>} arr - The array to check
+ *
+ * @returns {boolean}
+ */ function isFlatArray(arr) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(arr) && !arr.some(isVisitable);
+}
+const predicates = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toFlatObject(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, null, function filter(prop) {
+    return /^is[A-Z]/.test(prop);
+});
+/**
+ * Convert a data object to FormData
+ *
+ * @param {Object} obj
+ * @param {?Object} [formData]
+ * @param {?Object} [options]
+ * @param {Function} [options.visitor]
+ * @param {Boolean} [options.metaTokens = true]
+ * @param {Boolean} [options.dots = false]
+ * @param {?Boolean} [options.indexes = false]
+ *
+ * @returns {Object}
+ **/ /**
+ * It converts an object into a FormData object
+ *
+ * @param {Object<any, any>} obj - The object to convert to form data.
+ * @param {string} formData - The FormData object to append to.
+ * @param {Object<string, any>} options
+ *
+ * @returns
+ */ function toFormData(obj, formData, options) {
+    if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isObject(obj)) {
+        throw new TypeError('target must be an object');
+    }
+    // eslint-disable-next-line no-param-reassign
+    formData = formData || new (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$null$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"] || FormData)();
+    // eslint-disable-next-line no-param-reassign
+    options = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toFlatObject(options, {
+        metaTokens: true,
+        dots: false,
+        indexes: false
+    }, false, function defined(option, source) {
+        // eslint-disable-next-line no-eq-null,eqeqeq
+        return !__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(source[option]);
+    });
+    const metaTokens = options.metaTokens;
+    // eslint-disable-next-line no-use-before-define
+    const visitor = options.visitor || defaultVisitor;
+    const dots = options.dots;
+    const indexes = options.indexes;
+    const _Blob = options.Blob || typeof Blob !== 'undefined' && Blob;
+    const useBlob = _Blob && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isSpecCompliantForm(formData);
+    if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(visitor)) {
+        throw new TypeError('visitor must be a function');
+    }
+    function convertValue(value) {
+        if (value === null) return '';
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isDate(value)) {
+            return value.toISOString();
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isBoolean(value)) {
+            return value.toString();
+        }
+        if (!useBlob && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isBlob(value)) {
+            throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('Blob is not supported. Use a Buffer instead.');
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArrayBuffer(value) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isTypedArray(value)) {
+            return useBlob && typeof Blob === 'function' ? new Blob([
+                value
+            ]) : __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$buffer$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Buffer"].from(value);
+        }
+        return value;
+    }
+    /**
+   * Default visitor.
+   *
+   * @param {*} value
+   * @param {String|Number} key
+   * @param {Array<String|Number>} path
+   * @this {FormData}
+   *
+   * @returns {boolean} return true to visit the each prop of the value recursively
+   */ function defaultVisitor(value, key, path) {
+        let arr = value;
+        if (value && !path && typeof value === 'object') {
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].endsWith(key, '{}')) {
+                // eslint-disable-next-line no-param-reassign
+                key = metaTokens ? key : key.slice(0, -2);
+                // eslint-disable-next-line no-param-reassign
+                value = JSON.stringify(value);
+            } else if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(value) && isFlatArray(value) || (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFileList(value) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].endsWith(key, '[]')) && (arr = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toArray(value))) {
+                // eslint-disable-next-line no-param-reassign
+                key = removeBrackets(key);
+                arr.forEach(function each(el, index) {
+                    !(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(el) || el === null) && formData.append(// eslint-disable-next-line no-nested-ternary
+                    indexes === true ? renderKey([
+                        key
+                    ], index, dots) : indexes === null ? key : key + '[]', convertValue(el));
+                });
+                return false;
+            }
+        }
+        if (isVisitable(value)) {
+            return true;
+        }
+        formData.append(renderKey(path, key, dots), convertValue(value));
+        return false;
+    }
+    const stack = [];
+    const exposedHelpers = Object.assign(predicates, {
+        defaultVisitor,
+        convertValue,
+        isVisitable
+    });
+    function build(value, path) {
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(value)) return;
+        if (stack.indexOf(value) !== -1) {
+            throw Error('Circular reference detected in ' + path.join('.'));
+        }
+        stack.push(value);
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(value, function each(el, key) {
+            const result = !(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(el) || el === null) && visitor.call(formData, el, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(key) ? key.trim() : key, path, exposedHelpers);
+            if (result === true) {
+                build(el, path ? path.concat(key) : [
+                    key
+                ]);
+            }
+        });
+        stack.pop();
+    }
+    if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isObject(obj)) {
+        throw new TypeError('data must be an object');
+    }
+    build(obj);
+    return formData;
+}
+const __TURBOPACK__default__export__ = toFormData;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/AxiosURLSearchParams.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/toFormData.js [app-client] (ecmascript)");
+'use strict';
+;
+/**
+ * It encodes a string by replacing all characters that are not in the unreserved set with
+ * their percent-encoded equivalents
+ *
+ * @param {string} str - The string to encode.
+ *
+ * @returns {string} The encoded string.
+ */ function encode(str) {
+    const charMap = {
+        '!': '%21',
+        "'": '%27',
+        '(': '%28',
+        ')': '%29',
+        '~': '%7E',
+        '%20': '+',
+        '%00': '\x00'
+    };
+    return encodeURIComponent(str).replace(/[!'()~]|%20|%00/g, function replacer(match) {
+        return charMap[match];
+    });
+}
+/**
+ * It takes a params object and converts it to a FormData object
+ *
+ * @param {Object<string, any>} params - The parameters to be converted to a FormData object.
+ * @param {Object<string, any>} options - The options object passed to the Axios constructor.
+ *
+ * @returns {void}
+ */ function AxiosURLSearchParams(params, options) {
+    this._pairs = [];
+    params && (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(params, this, options);
+}
+const prototype = AxiosURLSearchParams.prototype;
+prototype.append = function append(name, value) {
+    this._pairs.push([
+        name,
+        value
+    ]);
+};
+prototype.toString = function toString(encoder) {
+    const _encode = encoder ? function(value) {
+        return encoder.call(this, value, encode);
+    } : encode;
+    return this._pairs.map(function each(pair) {
+        return _encode(pair[0]) + '=' + _encode(pair[1]);
+    }, '').join('&');
+};
+const __TURBOPACK__default__export__ = AxiosURLSearchParams;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/buildURL.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>buildURL
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$AxiosURLSearchParams$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/AxiosURLSearchParams.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+/**
+ * It replaces all instances of the characters `:`, `$`, `,`, `+`, `[`, and `]` with their
+ * URI encoded counterparts
+ *
+ * @param {string} val The value to be encoded.
+ *
+ * @returns {string} The encoded value.
+ */ function encode(val) {
+    return encodeURIComponent(val).replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+');
+}
+function buildURL(url, params, options) {
+    if (!params) {
+        return url;
+    }
+    const _encode = options && options.encode || encode;
+    const _options = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(options) ? {
+        serialize: options
+    } : options;
+    const serializeFn = _options && _options.serialize;
+    let serializedParams;
+    if (serializeFn) {
+        serializedParams = serializeFn(params, _options);
+    } else {
+        serializedParams = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isURLSearchParams(params) ? params.toString() : new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$AxiosURLSearchParams$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](params, _options).toString(_encode);
+    }
+    if (serializedParams) {
+        const hashmarkIndex = url.indexOf("#");
+        if (hashmarkIndex !== -1) {
+            url = url.slice(0, hashmarkIndex);
+        }
+        url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+    }
+    return url;
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/InterceptorManager.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+'use strict';
+;
+class InterceptorManager {
+    constructor(){
+        this.handlers = [];
+    }
+    /**
+   * Add a new interceptor to the stack
+   *
+   * @param {Function} fulfilled The function to handle `then` for a `Promise`
+   * @param {Function} rejected The function to handle `reject` for a `Promise`
+   * @param {Object} options The options for the interceptor, synchronous and runWhen
+   *
+   * @return {Number} An ID used to remove interceptor later
+   */ use(fulfilled, rejected, options) {
+        this.handlers.push({
+            fulfilled,
+            rejected,
+            synchronous: options ? options.synchronous : false,
+            runWhen: options ? options.runWhen : null
+        });
+        return this.handlers.length - 1;
+    }
+    /**
+   * Remove an interceptor from the stack
+   *
+   * @param {Number} id The ID that was returned by `use`
+   *
+   * @returns {void}
+   */ eject(id) {
+        if (this.handlers[id]) {
+            this.handlers[id] = null;
+        }
+    }
+    /**
+   * Clear all interceptors from the stack
+   *
+   * @returns {void}
+   */ clear() {
+        if (this.handlers) {
+            this.handlers = [];
+        }
+    }
+    /**
+   * Iterate over all the registered interceptors
+   *
+   * This method is particularly useful for skipping over any
+   * interceptors that may have become `null` calling `eject`.
+   *
+   * @param {Function} fn The function to call for each interceptor
+   *
+   * @returns {void}
+   */ forEach(fn) {
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(this.handlers, function forEachHandler(h) {
+            if (h !== null) {
+                fn(h);
+            }
+        });
+    }
+}
+const __TURBOPACK__default__export__ = InterceptorManager;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/defaults/transitional.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+'use strict';
+const __TURBOPACK__default__export__ = {
+    silentJSONParsing: true,
+    forcedJSONParsing: true,
+    clarifyTimeoutError: false
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$AxiosURLSearchParams$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/AxiosURLSearchParams.js [app-client] (ecmascript)");
+'use strict';
+;
+const __TURBOPACK__default__export__ = typeof URLSearchParams !== 'undefined' ? URLSearchParams : __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$AxiosURLSearchParams$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/classes/FormData.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+'use strict';
+const __TURBOPACK__default__export__ = typeof FormData !== 'undefined' ? FormData : null;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/classes/Blob.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+'use strict';
+const __TURBOPACK__default__export__ = typeof Blob !== 'undefined' ? Blob : null;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/index.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$classes$2f$URLSearchParams$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$classes$2f$FormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/classes/FormData.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$classes$2f$Blob$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/classes/Blob.js [app-client] (ecmascript)");
+;
+;
+;
+const __TURBOPACK__default__export__ = {
+    isBrowser: true,
+    classes: {
+        URLSearchParams: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$classes$2f$URLSearchParams$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
+        FormData: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$classes$2f$FormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
+        Blob: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$classes$2f$Blob$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]
+    },
+    protocols: [
+        'http',
+        'https',
+        'file',
+        'blob',
+        'url',
+        'data'
+    ]
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/common/utils.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "hasBrowserEnv",
+    ()=>hasBrowserEnv,
+    "hasStandardBrowserEnv",
+    ()=>hasStandardBrowserEnv,
+    "hasStandardBrowserWebWorkerEnv",
+    ()=>hasStandardBrowserWebWorkerEnv,
+    "navigator",
+    ()=>_navigator,
+    "origin",
+    ()=>origin
+]);
+const hasBrowserEnv = typeof window !== 'undefined' && typeof document !== 'undefined';
+const _navigator = typeof navigator === 'object' && navigator || undefined;
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
+ *
+ * @returns {boolean}
+ */ const hasStandardBrowserEnv = hasBrowserEnv && (!_navigator || [
+    'ReactNative',
+    'NativeScript',
+    'NS'
+].indexOf(_navigator.product) < 0);
+/**
+ * Determine if we're running in a standard browser webWorker environment
+ *
+ * Although the `isStandardBrowserEnv` method indicates that
+ * `allows axios to run in a web worker`, the WebWorker will still be
+ * filtered out due to its judgment standard
+ * `typeof window !== 'undefined' && typeof document !== 'undefined'`.
+ * This leads to a problem when axios post `FormData` in webWorker
+ */ const hasStandardBrowserWebWorkerEnv = (()=>{
+    return typeof WorkerGlobalScope !== 'undefined' && // eslint-disable-next-line no-undef
+    self instanceof WorkerGlobalScope && typeof self.importScripts === 'function';
+})();
+const origin = hasBrowserEnv && window.location.href || 'http://localhost';
+;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/browser/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$common$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/common/utils.js [app-client] (ecmascript)");
+;
+;
+const __TURBOPACK__default__export__ = {
+    ...__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$common$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__,
+    ...__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$browser$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/toURLEncodedForm.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>toURLEncodedForm
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/toFormData.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+;
+function toURLEncodedForm(data, options) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(data, new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].classes.URLSearchParams(), {
+        visitor: function(value, key, path, helpers) {
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isNode && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isBuffer(value)) {
+                this.append(key, value.toString('base64'));
+                return false;
+            }
+            return helpers.defaultVisitor.apply(this, arguments);
+        },
+        ...options
+    });
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/formDataToJSON.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+'use strict';
+;
+/**
+ * It takes a string like `foo[x][y][z]` and returns an array like `['foo', 'x', 'y', 'z']
+ *
+ * @param {string} name - The name of the property to get.
+ *
+ * @returns An array of strings.
+ */ function parsePropPath(name) {
+    // foo[x][y][z]
+    // foo.x.y.z
+    // foo-x-y-z
+    // foo x y z
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].matchAll(/\w+|\[(\w*)]/g, name).map((match)=>{
+        return match[0] === '[]' ? '' : match[1] || match[0];
+    });
+}
+/**
+ * Convert an array to an object.
+ *
+ * @param {Array<any>} arr - The array to convert to an object.
+ *
+ * @returns An object with the same keys and values as the array.
+ */ function arrayToObject(arr) {
+    const obj = {};
+    const keys = Object.keys(arr);
+    let i;
+    const len = keys.length;
+    let key;
+    for(i = 0; i < len; i++){
+        key = keys[i];
+        obj[key] = arr[key];
+    }
+    return obj;
+}
+/**
+ * It takes a FormData object and returns a JavaScript object
+ *
+ * @param {string} formData The FormData object to convert to JSON.
+ *
+ * @returns {Object<string, any> | null} The converted object.
+ */ function formDataToJSON(formData) {
+    function buildPath(path, value, target, index) {
+        let name = path[index++];
+        if (name === '__proto__') return true;
+        const isNumericKey = Number.isFinite(+name);
+        const isLast = index >= path.length;
+        name = !name && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(target) ? target.length : name;
+        if (isLast) {
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].hasOwnProp(target, name)) {
+                target[name] = [
+                    target[name],
+                    value
+                ];
+            } else {
+                target[name] = value;
+            }
+            return !isNumericKey;
+        }
+        if (!target[name] || !__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isObject(target[name])) {
+            target[name] = [];
+        }
+        const result = buildPath(path, value, target[name], index);
+        if (result && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(target[name])) {
+            target[name] = arrayToObject(target[name]);
+        }
+        return !isNumericKey;
+    }
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFormData(formData) && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(formData.entries)) {
+        const obj = {};
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEachEntry(formData, (name, value)=>{
+            buildPath(parsePropPath(name), value, obj, 0);
+        });
+        return obj;
+    }
+    return null;
+}
+const __TURBOPACK__default__export__ = formDataToJSON;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/defaults/index.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$transitional$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/defaults/transitional.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/toFormData.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toURLEncodedForm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/toURLEncodedForm.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$formDataToJSON$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/formDataToJSON.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+;
+;
+;
+;
+;
+/**
+ * It takes a string, tries to parse it, and if it fails, it returns the stringified version
+ * of the input
+ *
+ * @param {any} rawValue - The value to be stringified.
+ * @param {Function} parser - A function that parses a string into a JavaScript object.
+ * @param {Function} encoder - A function that takes a value and returns a string.
+ *
+ * @returns {string} A stringified version of the rawValue.
+ */ function stringifySafely(rawValue, parser, encoder) {
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(rawValue)) {
+        try {
+            (parser || JSON.parse)(rawValue);
+            return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].trim(rawValue);
+        } catch (e) {
+            if (e.name !== 'SyntaxError') {
+                throw e;
+            }
+        }
+    }
+    return (encoder || JSON.stringify)(rawValue);
+}
+const defaults = {
+    transitional: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$transitional$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
+    adapter: [
+        'xhr',
+        'http',
+        'fetch'
+    ],
+    transformRequest: [
+        function transformRequest(data, headers) {
+            const contentType = headers.getContentType() || '';
+            const hasJSONContentType = contentType.indexOf('application/json') > -1;
+            const isObjectPayload = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isObject(data);
+            if (isObjectPayload && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isHTMLForm(data)) {
+                data = new FormData(data);
+            }
+            const isFormData = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFormData(data);
+            if (isFormData) {
+                return hasJSONContentType ? JSON.stringify((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$formDataToJSON$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(data)) : data;
+            }
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArrayBuffer(data) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isBuffer(data) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isStream(data) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFile(data) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isBlob(data) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isReadableStream(data)) {
+                return data;
+            }
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArrayBufferView(data)) {
+                return data.buffer;
+            }
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isURLSearchParams(data)) {
+                headers.setContentType('application/x-www-form-urlencoded;charset=utf-8', false);
+                return data.toString();
+            }
+            let isFileList;
+            if (isObjectPayload) {
+                if (contentType.indexOf('application/x-www-form-urlencoded') > -1) {
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toURLEncodedForm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(data, this.formSerializer).toString();
+                }
+                if ((isFileList = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFileList(data)) || contentType.indexOf('multipart/form-data') > -1) {
+                    const _FormData = this.env && this.env.FormData;
+                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(isFileList ? {
+                        'files[]': data
+                    } : data, _FormData && new _FormData(), this.formSerializer);
+                }
+            }
+            if (isObjectPayload || hasJSONContentType) {
+                headers.setContentType('application/json', false);
+                return stringifySafely(data);
+            }
+            return data;
+        }
+    ],
+    transformResponse: [
+        function transformResponse(data) {
+            const transitional = this.transitional || defaults.transitional;
+            const forcedJSONParsing = transitional && transitional.forcedJSONParsing;
+            const JSONRequested = this.responseType === 'json';
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isResponse(data) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isReadableStream(data)) {
+                return data;
+            }
+            if (data && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(data) && (forcedJSONParsing && !this.responseType || JSONRequested)) {
+                const silentJSONParsing = transitional && transitional.silentJSONParsing;
+                const strictJSONParsing = !silentJSONParsing && JSONRequested;
+                try {
+                    return JSON.parse(data, this.parseReviver);
+                } catch (e) {
+                    if (strictJSONParsing) {
+                        if (e.name === 'SyntaxError') {
+                            throw __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(e, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_BAD_RESPONSE, this, null, this.response);
+                        }
+                        throw e;
+                    }
+                }
+            }
+            return data;
+        }
+    ],
+    /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */ timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: {
+        FormData: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].classes.FormData,
+        Blob: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].classes.Blob
+    },
+    validateStatus: function validateStatus(status) {
+        return status >= 200 && status < 300;
+    },
+    headers: {
+        common: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': undefined
+        }
+    }
+};
+__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach([
+    'delete',
+    'get',
+    'head',
+    'post',
+    'put',
+    'patch'
+], (method)=>{
+    defaults.headers[method] = {};
+});
+const __TURBOPACK__default__export__ = defaults;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/parseHeaders.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+'use strict';
+;
+// RawAxiosHeaders whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+const ignoreDuplicateOf = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toObjectSet([
+    'age',
+    'authorization',
+    'content-length',
+    'content-type',
+    'etag',
+    'expires',
+    'from',
+    'host',
+    'if-modified-since',
+    'if-unmodified-since',
+    'last-modified',
+    'location',
+    'max-forwards',
+    'proxy-authorization',
+    'referer',
+    'retry-after',
+    'user-agent'
+]);
+const __TURBOPACK__default__export__ = (rawHeaders)=>{
+    const parsed = {};
+    let key;
+    let val;
+    let i;
+    rawHeaders && rawHeaders.split('\n').forEach(function parser(line) {
+        i = line.indexOf(':');
+        key = line.substring(0, i).trim().toLowerCase();
+        val = line.substring(i + 1).trim();
+        if (!key || parsed[key] && ignoreDuplicateOf[key]) {
+            return;
+        }
+        if (key === 'set-cookie') {
+            if (parsed[key]) {
+                parsed[key].push(val);
+            } else {
+                parsed[key] = [
+                    val
+                ];
+            }
+        } else {
+            parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+        }
+    });
+    return parsed;
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$parseHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/parseHeaders.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+const $internals = Symbol('internals');
+function normalizeHeader(header) {
+    return header && String(header).trim().toLowerCase();
+}
+function normalizeValue(value) {
+    if (value === false || value == null) {
+        return value;
+    }
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(value) ? value.map(normalizeValue) : String(value);
+}
+function parseTokens(str) {
+    const tokens = Object.create(null);
+    const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
+    let match;
+    while(match = tokensRE.exec(str)){
+        tokens[match[1]] = match[2];
+    }
+    return tokens;
+}
+const isValidHeaderName = (str)=>/^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
+function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(filter)) {
+        return filter.call(this, value, header);
+    }
+    if (isHeaderNameFilter) {
+        value = header;
+    }
+    if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(value)) return;
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(filter)) {
+        return value.indexOf(filter) !== -1;
+    }
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isRegExp(filter)) {
+        return filter.test(value);
+    }
+}
+function formatHeader(header) {
+    return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w, char, str)=>{
+        return char.toUpperCase() + str;
+    });
+}
+function buildAccessors(obj, header) {
+    const accessorName = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toCamelCase(' ' + header);
+    [
+        'get',
+        'set',
+        'has'
+    ].forEach((methodName)=>{
+        Object.defineProperty(obj, methodName + accessorName, {
+            value: function(arg1, arg2, arg3) {
+                return this[methodName].call(this, header, arg1, arg2, arg3);
+            },
+            configurable: true
+        });
+    });
+}
+class AxiosHeaders {
+    constructor(headers){
+        headers && this.set(headers);
+    }
+    set(header, valueOrRewrite, rewrite) {
+        const self = this;
+        function setHeader(_value, _header, _rewrite) {
+            const lHeader = normalizeHeader(_header);
+            if (!lHeader) {
+                throw new Error('header name must be a non-empty string');
+            }
+            const key = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].findKey(self, lHeader);
+            if (!key || self[key] === undefined || _rewrite === true || _rewrite === undefined && self[key] !== false) {
+                self[key || _header] = normalizeValue(_value);
+            }
+        }
+        const setHeaders = (headers, _rewrite)=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(headers, (_value, _header)=>setHeader(_value, _header, _rewrite));
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isPlainObject(header) || header instanceof this.constructor) {
+            setHeaders(header, valueOrRewrite);
+        } else if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
+            setHeaders((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$parseHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(header), valueOrRewrite);
+        } else if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isObject(header) && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isIterable(header)) {
+            let obj = {}, dest, key;
+            for (const entry of header){
+                if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(entry)) {
+                    throw TypeError('Object iterator must return a key-value pair');
+                }
+                obj[key = entry[0]] = (dest = obj[key]) ? __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(dest) ? [
+                    ...dest,
+                    entry[1]
+                ] : [
+                    dest,
+                    entry[1]
+                ] : entry[1];
+            }
+            setHeaders(obj, valueOrRewrite);
+        } else {
+            header != null && setHeader(valueOrRewrite, header, rewrite);
+        }
+        return this;
+    }
+    get(header, parser) {
+        header = normalizeHeader(header);
+        if (header) {
+            const key = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].findKey(this, header);
+            if (key) {
+                const value = this[key];
+                if (!parser) {
+                    return value;
+                }
+                if (parser === true) {
+                    return parseTokens(value);
+                }
+                if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(parser)) {
+                    return parser.call(this, value, key);
+                }
+                if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isRegExp(parser)) {
+                    return parser.exec(value);
+                }
+                throw new TypeError('parser must be boolean|regexp|function');
+            }
+        }
+    }
+    has(header, matcher) {
+        header = normalizeHeader(header);
+        if (header) {
+            const key = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].findKey(this, header);
+            return !!(key && this[key] !== undefined && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
+        }
+        return false;
+    }
+    delete(header, matcher) {
+        const self = this;
+        let deleted = false;
+        function deleteHeader(_header) {
+            _header = normalizeHeader(_header);
+            if (_header) {
+                const key = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].findKey(self, _header);
+                if (key && (!matcher || matchHeaderValue(self, self[key], key, matcher))) {
+                    delete self[key];
+                    deleted = true;
+                }
+            }
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(header)) {
+            header.forEach(deleteHeader);
+        } else {
+            deleteHeader(header);
+        }
+        return deleted;
+    }
+    clear(matcher) {
+        const keys = Object.keys(this);
+        let i = keys.length;
+        let deleted = false;
+        while(i--){
+            const key = keys[i];
+            if (!matcher || matchHeaderValue(this, this[key], key, matcher, true)) {
+                delete this[key];
+                deleted = true;
+            }
+        }
+        return deleted;
+    }
+    normalize(format) {
+        const self = this;
+        const headers = {};
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(this, (value, header)=>{
+            const key = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].findKey(headers, header);
+            if (key) {
+                self[key] = normalizeValue(value);
+                delete self[header];
+                return;
+            }
+            const normalized = format ? formatHeader(header) : String(header).trim();
+            if (normalized !== header) {
+                delete self[header];
+            }
+            self[normalized] = normalizeValue(value);
+            headers[normalized] = true;
+        });
+        return this;
+    }
+    concat(...targets) {
+        return this.constructor.concat(this, ...targets);
+    }
+    toJSON(asStrings) {
+        const obj = Object.create(null);
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(this, (value, header)=>{
+            value != null && value !== false && (obj[header] = asStrings && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(value) ? value.join(', ') : value);
+        });
+        return obj;
+    }
+    [Symbol.iterator]() {
+        return Object.entries(this.toJSON())[Symbol.iterator]();
+    }
+    toString() {
+        return Object.entries(this.toJSON()).map(([header, value])=>header + ': ' + value).join('\n');
+    }
+    getSetCookie() {
+        return this.get("set-cookie") || [];
+    }
+    get [Symbol.toStringTag]() {
+        return 'AxiosHeaders';
+    }
+    static from(thing) {
+        return thing instanceof this ? thing : new this(thing);
+    }
+    static concat(first, ...targets) {
+        const computed = new this(first);
+        targets.forEach((target)=>computed.set(target));
+        return computed;
+    }
+    static accessor(header) {
+        const internals = this[$internals] = this[$internals] = {
+            accessors: {}
+        };
+        const accessors = internals.accessors;
+        const prototype = this.prototype;
+        function defineAccessor(_header) {
+            const lHeader = normalizeHeader(_header);
+            if (!accessors[lHeader]) {
+                buildAccessors(prototype, _header);
+                accessors[lHeader] = true;
+            }
+        }
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
+        return this;
+    }
+}
+AxiosHeaders.accessor([
+    'Content-Type',
+    'Content-Length',
+    'Accept',
+    'Accept-Encoding',
+    'User-Agent',
+    'Authorization'
+]);
+// reserved names hotfix
+__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].reduceDescriptors(AxiosHeaders.prototype, ({ value }, key)=>{
+    let mapped = key[0].toUpperCase() + key.slice(1); // map `set` => `Set`
+    return {
+        get: ()=>value,
+        set (headerValue) {
+            this[mapped] = headerValue;
+        }
+    };
+});
+__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].freezeMethods(AxiosHeaders);
+const __TURBOPACK__default__export__ = AxiosHeaders;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/transformData.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>transformData
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/defaults/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+;
+function transformData(fns, response) {
+    const config = this || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+    const context = response || config;
+    const headers = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(context.headers);
+    let data = context.data;
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(fns, function transform(fn) {
+        data = fn.call(config, data, headers.normalize(), response ? response.status : undefined);
+    });
+    headers.normalize();
+    return data;
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/isCancel.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>isCancel
+]);
+'use strict';
+function isCancel(value) {
+    return !!(value && value.__CANCEL__);
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CanceledError.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+'use strict';
+;
+class CanceledError extends __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"] {
+    /**
+   * A `CanceledError` is an object that is thrown when an operation is canceled.
+   *
+   * @param {string=} message The message.
+   * @param {Object=} config The config.
+   * @param {Object=} request The request.
+   *
+   * @returns {CanceledError} The created error.
+   */ constructor(message, config, request){
+        super(message == null ? 'canceled' : message, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_CANCELED, config, request);
+        this.name = 'CanceledError';
+        this.__CANCEL__ = true;
+    }
+}
+const __TURBOPACK__default__export__ = CanceledError;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/settle.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>settle
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+'use strict';
+;
+function settle(resolve, reject, response) {
+    const validateStatus = response.config.validateStatus;
+    if (!response.status || !validateStatus || validateStatus(response.status)) {
+        resolve(response);
+    } else {
+        reject(new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('Request failed with status code ' + response.status, [
+            __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_BAD_REQUEST,
+            __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_BAD_RESPONSE
+        ][Math.floor(response.status / 100) - 4], response.config, response.request, response));
+    }
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/parseProtocol.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>parseProtocol
+]);
+'use strict';
+function parseProtocol(url) {
+    const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
+    return match && match[1] || '';
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/speedometer.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+'use strict';
+/**
+ * Calculate data maxRate
+ * @param {Number} [samplesCount= 10]
+ * @param {Number} [min= 1000]
+ * @returns {Function}
+ */ function speedometer(samplesCount, min) {
+    samplesCount = samplesCount || 10;
+    const bytes = new Array(samplesCount);
+    const timestamps = new Array(samplesCount);
+    let head = 0;
+    let tail = 0;
+    let firstSampleTS;
+    min = min !== undefined ? min : 1000;
+    return function push(chunkLength) {
+        const now = Date.now();
+        const startedAt = timestamps[tail];
+        if (!firstSampleTS) {
+            firstSampleTS = now;
+        }
+        bytes[head] = chunkLength;
+        timestamps[head] = now;
+        let i = tail;
+        let bytesCount = 0;
+        while(i !== head){
+            bytesCount += bytes[i++];
+            i = i % samplesCount;
+        }
+        head = (head + 1) % samplesCount;
+        if (head === tail) {
+            tail = (tail + 1) % samplesCount;
+        }
+        if (now - firstSampleTS < min) {
+            return;
+        }
+        const passed = startedAt && now - startedAt;
+        return passed ? Math.round(bytesCount * 1000 / passed) : undefined;
+    };
+}
+const __TURBOPACK__default__export__ = speedometer;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/throttle.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+/**
+ * Throttle decorator
+ * @param {Function} fn
+ * @param {Number} freq
+ * @return {Function}
+ */ function throttle(fn, freq) {
+    let timestamp = 0;
+    let threshold = 1000 / freq;
+    let lastArgs;
+    let timer;
+    const invoke = (args, now = Date.now())=>{
+        timestamp = now;
+        lastArgs = null;
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+        fn(...args);
+    };
+    const throttled = (...args)=>{
+        const now = Date.now();
+        const passed = now - timestamp;
+        if (passed >= threshold) {
+            invoke(args, now);
+        } else {
+            lastArgs = args;
+            if (!timer) {
+                timer = setTimeout(()=>{
+                    timer = null;
+                    invoke(lastArgs);
+                }, threshold - passed);
+            }
+        }
+    };
+    const flush = ()=>lastArgs && invoke(lastArgs);
+    return [
+        throttled,
+        flush
+    ];
+}
+const __TURBOPACK__default__export__ = throttle;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/progressEventReducer.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "asyncDecorator",
+    ()=>asyncDecorator,
+    "progressEventDecorator",
+    ()=>progressEventDecorator,
+    "progressEventReducer",
+    ()=>progressEventReducer
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$speedometer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/speedometer.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$throttle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/throttle.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+;
+;
+;
+const progressEventReducer = (listener, isDownloadStream, freq = 3)=>{
+    let bytesNotified = 0;
+    const _speedometer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$speedometer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(50, 250);
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$throttle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])((e)=>{
+        const loaded = e.loaded;
+        const total = e.lengthComputable ? e.total : undefined;
+        const progressBytes = loaded - bytesNotified;
+        const rate = _speedometer(progressBytes);
+        const inRange = loaded <= total;
+        bytesNotified = loaded;
+        const data = {
+            loaded,
+            total,
+            progress: total ? loaded / total : undefined,
+            bytes: progressBytes,
+            rate: rate ? rate : undefined,
+            estimated: rate && total && inRange ? (total - loaded) / rate : undefined,
+            event: e,
+            lengthComputable: total != null,
+            [isDownloadStream ? 'download' : 'upload']: true
+        };
+        listener(data);
+    }, freq);
+};
+const progressEventDecorator = (total, throttled)=>{
+    const lengthComputable = total != null;
+    return [
+        (loaded)=>throttled[0]({
+                lengthComputable,
+                total,
+                loaded
+            }),
+        throttled[1]
+    ];
+};
+const asyncDecorator = (fn)=>(...args)=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].asap(()=>fn(...args));
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/isURLSameOrigin.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)");
+;
+const __TURBOPACK__default__export__ = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].hasStandardBrowserEnv ? ((origin, isMSIE)=>(url)=>{
+        url = new URL(url, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].origin);
+        return origin.protocol === url.protocol && origin.host === url.host && (isMSIE || origin.port === url.port);
+    })(new URL(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].origin), __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].navigator && /(msie|trident)/i.test(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].navigator.userAgent)) : ()=>true;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/cookies.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)");
+;
+;
+const __TURBOPACK__default__export__ = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].hasStandardBrowserEnv ? // Standard browser envs support document.cookie
+{
+    write (name, value, expires, path, domain, secure, sameSite) {
+        if (typeof document === 'undefined') return;
+        const cookie = [
+            `${name}=${encodeURIComponent(value)}`
+        ];
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isNumber(expires)) {
+            cookie.push(`expires=${new Date(expires).toUTCString()}`);
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(path)) {
+            cookie.push(`path=${path}`);
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(domain)) {
+            cookie.push(`domain=${domain}`);
+        }
+        if (secure === true) {
+            cookie.push('secure');
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(sameSite)) {
+            cookie.push(`SameSite=${sameSite}`);
+        }
+        document.cookie = cookie.join('; ');
+    },
+    read (name) {
+        if (typeof document === 'undefined') return null;
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
+    },
+    remove (name) {
+        this.write(name, '', Date.now() - 86400000, '/');
+    }
+} : // Non-standard browser env (web workers, react-native) lack needed support.
+{
+    write () {},
+    read () {
+        return null;
+    },
+    remove () {}
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/isAbsoluteURL.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>isAbsoluteURL
+]);
+'use strict';
+function isAbsoluteURL(url) {
+    // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+    // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+    // by any combination of letters, digits, plus, period, or hyphen.
+    return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/combineURLs.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>combineURLs
+]);
+'use strict';
+function combineURLs(baseURL, relativeURL) {
+    return relativeURL ? baseURL.replace(/\/?\/$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/buildFullPath.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>buildFullPath
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$isAbsoluteURL$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/isAbsoluteURL.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$combineURLs$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/combineURLs.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
+    let isRelativeUrl = !(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$isAbsoluteURL$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(requestedURL);
+    if (baseURL && (isRelativeUrl || allowAbsoluteUrls == false)) {
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$combineURLs$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(baseURL, requestedURL);
+    }
+    return requestedURL;
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/mergeConfig.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>mergeConfig
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+const headersToObject = (thing)=>thing instanceof __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"] ? {
+        ...thing
+    } : thing;
+function mergeConfig(config1, config2) {
+    // eslint-disable-next-line no-param-reassign
+    config2 = config2 || {};
+    const config = {};
+    function getMergedValue(target, source, prop, caseless) {
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isPlainObject(target) && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isPlainObject(source)) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].merge.call({
+                caseless
+            }, target, source);
+        } else if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isPlainObject(source)) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].merge({}, source);
+        } else if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(source)) {
+            return source.slice();
+        }
+        return source;
+    }
+    function mergeDeepProperties(a, b, prop, caseless) {
+        if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(b)) {
+            return getMergedValue(a, b, prop, caseless);
+        } else if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(a)) {
+            return getMergedValue(undefined, a, prop, caseless);
+        }
+    }
+    // eslint-disable-next-line consistent-return
+    function valueFromConfig2(a, b) {
+        if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(b)) {
+            return getMergedValue(undefined, b);
+        }
+    }
+    // eslint-disable-next-line consistent-return
+    function defaultToConfig2(a, b) {
+        if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(b)) {
+            return getMergedValue(undefined, b);
+        } else if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(a)) {
+            return getMergedValue(undefined, a);
+        }
+    }
+    // eslint-disable-next-line consistent-return
+    function mergeDirectKeys(a, b, prop) {
+        if (prop in config2) {
+            return getMergedValue(a, b);
+        } else if (prop in config1) {
+            return getMergedValue(undefined, a);
+        }
+    }
+    const mergeMap = {
+        url: valueFromConfig2,
+        method: valueFromConfig2,
+        data: valueFromConfig2,
+        baseURL: defaultToConfig2,
+        transformRequest: defaultToConfig2,
+        transformResponse: defaultToConfig2,
+        paramsSerializer: defaultToConfig2,
+        timeout: defaultToConfig2,
+        timeoutMessage: defaultToConfig2,
+        withCredentials: defaultToConfig2,
+        withXSRFToken: defaultToConfig2,
+        adapter: defaultToConfig2,
+        responseType: defaultToConfig2,
+        xsrfCookieName: defaultToConfig2,
+        xsrfHeaderName: defaultToConfig2,
+        onUploadProgress: defaultToConfig2,
+        onDownloadProgress: defaultToConfig2,
+        decompress: defaultToConfig2,
+        maxContentLength: defaultToConfig2,
+        maxBodyLength: defaultToConfig2,
+        beforeRedirect: defaultToConfig2,
+        transport: defaultToConfig2,
+        httpAgent: defaultToConfig2,
+        httpsAgent: defaultToConfig2,
+        cancelToken: defaultToConfig2,
+        socketPath: defaultToConfig2,
+        responseEncoding: defaultToConfig2,
+        validateStatus: mergeDirectKeys,
+        headers: (a, b, prop)=>mergeDeepProperties(headersToObject(a), headersToObject(b), prop, true)
+    };
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(Object.keys({
+        ...config1,
+        ...config2
+    }), function computeConfigValue(prop) {
+        const merge = mergeMap[prop] || mergeDeepProperties;
+        const configValue = merge(config1[prop], config2[prop], prop);
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(configValue) && merge !== mergeDirectKeys || (config[prop] = configValue);
+    });
+    return config;
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/resolveConfig.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$isURLSameOrigin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/isURLSameOrigin.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$cookies$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/cookies.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$buildFullPath$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/buildFullPath.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/mergeConfig.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$buildURL$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/buildURL.js [app-client] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+const __TURBOPACK__default__export__ = (config)=>{
+    const newConfig = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])({}, config);
+    let { data, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers, auth } = newConfig;
+    newConfig.headers = headers = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(headers);
+    newConfig.url = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$buildURL$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$buildFullPath$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(newConfig.baseURL, newConfig.url, newConfig.allowAbsoluteUrls), config.params, config.paramsSerializer);
+    // HTTP basic authentication
+    if (auth) {
+        headers.set('Authorization', 'Basic ' + btoa((auth.username || '') + ':' + (auth.password ? unescape(encodeURIComponent(auth.password)) : '')));
+    }
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFormData(data)) {
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].hasStandardBrowserEnv || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].hasStandardBrowserWebWorkerEnv) {
+            headers.setContentType(undefined); // browser handles it
+        } else if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(data.getHeaders)) {
+            // Node.js FormData (like form-data package)
+            const formHeaders = data.getHeaders();
+            // Only set safe headers to avoid overwriting security headers
+            const allowedHeaders = [
+                'content-type',
+                'content-length'
+            ];
+            Object.entries(formHeaders).forEach(([key, val])=>{
+                if (allowedHeaders.includes(key.toLowerCase())) {
+                    headers.set(key, val);
+                }
+            });
+        }
+    }
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].hasStandardBrowserEnv) {
+        withXSRFToken && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(withXSRFToken) && (withXSRFToken = withXSRFToken(newConfig));
+        if (withXSRFToken || withXSRFToken !== false && (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$isURLSameOrigin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(newConfig.url)) {
+            // Add xsrf header
+            const xsrfValue = xsrfHeaderName && xsrfCookieName && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$cookies$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].read(xsrfCookieName);
+            if (xsrfValue) {
+                headers.set(xsrfHeaderName, xsrfValue);
+            }
+        }
+    }
+    return newConfig;
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/adapters/xhr.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$settle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/settle.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$transitional$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/defaults/transitional.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CanceledError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$parseProtocol$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/parseProtocol.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/progressEventReducer.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$resolveConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/resolveConfig.js [app-client] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
+const __TURBOPACK__default__export__ = isXHRAdapterSupported && function(config) {
+    return new Promise(function dispatchXhrRequest(resolve, reject) {
+        const _config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$resolveConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(config);
+        let requestData = _config.data;
+        const requestHeaders = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(_config.headers).normalize();
+        let { responseType, onUploadProgress, onDownloadProgress } = _config;
+        let onCanceled;
+        let uploadThrottled, downloadThrottled;
+        let flushUpload, flushDownload;
+        function done() {
+            flushUpload && flushUpload(); // flush events
+            flushDownload && flushDownload(); // flush events
+            _config.cancelToken && _config.cancelToken.unsubscribe(onCanceled);
+            _config.signal && _config.signal.removeEventListener('abort', onCanceled);
+        }
+        let request = new XMLHttpRequest();
+        request.open(_config.method.toUpperCase(), _config.url, true);
+        // Set the request timeout in MS
+        request.timeout = _config.timeout;
+        function onloadend() {
+            if (!request) {
+                return;
+            }
+            // Prepare the response
+            const responseHeaders = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from('getAllResponseHeaders' in request && request.getAllResponseHeaders());
+            const responseData = !responseType || responseType === 'text' || responseType === 'json' ? request.responseText : request.response;
+            const response = {
+                data: responseData,
+                status: request.status,
+                statusText: request.statusText,
+                headers: responseHeaders,
+                config,
+                request
+            };
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$settle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(function _resolve(value) {
+                resolve(value);
+                done();
+            }, function _reject(err) {
+                reject(err);
+                done();
+            }, response);
+            // Clean up request
+            request = null;
+        }
+        if ('onloadend' in request) {
+            // Use onloadend if available
+            request.onloadend = onloadend;
+        } else {
+            // Listen for ready state to emulate onloadend
+            request.onreadystatechange = function handleLoad() {
+                if (!request || request.readyState !== 4) {
+                    return;
+                }
+                // The request errored out and we didn't get a response, this will be
+                // handled by onerror instead
+                // With one exception: request that using file: protocol, most browsers
+                // will return status as 0 even though it's a successful request
+                if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+                    return;
+                }
+                // readystate handler is calling before onerror or ontimeout handlers,
+                // so we should call onloadend on the next 'tick'
+                setTimeout(onloadend);
+            };
+        }
+        // Handle browser request cancellation (as opposed to a manual cancellation)
+        request.onabort = function handleAbort() {
+            if (!request) {
+                return;
+            }
+            reject(new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('Request aborted', __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ECONNABORTED, config, request));
+            // Clean up request
+            request = null;
+        };
+        // Handle low level network errors
+        request.onerror = function handleError(event) {
+            // Browsers deliver a ProgressEvent in XHR onerror
+            // (message may be empty; when present, surface it)
+            // See https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/error_event
+            const msg = event && event.message ? event.message : 'Network Error';
+            const err = new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](msg, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_NETWORK, config, request);
+            // attach the underlying event for consumers who want details
+            err.event = event || null;
+            reject(err);
+            request = null;
+        };
+        // Handle timeout
+        request.ontimeout = function handleTimeout() {
+            let timeoutErrorMessage = _config.timeout ? 'timeout of ' + _config.timeout + 'ms exceeded' : 'timeout exceeded';
+            const transitional = _config.transitional || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$transitional$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+            if (_config.timeoutErrorMessage) {
+                timeoutErrorMessage = _config.timeoutErrorMessage;
+            }
+            reject(new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](timeoutErrorMessage, transitional.clarifyTimeoutError ? __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ETIMEDOUT : __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ECONNABORTED, config, request));
+            // Clean up request
+            request = null;
+        };
+        // Remove Content-Type if data is undefined
+        requestData === undefined && requestHeaders.setContentType(null);
+        // Add headers to the request
+        if ('setRequestHeader' in request) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(requestHeaders.toJSON(), function setRequestHeader(val, key) {
+                request.setRequestHeader(key, val);
+            });
+        }
+        // Add withCredentials to request if needed
+        if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isUndefined(_config.withCredentials)) {
+            request.withCredentials = !!_config.withCredentials;
+        }
+        // Add responseType to request if needed
+        if (responseType && responseType !== 'json') {
+            request.responseType = _config.responseType;
+        }
+        // Handle progress if needed
+        if (onDownloadProgress) {
+            [downloadThrottled, flushDownload] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["progressEventReducer"])(onDownloadProgress, true);
+            request.addEventListener('progress', downloadThrottled);
+        }
+        // Not all browsers support upload events
+        if (onUploadProgress && request.upload) {
+            [uploadThrottled, flushUpload] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["progressEventReducer"])(onUploadProgress);
+            request.upload.addEventListener('progress', uploadThrottled);
+            request.upload.addEventListener('loadend', flushUpload);
+        }
+        if (_config.cancelToken || _config.signal) {
+            // Handle cancellation
+            // eslint-disable-next-line func-names
+            onCanceled = (cancel)=>{
+                if (!request) {
+                    return;
+                }
+                reject(!cancel || cancel.type ? new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](null, config, request) : cancel);
+                request.abort();
+                request = null;
+            };
+            _config.cancelToken && _config.cancelToken.subscribe(onCanceled);
+            if (_config.signal) {
+                _config.signal.aborted ? onCanceled() : _config.signal.addEventListener('abort', onCanceled);
+            }
+        }
+        const protocol = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$parseProtocol$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_config.url);
+        if (protocol && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].protocols.indexOf(protocol) === -1) {
+            reject(new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('Unsupported protocol ' + protocol + ':', __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_BAD_REQUEST, config));
+            return;
+        }
+        // Send the request
+        request.send(requestData || null);
+    });
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/composeSignals.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CanceledError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+;
+;
+;
+const composeSignals = (signals, timeout)=>{
+    const { length } = signals = signals ? signals.filter(Boolean) : [];
+    if (timeout || length) {
+        let controller = new AbortController();
+        let aborted;
+        const onabort = function(reason) {
+            if (!aborted) {
+                aborted = true;
+                unsubscribe();
+                const err = reason instanceof Error ? reason : this.reason;
+                controller.abort(err instanceof __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"] ? err : new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](err instanceof Error ? err.message : err));
+            }
+        };
+        let timer = timeout && setTimeout(()=>{
+            timer = null;
+            onabort(new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](`timeout of ${timeout}ms exceeded`, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ETIMEDOUT));
+        }, timeout);
+        const unsubscribe = ()=>{
+            if (signals) {
+                timer && clearTimeout(timer);
+                timer = null;
+                signals.forEach((signal)=>{
+                    signal.unsubscribe ? signal.unsubscribe(onabort) : signal.removeEventListener('abort', onabort);
+                });
+                signals = null;
+            }
+        };
+        signals.forEach((signal)=>signal.addEventListener('abort', onabort));
+        const { signal } = controller;
+        signal.unsubscribe = ()=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].asap(unsubscribe);
+        return signal;
+    }
+};
+const __TURBOPACK__default__export__ = composeSignals;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/trackStream.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "readBytes",
+    ()=>readBytes,
+    "streamChunk",
+    ()=>streamChunk,
+    "trackStream",
+    ()=>trackStream
+]);
+const streamChunk = function*(chunk, chunkSize) {
+    let len = chunk.byteLength;
+    if (!chunkSize || len < chunkSize) {
+        yield chunk;
+        return;
+    }
+    let pos = 0;
+    let end;
+    while(pos < len){
+        end = pos + chunkSize;
+        yield chunk.slice(pos, end);
+        pos = end;
+    }
+};
+const readBytes = async function*(iterable, chunkSize) {
+    for await (const chunk of readStream(iterable)){
+        yield* streamChunk(chunk, chunkSize);
+    }
+};
+const readStream = async function*(stream) {
+    if (stream[Symbol.asyncIterator]) {
+        yield* stream;
+        return;
+    }
+    const reader = stream.getReader();
+    try {
+        for(;;){
+            const { done, value } = await reader.read();
+            if (done) {
+                break;
+            }
+            yield value;
+        }
+    } finally{
+        await reader.cancel();
+    }
+};
+const trackStream = (stream, chunkSize, onProgress, onFinish)=>{
+    const iterator = readBytes(stream, chunkSize);
+    let bytes = 0;
+    let done;
+    let _onFinish = (e)=>{
+        if (!done) {
+            done = true;
+            onFinish && onFinish(e);
+        }
+    };
+    return new ReadableStream({
+        async pull (controller) {
+            try {
+                const { done, value } = await iterator.next();
+                if (done) {
+                    _onFinish();
+                    controller.close();
+                    return;
+                }
+                let len = value.byteLength;
+                if (onProgress) {
+                    let loadedBytes = bytes += len;
+                    onProgress(loadedBytes);
+                }
+                controller.enqueue(new Uint8Array(value));
+            } catch (err) {
+                _onFinish(err);
+                throw err;
+            }
+        },
+        cancel (reason) {
+            _onFinish(reason);
+            return iterator.return();
+        }
+    }, {
+        highWaterMark: 2
+    });
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/adapters/fetch.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__,
+    "getFetch",
+    ()=>getFetch
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/platform/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$composeSignals$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/composeSignals.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$trackStream$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/trackStream.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/progressEventReducer.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$resolveConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/resolveConfig.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$settle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/settle.js [app-client] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+;
+const DEFAULT_CHUNK_SIZE = 64 * 1024;
+const { isFunction } = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+const globalFetchAPI = (({ Request, Response })=>({
+        Request,
+        Response
+    }))(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].global);
+const { ReadableStream, TextEncoder } = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].global;
+const test = (fn, ...args)=>{
+    try {
+        return !!fn(...args);
+    } catch (e) {
+        return false;
+    }
+};
+const factory = (env)=>{
+    env = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].merge.call({
+        skipUndefined: true
+    }, globalFetchAPI, env);
+    const { fetch: envFetch, Request, Response } = env;
+    const isFetchSupported = envFetch ? isFunction(envFetch) : typeof fetch === 'function';
+    const isRequestSupported = isFunction(Request);
+    const isResponseSupported = isFunction(Response);
+    if (!isFetchSupported) {
+        return false;
+    }
+    const isReadableStreamSupported = isFetchSupported && isFunction(ReadableStream);
+    const encodeText = isFetchSupported && (typeof TextEncoder === 'function' ? ((encoder)=>(str)=>encoder.encode(str))(new TextEncoder()) : async (str)=>new Uint8Array(await new Request(str).arrayBuffer()));
+    const supportsRequestStream = isRequestSupported && isReadableStreamSupported && test(()=>{
+        let duplexAccessed = false;
+        const hasContentType = new Request(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].origin, {
+            body: new ReadableStream(),
+            method: 'POST',
+            get duplex () {
+                duplexAccessed = true;
+                return 'half';
+            }
+        }).headers.has('Content-Type');
+        return duplexAccessed && !hasContentType;
+    });
+    const supportsResponseStream = isResponseSupported && isReadableStreamSupported && test(()=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isReadableStream(new Response('').body));
+    const resolvers = {
+        stream: supportsResponseStream && ((res)=>res.body)
+    };
+    isFetchSupported && (()=>{
+        [
+            'text',
+            'arrayBuffer',
+            'blob',
+            'formData',
+            'stream'
+        ].forEach((type)=>{
+            !resolvers[type] && (resolvers[type] = (res, config)=>{
+                let method = res && res[type];
+                if (method) {
+                    return method.call(res);
+                }
+                throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](`Response type '${type}' is not supported`, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_NOT_SUPPORT, config);
+            });
+        });
+    })();
+    const getBodyLength = async (body)=>{
+        if (body == null) {
+            return 0;
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isBlob(body)) {
+            return body.size;
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isSpecCompliantForm(body)) {
+            const _request = new Request(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$platform$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].origin, {
+                method: 'POST',
+                body
+            });
+            return (await _request.arrayBuffer()).byteLength;
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArrayBufferView(body) || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArrayBuffer(body)) {
+            return body.byteLength;
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isURLSearchParams(body)) {
+            body = body + '';
+        }
+        if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(body)) {
+            return (await encodeText(body)).byteLength;
+        }
+    };
+    const resolveBodyLength = async (headers, body)=>{
+        const length = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toFiniteNumber(headers.getContentLength());
+        return length == null ? getBodyLength(body) : length;
+    };
+    return async (config)=>{
+        let { url, method, data, signal, cancelToken, timeout, onDownloadProgress, onUploadProgress, responseType, headers, withCredentials = 'same-origin', fetchOptions } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$resolveConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(config);
+        let _fetch = envFetch || fetch;
+        responseType = responseType ? (responseType + '').toLowerCase() : 'text';
+        let composedSignal = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$composeSignals$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])([
+            signal,
+            cancelToken && cancelToken.toAbortSignal()
+        ], timeout);
+        let request = null;
+        const unsubscribe = composedSignal && composedSignal.unsubscribe && (()=>{
+            composedSignal.unsubscribe();
+        });
+        let requestContentLength;
+        try {
+            if (onUploadProgress && supportsRequestStream && method !== 'get' && method !== 'head' && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
+                let _request = new Request(url, {
+                    method: 'POST',
+                    body: data,
+                    duplex: "half"
+                });
+                let contentTypeHeader;
+                if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFormData(data) && (contentTypeHeader = _request.headers.get('content-type'))) {
+                    headers.setContentType(contentTypeHeader);
+                }
+                if (_request.body) {
+                    const [onProgress, flush] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["progressEventDecorator"])(requestContentLength, (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["progressEventReducer"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["asyncDecorator"])(onUploadProgress)));
+                    data = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$trackStream$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["trackStream"])(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
+                }
+            }
+            if (!__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isString(withCredentials)) {
+                withCredentials = withCredentials ? 'include' : 'omit';
+            }
+            // Cloudflare Workers throws when credentials are defined
+            // see https://github.com/cloudflare/workerd/issues/902
+            const isCredentialsSupported = isRequestSupported && "credentials" in Request.prototype;
+            const resolvedOptions = {
+                ...fetchOptions,
+                signal: composedSignal,
+                method: method.toUpperCase(),
+                headers: headers.normalize().toJSON(),
+                body: data,
+                duplex: "half",
+                credentials: isCredentialsSupported ? withCredentials : undefined
+            };
+            request = isRequestSupported && new Request(url, resolvedOptions);
+            let response = await (isRequestSupported ? _fetch(request, fetchOptions) : _fetch(url, resolvedOptions));
+            const isStreamResponse = supportsResponseStream && (responseType === 'stream' || responseType === 'response');
+            if (supportsResponseStream && (onDownloadProgress || isStreamResponse && unsubscribe)) {
+                const options = {};
+                [
+                    'status',
+                    'statusText',
+                    'headers'
+                ].forEach((prop)=>{
+                    options[prop] = response[prop];
+                });
+                const responseContentLength = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toFiniteNumber(response.headers.get('content-length'));
+                const [onProgress, flush] = onDownloadProgress && (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["progressEventDecorator"])(responseContentLength, (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["progressEventReducer"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$progressEventReducer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["asyncDecorator"])(onDownloadProgress), true)) || [];
+                response = new Response((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$trackStream$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["trackStream"])(response.body, DEFAULT_CHUNK_SIZE, onProgress, ()=>{
+                    flush && flush();
+                    unsubscribe && unsubscribe();
+                }), options);
+            }
+            responseType = responseType || 'text';
+            let responseData = await resolvers[__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].findKey(resolvers, responseType) || 'text'](response, config);
+            !isStreamResponse && unsubscribe && unsubscribe();
+            return await new Promise((resolve, reject)=>{
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$settle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(resolve, reject, {
+                    data: responseData,
+                    headers: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(response.headers),
+                    status: response.status,
+                    statusText: response.statusText,
+                    config,
+                    request
+                });
+            });
+        } catch (err) {
+            unsubscribe && unsubscribe();
+            if (err && err.name === 'TypeError' && /Load failed|fetch/i.test(err.message)) {
+                throw Object.assign(new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('Network Error', __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_NETWORK, config, request), {
+                    cause: err.cause || err
+                });
+            }
+            throw __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(err, err && err.code, config, request);
+        }
+    };
+};
+const seedCache = new Map();
+const getFetch = (config)=>{
+    let env = config && config.env || {};
+    const { fetch: fetch1, Request, Response } = env;
+    const seeds = [
+        Request,
+        Response,
+        fetch1
+    ];
+    let len = seeds.length, i = len, seed, target, map = seedCache;
+    while(i--){
+        seed = seeds[i];
+        target = map.get(seed);
+        target === undefined && map.set(seed, target = i ? new Map() : factory(env));
+        map = target;
+    }
+    return target;
+};
+const adapter = getFetch();
+const __TURBOPACK__default__export__ = adapter;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/adapters/adapters.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$null$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/null.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$xhr$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/adapters/xhr.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$fetch$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/adapters/fetch.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+;
+;
+;
+;
+;
+/**
+ * Known adapters mapping.
+ * Provides environment-specific adapters for Axios:
+ * - `http` for Node.js
+ * - `xhr` for browsers
+ * - `fetch` for fetch API-based requests
+ * 
+ * @type {Object<string, Function|Object>}
+ */ const knownAdapters = {
+    http: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$null$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
+    xhr: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$xhr$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
+    fetch: {
+        get: __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$fetch$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getFetch"]
+    }
+};
+// Assign adapter names for easier debugging and identification
+__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach(knownAdapters, (fn, value)=>{
+    if (fn) {
+        try {
+            Object.defineProperty(fn, 'name', {
+                value
+            });
+        } catch (e) {
+        // eslint-disable-next-line no-empty
+        }
+        Object.defineProperty(fn, 'adapterName', {
+            value
+        });
+    }
+});
+/**
+ * Render a rejection reason string for unknown or unsupported adapters
+ * 
+ * @param {string} reason
+ * @returns {string}
+ */ const renderReason = (reason)=>`- ${reason}`;
+/**
+ * Check if the adapter is resolved (function, null, or false)
+ * 
+ * @param {Function|null|false} adapter
+ * @returns {boolean}
+ */ const isResolvedHandle = (adapter)=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(adapter) || adapter === null || adapter === false;
+/**
+ * Get the first suitable adapter from the provided list.
+ * Tries each adapter in order until a supported one is found.
+ * Throws an AxiosError if no adapter is suitable.
+ * 
+ * @param {Array<string|Function>|string|Function} adapters - Adapter(s) by name or function.
+ * @param {Object} config - Axios request configuration
+ * @throws {AxiosError} If no suitable adapter is available
+ * @returns {Function} The resolved adapter function
+ */ function getAdapter(adapters, config) {
+    adapters = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isArray(adapters) ? adapters : [
+        adapters
+    ];
+    const { length } = adapters;
+    let nameOrAdapter;
+    let adapter;
+    const rejectedReasons = {};
+    for(let i = 0; i < length; i++){
+        nameOrAdapter = adapters[i];
+        let id;
+        adapter = nameOrAdapter;
+        if (!isResolvedHandle(nameOrAdapter)) {
+            adapter = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
+            if (adapter === undefined) {
+                throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](`Unknown adapter '${id}'`);
+            }
+        }
+        if (adapter && (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(adapter) || (adapter = adapter.get(config)))) {
+            break;
+        }
+        rejectedReasons[id || '#' + i] = adapter;
+    }
+    if (!adapter) {
+        const reasons = Object.entries(rejectedReasons).map(([id, state])=>`adapter ${id} ` + (state === false ? 'is not supported by the environment' : 'is not available in the build'));
+        let s = length ? reasons.length > 1 ? 'since :\n' + reasons.map(renderReason).join('\n') : ' ' + renderReason(reasons[0]) : 'as no adapter specified';
+        throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](`There is no suitable adapter to dispatch the request ` + s, 'ERR_NOT_SUPPORT');
+    }
+    return adapter;
+}
+const __TURBOPACK__default__export__ = {
+    /**
+   * Resolve an adapter from a list of adapter names or functions.
+   * @type {Function}
+   */ getAdapter,
+    /**
+   * Exposes all known adapters
+   * @type {Object<string, Function|Object>}
+   */ adapters: knownAdapters
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/dispatchRequest.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>dispatchRequest
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$transformData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/transformData.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$isCancel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/isCancel.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/defaults/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CanceledError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$adapters$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/adapters/adapters.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+;
+;
+;
+;
+/**
+ * Throws a `CanceledError` if cancellation has been requested.
+ *
+ * @param {Object} config The config that is to be used for the request
+ *
+ * @returns {void}
+ */ function throwIfCancellationRequested(config) {
+    if (config.cancelToken) {
+        config.cancelToken.throwIfRequested();
+    }
+    if (config.signal && config.signal.aborted) {
+        throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](null, config);
+    }
+}
+function dispatchRequest(config) {
+    throwIfCancellationRequested(config);
+    config.headers = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(config.headers);
+    // Transform request data
+    config.data = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$transformData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].call(config, config.transformRequest);
+    if ([
+        'post',
+        'put',
+        'patch'
+    ].indexOf(config.method) !== -1) {
+        config.headers.setContentType('application/x-www-form-urlencoded', false);
+    }
+    const adapter = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$adapters$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].getAdapter(config.adapter || __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].adapter, config);
+    return adapter(config).then(function onAdapterResolution(response) {
+        throwIfCancellationRequested(config);
+        // Transform response data
+        response.data = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$transformData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].call(config, config.transformResponse, response);
+        response.headers = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(response.headers);
+        return response;
+    }, function onAdapterRejection(reason) {
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$isCancel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(reason)) {
+            throwIfCancellationRequested(config);
+            // Transform response data
+            if (reason && reason.response) {
+                reason.response.data = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$transformData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].call(config, config.transformResponse, reason.response);
+                reason.response.headers = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].from(reason.response.headers);
+            }
+        }
+        return Promise.reject(reason);
+    });
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/env/data.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "VERSION",
+    ()=>VERSION
+]);
+const VERSION = "1.13.4";
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/validator.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$env$2f$data$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/env/data.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+const validators = {};
+// eslint-disable-next-line func-names
+[
+    'object',
+    'boolean',
+    'number',
+    'function',
+    'string',
+    'symbol'
+].forEach((type, i)=>{
+    validators[type] = function validator(thing) {
+        return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
+    };
+});
+const deprecatedWarnings = {};
+/**
+ * Transitional option validator
+ *
+ * @param {function|boolean?} validator - set to false if the transitional option has been removed
+ * @param {string?} version - deprecated version / removed since version
+ * @param {string?} message - some message with additional info
+ *
+ * @returns {function}
+ */ validators.transitional = function transitional(validator, version, message) {
+    function formatMessage(opt, desc) {
+        return '[Axios v' + __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$env$2f$data$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VERSION"] + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+    }
+    // eslint-disable-next-line func-names
+    return (value, opt, opts)=>{
+        if (validator === false) {
+            throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')), __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_DEPRECATED);
+        }
+        if (version && !deprecatedWarnings[opt]) {
+            deprecatedWarnings[opt] = true;
+            // eslint-disable-next-line no-console
+            console.warn(formatMessage(opt, ' has been deprecated since v' + version + ' and will be removed in the near future'));
+        }
+        return validator ? validator(value, opt, opts) : true;
+    };
+};
+validators.spelling = function spelling(correctSpelling) {
+    return (value, opt)=>{
+        // eslint-disable-next-line no-console
+        console.warn(`${opt} is likely a misspelling of ${correctSpelling}`);
+        return true;
+    };
+};
+/**
+ * Assert object's properties type
+ *
+ * @param {object} options
+ * @param {object} schema
+ * @param {boolean?} allowUnknown
+ *
+ * @returns {object}
+ */ function assertOptions(options, schema, allowUnknown) {
+    if (typeof options !== 'object') {
+        throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('options must be an object', __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_BAD_OPTION_VALUE);
+    }
+    const keys = Object.keys(options);
+    let i = keys.length;
+    while(i-- > 0){
+        const opt = keys[i];
+        const validator = schema[opt];
+        if (validator) {
+            const value = options[opt];
+            const result = value === undefined || validator(value, opt, options);
+            if (result !== true) {
+                throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('option ' + opt + ' must be ' + result, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_BAD_OPTION_VALUE);
+            }
+            continue;
+        }
+        if (allowUnknown !== true) {
+            throw new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]('Unknown option ' + opt, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].ERR_BAD_OPTION);
+        }
+    }
+}
+const __TURBOPACK__default__export__ = {
+    assertOptions,
+    validators
+};
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/core/Axios.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$buildURL$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/buildURL.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$InterceptorManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/InterceptorManager.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$dispatchRequest$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/dispatchRequest.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/mergeConfig.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$buildFullPath$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/buildFullPath.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$validator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/validator.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+;
+;
+;
+;
+;
+;
+const validators = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$validator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].validators;
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ *
+ * @return {Axios} A new instance of Axios
+ */ class Axios {
+    constructor(instanceConfig){
+        this.defaults = instanceConfig || {};
+        this.interceptors = {
+            request: new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$InterceptorManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](),
+            response: new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$InterceptorManager$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]()
+        };
+    }
+    /**
+   * Dispatch a request
+   *
+   * @param {String|Object} configOrUrl The config specific for this request (merged with this.defaults)
+   * @param {?Object} config
+   *
+   * @returns {Promise} The Promise to be fulfilled
+   */ async request(configOrUrl, config) {
+        try {
+            return await this._request(configOrUrl, config);
+        } catch (err) {
+            if (err instanceof Error) {
+                let dummy = {};
+                Error.captureStackTrace ? Error.captureStackTrace(dummy) : dummy = new Error();
+                // slice off the Error: ... line
+                const stack = dummy.stack ? dummy.stack.replace(/^.+\n/, '') : '';
+                try {
+                    if (!err.stack) {
+                        err.stack = stack;
+                    // match without the 2 top stack lines
+                    } else if (stack && !String(err.stack).endsWith(stack.replace(/^.+\n.+\n/, ''))) {
+                        err.stack += '\n' + stack;
+                    }
+                } catch (e) {
+                // ignore the case where "stack" is an un-writable property
+                }
+            }
+            throw err;
+        }
+    }
+    _request(configOrUrl, config) {
+        /*eslint no-param-reassign:0*/ // Allow for axios('example/url'[, config]) a la fetch API
+        if (typeof configOrUrl === 'string') {
+            config = config || {};
+            config.url = configOrUrl;
+        } else {
+            config = configOrUrl || {};
+        }
+        config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(this.defaults, config);
+        const { transitional, paramsSerializer, headers } = config;
+        if (transitional !== undefined) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$validator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].assertOptions(transitional, {
+                silentJSONParsing: validators.transitional(validators.boolean),
+                forcedJSONParsing: validators.transitional(validators.boolean),
+                clarifyTimeoutError: validators.transitional(validators.boolean)
+            }, false);
+        }
+        if (paramsSerializer != null) {
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isFunction(paramsSerializer)) {
+                config.paramsSerializer = {
+                    serialize: paramsSerializer
+                };
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$validator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].assertOptions(paramsSerializer, {
+                    encode: validators.function,
+                    serialize: validators.function
+                }, true);
+            }
+        }
+        // Set config.allowAbsoluteUrls
+        if (config.allowAbsoluteUrls !== undefined) {
+        // do nothing
+        } else if (this.defaults.allowAbsoluteUrls !== undefined) {
+            config.allowAbsoluteUrls = this.defaults.allowAbsoluteUrls;
+        } else {
+            config.allowAbsoluteUrls = true;
+        }
+        __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$validator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].assertOptions(config, {
+            baseUrl: validators.spelling('baseURL'),
+            withXsrfToken: validators.spelling('withXSRFToken')
+        }, true);
+        // Set config.method
+        config.method = (config.method || this.defaults.method || 'get').toLowerCase();
+        // Flatten headers
+        let contextHeaders = headers && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].merge(headers.common, headers[config.method]);
+        headers && __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach([
+            'delete',
+            'get',
+            'head',
+            'post',
+            'put',
+            'patch',
+            'common'
+        ], (method)=>{
+            delete headers[method];
+        });
+        config.headers = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].concat(contextHeaders, headers);
+        // filter out skipped interceptors
+        const requestInterceptorChain = [];
+        let synchronousRequestInterceptors = true;
+        this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+            if (typeof interceptor.runWhen === 'function' && interceptor.runWhen(config) === false) {
+                return;
+            }
+            synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+            requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+        });
+        const responseInterceptorChain = [];
+        this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+            responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+        });
+        let promise;
+        let i = 0;
+        let len;
+        if (!synchronousRequestInterceptors) {
+            const chain = [
+                __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$dispatchRequest$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].bind(this),
+                undefined
+            ];
+            chain.unshift(...requestInterceptorChain);
+            chain.push(...responseInterceptorChain);
+            len = chain.length;
+            promise = Promise.resolve(config);
+            while(i < len){
+                promise = promise.then(chain[i++], chain[i++]);
+            }
+            return promise;
+        }
+        len = requestInterceptorChain.length;
+        let newConfig = config;
+        while(i < len){
+            const onFulfilled = requestInterceptorChain[i++];
+            const onRejected = requestInterceptorChain[i++];
+            try {
+                newConfig = onFulfilled(newConfig);
+            } catch (error) {
+                onRejected.call(this, error);
+                break;
+            }
+        }
+        try {
+            promise = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$dispatchRequest$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].call(this, newConfig);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+        i = 0;
+        len = responseInterceptorChain.length;
+        while(i < len){
+            promise = promise.then(responseInterceptorChain[i++], responseInterceptorChain[i++]);
+        }
+        return promise;
+    }
+    getUri(config) {
+        config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(this.defaults, config);
+        const fullPath = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$buildFullPath$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(config.baseURL, config.url, config.allowAbsoluteUrls);
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$buildURL$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(fullPath, config.params, config.paramsSerializer);
+    }
+}
+// Provide aliases for supported request methods
+__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach([
+    'delete',
+    'get',
+    'head',
+    'options'
+], function forEachMethodNoData(method) {
+    /*eslint func-names:0*/ Axios.prototype[method] = function(url, config) {
+        return this.request((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(config || {}, {
+            method,
+            url,
+            data: (config || {}).data
+        }));
+    };
+});
+__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].forEach([
+    'post',
+    'put',
+    'patch'
+], function forEachMethodWithData(method) {
+    /*eslint func-names:0*/ function generateHTTPMethod(isForm) {
+        return function httpMethod(url, data, config) {
+            return this.request((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(config || {}, {
+                method,
+                headers: isForm ? {
+                    'Content-Type': 'multipart/form-data'
+                } : {},
+                url,
+                data
+            }));
+        };
+    }
+    Axios.prototype[method] = generateHTTPMethod();
+    Axios.prototype[method + 'Form'] = generateHTTPMethod(true);
+});
+const __TURBOPACK__default__export__ = Axios;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CancelToken.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CanceledError.js [app-client] (ecmascript)");
+'use strict';
+;
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @param {Function} executor The executor function.
+ *
+ * @returns {CancelToken}
+ */ class CancelToken {
+    constructor(executor){
+        if (typeof executor !== 'function') {
+            throw new TypeError('executor must be a function.');
+        }
+        let resolvePromise;
+        this.promise = new Promise(function promiseExecutor(resolve) {
+            resolvePromise = resolve;
+        });
+        const token = this;
+        // eslint-disable-next-line func-names
+        this.promise.then((cancel)=>{
+            if (!token._listeners) return;
+            let i = token._listeners.length;
+            while(i-- > 0){
+                token._listeners[i](cancel);
+            }
+            token._listeners = null;
+        });
+        // eslint-disable-next-line func-names
+        this.promise.then = (onfulfilled)=>{
+            let _resolve;
+            // eslint-disable-next-line func-names
+            const promise = new Promise((resolve)=>{
+                token.subscribe(resolve);
+                _resolve = resolve;
+            }).then(onfulfilled);
+            promise.cancel = function reject() {
+                token.unsubscribe(_resolve);
+            };
+            return promise;
+        };
+        executor(function cancel(message, config, request) {
+            if (token.reason) {
+                // Cancellation has already been requested
+                return;
+            }
+            token.reason = new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](message, config, request);
+            resolvePromise(token.reason);
+        });
+    }
+    /**
+   * Throws a `CanceledError` if cancellation has been requested.
+   */ throwIfRequested() {
+        if (this.reason) {
+            throw this.reason;
+        }
+    }
+    /**
+   * Subscribe to the cancel signal
+   */ subscribe(listener) {
+        if (this.reason) {
+            listener(this.reason);
+            return;
+        }
+        if (this._listeners) {
+            this._listeners.push(listener);
+        } else {
+            this._listeners = [
+                listener
+            ];
+        }
+    }
+    /**
+   * Unsubscribe from the cancel signal
+   */ unsubscribe(listener) {
+        if (!this._listeners) {
+            return;
+        }
+        const index = this._listeners.indexOf(listener);
+        if (index !== -1) {
+            this._listeners.splice(index, 1);
+        }
+    }
+    toAbortSignal() {
+        const controller = new AbortController();
+        const abort = (err)=>{
+            controller.abort(err);
+        };
+        this.subscribe(abort);
+        controller.signal.unsubscribe = ()=>this.unsubscribe(abort);
+        return controller.signal;
+    }
+    /**
+   * Returns an object that contains a new `CancelToken` and a function that, when called,
+   * cancels the `CancelToken`.
+   */ static source() {
+        let cancel;
+        const token = new CancelToken(function executor(c) {
+            cancel = c;
+        });
+        return {
+            token,
+            cancel
+        };
+    }
+}
+const __TURBOPACK__default__export__ = CancelToken;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/spread.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>spread
+]);
+'use strict';
+function spread(callback) {
+    return function wrap(arr) {
+        return callback.apply(null, arr);
+    };
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/isAxiosError.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>isAxiosError
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+'use strict';
+;
+function isAxiosError(payload) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isObject(payload) && payload.isAxiosError === true;
+}
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/HttpStatusCode.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+const HttpStatusCode = {
+    Continue: 100,
+    SwitchingProtocols: 101,
+    Processing: 102,
+    EarlyHints: 103,
+    Ok: 200,
+    Created: 201,
+    Accepted: 202,
+    NonAuthoritativeInformation: 203,
+    NoContent: 204,
+    ResetContent: 205,
+    PartialContent: 206,
+    MultiStatus: 207,
+    AlreadyReported: 208,
+    ImUsed: 226,
+    MultipleChoices: 300,
+    MovedPermanently: 301,
+    Found: 302,
+    SeeOther: 303,
+    NotModified: 304,
+    UseProxy: 305,
+    Unused: 306,
+    TemporaryRedirect: 307,
+    PermanentRedirect: 308,
+    BadRequest: 400,
+    Unauthorized: 401,
+    PaymentRequired: 402,
+    Forbidden: 403,
+    NotFound: 404,
+    MethodNotAllowed: 405,
+    NotAcceptable: 406,
+    ProxyAuthenticationRequired: 407,
+    RequestTimeout: 408,
+    Conflict: 409,
+    Gone: 410,
+    LengthRequired: 411,
+    PreconditionFailed: 412,
+    PayloadTooLarge: 413,
+    UriTooLong: 414,
+    UnsupportedMediaType: 415,
+    RangeNotSatisfiable: 416,
+    ExpectationFailed: 417,
+    ImATeapot: 418,
+    MisdirectedRequest: 421,
+    UnprocessableEntity: 422,
+    Locked: 423,
+    FailedDependency: 424,
+    TooEarly: 425,
+    UpgradeRequired: 426,
+    PreconditionRequired: 428,
+    TooManyRequests: 429,
+    RequestHeaderFieldsTooLarge: 431,
+    UnavailableForLegalReasons: 451,
+    InternalServerError: 500,
+    NotImplemented: 501,
+    BadGateway: 502,
+    ServiceUnavailable: 503,
+    GatewayTimeout: 504,
+    HttpVersionNotSupported: 505,
+    VariantAlsoNegotiates: 506,
+    InsufficientStorage: 507,
+    LoopDetected: 508,
+    NotExtended: 510,
+    NetworkAuthenticationRequired: 511,
+    WebServerIsDown: 521,
+    ConnectionTimedOut: 522,
+    OriginIsUnreachable: 523,
+    TimeoutOccurred: 524,
+    SslHandshakeFailed: 525,
+    InvalidSslCertificate: 526
+};
+Object.entries(HttpStatusCode).forEach(([key, value])=>{
+    HttpStatusCode[value] = key;
+});
+const __TURBOPACK__default__export__ = HttpStatusCode;
+}),
+"[project]/assignments/7-block-explorer/node_modules/axios/lib/axios.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$bind$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/bind.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$Axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/Axios.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/mergeConfig.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/defaults/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$formDataToJSON$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/formDataToJSON.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CanceledError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CancelToken$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/CancelToken.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$isCancel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/cancel/isCancel.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$env$2f$data$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/env/data.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/toFormData.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$spread$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/spread.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$isAxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/isAxiosError.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/core/AxiosHeaders.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$adapters$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/adapters/adapters.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$HttpStatusCode$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/axios/lib/helpers/HttpStatusCode.js [app-client] (ecmascript)");
+'use strict';
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ *
+ * @returns {Axios} A new instance of Axios
+ */ function createInstance(defaultConfig) {
+    const context = new __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$Axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](defaultConfig);
+    const instance = (0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$bind$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$Axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].prototype.request, context);
+    // Copy axios.prototype to instance
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].extend(instance, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$Axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].prototype, context, {
+        allOwnKeys: true
+    });
+    // Copy context to instance
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].extend(instance, context, null, {
+        allOwnKeys: true
+    });
+    // Factory for creating new instances
+    instance.create = function create(instanceConfig) {
+        return createInstance((0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(defaultConfig, instanceConfig));
+    };
+    return instance;
+}
+// Create the default instance to be exported
+const axios = createInstance(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$defaults$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]);
+// Expose Axios class to allow class inheritance
+axios.Axios = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$Axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+// Expose Cancel & CancelToken
+axios.CanceledError = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CanceledError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+axios.CancelToken = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$CancelToken$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+axios.isCancel = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$cancel$2f$isCancel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+axios.VERSION = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$env$2f$data$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VERSION"];
+axios.toFormData = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$toFormData$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+// Expose AxiosError class
+axios.AxiosError = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+// alias for CanceledError for backward compatibility
+axios.Cancel = axios.CanceledError;
+// Expose all/spread
+axios.all = function all(promises) {
+    return Promise.all(promises);
+};
+axios.spread = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$spread$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+// Expose isAxiosError
+axios.isAxiosError = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$isAxiosError$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+// Expose mergeConfig
+axios.mergeConfig = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$mergeConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+axios.AxiosHeaders = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$core$2f$AxiosHeaders$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+axios.formToJSON = (thing)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$formDataToJSON$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isHTMLForm(thing) ? new FormData(thing) : thing);
+axios.getAdapter = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$adapters$2f$adapters$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].getAdapter;
+axios.HttpStatusCode = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$axios$2f$lib$2f$helpers$2f$HttpStatusCode$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"];
+axios.default = axios;
+const __TURBOPACK__default__export__ = axios;
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/router/utils/querystring.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    assign: null,
+    searchParamsToUrlQuery: null,
+    urlQueryToSearchParams: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    assign: function() {
+        return assign;
+    },
+    searchParamsToUrlQuery: function() {
+        return searchParamsToUrlQuery;
+    },
+    urlQueryToSearchParams: function() {
+        return urlQueryToSearchParams;
+    }
+});
+function searchParamsToUrlQuery(searchParams) {
+    const query = {};
+    for (const [key, value] of searchParams.entries()){
+        const existing = query[key];
+        if (typeof existing === 'undefined') {
+            query[key] = value;
+        } else if (Array.isArray(existing)) {
+            existing.push(value);
+        } else {
+            query[key] = [
+                existing,
+                value
+            ];
+        }
+    }
+    return query;
+}
+function stringifyUrlQueryParam(param) {
+    if (typeof param === 'string') {
+        return param;
+    }
+    if (typeof param === 'number' && !isNaN(param) || typeof param === 'boolean') {
+        return String(param);
+    } else {
+        return '';
+    }
+}
+function urlQueryToSearchParams(query) {
+    const searchParams = new URLSearchParams();
+    for (const [key, value] of Object.entries(query)){
+        if (Array.isArray(value)) {
+            for (const item of value){
+                searchParams.append(key, stringifyUrlQueryParam(item));
+            }
+        } else {
+            searchParams.set(key, stringifyUrlQueryParam(value));
+        }
+    }
+    return searchParams;
+}
+function assign(target, ...searchParamsList) {
+    for (const searchParams of searchParamsList){
+        for (const key of searchParams.keys()){
+            target.delete(key);
+        }
+        for (const [key, value] of searchParams.entries()){
+            target.append(key, value);
+        }
+    }
+    return target;
+} //# sourceMappingURL=querystring.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/router/utils/format-url.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+// Format function modified from nodejs
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    formatUrl: null,
+    formatWithValidation: null,
+    urlObjectKeys: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    formatUrl: function() {
+        return formatUrl;
+    },
+    formatWithValidation: function() {
+        return formatWithValidation;
+    },
+    urlObjectKeys: function() {
+        return urlObjectKeys;
+    }
+});
+const _interop_require_wildcard = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs [app-client] (ecmascript)");
+const _querystring = /*#__PURE__*/ _interop_require_wildcard._(__turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/router/utils/querystring.js [app-client] (ecmascript)"));
+const slashedProtocols = /https?|ftp|gopher|file/;
+function formatUrl(urlObj) {
+    let { auth, hostname } = urlObj;
+    let protocol = urlObj.protocol || '';
+    let pathname = urlObj.pathname || '';
+    let hash = urlObj.hash || '';
+    let query = urlObj.query || '';
+    let host = false;
+    auth = auth ? encodeURIComponent(auth).replace(/%3A/i, ':') + '@' : '';
+    if (urlObj.host) {
+        host = auth + urlObj.host;
+    } else if (hostname) {
+        host = auth + (~hostname.indexOf(':') ? `[${hostname}]` : hostname);
+        if (urlObj.port) {
+            host += ':' + urlObj.port;
+        }
+    }
+    if (query && typeof query === 'object') {
+        query = String(_querystring.urlQueryToSearchParams(query));
+    }
+    let search = urlObj.search || query && `?${query}` || '';
+    if (protocol && !protocol.endsWith(':')) protocol += ':';
+    if (urlObj.slashes || (!protocol || slashedProtocols.test(protocol)) && host !== false) {
+        host = '//' + (host || '');
+        if (pathname && pathname[0] !== '/') pathname = '/' + pathname;
+    } else if (!host) {
+        host = '';
+    }
+    if (hash && hash[0] !== '#') hash = '#' + hash;
+    if (search && search[0] !== '?') search = '?' + search;
+    pathname = pathname.replace(/[?#]/g, encodeURIComponent);
+    search = search.replace('#', '%23');
+    return `${protocol}${host}${pathname}${search}${hash}`;
+}
+const urlObjectKeys = [
+    'auth',
+    'hash',
+    'host',
+    'hostname',
+    'href',
+    'path',
+    'pathname',
+    'port',
+    'protocol',
+    'query',
+    'search',
+    'slashes'
+];
+function formatWithValidation(url) {
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (url !== null && typeof url === 'object') {
+            Object.keys(url).forEach((key)=>{
+                if (!urlObjectKeys.includes(key)) {
+                    console.warn(`Unknown key passed via urlObject into url.format: ${key}`);
+                }
+            });
+        }
+    }
+    return formatUrl(url);
+} //# sourceMappingURL=format-url.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/client/use-merged-ref.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "useMergedRef", {
+    enumerable: true,
+    get: function() {
+        return useMergedRef;
+    }
+});
+const _react = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+function useMergedRef(refA, refB) {
+    const cleanupA = (0, _react.useRef)(null);
+    const cleanupB = (0, _react.useRef)(null);
+    // NOTE: In theory, we could skip the wrapping if only one of the refs is non-null.
+    // (this happens often if the user doesn't pass a ref to Link/Form/Image)
+    // But this can cause us to leak a cleanup-ref into user code (previously via `<Link legacyBehavior>`),
+    // and the user might pass that ref into ref-merging library that doesn't support cleanup refs
+    // (because it hasn't been updated for React 19)
+    // which can then cause things to blow up, because a cleanup-returning ref gets called with `null`.
+    // So in practice, it's safer to be defensive and always wrap the ref, even on React 19.
+    return (0, _react.useCallback)((current)=>{
+        if (current === null) {
+            const cleanupFnA = cleanupA.current;
+            if (cleanupFnA) {
+                cleanupA.current = null;
+                cleanupFnA();
+            }
+            const cleanupFnB = cleanupB.current;
+            if (cleanupFnB) {
+                cleanupB.current = null;
+                cleanupFnB();
+            }
+        } else {
+            if (refA) {
+                cleanupA.current = applyRef(refA, current);
+            }
+            if (refB) {
+                cleanupB.current = applyRef(refB, current);
+            }
+        }
+    }, [
+        refA,
+        refB
+    ]);
+}
+function applyRef(refA, current) {
+    if (typeof refA === 'function') {
+        const cleanup = refA(current);
+        if (typeof cleanup === 'function') {
+            return cleanup;
+        } else {
+            return ()=>refA(null);
+        }
+    } else {
+        refA.current = current;
+        return ()=>{
+            refA.current = null;
+        };
+    }
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=use-merged-ref.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/utils.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    DecodeError: null,
+    MiddlewareNotFoundError: null,
+    MissingStaticPage: null,
+    NormalizeError: null,
+    PageNotFoundError: null,
+    SP: null,
+    ST: null,
+    WEB_VITALS: null,
+    execOnce: null,
+    getDisplayName: null,
+    getLocationOrigin: null,
+    getURL: null,
+    isAbsoluteUrl: null,
+    isResSent: null,
+    loadGetInitialProps: null,
+    normalizeRepeatedSlashes: null,
+    stringifyError: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    DecodeError: function() {
+        return DecodeError;
+    },
+    MiddlewareNotFoundError: function() {
+        return MiddlewareNotFoundError;
+    },
+    MissingStaticPage: function() {
+        return MissingStaticPage;
+    },
+    NormalizeError: function() {
+        return NormalizeError;
+    },
+    PageNotFoundError: function() {
+        return PageNotFoundError;
+    },
+    SP: function() {
+        return SP;
+    },
+    ST: function() {
+        return ST;
+    },
+    WEB_VITALS: function() {
+        return WEB_VITALS;
+    },
+    execOnce: function() {
+        return execOnce;
+    },
+    getDisplayName: function() {
+        return getDisplayName;
+    },
+    getLocationOrigin: function() {
+        return getLocationOrigin;
+    },
+    getURL: function() {
+        return getURL;
+    },
+    isAbsoluteUrl: function() {
+        return isAbsoluteUrl;
+    },
+    isResSent: function() {
+        return isResSent;
+    },
+    loadGetInitialProps: function() {
+        return loadGetInitialProps;
+    },
+    normalizeRepeatedSlashes: function() {
+        return normalizeRepeatedSlashes;
+    },
+    stringifyError: function() {
+        return stringifyError;
+    }
+});
+const WEB_VITALS = [
+    'CLS',
+    'FCP',
+    'FID',
+    'INP',
+    'LCP',
+    'TTFB'
+];
+function execOnce(fn) {
+    let used = false;
+    let result;
+    return (...args)=>{
+        if (!used) {
+            used = true;
+            result = fn(...args);
+        }
+        return result;
+    };
+}
+// Scheme: https://tools.ietf.org/html/rfc3986#section-3.1
+// Absolute URL: https://tools.ietf.org/html/rfc3986#section-4.3
+const ABSOLUTE_URL_REGEX = /^[a-zA-Z][a-zA-Z\d+\-.]*?:/;
+const isAbsoluteUrl = (url)=>ABSOLUTE_URL_REGEX.test(url);
+function getLocationOrigin() {
+    const { protocol, hostname, port } = window.location;
+    return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+}
+function getURL() {
+    const { href } = window.location;
+    const origin = getLocationOrigin();
+    return href.substring(origin.length);
+}
+function getDisplayName(Component) {
+    return typeof Component === 'string' ? Component : Component.displayName || Component.name || 'Unknown';
+}
+function isResSent(res) {
+    return res.finished || res.headersSent;
+}
+function normalizeRepeatedSlashes(url) {
+    const urlParts = url.split('?');
+    const urlNoQuery = urlParts[0];
+    return urlNoQuery // first we replace any non-encoded backslashes with forward
+    // then normalize repeated forward slashes
+    .replace(/\\/g, '/').replace(/\/\/+/g, '/') + (urlParts[1] ? `?${urlParts.slice(1).join('?')}` : '');
+}
+async function loadGetInitialProps(App, ctx) {
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (App.prototype?.getInitialProps) {
+            const message = `"${getDisplayName(App)}.getInitialProps()" is defined as an instance method - visit https://nextjs.org/docs/messages/get-initial-props-as-an-instance-method for more information.`;
+            throw Object.defineProperty(new Error(message), "__NEXT_ERROR_CODE", {
+                value: "E394",
+                enumerable: false,
+                configurable: true
+            });
+        }
+    }
+    // when called from _app `ctx` is nested in `ctx`
+    const res = ctx.res || ctx.ctx && ctx.ctx.res;
+    if (!App.getInitialProps) {
+        if (ctx.ctx && ctx.Component) {
+            // @ts-ignore pageProps default
+            return {
+                pageProps: await loadGetInitialProps(ctx.Component, ctx.ctx)
+            };
+        }
+        return {};
+    }
+    const props = await App.getInitialProps(ctx);
+    if (res && isResSent(res)) {
+        return props;
+    }
+    if (!props) {
+        const message = `"${getDisplayName(App)}.getInitialProps()" should resolve to an object. But found "${props}" instead.`;
+        throw Object.defineProperty(new Error(message), "__NEXT_ERROR_CODE", {
+            value: "E394",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (Object.keys(props).length === 0 && !ctx.ctx) {
+            console.warn(`${getDisplayName(App)} returned an empty object from \`getInitialProps\`. This de-optimizes and prevents automatic static optimization. https://nextjs.org/docs/messages/empty-object-getInitialProps`);
+        }
+    }
+    return props;
+}
+const SP = typeof performance !== 'undefined';
+const ST = SP && [
+    'mark',
+    'measure',
+    'getEntriesByName'
+].every((method)=>typeof performance[method] === 'function');
+class DecodeError extends Error {
+}
+class NormalizeError extends Error {
+}
+class PageNotFoundError extends Error {
+    constructor(page){
+        super();
+        this.code = 'ENOENT';
+        this.name = 'PageNotFoundError';
+        this.message = `Cannot find module for page: ${page}`;
+    }
+}
+class MissingStaticPage extends Error {
+    constructor(page, message){
+        super();
+        this.message = `Failed to load static file for page: ${page} ${message}`;
+    }
+}
+class MiddlewareNotFoundError extends Error {
+    constructor(){
+        super();
+        this.code = 'ENOENT';
+        this.message = `Cannot find the middleware module`;
+    }
+}
+function stringifyError(error) {
+    return JSON.stringify({
+        message: error.message,
+        stack: error.stack
+    });
+} //# sourceMappingURL=utils.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/router/utils/is-local-url.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "isLocalURL", {
+    enumerable: true,
+    get: function() {
+        return isLocalURL;
+    }
+});
+const _utils = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/utils.js [app-client] (ecmascript)");
+const _hasbasepath = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/client/has-base-path.js [app-client] (ecmascript)");
+function isLocalURL(url) {
+    // prevent a hydration mismatch on href for url with anchor refs
+    if (!(0, _utils.isAbsoluteUrl)(url)) return true;
+    try {
+        // absolute urls can be local if they are on the same origin
+        const locationOrigin = (0, _utils.getLocationOrigin)();
+        const resolved = new URL(url, locationOrigin);
+        return resolved.origin === locationOrigin && (0, _hasbasepath.hasBasePath)(resolved.pathname);
+    } catch (_) {
+        return false;
+    }
+} //# sourceMappingURL=is-local-url.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/utils/error-once.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "errorOnce", {
+    enumerable: true,
+    get: function() {
+        return errorOnce;
+    }
+});
+let errorOnce = (_)=>{};
+if ("TURBOPACK compile-time truthy", 1) {
+    const errors = new Set();
+    errorOnce = (msg)=>{
+        if (!errors.has(msg)) {
+            console.error(msg);
+        }
+        errors.add(msg);
+    };
+} //# sourceMappingURL=error-once.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+'use client';
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    default: null,
+    useLinkStatus: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    /**
+ * A React component that extends the HTML `<a>` element to provide
+ * [prefetching](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#2-prefetching)
+ * and client-side navigation. This is the primary way to navigate between routes in Next.js.
+ *
+ * @remarks
+ * - Prefetching is only enabled in production.
+ *
+ * @see https://nextjs.org/docs/app/api-reference/components/link
+ */ default: function() {
+        return LinkComponent;
+    },
+    useLinkStatus: function() {
+        return useLinkStatus;
+    }
+});
+const _interop_require_wildcard = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs [app-client] (ecmascript)");
+const _jsxruntime = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/jsx-runtime.js [app-client] (ecmascript)");
+const _react = /*#__PURE__*/ _interop_require_wildcard._(__turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)"));
+const _formaturl = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/router/utils/format-url.js [app-client] (ecmascript)");
+const _approutercontextsharedruntime = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/app-router-context.shared-runtime.js [app-client] (ecmascript)");
+const _usemergedref = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/client/use-merged-ref.js [app-client] (ecmascript)");
+const _utils = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/utils.js [app-client] (ecmascript)");
+const _addbasepath = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/client/add-base-path.js [app-client] (ecmascript)");
+const _warnonce = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/utils/warn-once.js [app-client] (ecmascript)");
+const _links = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/client/components/links.js [app-client] (ecmascript)");
+const _islocalurl = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/router/utils/is-local-url.js [app-client] (ecmascript)");
+const _types = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/client/components/segment-cache/types.js [app-client] (ecmascript)");
+const _erroronce = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/shared/lib/utils/error-once.js [app-client] (ecmascript)");
+function isModifiedEvent(event) {
+    const eventTarget = event.currentTarget;
+    const target = eventTarget.getAttribute('target');
+    return target && target !== '_self' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || // triggers resource download
+    event.nativeEvent && event.nativeEvent.which === 2;
+}
+function linkClicked(e, href, as, linkInstanceRef, replace, scroll, onNavigate) {
+    if (typeof window !== 'undefined') {
+        const { nodeName } = e.currentTarget;
+        // anchors inside an svg have a lowercase nodeName
+        const isAnchorNodeName = nodeName.toUpperCase() === 'A';
+        if (isAnchorNodeName && isModifiedEvent(e) || e.currentTarget.hasAttribute('download')) {
+            // ignore click for browser’s default behavior
+            return;
+        }
+        if (!(0, _islocalurl.isLocalURL)(href)) {
+            if (replace) {
+                // browser default behavior does not replace the history state
+                // so we need to do it manually
+                e.preventDefault();
+                location.replace(href);
+            }
+            // ignore click for browser’s default behavior
+            return;
+        }
+        e.preventDefault();
+        if (onNavigate) {
+            let isDefaultPrevented = false;
+            onNavigate({
+                preventDefault: ()=>{
+                    isDefaultPrevented = true;
+                }
+            });
+            if (isDefaultPrevented) {
+                return;
+            }
+        }
+        const { dispatchNavigateAction } = __turbopack_context__.r("[project]/assignments/7-block-explorer/node_modules/next/dist/client/components/app-router-instance.js [app-client] (ecmascript)");
+        _react.default.startTransition(()=>{
+            dispatchNavigateAction(as || href, replace ? 'replace' : 'push', scroll ?? true, linkInstanceRef.current);
+        });
+    }
+}
+function formatStringOrUrl(urlObjOrString) {
+    if (typeof urlObjOrString === 'string') {
+        return urlObjOrString;
+    }
+    return (0, _formaturl.formatUrl)(urlObjOrString);
+}
+function LinkComponent(props) {
+    const [linkStatus, setOptimisticLinkStatus] = (0, _react.useOptimistic)(_links.IDLE_LINK_STATUS);
+    let children;
+    const linkInstanceRef = (0, _react.useRef)(null);
+    const { href: hrefProp, as: asProp, children: childrenProp, prefetch: prefetchProp = null, passHref, replace, shallow, scroll, onClick, onMouseEnter: onMouseEnterProp, onTouchStart: onTouchStartProp, legacyBehavior = false, onNavigate, ref: forwardedRef, unstable_dynamicOnHover, ...restProps } = props;
+    children = childrenProp;
+    if (legacyBehavior && (typeof children === 'string' || typeof children === 'number')) {
+        children = /*#__PURE__*/ (0, _jsxruntime.jsx)("a", {
+            children: children
+        });
+    }
+    const router = _react.default.useContext(_approutercontextsharedruntime.AppRouterContext);
+    const prefetchEnabled = prefetchProp !== false;
+    const fetchStrategy = prefetchProp !== false ? getFetchStrategyFromPrefetchProp(prefetchProp) : _types.FetchStrategy.PPR;
+    if ("TURBOPACK compile-time truthy", 1) {
+        function createPropError(args) {
+            return Object.defineProperty(new Error(`Failed prop type: The prop \`${args.key}\` expects a ${args.expected} in \`<Link>\`, but got \`${args.actual}\` instead.` + (typeof window !== 'undefined' ? "\nOpen your browser's console to view the Component stack trace." : '')), "__NEXT_ERROR_CODE", {
+                value: "E319",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        // TypeScript trick for type-guarding:
+        const requiredPropsGuard = {
+            href: true
+        };
+        const requiredProps = Object.keys(requiredPropsGuard);
+        requiredProps.forEach((key)=>{
+            if (key === 'href') {
+                if (props[key] == null || typeof props[key] !== 'string' && typeof props[key] !== 'object') {
+                    throw createPropError({
+                        key,
+                        expected: '`string` or `object`',
+                        actual: props[key] === null ? 'null' : typeof props[key]
+                    });
+                }
+            } else {
+                // TypeScript trick for type-guarding:
+                const _ = key;
+            }
+        });
+        // TypeScript trick for type-guarding:
+        const optionalPropsGuard = {
+            as: true,
+            replace: true,
+            scroll: true,
+            shallow: true,
+            passHref: true,
+            prefetch: true,
+            unstable_dynamicOnHover: true,
+            onClick: true,
+            onMouseEnter: true,
+            onTouchStart: true,
+            legacyBehavior: true,
+            onNavigate: true
+        };
+        const optionalProps = Object.keys(optionalPropsGuard);
+        optionalProps.forEach((key)=>{
+            const valType = typeof props[key];
+            if (key === 'as') {
+                if (props[key] && valType !== 'string' && valType !== 'object') {
+                    throw createPropError({
+                        key,
+                        expected: '`string` or `object`',
+                        actual: valType
+                    });
+                }
+            } else if (key === 'onClick' || key === 'onMouseEnter' || key === 'onTouchStart' || key === 'onNavigate') {
+                if (props[key] && valType !== 'function') {
+                    throw createPropError({
+                        key,
+                        expected: '`function`',
+                        actual: valType
+                    });
+                }
+            } else if (key === 'replace' || key === 'scroll' || key === 'shallow' || key === 'passHref' || key === 'legacyBehavior' || key === 'unstable_dynamicOnHover') {
+                if (props[key] != null && valType !== 'boolean') {
+                    throw createPropError({
+                        key,
+                        expected: '`boolean`',
+                        actual: valType
+                    });
+                }
+            } else if (key === 'prefetch') {
+                if (props[key] != null && valType !== 'boolean' && props[key] !== 'auto') {
+                    throw createPropError({
+                        key,
+                        expected: '`boolean | "auto"`',
+                        actual: valType
+                    });
+                }
+            } else {
+                // TypeScript trick for type-guarding:
+                const _ = key;
+            }
+        });
+    }
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (props.locale) {
+            (0, _warnonce.warnOnce)('The `locale` prop is not supported in `next/link` while using the `app` router. Read more about app router internalization: https://nextjs.org/docs/app/building-your-application/routing/internationalization');
+        }
+        if (!asProp) {
+            let href;
+            if (typeof hrefProp === 'string') {
+                href = hrefProp;
+            } else if (typeof hrefProp === 'object' && typeof hrefProp.pathname === 'string') {
+                href = hrefProp.pathname;
+            }
+            if (href) {
+                const hasDynamicSegment = href.split('/').some((segment)=>segment.startsWith('[') && segment.endsWith(']'));
+                if (hasDynamicSegment) {
+                    throw Object.defineProperty(new Error(`Dynamic href \`${href}\` found in <Link> while using the \`/app\` router, this is not supported. Read more: https://nextjs.org/docs/messages/app-dir-dynamic-href`), "__NEXT_ERROR_CODE", {
+                        value: "E267",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+            }
+        }
+    }
+    const { href, as } = _react.default.useMemo({
+        "LinkComponent.useMemo": ()=>{
+            const resolvedHref = formatStringOrUrl(hrefProp);
+            return {
+                href: resolvedHref,
+                as: asProp ? formatStringOrUrl(asProp) : resolvedHref
+            };
+        }
+    }["LinkComponent.useMemo"], [
+        hrefProp,
+        asProp
+    ]);
+    // This will return the first child, if multiple are provided it will throw an error
+    let child;
+    if (legacyBehavior) {
+        if (children?.$$typeof === Symbol.for('react.lazy')) {
+            throw Object.defineProperty(new Error(`\`<Link legacyBehavior>\` received a direct child that is either a Server Component, or JSX that was loaded with React.lazy(). This is not supported. Either remove legacyBehavior, or make the direct child a Client Component that renders the Link's \`<a>\` tag.`), "__NEXT_ERROR_CODE", {
+                value: "E863",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if ("TURBOPACK compile-time truthy", 1) {
+            if (onClick) {
+                console.warn(`"onClick" was passed to <Link> with \`href\` of \`${hrefProp}\` but "legacyBehavior" was set. The legacy behavior requires onClick be set on the child of next/link`);
+            }
+            if (onMouseEnterProp) {
+                console.warn(`"onMouseEnter" was passed to <Link> with \`href\` of \`${hrefProp}\` but "legacyBehavior" was set. The legacy behavior requires onMouseEnter be set on the child of next/link`);
+            }
+            try {
+                child = _react.default.Children.only(children);
+            } catch (err) {
+                if (!children) {
+                    throw Object.defineProperty(new Error(`No children were passed to <Link> with \`href\` of \`${hrefProp}\` but one child is required https://nextjs.org/docs/messages/link-no-children`), "__NEXT_ERROR_CODE", {
+                        value: "E320",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                throw Object.defineProperty(new Error(`Multiple children were passed to <Link> with \`href\` of \`${hrefProp}\` but only one child is supported https://nextjs.org/docs/messages/link-multiple-children` + (typeof window !== 'undefined' ? " \nOpen your browser's console to view the Component stack trace." : '')), "__NEXT_ERROR_CODE", {
+                    value: "E266",
+                    enumerable: false,
+                    configurable: true
+                });
+            }
+        } else //TURBOPACK unreachable
+        ;
+    } else {
+        if ("TURBOPACK compile-time truthy", 1) {
+            if (children?.type === 'a') {
+                throw Object.defineProperty(new Error('Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.\nLearn more: https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor'), "__NEXT_ERROR_CODE", {
+                    value: "E209",
+                    enumerable: false,
+                    configurable: true
+                });
+            }
+        }
+    }
+    const childRef = legacyBehavior ? child && typeof child === 'object' && child.ref : forwardedRef;
+    // Use a callback ref to attach an IntersectionObserver to the anchor tag on
+    // mount. In the future we will also use this to keep track of all the
+    // currently mounted <Link> instances, e.g. so we can re-prefetch them after
+    // a revalidation or refresh.
+    const observeLinkVisibilityOnMount = _react.default.useCallback({
+        "LinkComponent.useCallback[observeLinkVisibilityOnMount]": (element)=>{
+            if (router !== null) {
+                linkInstanceRef.current = (0, _links.mountLinkInstance)(element, href, router, fetchStrategy, prefetchEnabled, setOptimisticLinkStatus);
+            }
+            return ({
+                "LinkComponent.useCallback[observeLinkVisibilityOnMount]": ()=>{
+                    if (linkInstanceRef.current) {
+                        (0, _links.unmountLinkForCurrentNavigation)(linkInstanceRef.current);
+                        linkInstanceRef.current = null;
+                    }
+                    (0, _links.unmountPrefetchableInstance)(element);
+                }
+            })["LinkComponent.useCallback[observeLinkVisibilityOnMount]"];
+        }
+    }["LinkComponent.useCallback[observeLinkVisibilityOnMount]"], [
+        prefetchEnabled,
+        href,
+        router,
+        fetchStrategy,
+        setOptimisticLinkStatus
+    ]);
+    const mergedRef = (0, _usemergedref.useMergedRef)(observeLinkVisibilityOnMount, childRef);
+    const childProps = {
+        ref: mergedRef,
+        onClick (e) {
+            if ("TURBOPACK compile-time truthy", 1) {
+                if (!e) {
+                    throw Object.defineProperty(new Error(`Component rendered inside next/link has to pass click event to "onClick" prop.`), "__NEXT_ERROR_CODE", {
+                        value: "E312",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+            }
+            if (!legacyBehavior && typeof onClick === 'function') {
+                onClick(e);
+            }
+            if (legacyBehavior && child.props && typeof child.props.onClick === 'function') {
+                child.props.onClick(e);
+            }
+            if (!router) {
+                return;
+            }
+            if (e.defaultPrevented) {
+                return;
+            }
+            linkClicked(e, href, as, linkInstanceRef, replace, scroll, onNavigate);
+        },
+        onMouseEnter (e) {
+            if (!legacyBehavior && typeof onMouseEnterProp === 'function') {
+                onMouseEnterProp(e);
+            }
+            if (legacyBehavior && child.props && typeof child.props.onMouseEnter === 'function') {
+                child.props.onMouseEnter(e);
+            }
+            if (!router) {
+                return;
+            }
+            if ("TURBOPACK compile-time truthy", 1) {
+                return;
+            }
+            //TURBOPACK unreachable
+            ;
+            const upgradeToDynamicPrefetch = undefined;
+        },
+        onTouchStart: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : function onTouchStart(e) {
+            if (!legacyBehavior && typeof onTouchStartProp === 'function') {
+                onTouchStartProp(e);
+            }
+            if (legacyBehavior && child.props && typeof child.props.onTouchStart === 'function') {
+                child.props.onTouchStart(e);
+            }
+            if (!router) {
+                return;
+            }
+            if (!prefetchEnabled) {
+                return;
+            }
+            const upgradeToDynamicPrefetch = unstable_dynamicOnHover === true;
+            (0, _links.onNavigationIntent)(e.currentTarget, upgradeToDynamicPrefetch);
+        }
+    };
+    // If the url is absolute, we can bypass the logic to prepend the basePath.
+    if ((0, _utils.isAbsoluteUrl)(as)) {
+        childProps.href = as;
+    } else if (!legacyBehavior || passHref || child.type === 'a' && !('href' in child.props)) {
+        childProps.href = (0, _addbasepath.addBasePath)(as);
+    }
+    let link;
+    if (legacyBehavior) {
+        if ("TURBOPACK compile-time truthy", 1) {
+            (0, _erroronce.errorOnce)('`legacyBehavior` is deprecated and will be removed in a future ' + 'release. A codemod is available to upgrade your components:\n\n' + 'npx @next/codemod@latest new-link .\n\n' + 'Learn more: https://nextjs.org/docs/app/building-your-application/upgrading/codemods#remove-a-tags-from-link-components');
+        }
+        link = /*#__PURE__*/ _react.default.cloneElement(child, childProps);
+    } else {
+        link = /*#__PURE__*/ (0, _jsxruntime.jsx)("a", {
+            ...restProps,
+            ...childProps,
+            children: children
+        });
+    }
+    return /*#__PURE__*/ (0, _jsxruntime.jsx)(LinkStatusContext.Provider, {
+        value: linkStatus,
+        children: link
+    });
+}
+const LinkStatusContext = /*#__PURE__*/ (0, _react.createContext)(_links.IDLE_LINK_STATUS);
+const useLinkStatus = ()=>{
+    return (0, _react.useContext)(LinkStatusContext);
+};
+function getFetchStrategyFromPrefetchProp(prefetchProp) {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else {
+        return prefetchProp === null || prefetchProp === 'auto' ? _types.FetchStrategy.PPR : // (although invalid values should've been filtered out by prop validation in dev)
+        _types.FetchStrategy.Full;
+    }
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=link.js.map
+}),
+"[project]/assignments/7-block-explorer/node_modules/next-themes/dist/index.mjs [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ThemeProvider",
+    ()=>J,
+    "useTheme",
+    ()=>z
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/assignments/7-block-explorer/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+"use client";
+;
+var M = (e, i, s, u, m, a, l, h)=>{
+    let d = document.documentElement, w = [
+        "light",
+        "dark"
+    ];
+    function p(n) {
+        (Array.isArray(e) ? e : [
+            e
+        ]).forEach((y)=>{
+            let k = y === "class", S = k && a ? m.map((f)=>a[f] || f) : m;
+            k ? (d.classList.remove(...S), d.classList.add(a && a[n] ? a[n] : n)) : d.setAttribute(y, n);
+        }), R(n);
+    }
+    function R(n) {
+        h && w.includes(n) && (d.style.colorScheme = n);
+    }
+    function c() {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    if (u) p(u);
+    else try {
+        let n = localStorage.getItem(i) || s, y = l && n === "system" ? c() : n;
+        p(y);
+    } catch (n) {}
+};
+var b = [
+    "light",
+    "dark"
+], I = "(prefers-color-scheme: dark)", O = typeof window == "undefined", x = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"](void 0), U = {
+    setTheme: (e)=>{},
+    themes: []
+}, z = ()=>{
+    var e;
+    return (e = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"](x)) != null ? e : U;
+}, J = (e)=>__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"](x) ? __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"](__TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], null, e.children) : __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"](V, {
+        ...e
+    }), N = [
+    "light",
+    "dark"
+], V = ({ forcedTheme: e, disableTransitionOnChange: i = !1, enableSystem: s = !0, enableColorScheme: u = !0, storageKey: m = "theme", themes: a = N, defaultTheme: l = s ? "system" : "light", attribute: h = "data-theme", value: d, children: w, nonce: p, scriptProps: R })=>{
+    let [c, n] = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"]({
+        "V.useState": ()=>H(m, l)
+    }["V.useState"]), [T, y] = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"]({
+        "V.useState": ()=>c === "system" ? E() : c
+    }["V.useState"]), k = d ? Object.values(d) : a, S = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"]({
+        "V.useCallback[S]": (o)=>{
+            let r = o;
+            if (!r) return;
+            o === "system" && s && (r = E());
+            let v = d ? d[r] : r, C = i ? W(p) : null, P = document.documentElement, L = {
+                "V.useCallback[S].L": (g)=>{
+                    g === "class" ? (P.classList.remove(...k), v && P.classList.add(v)) : g.startsWith("data-") && (v ? P.setAttribute(g, v) : P.removeAttribute(g));
+                }
+            }["V.useCallback[S].L"];
+            if (Array.isArray(h) ? h.forEach(L) : L(h), u) {
+                let g = b.includes(l) ? l : null, D = b.includes(r) ? r : g;
+                P.style.colorScheme = D;
+            }
+            C == null || C();
+        }
+    }["V.useCallback[S]"], [
+        p
+    ]), f = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"]({
+        "V.useCallback[f]": (o)=>{
+            let r = typeof o == "function" ? o(c) : o;
+            n(r);
+            try {
+                localStorage.setItem(m, r);
+            } catch (v) {}
+        }
+    }["V.useCallback[f]"], [
+        c
+    ]), A = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"]({
+        "V.useCallback[A]": (o)=>{
+            let r = E(o);
+            y(r), c === "system" && s && !e && S("system");
+        }
+    }["V.useCallback[A]"], [
+        c,
+        e
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "V.useEffect": ()=>{
+            let o = window.matchMedia(I);
+            return o.addListener(A), A(o), ({
+                "V.useEffect": ()=>o.removeListener(A)
+            })["V.useEffect"];
+        }
+    }["V.useEffect"], [
+        A
+    ]), __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "V.useEffect": ()=>{
+            let o = {
+                "V.useEffect.o": (r)=>{
+                    r.key === m && (r.newValue ? n(r.newValue) : f(l));
+                }
+            }["V.useEffect.o"];
+            return window.addEventListener("storage", o), ({
+                "V.useEffect": ()=>window.removeEventListener("storage", o)
+            })["V.useEffect"];
+        }
+    }["V.useEffect"], [
+        f
+    ]), __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "V.useEffect": ()=>{
+            S(e != null ? e : c);
+        }
+    }["V.useEffect"], [
+        e,
+        c
+    ]);
+    let Q = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"]({
+        "V.useMemo[Q]": ()=>({
+                theme: c,
+                setTheme: f,
+                forcedTheme: e,
+                resolvedTheme: c === "system" ? T : c,
+                themes: s ? [
+                    ...a,
+                    "system"
+                ] : a,
+                systemTheme: s ? T : void 0
+            })
+    }["V.useMemo[Q]"], [
+        c,
+        f,
+        e,
+        T,
+        s,
+        a
+    ]);
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"](x.Provider, {
+        value: Q
+    }, __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"](_, {
+        forcedTheme: e,
+        storageKey: m,
+        attribute: h,
+        enableSystem: s,
+        enableColorScheme: u,
+        defaultTheme: l,
+        value: d,
+        themes: a,
+        nonce: p,
+        scriptProps: R
+    }), w);
+}, _ = __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["memo"](({ forcedTheme: e, storageKey: i, attribute: s, enableSystem: u, enableColorScheme: m, defaultTheme: a, value: l, themes: h, nonce: d, scriptProps: w })=>{
+    let p = JSON.stringify([
+        s,
+        i,
+        a,
+        e,
+        h,
+        l,
+        u,
+        m
+    ]).slice(1, -1);
+    return __TURBOPACK__imported__module__$5b$project$5d2f$assignments$2f$7$2d$block$2d$explorer$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createElement"]("script", {
+        ...w,
+        suppressHydrationWarning: !0,
+        nonce: typeof window == "undefined" ? d : "",
+        dangerouslySetInnerHTML: {
+            __html: `(${M.toString()})(${p})`
+        }
+    });
+}), H = (e, i)=>{
+    if (O) return;
+    let s;
+    try {
+        s = localStorage.getItem(e) || void 0;
+    } catch (u) {}
+    return s || i;
+}, W = (e)=>{
+    let i = document.createElement("style");
+    return e && i.setAttribute("nonce", e), i.appendChild(document.createTextNode("*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}")), document.head.appendChild(i), ()=>{
+        window.getComputedStyle(document.body), setTimeout(()=>{
+            document.head.removeChild(i);
+        }, 1);
+    };
+}, E = (e)=>(e || (e = window.matchMedia(I)), e.matches ? "dark" : "light");
+;
+}),
+]);
+
+//# sourceMappingURL=2bc4c_469a06cd._.js.map
