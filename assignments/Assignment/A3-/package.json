@@ -1,0 +1,16 @@
+{
+  "name": "a3-",
+  "version": "1.0.0",
+  "description": "## Chapter 1: What Is Ethereum?",
+  "type": "module",
+  "main": "Block.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.16.0"
+  }
+}
