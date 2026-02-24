@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-5c752a013885ed7da0e5b94ef17d99645a99f1bc",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Counter.sol": "project/contracts/Counter.sol",
+    "contracts/SimpleCrowdfunding.sol": "project/contracts/SimpleCrowdfunding.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Counter.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract Counter {\n  uint public x;\n\n  event Increment(uint by);\n\n  function inc() public {\n    x++;\n    emit Increment(1);\n  }\n\n  function incBy(uint by) public {\n    require(by > 0, \"incBy: increment should be positive\");\n    x += by;\n    emit Increment(by);\n  }\n}\n"
+      },
+      "project/contracts/SimpleCrowdfunding.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract SimpleCrowdfunding {\n    address public owner;\n    uint256 public goal;\n    uint256 public deadline;\n    uint256 public raisedAmount;\n    mapping(address => uint256) public contributions;\n    bool public withdrawn;\n\n    constructor(uint256 _goal, uint256 _duration) {\n        owner = msg.sender;\n        goal = _goal;\n        deadline = block.timestamp + _duration;\n    }\n\n    function contribute() external payable {\n        require(block.timestamp < deadline, \"Crowdfunding has ended\");\n        require(msg.value > 0, \"Contribution must be greater than 0\");\n\n        contributions[msg.sender] += msg.value;\n        raisedAmount += msg.value;\n    }\n\n    function withdraw() external {\n        require(msg.sender == owner, \"Only owner can withdraw\");\n        require(address(this).balance >= goal, \"Goal not met\");\n        require(!withdrawn, \"Funds already withdrawn\");\n\n        withdrawn = true;\n        payable(owner).transfer(address(this).balance);\n    }\n\n    function claimRefund() external {\n        require(block.timestamp >= deadline, \"Crowdfunding not yet ended\");\n        require(raisedAmount < goal, \"Goal was met\");\n        require(contributions[msg.sender] > 0, \"No contribution to refund\");\n\n        uint256 amount = contributions[msg.sender];\n        contributions[msg.sender] = 0;\n        \n        payable(msg.sender).transfer(amount);\n    }\n\n    function getContribution(address _contributor) external view returns (uint256) {\n        return contributions[_contributor];\n    }\n}\n"
+      }
+    }
+  }
+}
