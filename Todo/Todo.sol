@@ -125,7 +125,7 @@ contract Todo {
         TodoList storage todo = todos[_id];
         require(msg.sender == todo.owner, "Unauthorized caller");
         require(todo.status == Status.Pending, "Only pending todos can be updated");
-        require(_newDeadline > block.timestamp, "New deadline must be in the future");
+           require(_newDeadline > block.timestamp, "New deadline must be in the future");
         
         todo.deadline = _newDeadline;
     }
