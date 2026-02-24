@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-d6bfe39a2ba9eec3d2f0ea334d2c98d7e6ede755",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Todo.sol": "project/contracts/Todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Todo.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract Add{\n  function add(uint a, uint b) public pure returns(uint) {\n    uint c = a + b;\n    return c;\n  }\n}\n\ncontract Average is Add {\n  function average(uint a, uint b) public pure returns(uint) {\n    uint d = add(a,b) / 2;\n\n    return d;\n  }\n}\n\ncontract Todo {\n  uint256 public todoCounter;\n\n  enum Status {\n    Pending,\n    Done,\n    Cancelled,\n    Defaulted\n  }\n\n  struct TodoList {\n    uint id;\n    address owner;\n    string text;\n    Status status;\n    uint256 deadline;\n  }\n\n  mapping(uint256 => TodoList) public todos;\n\n  event TodoCreated(string text, uint deadline);\n  event TodoUpdated(uint256 id, Status status);\n\n  function createTodo(string memory text, uint deadline) external returns(uint) {\n    require(bytes(text).length > 0, \"Empty text\");\n    require(deadline > block.timestamp + 600, \"Invalid deadline\");\n\n    todoCounter++;\n\n    todos[todoCounter] = TodoList({\n        id: todoCounter,\n        owner: msg.sender,\n        text: text,\n        status: Status.Pending,\n        deadline: deadline\n    });\n\n    emit TodoCreated(text, deadline);\n    return todoCounter;\n  }\n\n  function updateTodo(uint _id) external {\n    require((_id > 0) && (_id <= todoCounter), \"Invalid id\");\n    TodoList storage todo = todos[_id];\n    require(todo.status == Status.Pending, \"Not pending\");\n    require(msg.sender == todo.owner, \"Unauthorized Caller\");\n\n    if(block.timestamp > todo.deadline){\n      todo.status = Status.Defaulted;\n\n    } else {\n      todo.status = Status.Done;\n    }\n\n  }\n\n}\n"
+      }
+    }
+  }
+}
