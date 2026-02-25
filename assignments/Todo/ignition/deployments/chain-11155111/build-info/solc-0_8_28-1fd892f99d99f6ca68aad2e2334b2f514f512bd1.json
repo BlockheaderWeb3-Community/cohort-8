@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-1fd892f99d99f6ca68aad2e2334b2f514f512bd1",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Todo.sol": "project/contracts/Todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Todo.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.28;\n\ncontract TodoContract {\n    enum Status {\n        Done,\n        Defaulted,\n        Pending\n    }\n\n    struct Todo {\n        uint256 id;\n        address owner;\n        string text;\n        Status status;\n        uint256 deadline;\n    }\n\n    // State Variables\n    uint256 private todoCounter;\n    mapping(uint256 => Todo) public todos;\n    // Maps user address to a list of their Todo IDs\n    mapping(address => uint256[]) private userTodoIds;\n\n    // Events\n    event CreatedTodo(uint256 indexed id, address indexed owner, string text, uint256 deadline);\n    event StatusUpdated(uint256 indexed id, Status newStatus);\n    event TodoEdited(uint256 indexed id, string newText, uint256 newDeadline);\n    event TodoDeleted(uint256 indexed id, address indexed owner);\n\n    // Modifiers\n    modifier onlyTodoOwner(uint256 _id) {\n        require(todos[_id].owner == msg.sender, \"Not the owner\");\n        _;\n    }\n\n    modifier exists(uint256 _id) {\n        require(_id > 0 && _id <= todoCounter, \"Todo does not exist\");\n        require(todos[_id].owner != address(0), \"Todo was deleted\");\n        _;\n    }\n\n   function createTodo(string calldata _text, uint256 _deadline) external returns (uint256) {\n        require(bytes(_text).length > 0, \"Empty text\");\n        require(_deadline > block.timestamp + 600, \"Deadline must be at least 10 mins away\");\n\n        todoCounter++;\n        \n        todos[todoCounter] = Todo({\n            id: todoCounter,\n            owner: msg.sender,\n            text: _text,\n            status: Status.Pending,\n            deadline: _deadline\n        });\n\n        userTodoIds[msg.sender].push(todoCounter);\n\n        emit CreatedTodo(todoCounter, msg.sender, _text, _deadline);\n        return todoCounter;\n    }\n   function completeTodo(uint256 _id) external exists(_id) onlyTodoOwner(_id) {\n        Todo storage todo = todos[_id];\n        require(todo.status == Status.Pending, \"Todo is already finalized\");\n\n        if (block.timestamp > todo.deadline) {\n            todo.status = Status.Defaulted;\n        } else {\n            todo.status = Status.Done;\n        }\n\n        emit StatusUpdated(_id, todo.status);\n    }\n   function editTodo(uint256 _id, string calldata _newText, uint256 _newDeadline) \n        external \n        exists(_id) \n        onlyTodoOwner(_id) \n    {\n        Todo storage todo = todos[_id];\n        require(todo.status == Status.Pending, \"Cannot edit completed todos\");\n        require(bytes(_newText).length > 0, \"Text cannot be empty\");\n        require(_newDeadline > block.timestamp + 600, \"New deadline too soon\");\n\n        todo.text = _newText;\n        todo.deadline = _newDeadline;\n\n        emit TodoEdited(_id, _newText, _newDeadline);\n    }\n   function getMyTodoIds() external view returns (uint256[] memory) {\n        return userTodoIds[msg.sender];\n    }\n   function getTodo(uint256 _id) external view exists(_id) returns (Todo memory) {\n        return todos[_id];\n    }\n   function getTotalTodoCount() external view returns (uint256) {\n        return todoCounter;\n    }\n}\n"
+      }
+    }
+  }
+}
