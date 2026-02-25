@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-8ca4842bcd3b56ea2abbb035ce3968533cc7f05a",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/erc20.sol": "project/contracts/erc20.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/erc20.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSE\npragma solidity ^0.8.28;\n\ncontract ERC20 {\n    string public name;\n    string public symbol;\n    uint8 public decimals;\n\n    uint256 private _totalSupply;\n\n    mapping(address => uint256) private _balances;\n    mapping(address => mapping(address => uint256)) private _allowances;\n\n    event Transfer(address indexed from, address indexed to, uint256 value);\n    event Approval(address indexed owner, address indexed spender, uint256 value);\n\n    constructor(string memory _name, string memory _symbol, uint8 _decimals, uint256 initialSupply) {\n        name = _name;\n        symbol = _symbol;\n        decimals = _decimals;\n        _mint(msg.sender, initialSupply);\n    }\n\n    function totalSupply() external view returns (uint256) {\n        return _totalSupply;\n    }\n\n    function balanceOf(address account) external view returns (uint256) {\n        return _balances[account];\n    }\n\n    function allowance(address owner, address spender) external view returns (uint256) {\n        return _allowances[owner][spender];\n    }\n\n    function _transfer(address from, address to, uint256 amount) internal {\n        // Sender is `from`, receiver is `to` (caller can be sender or an approved spender).\n        require(from != address(0), \"ERC20: transfer from the zero address\");\n        require(to != address(0), \"ERC20: transfer to the zero address\");\n\n        uint256 senderBalance = _balances[from];\n        require(senderBalance >= amount, \"ERC20: transfer amount exceeds balance\");\n\n        unchecked {\n            _balances[from] -= amount;\n            _balances[to] += amount;\n        }\n        emit Transfer(from, to, amount);\n    }\n\n    function _mint(address account, uint256 amount) internal {\n        // Receiver is `account` (called by the contract, e.g., constructor).\n        require(account != address(0), \"ERC20: mint to the zero address\");\n\n        _totalSupply += amount;\n        _balances[account] += amount;\n\n        emit Transfer(address(0), account, amount);\n    }\n\n    function approve(address spender, uint256 amount) external returns (bool) {\n        // Sender (msg.sender) is the token owner; receiver is the `spender` being approved.\n        require(msg.sender != address(0), \"ERC20: approve from the zero address\");\n        require(spender != address(0), \"ERC20: approve to the zero address\");\n\n        _allowances[msg.sender][spender] = amount;\n        emit Approval(msg.sender, spender, amount);\n        return true;\n    }\n\n    function _burn(uint256 amount) internal  {\n        // Sender (msg.sender) burns their own tokens; no receiver (sent to address(0)).\n        require(msg.sender != address(0), \"ERC20: cannot burn from address(0)\");\n\n        // uint256 _balances = _balances[msg.sender];\n        require(_balances[msg.sender] >= amount, \"ERC20: burn amount exceeds balance\");\n\n        unchecked {\n            _balances[msg.sender] -= amount;\n            _totalSupply -= amount;\n            _balances[address(0)] += amount;\n        }\n        emit Transfer(msg.sender, address(0), amount);\n    }\n\n    function transferFrom(address from, address to, uint256 amount) external returns (bool) {\n        // Sender (msg.sender) is the spender; `from` is the token owner; `to` is the receiver.\n        require(from != address(0), \"ERC20: transfer from the zero address\");\n        require(to != address(0), \"ERC20: transfer to the zero address\");\n\n        uint256 currentAllowance = _allowances[from][msg.sender];\n        require(currentAllowance >= amount, \"ERC20: transfer amount exceeds allowance\");\n\n        unchecked {\n            _allowances[from][msg.sender] = currentAllowance - amount;\n        }\n        emit Approval(from, msg.sender, _allowances[from][msg.sender]);\n        _transfer(from, to, amount);\n        return true;\n    }\n\n    function transfer(address to, uint256 amount) external returns (bool) {\n    _transfer(msg.sender, to, amount);\n    return true;\n    }\n\n    function mint (uint256 amount) external returns (bool) {\n        _mint(msg.sender, amount);\n        return true;\n    }\n}    "
+      }
+    }
+  }
+}

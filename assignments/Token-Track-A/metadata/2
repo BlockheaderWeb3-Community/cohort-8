@@ -1,0 +1,8 @@
+{
+  "name": "LONER #2",
+  "description": "LONER genesis collection on Sepolia.",
+  "image": "https://placehold.co/600x600/png",
+  "attributes": [
+    { "trait_type": "Edition", "value": 2 }
+  ]
+}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ERC721 Mint — Sepolia</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero">
+        <h1>ERC721 Mint</h1>
+        <p>Sepolia · Rabby/MetaMask compatible</p>
+      </header>
+
+      <section class="card">
+        <div class="row">
+          <button id="connectBtn">Connect Wallet</button>
+          <div class="pill" id="networkPill">Not connected</div>
+        </div>
+        <div class="kv">
+          <div class="k">Wallet</div>
+          <div class="v" id="walletAddr">—</div>
+        </div>
+        <div class="kv">
+          <div class="k">Contract</div>
+          <div class="v" id="contractAddr">0x4a6098BEe26c084E8d615489f8032fE0Cc1B6694</div>
+        </div>
+        <div class="kv">
+          <div class="k">Name</div>
+          <div class="v" id="tokenName">—</div>
+        </div>
+        <div class="kv">
+          <div class="k">Symbol</div>
+          <div class="v" id="tokenSymbol">—</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Mint</h2>
+        <label>
+          To Address
+          <input id="toAddress" placeholder="0x... (defaults to your wallet)" />
+        </label>
+        <label>
+          Token ID
+          <input id="tokenId" type="number" min="0" placeholder="e.g. 1" />
+        </label>
+        <button id="mintBtn">Mint</button>
+        <div class="status" id="mintStatus">—</div>
+      </section>
+
+      <section class="card">
+        <h2>Read Token</h2>
+        <label>
+          Token ID
+          <input id="readTokenId" type="number" min="0" placeholder="e.g. 1" />
+        </label>
+        <div class="row">
+          <button id="readBtn">Read</button>
+          <a id="explorerLink" class="ghost" href="#" target="_blank" rel="noreferrer">View on Etherscan</a>
+        </div>
+        <div class="kv">
+          <div class="k">Owner</div>
+          <div class="v" id="ownerOf">—</div>
+        </div>
+        <div class="kv">
+          <div class="k">Token URI</div>
+          <div class="v" id="tokenUri">—</div>
+        </div>
+        <div class="preview">
+          <div class="k">Preview</div>
+          <img id="tokenImage" alt="NFT preview" />
+          <div class="v" id="imageCaption">—</div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <p>Tip: If you need a real NFT metadata URL, redeploy with a non-empty baseURI.</p>
+      </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
