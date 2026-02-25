@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-46340a8327d1ad8f41ff4718c2249f1e0ea18999",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/NFTmarketplace.sol": "project/contracts/NFTmarketplace.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/NFTmarketplace.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\n// ERC721 Interface\ninterface IERC721 {\n    function ownerOf(uint256 tokenId) external view returns (address);\n    function getApproved(uint256 tokenId) external view returns (address);\n    function isApprovedForAll(address owner, address operator) external view returns (bool);\n    function transferFrom(address from, address to, uint256 tokenId) external;\n}\n\ncontract NFTmarketplace {\n    // Reentrancy guard\n    uint256 private constant _NOT_ENTERED = 1;\n    uint256 private constant _ENTERED = 2;\n    uint256 private _status;\n\n    modifier nonReentrant() {\n        require(_status != _ENTERED, \"ReentrancyGuard: reentrant call\");\n        _status = _ENTERED;\n        _;\n        _status = _NOT_ENTERED;\n    }\n\n    //  Marketplace state & setting\n    address public owner;\n    address payable public treasury;\n    uint256 public feePercentage; // e.g., 25 for 2.5%\n\n    struct Listing {\n        address seller;\n        uint256 price;\n    }\n\n    //  Maps\n    mapping(address => mapping(uint256 => Listing)) public listings; // NFT contract => tokenId => Listing\n\n    event ItemListed(address indexed seller, address indexed nftAddress, uint256 indexed tokenId, uint256 price);\n    event ListingCancelled(address indexed seller, address indexed nftAddress, uint256 indexed tokenId);\n    event ItemBought(address indexed buyer, address indexed nftAddress, uint256 indexed tokenId, uint256 price);\n\n    constructor(address payable _treasury) {\n        owner = msg.sender;\n        treasury = _treasury;\n        feePercentage = 25;\n        _status = _NOT_ENTERED;\n    }\n\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Only owner can call this\");\n        _;\n    }\n\n    // Marketplace fee\n    function setFeePercentage(uint256 _newFee) external onlyOwner {\n        feePercentage = _newFee;\n    }\n\n    // Listing NFTs\n    function listNFT(address nftAddress, uint256 tokenId, uint256 price) external {\n        require(price > 0, \"Price must be > 0\");\n\n        IERC721 nft = IERC721(nftAddress);\n        require(nft.ownerOf(tokenId) == msg.sender, \"Not the owner\");\n\n        require(\n            nft.getApproved(tokenId) == address(this) || nft.isApprovedForAll(msg.sender, address (this)),\n            \"Marketplace not approved\"\n        );\n\n        // Escrow the NFT\n        nft.transferFrom(msg.sender, address(this), tokenId);\n\n        // Save the listing\n        listings[nftAddress][tokenId] = Listing(msg.sender, price);\n\n        emit ItemListed(msg.sender, nftAddress, tokenId, price);\n    }\n\n        // Cancel Listing\n    function cancelListing(address nftAddress, uint256 tokenId) external nonReentrant {\n        Listing memory listing = listings[nftAddress][tokenId];\n\n        require(listing.price > 0, \"Not Listed\");\n        require(listing.seller == msg.sender, \"Not the selleer\");\n\n        // Remove Listing\n        delete listings[nftAddress][tokenId];\n\n        // Return NFT back to Seller\n        IERC721(nftAddress).transferFrom(address(this), msg.sender, tokenId);\n\n        emit ListingCancelled(msg.sender, nftAddress, tokenId);\n    }\n\n    // Buy NFT\n    function buyNFT(address nftAddress, uint256 tokenId) external payable nonReentrant {\n        Listing memory listing = listings[nftAddress][tokenId];\n\n        require(listing.price > 0, \"Not Listed\");\n        require(msg.value >= listing.price, \"Insufficient payment\");\n\n        // Calculate fee and seller cut \n        uint256 fee = (msg.value * feePercentage) / 1000;\n        uint256 sellerProceeds = msg.value - fee;\n\n        // Remove listing to prevent reentrancy\n        delete listings[nftAddress][tokenId];\n\n        // Transfer NFT to buyer\n        IERC721(nftAddress).transferFrom(address(this), msg.sender, tokenId);\n\n        //  Transfer funds to treasury\n        (bool feeSuccess, ) = treasury.call{value: fee}(\"\");\n        require(feeSuccess, \"Treasury transfer failed\");\n\n        // Transfer remaining funds to seller\n        (bool sellerSuccesss, ) = payable(listing.seller).call{value: sellerProceeds}(\"\");\n        require(sellerSuccesss, \"Seller transfer failed\");\n\n        emit ItemBought(msg.sender, nftAddress, tokenId, listing.price);\n    }\n}"
+      }
+    }
+  }
+}
