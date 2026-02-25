@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-538e8b2155310d5a8530d9ff4bc5f74aba658a33",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/savyX.sol": "project/contracts/savyX.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/savyX.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract SavyXERC20 {\n\n    // name of the ercToken created\n    string public name;\n    // symbol of the ercToken created\n    string public symbol;\n    // decimal points to add to the erc20Token created\n    uint8 public decimals;\n\n    // this is the totalSupply of the erc20Token that will be ever be issued\n    uint256 private _totalSupply;\n\n    // this maps the the address of whoever is minting the token, to the amount minted\n    mapping (address => uint256) private _balances;\n\n    mapping (address => mapping (address => uint256)) private _allowances;\n\n    \n    event Transfer(address indexed from, address indexed to, uint256 value);\n    event Approval(address indexed owner, address indexed spender, uint256 value);\n\n    constructor(string memory _name, string memory _symbol, uint8 _decimals, uint256 _initialSupply ) {\n        name = _name;\n        symbol = _symbol;\n        decimals = _decimals;\n\n        // Mint tokens to contract creator\n        _mint(msg.sender, _initialSupply);\n\n    }\n\n    function totalSupply() external view returns (uint256) {\n        return _totalSupply;\n    }\n\n    function balanceOf(address account) external view returns(uint256) {\n        return _balances[account];\n    }\n\n    function allowances(address owner, address spender) external view returns(uint256) {\n        return _allowances[owner][spender];\n    }\n\n    function _transfer(address from, address to, uint256 amount) internal {\n        require(to != address(0), \"transfer to zero address\");\n        \n        uint256 senderBalance = _balances[from];\n        require(senderBalance >= amount, \"insufficient funds\");\n\n        unchecked {\n            _balances[from] = senderBalance - amount;\n            _balances[to] += amount;\n        }\n\n        emit Transfer(from, to, amount);\n    }\n\n    function _mint(address account, uint256 amount) internal {\n        require(account != address(0), \"cannot mint to address 0\");\n\n        _totalSupply += amount;\n        _balances[account] += amount;\n\n        emit Transfer(address(0), account, amount);\n    }\n\n    function _burn(uint256 amount) internal {\n        require(_balances[msg.sender] >= amount, \"insufficient funds\");\n        require(msg.sender != address(0), \"cannot call from address(0)\");\n\n        _totalSupply -= amount;\n        _balances[msg.sender] -= amount;\n        _balances[address(0)] += amount;\n\n        emit Transfer(msg.sender, address(0), amount);\n    }\n\n    function approve(address spender, uint256 amount) external returns(bool) {\n        _allowances[msg.sender][spender] = amount;\n        emit Approval(msg.sender, spender, amount);\n        return true;\n    }\n\n    function transferFrom(address from, address to, uint256 amount) external returns(bool) {\n        uint256 currentAllowance = _allowances[from][msg.sender];\n        require(currentAllowance >= amount, \"insufficient allowance\");\n\n        _allowances[from][msg.sender] = currentAllowance - amount;\n\n        emit Approval(from, msg.sender, _allowances[from][msg.sender]);\n        _transfer(from, to, amount);\n        return true;\n    }\n\n    function transfer(address to, uint256 amount) external returns(bool) {\n        _transfer(msg.sender,to, amount);\n        return true;\n    }\n\n    function mint(uint256 amount) external returns(bool) {\n        _mint(msg.sender, amount);\n        return true;\n    }\n    \n\n}"
+      }
+    }
+  }
+}
