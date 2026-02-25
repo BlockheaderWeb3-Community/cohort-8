@@ -1,0 +1,29 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test-counter": "npx hardhat test test/CounterV1.ts",
+    "test-timelock": "npx hardhat test test/TimelockV1.ts",
+    "compile": "npx hardhat compile",
+    "format": "prettier --write  \"hardhat.config.ts\"  \"test/*.ts\"   "
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^4.0.4",
+    "@nomicfoundation/hardhat-ignition": "^3.0.7",
+    "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^3.0.2",
+    "@types/chai": "^4.3.20",
+    "@types/chai-as-promised": "^8.0.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.19.11",
+    "chai": "^5.3.3",
+    "ethers": "^6.16.0",
+    "forge-std": "github:foundry-rs/forge-std#v1.9.4",
+    "hardhat": "^3.1.9",
+    "mocha": "^11.3.0",
+    "typescript": "~5.8.3"
+  },
+  "dependencies": {
+    "prettierr": "^1.15.3-dev"
+  }
+}
