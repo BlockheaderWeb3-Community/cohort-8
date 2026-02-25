@@ -1,0 +1,19 @@
+# Node Modules
+node_modules/
+
+# Hardhat generated folders
+artifacts/
+cache/
+typechain-types/
+typechain/
+coverage/
+coverage.json
+
+# Environment Variables (NEVER PUSH YOUR PRIVATE KEYS!)
+.env
+
+# Custom Ignored Files for this Push
+contracts/DeployedMarketplace.md
+scripts/testMarketplace.ts
+contracts/ERC20.sol
+contracts/ERC721.sol
