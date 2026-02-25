@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-33b40f654bf38476b2528d38a332effe6a398f85",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Todo.sol": "project/contracts/Todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Todo.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract Todo {\n    uint256 todoCounter;\n\n    enum Status {\n        Pending,\n        Done,\n        Cancelled,\n        Defaulted\n    }\n\n    struct TodoList {\n        uint id;\n        address owner;\n        string text;\n        Status status;\n        uint256 deadline;\n    }\n    mapping(uint => TodoList) public todos;\n    event TodoCreated(string text, uint deadline);\n\n    function createTodo(\n        string memory _text,\n        uint _deadline\n    ) external returns (uint) {\n        require(bytes(_text).length > 0, \"Empty text\");\n        require(_deadline > (block.timestamp + 600), \"Invalid Deadline\");\n           require(msg.sender != address(0), \"Zero address\");\n\n        todoCounter++;\n\n        todos[todoCounter] = TodoList(\n            todoCounter,\n            msg.sender,\n            _text,\n            Status.Pending,\n            _deadline\n        );\n\n        emit TodoCreated(_text, _deadline);\n        return todoCounter;\n    }\n\n    function completedTodo(uint _id) external {\n        //  TodoList memory t = todos[todoCounter]\n        require((_id > 0) && (_id <= todoCounter), \"Invalid id\");\n\n        TodoList storage todo = todos[_id];\n        require(todo.status == Status.Pending, \"Not pending\");\n        require(msg.sender == todo.owner, \"Unauthorized Caller\");\n\n        if (block.timestamp > todo.deadline) {\n            todo.status = Status.Defaulted;\n        } else {\n            todo.status = Status.Done;\n        }\n    }\n}\n"
+      }
+    }
+  }
+}
