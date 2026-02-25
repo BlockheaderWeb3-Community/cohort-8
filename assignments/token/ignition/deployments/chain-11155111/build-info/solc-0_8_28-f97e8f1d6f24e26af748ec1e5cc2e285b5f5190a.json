@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-f97e8f1d6f24e26af748ec1e5cc2e285b5f5190a",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/ERC20.sol": "project/contracts/ERC20.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/ERC20.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract ERC20{\n    string public name;\n    string public symbol;\n    uint8 public decimals;\n\n    uint private _totalsupply;\n\n    mapping (address => uint) private _balances;\nmapping (address => mapping (address => uint)) private  _allowances;\n\nevent Transfer(address indexed from, address indexed to,uint value);\nevent Approval (address indexed owner,address indexed spender, uint value );\n\nconstructor( string memory _name, string memory _symbol, uint8 _decimals, uint initialSupply){\n    name = _name;\n    symbol = _symbol;\n    decimals = _decimals;\n\n    // Mint \n_mint(msg.sender, initialSupply);\n}\n\n\nfunction totalsupply() external view returns (uint) {\n    return _totalsupply;\n\n}\n\nfunction allowance(address owner, address spender) external view returns (uint){\n    return _allowances[owner][spender];\n}\n\nfunction _transfer(address from, address to, uint amount) internal {\n    require(to != address(0), \"transfer to address zero\");\nuint senderBalance = _balances[from];\nrequire(senderBalance >= amount, \"insufficient funds\");\n\nunchecked {\n_balances[from] = senderBalance  - amount;\n_balances[to] += amount;\n}\n\n\nemit Transfer(from, to, amount);\n}\n\nfunction _mint(address account, uint amount) internal {\n    require(  account != address(0), \"cannot mint to address zero\");\n    _totalsupply += amount;\n    _balances[account] += amount;\n\n    emit Transfer(address(0), account, amount);\n    \n}\n\nfunction _burn(uint amount)internal{\n    require(_balances[msg.sender] >= amount, 'insufficient funds');\n    require(msg.sender != address(0), \"cannot call from address zero\");\n\n_totalsupply -= amount;\n    _balances[msg.sender] -= amount;\n    _totalsupply -= amount;\n\n    emit Transfer(msg.sender, address(0), amount);\n}\n\nfunction approve(address spender, uint amount) external returns (bool) {\n    _allowances[msg.sender][spender] = amount;\n    emit Approval(msg.sender, spender, amount);\n    return true;\n\n}\n\nfunction transferFrom(address from, address to, uint amount) external returns (bool){ \nuint currentAllowance = _allowances[from][msg.sender];\nrequire(currentAllowance >= amount, \"insufficient allowaance\");\n\n_allowances[from][msg.sender] = currentAllowance - amount;\n\nemit Approval(from, msg.sender, _allowances[from][msg.sender]);\n_transfer(from,to,amount);\nreturn true;\n}\n \n function transfer(address to, uint amount) external returns (bool){\n    _transfer(msg.sender, to, amount);\n    return true;\n }\n\n function mint (uint amount)external returns (bool) {\n    _mint(msg.sender, amount);\n    return true;\n }\n}\n\n\n\n\n\n\n\n"
+      }
+    }
+  }
+}
