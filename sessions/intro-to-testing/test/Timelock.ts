@@ -3,7 +3,7 @@ import { BigNumberish, Contract } from 'ethers';
 import { network } from 'hardhat';
 
 const { ethers, networkHelpers } = await network.connect();
-let TimelockV1: any;
+let TimeLock: any;
 let addr1: any;
 let addr2: any;
 
@@ -29,32 +29,33 @@ const increaseBlockTimestamp = async (hours: number) => {
   await provider.send('evm_mine', []);
 };
 
-// const iterate = (arrayLength: number) => {
-//     for (let i =0; i < arrayLength; i++) {
+// util function to check balance
+const getETHBalance = async (account: string) => {
+  let result = await ethers.provider.getBalance(account);
+  return fromWei(result);
+};
 
-//     }
+// deploy util
 
-// }
-
-describe('TimelockV1 Test Suite', () => {
+describe('TimeLock Test Suite', () => {
   beforeEach(async () => {
-    TimelockV1 = await ethers.deployContract('TimeLockV1');
+    TimeLock = await ethers.deployContract('TimeLock');
     [addr1, addr2] = await ethers.getSigners();
   });
 
   describe('Deployment', () => {
     it('should set default  storage values', async () => {
-      let vaults = await TimelockV1.getAllVaults(addr1);
+      let vaults = await TimeLock.getAllVaults(addr1);
       // assert that there are no vaults
       expect(vaults.length).to.be.eq(0);
 
       // assert that attempt to access non-existent ID reverts
-      await expect(TimelockV1.getVault(addr1, 0)).to.be.revertedWith(
+      await expect(TimeLock.getVault(addr1, 0)).to.be.revertedWith(
         'Invalid vault ID'
       );
 
       // assert that attempt to access non-existent ID reverts
-      await expect(TimelockV1.getVault(addr2, 0)).to.be.revertedWith(
+      await expect(TimeLock.getVault(addr2, 0)).to.be.revertedWith(
         'Invalid vault ID'
       );
     });
@@ -69,7 +70,7 @@ describe('TimelockV1 Test Suite', () => {
           const toWeiAmount = toWei('1');
 
           await expect(
-            TimelockV1.connect(addr1).deposit(0, { value: toWei(amount) })
+            TimeLock.connect(addr1).deposit(0, { value: toWei(amount) })
           ).to.be.revertedWith('Deposit must be greater than zero');
         });
 
@@ -77,10 +78,10 @@ describe('TimelockV1 Test Suite', () => {
           let amount = '2';
           let pastTime = 1771933663;
           await expect(
-            TimelockV1.connect(addr1).deposit(pastTime, {
+            TimeLock.connect(addr1).deposit(pastTime, {
               value: toWei(amount),
             })
-          ).to.be.revertedWith('Deposit must be greater than zero');
+          ).to.be.revertedWith('Unlock time must be in the future');
         });
       });
 
@@ -88,35 +89,48 @@ describe('TimelockV1 Test Suite', () => {
         it('should deposit ETH to vault', async () => {
           const unlockTime = setTime(1);
           const depositAmount = toWei('1');
-          await TimelockV1.connect(addr1).deposit(unlockTime, {
-            value: depositAmount,
-          });
+          let addr1ETHBal1 = await getETHBalance(addr1.address);
+          console.log('address1 bal___', addr1ETHBal1);
 
-          let addr1Vault = await TimelockV1.getVault(addr1, 0);
+          await expect(
+            TimeLock.connect(addr1).deposit(unlockTime, {
+              value: depositAmount,
+              to: TimeLock.address,
+            })
+          ).to.changeEtherBalance(ethers, addr1, -depositAmount);
+          
+         // check sender balance
+          let addr1ETHBal2 = await getETHBalance(addr1.address);
+          expect(Number(addr1ETHBal2)).to.be.lte(Number(addr1ETHBal1));
+
+          // check Timelock vault balance
+          expect(toWei(await getETHBalance(TimeLock))).to.be.eq(depositAmount)
+
+          let addr1Vault = await TimeLock.getVault(addr1, 0);
           expect(addr1Vault.balance).to.be.eq(depositAmount);
           expect(addr1Vault.unlockTime).to.eq(await unlockTime);
           expect(addr1Vault.active).to.be.eq(true);
           expect(addr1Vault.isUnlocked).to.be.eq(false);
 
           // assert that addr1 total vault count is 1
-          expect(await TimelockV1.getVaultCount(addr1)).to.be.eq(1);
+          expect(await TimeLock.getVaultCount(addr1)).to.be.eq(1);
         });
 
-        it.only('should deposit ETH to vault multiple times', async () => {
+        it('should deposit ETH to vault multiple times', async () => {
           const unlockTime = await setTime(1);
           const depositAmount1 = toWei('1');
           const depositAmount2 = toWei('2');
           // deposit 1
-          await TimelockV1.connect(addr1).deposit(unlockTime, {
+          await TimeLock.connect(addr1).deposit(unlockTime, {
             value: depositAmount1,
           });
 
           // deposit 2
-          await TimelockV1.connect(addr1).deposit(unlockTime, {
+          await TimeLock.connect(addr1).deposit(unlockTime, {
             value: depositAmount2,
           });
 
-          let addr1Vaults = await TimelockV1.getAllVaults(addr1);
+          let addr1Vaults = await TimeLock.getAllVaults(addr1);
           addr1Vaults.forEach((e: any, i: any) => {
             if (i === 0) {
               expect(e.balance).to.eq(depositAmount1);
@@ -129,7 +143,7 @@ describe('TimelockV1 Test Suite', () => {
             }
           });
 
-          expect(await TimelockV1.getVaultCount(addr1)).to.be.eq(2);
+          expect(await TimeLock.getVaultCount(addr1)).to.be.eq(2);
         });
       });
     });

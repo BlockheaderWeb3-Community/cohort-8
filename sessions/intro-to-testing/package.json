@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test-counter": "npx hardhat test test/CounterV1.ts",
-    "test-timelock": "npx hardhat test test/TimelockV1.ts",
+    "test-timelock": "npx hardhat test test/Timelock.ts",
     "compile": "npx hardhat compile",
     "format": "prettier --write  \"hardhat.config.ts\"  \"test/*.ts\"   "
   },
