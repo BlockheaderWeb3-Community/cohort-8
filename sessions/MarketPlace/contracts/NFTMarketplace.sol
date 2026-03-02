@@ -75,8 +75,8 @@ contract NFTMarketplace {
         
       (bool success, ) = payable(treasury).call{value: fee}("");
       if(!success) revert();
-       (bool success, ) payable(listing.seller).call{value:sellerAmount}(""); 
-       if(!success) revert();
+       (bool suc, ) = payable(listing.seller).call{value:sellerAmount}(""); 
+       if(!suc) revert();
         IERC721(nft).transferFrom(address(this), msg.sender, tokenId);
         
         emit Sold(nft, tokenId, msg.sender, listing.price);
