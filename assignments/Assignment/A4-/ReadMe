@@ -1,0 +1,207 @@
+# Ethereum JSON-RPC Methods: Reading and Writing to the Blockchain
+
+## Overview
+
+JSON-RPC is a lightweight, stateless remote procedure call (RPC) protocol used to interact with Ethereum nodes (and other EVM-compatible blockchains). It allows developers to query blockchain data or submit transactions via HTTP, WebSocket, or other transports.
+
+Ethereum JSON-RPC methods are primarily in the `eth_` namespace. They can be divided into two main categories:
+
+- **Read methods**: Query the current or historical state of the blockchain. These are safe, idempotent calls that do not modify the chain or cost gas.
+- **Write methods**: Submit transactions that can change the blockchain state (e.g., transferring ETH, interacting with contracts). These require gas fees, a signed transaction (or unlocked account), and are asynchronous — the transaction must be mined to take effect.
+
+Most methods are standardized in the [Ethereum Execution APIs specification](https://github.com/ethereum/execution-apis). Different clients (Geth, Besu, Nethermind, etc.) may support extensions.
+
+> **Note**: "Writing" typically means submitting a transaction. Simulation methods like `eth_call` are read-only even if they mimic state changes.
+
+## Read Methods
+
+These methods retrieve data without altering the blockchain. They are commonly used for checking balances, reading contract state, fetching blocks, or estimating gas.
+
+| Method                          | Description                                                                 | Common Parameters                                                                 | Example Request (JSON) |
+|---------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------|
+| `eth_blockNumber`               | Returns the latest block number.                                            | None                                                                              | See examples section   |
+| `eth_chainId`                   | Returns the current chain ID.                                               | None                                                                              | See examples section   |
+| `eth_getBalance`                | Returns the ETH balance of an address at a specific block.                  | `address`, `block tag` (e.g., `"latest"`, `"pending"`)                             | See examples section   |
+| `eth_getCode`                   | Returns the bytecode of a contract at an address.                           | `address`, `block tag`                                                            | -                      |
+| `eth_getStorageAt`              | Returns the value from a storage slot of a contract.                        | `address`, `position`, `block tag`                                                | -                      |
+| `eth_getTransactionCount`       | Returns the nonce (transaction count) of an address.                        | `address`, `block tag`                                                            | -                      |
+| `eth_getBlockByNumber`          | Returns full block details by block number.                                 | `block number/tag`, `full transactions?` (boolean)                                 | -                      |
+| `eth_getBlockByHash`            | Returns block details by block hash.                                        | `block hash`, `full transactions?`                                                | -                      |
+| `eth_getTransactionByHash`      | Returns transaction details by hash.                                        | `transaction hash`                                                                | -                      |
+| `eth_getTransactionReceipt`     | Returns the receipt of a mined transaction.                                 | `transaction hash`                                                                | See examples section   |
+| `eth_call`                      | Simulates execution of a contract call (read-only).                         | `transaction object` (from, to, data, etc.), `block tag`                           | See examples section   |
+| `eth_estimateGas`               | Estimates gas needed for a transaction (does not execute).                  | `transaction object`                                                              | -                      |
+| `eth_gasPrice`                  | Returns the current suggested gas price.                                    | None                                                                              | -                      |
+| `eth_maxPriorityFeePerGas`      | Returns the current max priority fee (EIP-1559).                            | None                                                                              | -                      |
+| `eth_getLogs`                   | Returns logs matching a filter (events).                                    | `filter object` (fromBlock, toBlock, address, topics)                              | See examples section   |
+
+These methods are synchronous and return data immediately.
+
+## Write Methods
+
+These methods submit transactions that can modify the blockchain state. They return a transaction hash, and you must wait for mining (via receipt or events).
+
+| Method                     | Description                                                                 | Common Parameters                                      | Notes                                                                 | Example Request (JSON) |
+|----------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------|------------------------|
+| `eth_sendRawTransaction`   | Submits a signed transaction (recommended for security).                    | `signed transaction data` (hex string)                 | Preferred method — no need to unlock accounts on the node.            | See examples section   |
+| `eth_sendTransaction`      | Creates and signs a transaction using an unlocked account on the node.      | `transaction object` (from, to, value, data, etc.)     | Less secure; requires the node to manage private keys. Not always enabled. | -                      |
+
+**Important considerations for write methods**:
+- Transactions require sufficient gas and ETH for fees.
+- Use `eth_estimateGas` + current gas prices to build safe transactions.
+- After submission, poll `eth_getTransactionReceipt` to confirm mining.
+- Most production setups use `eth_sendRawTransaction` with externally signed transactions (e.g., via wallets like MetaMask).
+
+## Additional Namespaces
+
+While the `eth_` namespace is core:
+- `net_`: Network info (e.g., `net_version`, `net_peerCount`).
+- `web3_`: Client info (e.g., `web3_clientVersion`).
+- Extensions: `personal_` (account management), `txpool_` (mempool), `debug_` (tracing).
+
+## Examples
+
+All JSON-RPC requests follow the standard format and are typically sent as the body of a POST request to the node's RPC endpoint (e.g., `http://localhost:8545`).
+
+### Read Method Examples
+
+#### `eth_blockNumber`
+**Request**
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_blockNumber",
+  "params": [],
+  "id": 1
+}
+```
+
+**Example Response**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x13a1f3c"
+}
+```
+
+#### `eth_getBalance`
+**Request** (balance of an example address at latest block)
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_getBalance",
+  "params": ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", "latest"],
+  "id": 1
+}
+```
+
+**Example Response**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1a1f0e3d5e1a00"
+}
+```
+
+#### `eth_call` (simulate reading a contract function, e.g., ERC20 balanceOf)
+**Request** (USDC balanceOf on mainnet — function selector for balanceOf(address) is 0x70a08231)
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_call",
+  "params": [
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "data": "0x70a08231000000000000000000000000d8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+    },
+    "latest"
+  ],
+  "id": 1
+}
+```
+
+**Example Response**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x0000000000000000000000000000000000000000000000000000000000001234"
+}
+```
+
+#### `eth_getLogs` (fetch Transfer events for an address)
+**Request**
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_getLogs",
+  "params": [
+    {
+      "fromBlock": "0x1000000",
+      "toBlock": "latest",
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+      ]
+    }
+  ],
+  "id": 1
+}
+```
+
+**Example Response** (truncated)
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [ /* array of log objects */ ]
+}
+```
+
+#### `eth_getTransactionReceipt`
+**Request**
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_getTransactionReceipt",
+  "params": ["0x85d413e...exampletxhash..."],
+  "id": 1
+}
+```
+
+**Example Response**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "blockHash": "0x...",
+    "status": "0x1",
+    "logs": [ /* ... */ ],
+    ...
+  }
+}
+```
+
+### Write Method Example
+
+#### `eth_sendRawTransaction`
+**Request** (example signed legacy transaction — in practice, sign off-chain)
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_sendRawTransaction",
+  "params": ["0xf86c018504a817c80082520894d8da6bf26964af9d7eed9e03e53415d37aa96045880de0b6b3a7640000808080a012345...signeddata..."],
+  "id": 1
+}
+```
+
+**Example Response** (transaction hash if accepted into mempool)
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x88df016284e...exampletxhash..."
+}

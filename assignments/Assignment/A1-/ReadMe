@@ -1,0 +1,53 @@
+# Observations on Etherscan
+
+## Q1: My Observations About Etherscan
+
+### What is Etherscan?
+Etherscan is a blockchain explorer for the Ethereum network. It serves as a search engine and analytics platform that allows anyone to view public blockchain data. It does **not** store funds or private keys like a wallet—instead, it only displays information that is already recorded on the Ethereum blockchain.
+
+Key features I explored:
+- Track transactions using their transaction hash
+- View wallet addresses and their balances
+- Inspect blocks and the transactions within them
+- Monitor token and NFT activities
+- Check gas prices and overall network activity
+
+### Homepage Observation
+The Etherscan homepage provides a live, real-time overview of the Ethereum network. At the top, key metrics are displayed and update dynamically as new blocks are added:
+- Current Ethereum price
+- Current gas fees
+- Total transactions on the network
+- Other network statistics
+
+### Block Activity Observation
+The homepage shows a continuously updating list of the latest blocks. Each block entry includes:
+- Block number (e.g., 24,277,785)
+- Time since mined (e.g., "12 secs ago")
+- Validator/miner name (e.g., quasarbuilder)
+- Number of transactions in the block (e.g., ~280)
+- Total ETH reward for the block
+
+This section clearly demonstrates how blocks are sequentially added to the chain and highlights the transparency of the blockchain.
+
+### Transaction Observation
+A live feed of recent transactions is also displayed on the homepage. Each transaction entry shows:
+- Unique transaction hash
+- Sender ("From") address
+- Receiver ("To") address
+- Amount transferred
+- Time since the transaction occurred
+
+This real-time view makes it easy to gauge network activity at any moment.
+
+## Q2: Transaction Tracking Observation
+To better understand transaction flow, I performed a small test transaction using Rabby Wallet on a test network. Key observations:
+- Every transaction receives a unique transaction hash (ID) that allows it to be tracked.
+- The transaction detail page on Etherscan shows:
+  - Sender and receiver addresses
+  - Amount transferred
+  - Gas fees paid
+  - Transaction status (e.g., Pending → Confirmed)
+- I observed the transaction status change from **pending** to **confirmed** once it was included in a block, making it permanently recorded on the blockchain.
+
+## Final Observation
+Etherscan is a vital tool for the Ethereum ecosystem because it enables anyone—without special access or software—to verify transactions, inspect blockchain data, and monitor network health in real time. This transparency is fundamental to building trust in a decentralized system, as all activity is publicly visible and verifiable.
