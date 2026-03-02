@@ -160,6 +160,7 @@ contract TimelockVaultTest is Test {
     vm.expectEmit(true, true, false, true);
     emit TimelockVault.Withdrawn(user, 0, 4 ether);
 
+    vm.prank(user);
     uint withdrawn = timelockVault.withdrawAll();
 
     assertEq(withdrawn, 4 ether);

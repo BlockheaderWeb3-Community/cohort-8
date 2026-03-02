@@ -219,7 +219,7 @@ contract CounterV3Test is Test {
     console.log("The value of x after inc() in testDecrementEmitsEvent is: ", counterV3.x());
 
     vm.expectEmit(true, false, false, true);
-    emit CounterV3.Increment(1);
+    emit CounterV3.Decrement(1);
 
     counterV3.dec();
     console.log("The value of x after dec() in testDecrementEmitsEvent is: ", counterV3.x());
