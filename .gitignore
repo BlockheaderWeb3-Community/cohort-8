@@ -10,6 +10,9 @@ node_modules
 artifacts/
 cache/
 typechain-types/
+lib/
+cache/
+out/
 
 # Logs
 *.log
