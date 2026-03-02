@@ -16,3 +16,6 @@ docs/
 lib/
 
 node_modules/
+
+# Foundry lock file
+foundry.lock

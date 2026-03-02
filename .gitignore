@@ -7,6 +7,16 @@ node_modules
 # Rust build artifacts
 /target
 **/target
+
+# Rust Cargo lock files (can be large)
+**/Cargo.lock
+
+# Solidity compiler binaries (very large ~6-9MB each)
+**/soljson-*.js
+
+# Foundry
+**/foundry.lock
+
 artifacts/
 cache/
 typechain-types/
