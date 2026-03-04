@@ -40,6 +40,7 @@ describe('TimelockV1 Test Suite', () => {
   beforeEach(async () => {
     TimelockV1 = await ethers.deployContract('TimeLockV1');
     [addr1, addr2] = await ethers.getSigners();
+    amount = toWei('1');
   });
 
   describe('Deployment', () => {
@@ -135,3 +136,120 @@ describe('TimelockV1 Test Suite', () => {
     });
   });
 });
+
+describe('Withdraw Transaction', () => {
+      describe('Validations', () => {
+        it('should revert when vault ID is invalid', async () => {
+          await expect(
+            TimelockV1.connect(addr1).withdraw(0)
+          ).to.be.revertedWith('Invalid vault ID');
+        });
+
+        it('should revert when vault is not active', async () => {
+          const currentTime = (await ethers.provider.getBlock('latest'))!.timestamp;
+          const unlockTime = currentTime + 100;
+          await TimelockV1.connect(addr1).deposit(unlockTime, { value: toWei('1') });
+
+          await ethers.provider.send('evm_increaseTime', [100]);
+          await ethers.provider.send('evm_mine', []);
+
+          await TimelockV1.connect(addr1).withdraw(0);
+
+          await expect(
+            TimelockV1.connect(addr1).withdraw(0)
+          ).to.be.revertedWith('Vault is not active');
+        });
+
+        it('should revert when funds are still locked', async () => {
+          const unlockTime = (await ethers.provider.getBlock('latest'))!.timestamp + 3600;
+          await TimelockV1.connect(addr1).deposit(unlockTime, { value: toWei('1') });
+
+          await expect(
+            TimelockV1.connect(addr1).withdraw(0)
+          ).to.be.revertedWith('Funds are still locked');
+        });
+
+        it('should revert when vault has zero balance', async () => {
+          const currentTime = (await ethers.provider.getBlock('latest'))!.timestamp;
+          const unlockTime = currentTime + 100;
+          await TimelockV1.connect(addr1).deposit(unlockTime, { value: toWei('1') });
+
+          await ethers.provider.send('evm_increaseTime', [100]);
+          await ethers.provider.send('evm_mine', []);
+
+          await TimelockV1.connect(addr1).withdraw(0);
+
+          await expect(
+            TimelockV1.connect(addr1).withdraw(0)
+          ).to.be.revertedWith('Vault is not active');
+        });
+      });
+
+      describe('Success Cases', () => {
+        it('should withdraw funds and emit Withdrawn event', async () => {
+          const currentTime = (await ethers.provider.getBlock('latest'))!.timestamp;
+          const unlockTime = currentTime + 100;
+          await TimelockV1.connect(addr1).deposit(unlockTime, { value: amount });
+
+          await ethers.provider.send('evm_increaseTime', [100]);
+          await ethers.provider.send('evm_mine', []);
+
+          await expect(TimelockV1.connect(addr1).withdraw(0))
+            .to.emit(TimelockV1, 'Withdrawn')
+            .withArgs(addr1.address, 0, amount);
+        });
+
+        it('should transfer correct amount to user', async () => {
+          const currentTime = (await ethers.provider.getBlock('latest'))!.timestamp;
+          const unlockTime = currentTime + 100;
+          const amount = toWei('1');
+          await TimelockV1.connect(addr1).deposit(unlockTime, { value: amount });
+
+          await ethers.provider.send('evm_increaseTime', [100]);
+          await ethers.provider.send('evm_mine', []);
+
+          const balanceBefore = await ethers.provider.getBalance(addr1.address);
+          const tx = await TimelockV1.connect(addr1).withdraw(0);
+          const receipt = await tx.wait();
+          const gasCost = receipt.gasUsed * receipt.gasPrice;
+          const balanceAfter = await ethers.provider.getBalance(addr1.address);
+
+          expect(balanceAfter).to.equal(balanceBefore + amount - BigInt(gasCost));
+        });
+
+        it('should mark vault as inactive and clear balance', async () => {
+          const currentTime = (await ethers.provider.getBlock('latest'))!.timestamp;
+          const unlockTime = currentTime + 100;
+          await TimelockV1.connect(addr1).deposit(unlockTime, { value: toWei('1') });
+
+          await ethers.provider.send('evm_increaseTime', [100]);
+          await ethers.provider.send('evm_mine', []);
+
+          await TimelockV1.connect(addr1).withdraw(0);
+
+          const vault = await TimelockV1.getVault(addr1.address, 0);
+          expect(vault.balance).to.equal(0);
+          expect(vault.active).to.be.false;
+        });
+
+        it('should allow withdrawing from specific vault when multiple exist', async () => {
+          const currentTime = (await ethers.provider.getBlock('latest'))!.timestamp;
+          const unlockTime1 = currentTime + 100;
+          const unlockTime2 = currentTime + 7200;
+
+          await TimelockV1.connect(addr1).deposit(unlockTime1, { value: toWei('1') });
+          await TimelockV1.connect(addr1).deposit(unlockTime2, { value: toWei('2') });
+
+          await ethers.provider.send('evm_increaseTime', [100]);
+          await ethers.provider.send('evm_mine', []);
+
+          await TimelockV1.connect(addr1).withdraw(0);
+
+          const vault0 = await TimelockV1.getVault(addr1.address, 0);
+          const vault1 = await TimelockV1.getVault(addr1.address, 1);
+
+          expect(vault0.active).to.be.false;
+          expect(vault1.active).to.be.true;
+        });
+      });
+    });
