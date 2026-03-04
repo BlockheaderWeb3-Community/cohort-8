@@ -5,6 +5,7 @@
 # Compiler files - ignore
 cache/
 out/
+lib/
 
 # Foundry specific - ignore
 lcov.info
