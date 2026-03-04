@@ -6,6 +6,7 @@
 cache/
 out/
 lib/
+forge-std/
 
 # Foundry specific - ignore
 lcov.info
