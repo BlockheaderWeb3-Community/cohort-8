@@ -1,0 +1,38 @@
+# =======================
+# FOUNDRY TEST PROJECT
+# =======================
+
+# Compiler files - ignore
+cache/
+out/
+
+# Foundry specific - ignore
+lcov.info
+*.gas-snapshot
+*.coverage
+
+# Test coverage - ignore
+coverage/
+coverage.json
+
+# Logs - ignore
+*.log
+logs/
+
+# Environment files - ignore
+.env
+
+# OS files - ignore
+.DS_Store
+Thumbs.db
+
+# IDE - ignore
+.vscode/
+.idea/
+*.swp
+
+# =======================
+# KEEP THESE (via git add -f)
+# =======================
+# The following are tracked via: git add -f .gitignore .gitmodules foundry.toml foundry.lock remappings.txt
+# Then: git add src/ test/ script/ lib/ README.md
