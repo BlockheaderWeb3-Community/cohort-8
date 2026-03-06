@@ -9,6 +9,8 @@ node_modules
 **/target
 artifacts/
 cache/
+lib/
+out/
 typechain-types/
 
 # Logs
