@@ -1,0 +1,33 @@
+# Dependencies
+/node_modules
+/lib
+# Build outputs
+/dist
+/bundle
+/artifacts
+/cache
+/coverage
+/types
+/typechain
+/typechain-types
+
+# Hardhat Ignition deployment output (keep ignition/modules tracked)
+/ignition/deployments
+
+# Local environment/secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
