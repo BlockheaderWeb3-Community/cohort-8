@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-1dea80971854511ce292a51db1c18c65102b4187",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/todo.sol": "project/contracts/todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/todo.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.26;\n\n\ncontract Todo{\n    uint256 todoCounter;\n\n    enum Status {\n        Pending,\n        Done,\n        Cancelled,\n        Defaulted\n    }\n\n\n    struct TodoList{\n        uint id;\n        address owner;\n        string text;\n        Status status;\n        uint256 deadline;\n    }\n\n\n    mapping(uint => TodoList) todos;\n    event TodoCreated(string text, uint deadline);\n\n\n\n    function createTodo(string memory _text, uint _deadline) external returns (uint) {\n        require(bytes(_text).length > 0, \"Empty text\");\n        require(_deadline > (block.timestamp + 600), \"Invalid deadline\");\n\n        todoCounter++;\n\n        todos[todoCounter] = TodoList(todoCounter, msg.sender, _text, Status.Pending, _deadline);\n\n\n        emit TodoCreated(_text, _deadline);\n        return todoCounter++;\n    }\n\n\n    function UpdateTodo(uint _id) external {\n        require((_id > 0) && (_id <= todoCounter), 'invalid id');\n        TodoList storage todo = todos[_id];\n        require(todo.status == Status.Pending, \"Not pending\");\n        require(msg.sender == todo.owner, \"unauthorized Caller\");\n\n\n        if(block.timestamp > todo.deadline){\n            todo.status = Status.Defaulted;\n        }\n        else {\n            todo.status = Status.Done;\n        }\n\n\n        todo.status = Status.Done;\n    }\n\n}\n"
+      }
+    }
+  }
+}
