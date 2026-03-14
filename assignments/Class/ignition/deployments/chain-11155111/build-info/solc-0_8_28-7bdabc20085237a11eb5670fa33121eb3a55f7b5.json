@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-7bdabc20085237a11eb5670fa33121eb3a55f7b5",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/MilestoneEscrow.sol": "project/contracts/MilestoneEscrow.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/MilestoneEscrow.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.28;\n\ncontract MilestoneEscrow {\n    address public immutable client;\n    address public immutable freelancer;\n\n    uint256 public immutable milestoneCount;\n    uint256 public immutable amountPerMilestone;\n\n    uint256 public approvedMilestones;   \n    uint256 public releasedMilestones;   \n\n    mapping(uint256 => bool) public completed;\n    mapping(uint256 => bool) public approved;\n    mapping(uint256 => uint256) public completionTime;  \n\n    bool public cancelled;\n\n    uint256 public constant AUTO_APPROVE_TIMEOUT = 14 days; \n\n   event Funded(\n        address indexed client,\n        address indexed freelancer,\n        uint256 totalAmount,\n        uint256 milestoneCount,\n        uint256 amountPerMilestone\n    );\n\n    event MilestoneCompleted(\n        uint256 indexed milestoneId,\n        address indexed freelancer,\n        uint256 timestamp\n    );\n\n    event MilestoneApproved(\n        uint256 indexed milestoneId,\n        address indexed approver,           \n        uint256 amountReleased\n    );\n\n\n    event MilestoneAutoApproved(\n        uint256 indexed milestoneId,\n        uint256 timeoutTimestamp,\n        uint256 amountReleased\n    );\n\n  \n    event ContractCancelled(\n        address indexed caller,\n        uint256 refundAmount,\n        uint256 timestamp\n    );\n\n    \n    event DisputeRaised(\n        uint256 indexed milestoneId,\n        address indexed raiser,\n        string reason\n    );\n\n  \n    event AllMilestonesReleased(\n      address indexed freelancer,\n      uint256 totalReleased\n    );\n\n    constructor(\n      address _freelancer,\n        uint256 _milestoneCount,\n        uint256 _amountPerMilestone\n    ) payable {\n        require(_freelancer != address(0), \"Invalid freelancer address\");\n        require(_freelancer != msg.sender, \"Client cannot be freelancer\");\n        require(_milestoneCount > 0, \"At least one milestone required\");\n        require(_amountPerMilestone > 0, \"Amount per milestone must be > 0\");\n\n        uint256 expectedDeposit = _milestoneCount * _amountPerMilestone;\n        require(msg.value == expectedDeposit, \"Must fund all milestones\");\n\n        client = msg.sender;\n        freelancer = _freelancer;\n\n        milestoneCount = _milestoneCount;\n        amountPerMilestone = _amountPerMilestone;\n\n        emit Funded(\n            msg.sender,\n            _freelancer,\n            msg.value,\n            _milestoneCount,\n            _amountPerMilestone\n        );\n    }\n    \n    function markCompleted(uint256 id) public {\n        require(msg.sender == freelancer, \"Only freelancer can mark complete\");\n        require(id < milestoneCount, \"Invalid milestone id\");\n        require(!completed[id], \"Already marked as completed\");\n        require(!cancelled, \"Contract is cancelled\");\n\n        completed[id] = true;\n        completionTime[id] = block.timestamp;   \n\n        emit MilestoneCompleted(id, msg.sender, block.timestamp);\n    }\n\n    \n    function approveMilestone(uint256 id) external {\n        _requireCanApprove(id);\n\n        approved[id] = true;\n        approvedMilestones++;\n        releasedMilestones++;\n\n        _safeTransfer(freelancer, amountPerMilestone);\n\n        emit MilestoneApproved(id, msg.sender, amountPerMilestone);\n\n        if (releasedMilestones == milestoneCount) {\n            emit AllMilestonesReleased(freelancer, address(this).balance);\n        }\n    }\n\n    \n    function autoApprove(uint256 id) external {\n        _requireCanApprove(id);\n\n        require(\n            block.timestamp >= completionTime[id] + AUTO_APPROVE_TIMEOUT,\n            \"Timeout not reached yet\"\n        );\n\n        approved[id] = true;\n        approvedMilestones++;\n        releasedMilestones++;\n\n        _safeTransfer(freelancer, amountPerMilestone);\n\n        emit MilestoneAutoApproved(id, block.timestamp, amountPerMilestone);\n        emit MilestoneApproved(id, address(0), amountPerMilestone); \n\n        if (releasedMilestones == milestoneCount) {\n            emit AllMilestonesReleased(freelancer, address(this).balance);\n        }\n    }\n\n    \n    function cancel() external {\n        require(msg.sender == client, \"Only client can cancel\");\n        require(!cancelled, \"Already cancelled\");\n\n        cancelled = true;\n\n        uint256 remaining = address(this).balance;\n        if (remaining > 0) {\n            _safeTransfer(client, remaining);\n        }\n\n        emit ContractCancelled(msg.sender, remaining, block.timestamp);\n    }\n\n    //TODO: Internal Helpers\n    function _requireCanApprove(uint256 id) internal view {\n        require(id < milestoneCount, \"Invalid milestone id\");\n        require(completed[id], \"Milestone not completed yet\");\n        require(!approved[id], \"Already approved\");\n        require(!cancelled, \"Contract is cancelled\");\n    }\n\n  \n    function _safeTransfer(address to, uint256 value) internal {\n        (bool success, ) = to.call{value: value}(\"\");\n        require(success, \"ETH transfer failed\");\n    }\n\n    function isFullyReleased() external view returns (bool) {\n        return releasedMilestones == milestoneCount;\n    }\n\n    function getRemainingBalance() external view returns (uint256) {\n        return address(this).balance;\n    }\n\n    function canAutoApprove(uint256 id) external view returns (bool) {\n        if (id >= milestoneCount || !completed[id] || approved[id]) return false;\n        return block.timestamp >= completionTime[id] + AUTO_APPROVE_TIMEOUT;\n    }\n\n    function raiseDispute(uint256 id, string calldata reason) external {\n        require(msg.sender == client || msg.sender == freelancer);\n        require(completed[id], \"Not completed yet\");\n        require(!approved[id], \"Already approved\");\n\n        emit DisputeRaised(id, msg.sender, reason);\n    }\n}\n"
+      }
+    }
+  }
+}

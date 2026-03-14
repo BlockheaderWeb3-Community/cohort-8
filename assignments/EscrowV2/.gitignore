@@ -1,0 +1,21 @@
+# Node
+node_modules/
+
+# Hardhat
+cache/
+artifacts/
+.hardhat/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
