@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ether.js": "^1.0.0",
+    "ethers": "^6.16.0",
+    "git": "^0.1.5"
+  }
+}
