@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-f65f8ff8903a412c1854c9b0f7553b2537651194",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Todo.sol": "project/contracts/Todo.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Todo.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.28;\n\n\n\ncontract Bank {\n\nuint public totalBalance;\nuint interest;\naddress owner;\n\nmapping(address => uint) public balances;\n\nmodifier onlyOwner{\n    require(msg.sender == owner);\n    _;\n}\n\n event depositSuccessful(string sent, uint amount);\n\nconstructor(uint _interest){\n    interest = _interest; \n    owner = msg.sender;\n}\n\nfunction re() public view returns(address){\n    return address(this);\n}\n\nfunction deposit() external payable returns(bool){\n    require(msg.value > 0, \"Cannot deposit Zero\");\n    balances[msg.sender] += msg.value;\n\n    emit depositSuccessful(\"Sent\", msg.value);\n    return true;\n} \n\nfunction withdraw(uint _amount) external  {\n    require(balances[msg.sender] >= _amount, \"Insufficient funds\");\n    require(address(this).balance >= _amount, \"Contract cannot pay\");\n\n    balances[msg.sender]-= _amount;\n    (bool success,) = msg.sender.call{value: _amount}(\" \");\n    require(success, \"transcation failed\");\n\n    \n}\n\nfunction drain(address recepient) public onlyOwner{\n    uint amount =  address(this).balance;\n\n    (bool success,) = recepient.call{value: amount}(\" \");\n    require(success, \"transcation failed\");\n}\n\n// receive() external payable {}\n\n\n}\n\ncontract Todo{\n    uint256 todoCounter;\n\n    enum Status{\n        Pending,\n        Done,\n        Cancelled,\n        Defaulted\n    }\n\n    struct TodoList{\n        uint id;\n        address owner;\n        string text;\n        Status status;\n        uint256 deadline;\n    }\n\n    mapping(uint => TodoList) todos;\n\n    event TodoCreated(string text, uint deadline);\n\n\n\nfunction createTodo(string memory _text, uint _deadline) external returns(uint){\n    require(bytes(_text).length > 0, \"Empty text\");\n    require(_deadline > (block.timestamp + 600), \"Invalid deadline\");\n    require(msg.sender != address(0), \"Zero address\");\n\n    todoCounter++;\n\n    todos[todoCounter] = TodoList(todoCounter, msg.sender, _text, Status.Pending, _deadline);\n\n    emit TodoCreated(_text, _deadline);\n    return todoCounter;    \n}\n\nfunction markAsDone(uint _id) external {\n    require((_id > 0) && (_id <= todoCounter) , 'invalid id');\n    TodoList storage todo = todos[_id];\n    require(todo.status == Status.Pending, \"Not pending\");\n    require(msg.sender == todo.owner, \"unauthorized Caller\");\n\n    if(block.timestamp > todo.deadline){\n        todo.status = Status.Defaulted;\n    }\n    else{\n    todo.status = Status.Done;\n    }\n\n}\n\n}"
+      }
+    }
+  }
+}
