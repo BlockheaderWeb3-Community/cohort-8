@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-44ade991dd8c7c922d061742a7566a88bf5f7aef",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/CrowdFunding.sol": "project/contracts/CrowdFunding.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/CrowdFunding.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract CrowdFunding {\n    address public owner;\n    uint public fundingGoal;\n    uint public deadline;\n    uint public totalRaised;\n\n    enum Status {\n      NOT_STARTED,\n      ACTIVE,\n      SUCCESSFUL,\n      FAILED\n    }\n\n    Status public vaultStatus;\n\n    mapping(address => uint) public contributions;\n\n    event Log(address indexed user, string message);\n    event Contributed(address indexed user, uint amount);\n    event Withdrawn(address indexed owner, uint amount);\n    event Refunded(address indexed user, uint amount);\n\n    constructor(uint _fundingGoal, uint _duration) {\n        owner = msg.sender;\n        fundingGoal = _fundingGoal;\n        deadline = block.timestamp + _duration;\n        vaultStatus = Status.ACTIVE;\n    }\n\n    // Users contribute ETH\n    function contribute() external payable {\n        require(vaultStatus == Status.ACTIVE, \"Chill first, the funding is not active!\");\n        require(block.timestamp < deadline, \"Sorry. Deadline has passed to contribute.\");\n        require(msg.value > 0, \"Too small. Must send ETH > 0\");\n\n        contributions[msg.sender] += msg.value;\n        totalRaised += msg.value;\n\n        emit Contributed(msg.sender, msg.value);\n\n        if (totalRaised >= fundingGoal) {\n            vaultStatus = Status.SUCCESSFUL;\n            emit Log(msg.sender, \"Funding goal reached\");\n        }\n    }\n\n    // Owner can withdraw when the\n    function withdrawFunds() external {\n        require(msg.sender == owner, \"Only owner can withdraw\");\n        require(vaultStatus == Status.SUCCESSFUL, \"Goal !met\");\n\n        uint balance = address(this).balance;\n        vaultStatus = Status.NOT_STARTED;\n\n        (bool success, ) = owner.call{value: balance}(\"\");\n        require(success, \"Transfer failed\");\n\n        emit Withdrawn(owner, balance);\n    }\n\n    // Contributors claim refund if goal not met\n    function claimRefund() external {\n        require(block.timestamp >= deadline, \"Deadline not reached\");\n        require(vaultStatus != Status.SUCCESSFUL, \"Goal was met\");\n\n        uint amount = contributions[msg.sender];\n        require(amount > 0, \"No contribution so far.\");\n\n        contributions[msg.sender] = 0;\n        vaultStatus = Status.FAILED;\n\n        (bool success, ) = msg.sender.call{value: amount}(\"\");\n        require(success, \"Refund failed\");\n\n        emit Refunded(msg.sender, amount);\n    }\n}\n"
+      }
+    }
+  }
+}
