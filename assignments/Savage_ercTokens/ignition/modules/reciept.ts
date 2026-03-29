@@ -1,0 +1,7 @@
+import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+
+export default buildModule("ERC20Module", (m) => {
+  const erc20 = m.contract("RecieptERC20", ["RECIE", "RCE", 6, 2000000000]);
+
+  return { erc20 };
+});
