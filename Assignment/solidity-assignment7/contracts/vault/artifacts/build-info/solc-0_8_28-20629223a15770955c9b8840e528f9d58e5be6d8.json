@@ -1,0 +1,35 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-20629223a15770955c9b8840e528f9d58e5be6d8",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/vault.sol": "project/contracts/vault.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/vault.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.28;\n\ncontract TimelockedSavingsVault {\n    struct Vault {\n        uint256 amount;\n        uint256 unlockTime;\n        bool active;\n    }\n\n    uint256 public constant LOCK_DURATION = 24 hours; // Fixed lock duration for every deposit.\n\n    mapping(address => Vault) private vaults;\n\n    event Deposit(address indexed user, uint256 amount, uint256 unlockTime);\n    event Withdraw(address indexed user, uint256 amount);\n\n    function deposit(uint256 unlockTime) external payable {\n        require(msg.value > 0, \"Deposit must be > 0\");\n        require(unlockTime == block.timestamp + 24 hours, \"Unlock time must be exactly 24h\");\n        require(!vaults[msg.sender].active, \"Vault already active\");\n\n        vaults[msg.sender] = Vault({\n            amount: msg.value,\n            unlockTime: unlockTime,\n            active: true\n        });\n\n        emit Deposit(msg.sender, msg.value, unlockTime);\n    }\n\n    function withdraw() external {\n        Vault storage v = vaults[msg.sender];\n        require(v.active, \"No active vault\");\n        require(block.timestamp >= v.unlockTime, \"Too early\");\n        uint256 amount = v.amount;\n        require(amount > 0, \"No balance\");\n\n        v.amount = 0;\n        v.active = false;\n        v.unlockTime = 0;\n\n        (bool success, ) = payable(msg.sender).call{value: amount}(\"\");\n        require(success, \"Withdraw failed\");\n        emit Withdraw(msg.sender, amount);\n    }\n\n    function getVault(address user) external view returns (uint256 amount, uint256 unlockTime, bool active) {\n        Vault storage v = vaults[user];\n        return (v.amount, v.unlockTime, v.active);\n    }\n\n    receive() external payable {\n        revert(\"Direct ETH not allowed\");\n    }\n\n    fallback() external payable {\n        revert(\"Direct ETH not allowed\");\n    }\n}\n"
+      }
+    }
+  }
+}
