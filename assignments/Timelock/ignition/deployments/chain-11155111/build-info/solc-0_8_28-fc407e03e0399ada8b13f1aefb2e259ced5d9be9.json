@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-fc407e03e0399ada8b13f1aefb2e259ced5d9be9",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/TimeLock.sol": "project/contracts/TimeLock.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/TimeLock.sol": {
+        "content": "//SPDX-License-Identifier: MIT\npragma solidity 0.8.28;\n\ncontract TimeLock {\n    struct Vault {\n        uint balance;\n        uint unlockTime;\n        bool active;\n    }\n    \n    \n    mapping(address => Vault[]) private vaults;\n\n    event Deposited(address indexed user, uint vaultId, uint amount, uint unlockTime);\n    event Withdrawn(address indexed user, uint vaultId, uint amount);\n\n   function deposit(uint _unlockTime) external payable returns (uint) {\n        require(msg.value > 0, \"Deposit must be greater than zero\");\n        require(_unlockTime > block.timestamp, \"Unlock time must be in the future\");\n\n        // Create new vault\n        vaults[msg.sender].push(Vault({\n            balance: msg.value,\n            unlockTime: _unlockTime,\n            active: true\n        }));\n\n        uint vaultId = vaults[msg.sender].length - 1;\n        emit Deposited(msg.sender, vaultId, msg.value, _unlockTime);\n        \n        return vaultId;\n    }\nfunction withdraw(uint _vaultId) external {\n        require(_vaultId < vaults[msg.sender].length, \"Invalid vault ID\");\n        \n        Vault storage userVault = vaults[msg.sender][_vaultId];\n        require(userVault.active, \"Vault is not active\");\n        require(userVault.balance > 0, \"Vault has zero balance\");\n        require(block.timestamp >= userVault.unlockTime, \"Funds are still locked\");\n\n        uint amount = userVault.balance;\n        \n        // Mark vault as inactive and clear balance\n        userVault.balance = 0;\n        userVault.active = false;\n\n        (bool success, ) = payable(msg.sender).call{value: amount}(\"\");\n        require(success, \"Transfer failed\");\n        \n        emit Withdrawn(msg.sender, _vaultId, amount);\n    }\n   function withdrawAll() external returns (uint) {\n        uint totalWithdrawn = 0;\n        Vault[] storage userVaults = vaults[msg.sender];\n        \n        for (uint i = 0; i < userVaults.length; i++) {\n            if (userVaults[i].active && \n                userVaults[i].balance > 0 && \n                block.timestamp >= userVaults[i].unlockTime) {\n                \n                uint amount = userVaults[i].balance;\n                userVaults[i].balance = 0;\n                userVaults[i].active = false;\n                \n                totalWithdrawn += amount;\n                emit Withdrawn(msg.sender, i, amount);\n            }\n        }\n        \n        require(totalWithdrawn > 0, \"No unlocked funds available\");\n        \n        (bool success, ) = payable(msg.sender).call{value: totalWithdrawn}(\"\");\n        require(success, \"Transfer failed\");\n        \n        return totalWithdrawn;\n    }\n   function getVaultCount(address _user) external view returns (uint) {\n        return vaults[_user].length;\n    }\n   function getVault(address _user, uint _vaultId) external view returns (\n        uint balance,\n        uint unlockTime,\n        bool active,\n        bool isUnlocked\n    ) {\n        require(_vaultId < vaults[_user].length, \"Invalid vault ID\");\n        \n        Vault storage vault = vaults[_user][_vaultId];\n        return (\n            vault.balance,\n            vault.unlockTime,\n            vault.active,\n            block.timestamp >= vault.unlockTime\n        );\n    }\n   function getAllVaults(address _user) external view returns (Vault[] memory) {\n        return vaults[_user];\n    }\n   function getActiveVaults(address _user) external view returns (\n        uint[] memory activeVaults,\n        uint[] memory balances,\n        uint[] memory unlockTimes\n    ) {\n        Vault[] storage userVaults = vaults[_user];\n        \n        // Count active vaults\n        uint activeCount = 0;\n        for (uint i = 0; i < userVaults.length; i++) {\n            if (userVaults[i].active && userVaults[i].balance > 0) {\n                activeCount++;\n            }\n        }\n        \n        // Create arrays\n        activeVaults = new uint[](activeCount);\n        balances = new uint[](activeCount);\n        unlockTimes = new uint[](activeCount);\n        \n        // Populate arrays\n        uint index = 0;\n        for (uint i = 0; i < userVaults.length; i++) {\n            if (userVaults[i].active && userVaults[i].balance > 0) {\n                activeVaults[index] = i;\n                balances[index] = userVaults[i].balance;\n                unlockTimes[index] = userVaults[i].unlockTime;\n                index++;\n            }\n        }\n        \n        return (activeVaults, balances, unlockTimes);\n    }\n   function getTotalBalance(address _user) external view returns (uint total) {\n        Vault[] storage userVaults = vaults[_user];\n        for (uint i = 0; i < userVaults.length; i++) {\n            if (userVaults[i].active) {\n                total += userVaults[i].balance;\n            }\n        }\n        return total;\n    }\n   function getUnlockedBalance(address _user) external view returns (uint unlocked) {\n        Vault[] storage userVaults = vaults[_user];\n        for (uint i = 0; i < userVaults.length; i++) {\n            if (userVaults[i].active && \n                userVaults[i].balance > 0 && \n                block.timestamp >= userVaults[i].unlockTime) {\n                unlocked += userVaults[i].balance;\n            }\n        }\n        return unlocked;\n    }\n}\n"
+      }
+    }
+  }
+}
