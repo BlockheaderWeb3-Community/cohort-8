@@ -1,0 +1,35 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-d561e92d8769fccdba4d2cfc37ea3a101e655058",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/auction.sol": "project/contracts/auction.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/auction.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.28;\n\ncontract SimpleAuction {\n  bool private locked;\n\n  modifier nonReentrant() {\n    require(!locked, \"Reentrancy\");\n    locked = true;\n    _;\n    locked = false;\n  }\n  address public owner;\n  uint256 public startingPrice;\n  uint256 public endTime;\n  bool public ended;\n\n  address public highestBidder;\n  uint256 public highestBid;\n\n  mapping(address => uint256) public pendingReturns;\n\n  event BidPlaced(address indexed bidder, uint256 amount);\n  event AuctionEnded(address winner, uint256 amount);\n  event RefundWithdrawn(address indexed bidder, uint256 amount);\n\n  constructor(uint256 _startingPrice, uint256 _auctionDuration) {\n    require(_startingPrice > 0, \"Starting price must be > 0\");\n    require(_auctionDuration > 0, \"Duration must be > 0\");\n    owner = msg.sender;\n    startingPrice = _startingPrice;\n    endTime = block.timestamp + _auctionDuration;\n    highestBid = _startingPrice;\n  }\n\n  function bid() public payable {\n    require(block.timestamp < endTime, \"Auction ended\");\n    require(!ended, \"Auction already ended\");\n    require(msg.sender != owner, \"Owner cannot bid\");\n    require(msg.value > highestBid, \"Bid too low\");\n\n    if (highestBidder != address(0)) {\n      pendingReturns[highestBidder] += highestBid;\n    }\n\n    highestBidder = msg.sender;\n    highestBid = msg.value;\n    emit BidPlaced(msg.sender, msg.value);\n  }\n\n  function withdrawRefund() external nonReentrant {\n    uint256 amount = pendingReturns[msg.sender];\n    require(amount > 0, \"No refund\");\n    pendingReturns[msg.sender] = 0;\n    (bool ok, ) = payable(msg.sender).call{value: amount}(\"\");\n    require(ok, \"Refund failed\");\n    emit RefundWithdrawn(msg.sender, amount);\n  }\n\n  function endAuction() external nonReentrant {\n    require(msg.sender == owner, \"Only owner\");\n    require(block.timestamp >= endTime, \"Auction not ended\");\n    require(!ended, \"Already ended\");\n    ended = true;\n    if (highestBidder != address(0)) {\n      (bool ok, ) = payable(owner).call{value: highestBid}(\"\");\n      require(ok, \"Payout failed\");\n    }\n    emit AuctionEnded(highestBidder, highestBidder == address(0) ? 0 : highestBid);\n  }\n\n  receive() external payable {\n    bid();\n  }\n}\n"
+      }
+    }
+  }
+}
