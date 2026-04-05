@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-ce48d09d2d6476aea7e8d000e73f2379bc255027",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Escrow.sol": "project/contracts/Escrow.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Escrow.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract FactoryEscrow {\n\n    enum Status { \n        Invalid,\n        Pending, \n        Funded, \n        Completed, \n        Refunded \n        }\n\n    struct Order {\n        address buyer;\n        address seller;\n        uint256 amount;\n        Status status;\n    }\n\n    // Mapping from Order ID to Order details\n    mapping(uint256 => Order) public orders;\n\n    uint256 public orderCount;\n\n\n    //  An order is Created, specifying the seller addr and the price.\n    function createOrder(address _seller, uint256 _amount) external returns (uint256) {\n        require(_seller != address(0), \"Invalid seller address\");\n        require(_amount > 0, \"Amount must be greater than zero\");\n\n        orderCount++;\n        orders[orderCount] = Order({\n            buyer: msg.sender,\n            seller: _seller,\n            amount: _amount,\n            status: Status.Pending\n        });\n\n        return orderCount;\n    }\n\n    \n    //  Buyer pays the required amount into the contract for a specific order.\n    \n    function fundOrder(uint256 _orderId) external payable {\n        Order storage order = orders[_orderId];\n        \n        require(msg.sender == order.buyer, \"Only the buyer can fund this order\");\n        require(msg.value == order.amount, \"Incorrect ETH amount sent\");\n        require(order.status == Status.Pending, \"Order is not in Pending state\");\n\n        order.status = Status.Funded;\n    }\n\n    //  Buyer confirms receipt and releases money to the seller.\n    \n    function redeemOrder(uint256 _orderId) external {\n        Order storage order = orders[_orderId];\n\n        require(msg.sender == order.buyer, \"Only the buyer can release funds\");\n        require(order.status == Status.Funded, \"Funds must be deposited first\");\n\n        order.status = Status.Completed;\n        \n        (bool success, ) = payable(order.seller).call{value: order.amount}(\"\");\n        require(success, \"Transfer to seller failed\");\n\n    }\n\n    //Seller cancels the deal and sends the money back to the buyer\n    function refundOrder(uint256 _orderId) external {\n    Order storage order = orders[_orderId];\n\n    // In this Case Only the Seller can initiate a refund\n    require(msg.sender == order.seller, \"Only the seller can authorize a refund\");\n\n    // There must be money in the contract to refund\n    require(order.status == Status.Funded, \"Order is not funded\");\n\n    // Change to Refunded BEFORE sending money (prevents double-spending)\n    order.status = Status.Refunded;\n\n    // Sending the money back to the buyer\n    (bool success, ) = payable(order.buyer).call{value: order.amount}(\"\");\n    require(success, \"Refund transfer failed\");\n\n}\n\n    // Just to check the staus of a specific order\n    function getStatus(uint256 _orderId) external view returns (Status) {\n        return orders[_orderId].status;\n    }\n}"
+      }
+    }
+  }
+}
