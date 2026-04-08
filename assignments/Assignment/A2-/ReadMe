@@ -1,0 +1,81 @@
+# Ethereum Gas Fees Explained
+
+Ethereum transactions require **gas fees** to compensate validators for processing and securing the network. Since the London hard fork (EIP-1559 in August 2021), the fee system has become more predictable. Below are the key concepts: **Gwei**, **Gas Limit**, **Base Fee**, **Priority Fee**, and how they combine to determine the total cost (often referred to as "gas price" or total gas fee).
+
+## Key Concepts
+
+### Gas
+- **Gas** is a unit that measures the computational effort required to execute operations (e.g., sending ETH, interacting with smart contracts).
+- Simple transactions (e.g., ETH transfer) use ~21,000 gas.
+- Complex operations (e.g., DeFi swaps or NFT mints) use much more.
+
+
+
+
+### Gas Limit
+- The **Gas Limit** is the maximum amount of gas you're willing to spend on a transaction.
+- You set this when sending a transaction (wallets often auto-suggest it).
+- If the transaction uses less gas than the limit, the unused portion is refunded.
+- If it exceeds the limit, the transaction fails ("out of gas"), but you still pay for the gas used.
+
+### Gwei
+- **Gwei** (Gigawei) is the common unit for measuring gas prices.
+- 1 Gwei = 0.000000001 ETH (10⁻⁹ ETH).
+- Fees are quoted in Gwei for readability (e.g., 20 Gwei instead of 0.00000002 ETH).
+
+
+
+
+### Base Fee
+- Introduced by **EIP-1559**.
+- A mandatory fee per unit of gas, calculated and adjusted automatically by the protocol for every block.
+- Depends on network congestion: higher demand → higher base fee (and vice versa).
+- The **base fee is burned** (removed from circulation forever)—it does **not** go to validators.
+
+### Priority Fee (Tip)
+- An optional **tip** you add to incentivize validators to include your transaction quickly.
+- Also called **Max Priority Fee per Gas**.
+- In low congestion, a small tip (e.g., 1-2 Gwei) is enough; in high congestion, higher tips help prioritize your tx.
+
+### Max Fee per Gas
+- The absolute maximum you're willing to pay per unit of gas (Base Fee + Priority Fee).
+- You set this when submitting the transaction.
+- Protects you from sudden base fee spikes.
+
+## How Fees Are Calculated (EIP-1559)
+
+**Formula**:
+
+1. **Effective Gas Price** = Base Fee + Effective Priority Fee  
+   (Effective Priority Fee = the lesser of your Max Priority Fee or (Max Fee - Current Base Fee))
+
+2. **Total Fee Paid** = Effective Gas Price × Gas Used
+
+- The **Base Fee × Gas Used** is burned.
+- The **Priority Fee × Gas Used** goes to the validator as a tip.
+- Any difference between what you offered (Max Fee × Gas Limit) and what was actually used is refunded.
+
+**Example** (simplified):
+- Current Base Fee: 30 Gwei
+- You set Max Priority Fee: 2 Gwei
+- You set Max Fee: 50 Gwei
+- Gas Used: 21,000 (simple transfer)
+
+→ Effective Price = 30 + 2 = 32 Gwei  
+→ Total Fee = 32 Gwei × 21,000 = 0.000672 ETH  
+→ Base Fee portion (30 Gwei part) burned  
+→ Tip (2 Gwei part) to validator
+
+## Legacy vs. EIP-1559 Transactions
+- Older ("legacy") transactions use a single **Gas Price** field.
+- Modern wallets use EIP-1559 by default for better predictability and automatic refunds.
+
+## Viewing on Etherscan
+On Etherscan transaction pages, you'll see:
+- **Gas Used**
+- **Base Fee**
+- **Priority Fee**
+- **Burned amount**
+- Current network Base Fee and suggested tips on the homepage.
+
+This system makes fees more predictable while burning ETH (reducing supply) and rewarding validators fairly.

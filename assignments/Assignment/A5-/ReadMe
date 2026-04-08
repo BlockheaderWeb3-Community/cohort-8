@@ -1,0 +1,70 @@
+### Read, and write notes on: Exec hash, finalized root, epoch, block hash, slots, and fork choice
+
+
+### Exec Hash
+Exec Hash (Execution Hash or Execution Block Hash) is the Keccak-256 hash of the execution payload header contained within a post-Merge Ethereum beacon block.  
+It is the standard block hash from the execution layer's perspective—the same hash you see in `eth_getBlockByHash` or `eth_getBlockByNumber` RPC calls. This hash uniquely identifies the execution-layer block (transactions, state changes, etc.) embedded in the consensus-layer beacon block.
+
+Key points:
+* Links the consensus layer (beacon chain) to the execution layer.
+* Used by fork choice to ensure only chains with valid execution payloads are selected.
+* Appears in beacon APIs as `execution.block_hash` in the execution payload.
+* Critical for applications that reference execution-layer block hashes (e.g., transaction indexing, block explorers).
+
+### Finalized Root
+Finalized Root is the block root of the most recently finalized beacon block under Ethereum's Casper FFG finality rules.  
+It represents a point of economic finality: once finalized, the block and all prior blocks are considered irreversible assuming >2/3 of staked ETH acts honestly.
+
+Key properties:
+* Finalization occurs when a checkpoint (epoch boundary) receives supermajority (>2/3) attestation in two consecutive epochs.
+* Clients use the finalized root as a safe anchor for pruning old state and for "finalized" queries in APIs.
+* Provides strong irreversibility guarantees—far stronger than probabilistic finality in PoW.
+
+### Epoch
+Epoch is a fixed period in Ethereum's Proof-of-Stake consensus consisting of exactly 32 slots, lasting approximately 6.4 minutes (32 × 12 seconds).  
+Epochs serve as the primary unit for higher-level consensus processes.
+
+Key roles:
+* Grouping slots for attestation aggregation and committee assignments.
+* Checkpoint evaluation for justification and finalization (Casper FFG).
+* Validator rewards/penalties calculation and shuffling.
+* Timeline for protocol upgrades and scheduled events.
+
+In short: epochs bundle slots to enable efficient finality and validator management.
+
+### Block Hash
+Block Hash typically refers to the execution-layer block hash (see Exec Hash above) post-Merge, but in consensus-layer contexts, blocks are identified by their block root.  
+The execution block hash is the Keccak-256 hash of the full block header (including parent hash, state root, transactions root, receipts root, timestamp, etc.).
+
+Key points:
+* Chains blocks in the execution layer.
+* Used extensively in execution RPC methods and by applications.
+* The consensus-layer equivalent is the block root (hash of the beacon block excluding signature).
+* Any modification to the header produces a completely different hash, ensuring tamper detection.
+
+Note: Pre-Merge fields like nonce and difficulty are still present in execution payloads but are unused in PoS.
+
+### Slots
+Slot is the fundamental unit of time in Ethereum's Proof-of-Stake consensus, lasting exactly 12 seconds.  
+Each slot is an opportunity for one randomly selected validator to propose a new beacon block.
+
+Key characteristics:
+* 32 slots = 1 epoch.
+* If the assigned proposer is offline or fails, the slot is skipped (empty)—the chain continues.
+* Validators also attest during each slot, voting on the current head and checkpoints.
+* Drives the regular cadence of block production and network liveness.
+
+Slots ensure predictable timing while allowing the chain to progress even with missed blocks.
+
+### Fork Choice
+Fork Choice is the algorithm that determines which chain tip (head) nodes should build on and attest to when multiple competing chains exist.  
+Post-Merge, Ethereum uses Gasper—a hybrid of LMD GHOST and Casper FFG.
+
+Key components:
+* **LMD GHOST** (Latest Message-Driven Greedy Heaviest Observed SubTree): Selects the fork with the greatest cumulative weight from the most recent validator attestations.
+* **Casper FFG**: Adds economic finality by finalizing checkpoints with supermajority support, anchoring the chain.
+
+Process overview:
+1. Start from the latest finalized root.
+2. Follow the child with the highest attested weight.
+3. Require valid execution payloads (post-Merge).
