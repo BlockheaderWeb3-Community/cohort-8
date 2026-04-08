@@ -15,6 +15,6 @@ Collection of upgradeable smart contracts including Escrow, Todo, Timelock, Mile
 ---
 
 ### EIP-2535 Diamond Documentation
-[Read Documentation](YOUR_DOC_LINK_HERE)
+[Read Documentation](https://hackmd.io/@5V8YretiQ7GIXYsAK1IZ2g/rkcepgYiWx)
 
 Comprehensive documentation explaining the Diamond Standard (EIP-2535), its architecture, and implementation details.
