@@ -48,9 +48,11 @@ contract CounterTest is Test {
         console.log("balance before: ", balanceBefore);
 
         attacker.attack{value: 1 ether}();
-        uint256 balanceAfterAttack = address(attacker).balance;
-        console.log("balance after attack", balanceAfterAttack);
+        uint256 balanceAfterWithdraw = address(attacker).balance;
+        console.log("balance after withdraw", balanceAfterWithdraw);
         
 
+        // uint256 balanceAfterWithdraw = address(attacker).balance;
+        // console.log("balance after withdraw", balanceAfterWithdraw);
     }
 }
