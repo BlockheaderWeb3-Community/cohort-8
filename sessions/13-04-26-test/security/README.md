@@ -1,66 +1,24 @@
-## Foundry
+# Reentrancy Attack Demo
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project demonstrates a reentrancy attack on a simple bank contract and how to prevent it using a reentrancy guard.
 
-Foundry consists of:
+## Files
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- `src/secureBank.sol`: The secure bank contract with deposit/withdraw functions protected by a `noReentrancy` modifier.
+- `src/Attackk.sol`: The attack contract that attempts to exploit reentrancy.
+- `test/attackk.t.sol`: Test suite including tests for the attack and security measures.
 
-## Documentation
+## Running Tests
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```bash
+forge test
 ```
 
-### Test
+## Test Status
 
-```shell
-$ forge test
-```
+- Most tests pass, confirming the reentrancy guard works.
+- `testDrain` is currently failing - this test attempts to verify that an attacker can drain the contract's funds with just 1 ETH. Since the guard prevents this, the test needs adjustment to properly assert the prevention.
 
-### Format
+## Further Work
 
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Fix `testDrain` in `attackk.t.sol` to correctly demonstrate that the attack is blocked by the reentrancy guard.
