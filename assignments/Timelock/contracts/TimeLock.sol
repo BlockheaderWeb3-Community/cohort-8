@@ -30,7 +30,7 @@ contract TimeLock {
         
         return vaultId;
     }
-function withdraw(uint _vaultId) external {
+    function withdraw(uint _vaultId) external {
         require(_vaultId < vaults[msg.sender].length, "Invalid vault ID");
         
         Vault storage userVault = vaults[msg.sender][_vaultId];
