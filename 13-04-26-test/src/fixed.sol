@@ -5,6 +5,7 @@ contract FixedVault {
     mapping(address => uint256) public balances;
 
     // Reentrancy guard
+    bool private locked;
 
     modifier nonReentrant() {
         require(!locked, "Reentrant call");
