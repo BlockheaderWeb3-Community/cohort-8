@@ -50,14 +50,14 @@ contract AttackContractTest is Test {
     }
 
     function testDrain() public {
-        uint256 attackerBefore = attacker.balance;
-        vm.deal(attacker, 1 ether);   
+        vm.deal(attacker, 1 ether);
         vm.prank(attacker);
         try attack.attack{value: 1 ether}() {} catch {}
         
         uint256 attackerAfter = attacker.balance;
-       
-        assertEq(attackerAfter, attackerBefore);
+        assertEq(attackerAfter, 1 ether);
+
+        assertEq(address(bank).balance, 10 ether);
     }
 }
 
