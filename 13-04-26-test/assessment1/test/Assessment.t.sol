@@ -64,15 +64,15 @@ contract AssessmentTest is Test {
     vm.prank(attacker);
     attackerContract.exploit{value: 1 ether}();
 
-    Attacker may now drain more than they put in
+    // Attacker may now drain more than they put in
     assertGt(
       address(attackerContract).balance,
-      attackerBalanceBefore + 1 ether,
+      attackerInitialBalance + 1 ether,
       "Attacker should have drained extra ETH"
     );
     assertLt(
       address(vulnerableContract).balance,
-      contractBalanceBefore,
+      contractInitialBalance,
       "Vulnerable contract should have lost ETH"
     );
   }
@@ -95,7 +95,7 @@ contract AssessmentTest is Test {
     vm.prank(user);
     fixedContract.withdraw(1 ether);
 
-    assertEq(vulnerableContract.balances(user), 0);
+    assertEq(fixedContract.balances(user), 0);
   }
 
   function test_fixed_withdraw_revertsIfInsufficientBalance() public {

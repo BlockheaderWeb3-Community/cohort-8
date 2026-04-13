@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.33;
+pragma solidity ^0.8.28;
 
 // === Vulnerable Contract
 contract VulnerableContract {
@@ -28,7 +28,7 @@ contract AttackerContract {
   }
 
   // === This is called anytime the contract receives ether
-  fallback() external payable {
+  receive() external payable {
     if (address(vulnerableContract).balance >= 1 ether) {
       vulnerableContract.withdraw(1 ether);
     }
@@ -39,20 +39,17 @@ contract AttackerContract {
     vulnerableContract.deposit{value: 1 ether}();
     vulnerableContract.withdraw(1 ether);
   }
-
-  // receive() external payable;
 }
 
 contract ReentrancyGuard {
   bool internal _notInteracted = true;
 
   modifier nonReentrant() {
-    require(_notInteracted, "ReentrancyGuard: reentrant call");
+    require(_notInteracted, 'ReentrancyGuard: reentrant call');
     _notInteracted = false;
     _;
     _notInteracted = true;
   }
-
 }
 
 contract FixedContract is ReentrancyGuard {
