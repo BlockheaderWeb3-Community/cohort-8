@@ -1,0 +1,24 @@
+{
+  "name": "ethereum-hd-wallet",
+  "version": "1.0.0",
+  "description": "Ethereum HD wallet derivation using BIP39 and ethers.js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "wallet": "node ./bip32wallet.js"
+  },
+  "keywords": [
+    "ethereum",
+    "ethers",
+    "bip39",
+    "hd-wallet",
+    "web3",
+    "crypto"
+  ],
+  "author": "Farouq Alhassan",
+  "license": "MIT",
+  "dependencies": {
+    "bip39": "^3.1.0",
+    "ethers": "^6.13.4"
+  }
+}
