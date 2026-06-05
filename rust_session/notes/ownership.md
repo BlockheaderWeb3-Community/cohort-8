@@ -1,11 +1,12 @@
 # Rust Ownership, Borrowing & References
+
 ### A beginner's guide with annotated code
 
 ---
 
 ## Why these concepts exist
 
-Most languages either make *you* manage memory (C, C++) or use a garbage collector to do it (Python, Java, Go). Rust takes a third path: the **compiler** enforces memory safety at compile time through three rules. No runtime cost, no GC pauses, no dangling pointers.
+Most languages either make _you_ manage memory (C, C++) or use a garbage collector to do it (Python, Java, Go). Rust takes a third path: the **compiler** enforces memory safety at compile time through three rules. No runtime cost, no GC pauses, no dangling pointers.
 
 The three concepts build on each other:
 

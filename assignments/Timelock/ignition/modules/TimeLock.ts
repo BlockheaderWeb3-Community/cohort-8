@@ -1,6 +1,6 @@
-import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
-export default buildModule("TimeLockModule", (m) => {
-  const timelock = m.contract("TimeLock");
+export default buildModule('TimeLockModule', (m) => {
+  const timelock = m.contract('TimeLock');
   return { timelock };
 });

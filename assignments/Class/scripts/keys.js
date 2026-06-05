@@ -5,4 +5,3 @@ const pk = generatePrivateKey();
 const account = privateKeyToAccount(pk);
 console.log(pk);
 console.log(account.address);
-

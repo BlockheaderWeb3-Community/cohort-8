@@ -1,7 +1,7 @@
-import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
-export default buildModule("TodoModule", (m) => {
-  const todo = m.contract("TodoContract");
+export default buildModule('TodoModule', (m) => {
+  const todo = m.contract('TodoContract');
 
   return { todo };
-}); 
+});

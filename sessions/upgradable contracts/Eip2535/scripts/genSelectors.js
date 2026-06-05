@@ -1,5 +1,5 @@
-const ethers = require("ethers");
-const path = require("path/posix");
+const ethers = require('ethers');
+const path = require('path/posix');
 
 const args = process.argv.slice(2);
 
@@ -10,7 +10,7 @@ if (args.length != 1) {
   process.exit(1);
 }
 
-async function printSelectors(contractName, artifactFolderPath = "../out") {
+async function printSelectors(contractName, artifactFolderPath = '../out') {
   const contractFilePath = path.join(
     artifactFolderPath,
     `${contractName}.sol`,
@@ -23,14 +23,14 @@ async function printSelectors(contractName, artifactFolderPath = "../out") {
   const signatures = Object.keys(target.interface.functions);
 
   const selectors = signatures.reduce((acc, val) => {
-    if (val !== "init(bytes)") {
+    if (val !== 'init(bytes)') {
       acc.push(target.interface.getSighash(val));
     }
     return acc;
   }, []);
 
   const coder = ethers.utils.defaultAbiCoder;
-  const coded = coder.encode(["bytes4[]"], [selectors]);
+  const coded = coder.encode(['bytes4[]'], [selectors]);
 
   process.stdout.write(coded);
 }

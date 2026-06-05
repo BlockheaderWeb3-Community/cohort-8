@@ -1,6 +1,6 @@
 ## 4. The slice — a special reference
 
-A **slice** is a reference to a *part* of a collection. It borrows a window into the data without copying it.
+A **slice** is a reference to a _part_ of a collection. It borrows a window into the data without copying it.
 
 ```rust
 fn first_word(s: &str) -> &str {
@@ -90,9 +90,9 @@ SLICES
 
 ## Common beginner errors and fixes
 
-| Error message | What happened | Fix |
-|---|---|---|
-| `value used after move` | You moved a value then tried to use it | Use `&` to borrow, or `.clone()` to copy |
-| `cannot borrow as mutable` | You forgot `mut` on the variable | Change `let x` to `let mut x` |
-| `cannot borrow as mutable because also borrowed as immutable` | You have `&` and `&mut` at the same time | End the immutable borrow before creating the mutable one |
-| `does not live long enough` | A reference outlives the data it points to | Make sure the owned value lives at least as long as the reference |
+| Error message                                                 | What happened                              | Fix                                                               |
+| ------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------- |
+| `value used after move`                                       | You moved a value then tried to use it     | Use `&` to borrow, or `.clone()` to copy                          |
+| `cannot borrow as mutable`                                    | You forgot `mut` on the variable           | Change `let x` to `let mut x`                                     |
+| `cannot borrow as mutable because also borrowed as immutable` | You have `&` and `&mut` at the same time   | End the immutable borrow before creating the mutable one          |
+| `does not live long enough`                                   | A reference outlives the data it points to | Make sure the owned value lives at least as long as the reference |

@@ -1,6 +1,6 @@
 ## 3. References
 
-A reference is a pointer that is *guaranteed by the compiler* to be valid. No null pointers, no dangling pointers — ever.
+A reference is a pointer that is _guaranteed by the compiler_ to be valid. No null pointers, no dangling pointers — ever.
 
 ### Immutable reference (`&T`)
 
@@ -53,6 +53,6 @@ fn main() {
 }
 ```
 
-> **The rule in plain English:** You can have as many readers as you like *or* exactly one writer — never both at the same time.
+> **The rule in plain English:** You can have as many readers as you like _or_ exactly one writer — never both at the same time.
 
 ---
