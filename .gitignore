@@ -10,9 +10,19 @@ lib/
 # Rust build artifacts
 /target
 **/target
+
+# Hardhat / Foundry build artifacts
 artifacts/
 cache/
 typechain-types/
+out/
+build-info/
+
+# Solidity compiler binary
+soljson-latest.js
+
+# Hardhat Ignition build info (large generated files)
+ignition/deployments/**/build-info/
 
 # Logs
 *.log
