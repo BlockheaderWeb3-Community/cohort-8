@@ -23,4 +23,3 @@ cd cohort-8
 
 #### Code Formatting
 This repository uses Prettier for formatting. Install the Prettier extension in your editor and enable Format on Save.
-
