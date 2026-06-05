@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-3cf74ef5ebbec8d20312c408492e0f28103dfdf2",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Auction.sol": "project/contracts/Auction.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Auction.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract AuctionContract {\n    uint public auctionCounter;\n\n    enum AuctionStatus {\n        Pending,\n        OnGoing,\n        Completed,\n        Cancelled\n    }\n\n    struct Auction {\n        uint id;\n        uint startingPrice;\n        uint highestBid;\n        AuctionStatus status;\n        address owner;\n        address highestBidder;\n        uint startTime;\n        uint duration;\n    }\n\n    mapping(uint => Auction) public auctions;\n    mapping(uint => mapping(address => uint)) public bidRecords;\n\n    event AuctionInitialaized(uint id);\n    event BidMade(address bidder, uint value, uint id);\n    event AuctionEnded(uint id);\n\n    constructor() {}\n\n    function createAuction(uint _price, uint _duration) public returns (uint) {\n        require(_price > 0, \"Non zero price required\");\n        require(_duration > 600, \"Minimum 10 mins\");\n\n        auctionCounter++;\n\n        auctions[auctionCounter] = Auction({\n            id: auctionCounter,\n            startingPrice: _price,\n            highestBid: _price,\n            status: AuctionStatus.Pending,\n            owner: msg.sender,\n            highestBidder: address(0),\n            startTime: 0,\n            duration: _duration\n        });\n\n        emit AuctionInitialaized(auctionCounter);\n        return auctionCounter;\n    }\n\n    function startAuction(uint _auctionId) public {\n        Auction storage a = auctions[_auctionId];\n\n        require(msg.sender == a.owner, \"Not your Auction\");\n        require(a.status == AuctionStatus.Pending, \"Invalid status\");\n\n        a.status = AuctionStatus.OnGoing;\n        a.startTime = block.timestamp;\n    }\n\n    function bids(uint _auctionId) external payable {\n        Auction storage a = auctions[_auctionId];\n\n        require(a.status == AuctionStatus.OnGoing, \"Auction not ongoing\");\n        require(block.timestamp < a.startTime + a.duration, \"Auction ended\");\n        require(msg.sender != a.owner, \"Owner should not bid\");\n        require(msg.value > 0, \"Value should be greater than 0\");\n        require(msg.value > a.highestBid, \"Not highest bid\");\n\n        bidRecords[_auctionId][msg.sender] += msg.value;\n\n        a.highestBid = msg.value;\n        a.highestBidder = msg.sender;\n\n        emit BidMade(msg.sender, msg.value, _auctionId);\n    }\n\n    function refund(uint _auctionId) external {\n        uint amount = bidRecords[_auctionId][msg.sender];\n        require(amount > 0, \"No funds to withdraw\");\n\n        bidRecords[_auctionId][msg.sender] = 0;\n\n        (bool success, ) = msg.sender.call{value: amount}(\"\");\n        require(success, \"Transfer failed\");\n    }\n\n    function end(uint _auctionId) external {\n        Auction storage a = auctions[_auctionId];\n\n        require(msg.sender == a.owner, \"Not owner\");\n        require(a.status == AuctionStatus.OnGoing, \"Invalid status\");\n        require(block.timestamp >= a.startTime + a.duration, \"Auction not ended\");\n\n        a.status = AuctionStatus.Completed;\n\n        if (a.highestBid > 0) {\n            (bool success, ) = a.owner.call{value: a.highestBid}(\"\");\n            require(success, \"Transfer failed\");\n        }\n\n        a.highestBid = 0;\n\n        emit AuctionEnded(_auctionId);\n    }\n}"
+      }
+    }
+  }
+}
