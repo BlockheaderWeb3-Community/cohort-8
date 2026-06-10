@@ -9,10 +9,40 @@ pub struct Registry {
 
 impl Registry {
     pub fn add(&mut self, name: &str, age: u8, sex: Sex, grade: Grade, score: f32) {
+
+        if name.trim().is_empty() {
+        println!("Name cannot be empty");
+    }
+
+     if name.len() < 2 {
+        println!("Name must be at least 2 characters long");
+    }
+    
+    if name.len() > 50 {
+        println!("Name cannot exceed 50 characters");
+    }
+    
+    if age < 18 {
+        println!("Student must be at least 18 years old");
+    }
+    
+    if age > 100 {
+        println!("Age cannot exceed 100 years");
+    }
+    
+    
+    if score < 0.0 {
+        println!("Score cannot be negative");
+    }
+    
+    if score > 100.0 {
+        println!("Score cannot exceed 100");
+    }
+
+
         let student = Student::new(name.to_string(), age, sex, grade, score);
         println!("Added: {} (ID {})", student.name, student.id);
-        self.students.push(student);
-        
+        self.students.push(student);  
     }
 
     pub fn list_all(&self) {
