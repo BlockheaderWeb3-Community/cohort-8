@@ -3,7 +3,7 @@ use crate::student_struct::Student;
 
 pub struct Registry {
     pub students: Vec<Student>,
-    next_id: u32,
+    pub next_id: u32,
 }
 
 impl Registry {

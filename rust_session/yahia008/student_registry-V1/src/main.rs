@@ -8,36 +8,40 @@ use registry::Registry;
 use student_struct::Student;
 
 fn main() {
-    // let g = Grade::Second;
-    // println!("{}", g.as_str()); // "2nd Year"
-    // println!("{:?}", g);
+   let mut registry = Registry {
+        students: Vec::new(),
+        next_id: 0, 
+    };
 
-    // let ss = Student::new();
-    // println!("stund")
+    registry.add("yusrah", 20, Sex::Female, Grade::First, 85.5);
+    registry.add("Dave", 22, Sex::Male, Grade::Second, 92.0);
+    registry.add("basongs", 19, Sex::Male, Grade::Third, 78.5);
 
-    // let mut reg = Registry::new();
+    println!("\nAll students:");
+    registry.list_all();
 
-    // reg.add("Victor", 20, Grade::First, 78.5);
-    // reg.add("Kosi", 22, Grade::Second, 64.0);
-    // reg.add("Yusrah", 21, Grade::First, 91.0);
 
-    // reg.list_all();]
+    println!("\nUpdating student with ID 1...");
+    if let Some(student) = registry.update(0, "jiggs", 21, Sex::Male, Grade::Second, 88.0) {
+        println!("Updated: {} (ID {})", student.name, student.id);
+    } else {
+        println!("Student not found");
+    }
 
-    let sex = Sex::Male;
-    println!("sex: {:?}", sex.to_str());
+     println!("\nAfter update:");
+    registry.list_all();
 
-    // let s: Student = Student::new(1, String::from("Testimony"), 16, Sex::Female, Grade::Third, 40.5);
-    let s: Student = Student::new(
-        1,
-        "Testimony".to_string(),
-        16,
-        Sex::Female,
-        Grade::Third,
-        40.5,
-    );
-    println!("student here: {:#?}", s);
+    println!("\nFinding student with ID 2...");
+    if let Some(student) = registry.find_by_id(2) {
+        println!("Found: {} (ID {}, Age: {})", student.name, student.id, student.age);
+    }
+    
+    println!("\nDeleting student with ID 2...");
+    if let Some(deleted) = registry.delete(2) {
+        println!("Deleted: {} (ID {})", deleted.name, deleted.id);
+    }
 
-    println!("student id: {}", s.id);
-    println!("student name: {}", s.name);
-    println!("student age: {}", s.age);
+    println!("\nAfter deletion:");
+    registry.list_all();
+
 }
