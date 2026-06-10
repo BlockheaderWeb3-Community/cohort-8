@@ -21,6 +21,11 @@ fn main() {
     registry.list_all();
 
     let first_student_id = registry.students[0].id;
+    let second_student_id = registry.students[1].id;
+    let third_student_id = registry.students[2].id;
+
+    
+
     
     
     println!("\nUpdating student with ID {}...", first_student_id);
@@ -33,12 +38,20 @@ fn main() {
     println!("\nAfter update:");
     registry.list_all();
 
+    println!("\nMaking multiple updates to first_student:");
+    registry.update_name(first_student_id, "sami".to_string());
+    registry.update_age(first_student_id, 32);
+    registry.update_grade(first_student_id, Grade::Third);
+    
+    println!("\nAfter multiple updates:");
+    registry.list_all();
+
     println!("\nFinding student by ID...");
     if let Some(student) = registry.find_by_id(first_student_id) {
         println!("Found: {} (ID {}, Age: {})", student.name, student.id, student.age);
     }
 
-    let second_student_id = registry.students[1].id;
+    
     println!("\nDeleting student with ID {}...", second_student_id);
     if let Some(deleted) = registry.delete(second_student_id) {
         println!("Deleted: {} (ID {})", deleted.name, deleted.id);
