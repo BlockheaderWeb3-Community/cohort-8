@@ -39,12 +39,12 @@ impl Registry {
 
 
     
-    pub fn find_by_id(&mut self, id: u8) -> Option<&mut Student> {
-        self.students.iter().find(|student| student.id == id)
+    pub fn find_by_id(&mut self, id: u32) -> Option<&mut Student> {
+          self.students.iter_mut().find(|student| student.id == id)
     }
 
-    pub fn update(&mut self, id:u8, name: &str, age: u8, sex: Sex, grade: Grade, score: f32) -> Option<&mut Student> {
-        if let Some(student) = self.find_by_id_mut(id) {
+    pub fn update(&mut self, id:u32, name: &str, age: u8, sex: Sex, grade: Grade, score: f32) -> Option<&mut Student> {
+        if let Some(student) = self.find_by_id(id) {
         student.name = name.to_string();
         student.age = age;
         student.sex = sex;
@@ -56,7 +56,7 @@ impl Registry {
     }
     }
 
-     pub fn delete(&mut self, id: u8) -> Option<Student> {
+     pub fn delete(&mut self, id: u32) -> Option<Student> {
         let position = self.students.iter().position(|student| student.id == id);
         
         match position {
