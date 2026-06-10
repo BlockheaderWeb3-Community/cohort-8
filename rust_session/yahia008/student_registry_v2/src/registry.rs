@@ -59,9 +59,14 @@ impl Registry {
 
     pub fn update_age(&mut self, id: Uuid, new_age: u8) -> Option<()> {
         if let Some(student) = self.students.iter_mut().find(|s| s.id == id) {
+            if student.age == new_age {
+            println!("Name is already '{}', no update needed", student.age);
+            return Some(());  
+        } else {
+            println!("Updated age from '{}' to '{}'", student.age, new_age);
             student.age = new_age;
-            println!("Updated age for student ID {}", id);
-            Some(())
+            return Some(());
+        }
         } else {
             println!("Student with ID {} not found", id);
             None
@@ -70,9 +75,15 @@ impl Registry {
 
     pub fn update_name(&mut self, id: Uuid, new_name: String) -> Option<()> {
         if let Some(student) = self.students.iter_mut().find(|s| s.id == id) {
+            if student.name == new_name {
+            println!("Name is already '{}', no update needed", student.name);
+           return Some(());
+        } else {
+            println!("Updated name from '{}' to '{}'", student.name, new_name);
             student.name = new_name;
-            println!("Updated name for student ID {}", id);
-            Some(())
+            return Some(());
+        }
+           
         } else {
             println!("Student with ID {} not found", id);
             None
@@ -94,9 +105,14 @@ impl Registry {
     #[allow(dead_code)]
     pub fn update_grade(&mut self, id: Uuid, new_grade: Grade) -> Option<()> {
         if let Some(student) = self.students.iter_mut().find(|s| s.id == id) {
+            if student.grade == new_grade {
+            println!("Grade is already , no update needed");
+            return Some(());  
+        } else {
+            println!("Updated grade from  to '{:?}'", new_grade);
             student.grade = new_grade;
-            println!("Updated grade for student ID {}", id);
-            Some(())
+            return Some(());
+        }
         } else {
             println!("Student with ID {} not found", id);
             None
