@@ -1,9 +1,11 @@
+#[allow(dead_code)]
 pub fn test_ownership() {
     let name = String::from("Alice"); // `name` is the owner of this String
     // name.push('r');
     println!("name is: {}", name);
 }
 
+#[allow(dead_code)]
 pub fn call_name() {
     let name: &str = "Yusrah";
     // name.
@@ -11,7 +13,7 @@ pub fn call_name() {
     println!("name is: {}", name);
 }
 
-
+#[allow(dead_code)]
 pub fn test_move() {
     let a = String::from("Anagkazo");
     println!("{}", a.clone()); // ✅ compiles: another address has been created in memory
@@ -21,10 +23,12 @@ pub fn test_move() {
     println!("{}", b);    // ✅ `b` is the owner now
 }
 
+#[allow(dead_code)]
 pub fn greet(s: String) {          // `s` takes ownership
     println!("Hello, {}!", s);
 }                               // `s` is dropped here
 
+#[allow(dead_code)]
 pub fn call_greet() {
     let name = String::from("Bob");
     greet(name);               // ownership moves into `greet`

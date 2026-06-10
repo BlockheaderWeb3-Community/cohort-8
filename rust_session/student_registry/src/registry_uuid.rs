@@ -1,26 +1,23 @@
 use crate::grade::{Grade, Sex};
-use crate::student_struct::Student;
+use crate::student_struct::StudentV2;
+use uuid::Uuid;
 
-pub struct Registry {
-    pub students: Vec<Student>,
-    next_id: u32,
+pub struct RegistryUUID {
+    pub students: Vec<StudentV2>,
 }
 
-impl Registry {
-    pub fn new() -> Registry {
-        Registry {
+impl RegistryUUID {
+    pub fn new() -> RegistryUUID {
+        RegistryUUID {
             students: Vec::new(),
-            next_id: 1,
         }
     }
 
     // === Add student to registry
     pub fn add(&mut self, name: &str, age: u8, sex: Sex, grade: Grade, score: f32) -> Result<(), String> {
-        let id = self.next_id;
-        let student = Student::new(id, name.to_string(), age, sex, grade, score)?;
-        println!("Added: {} (ID {})", student.name, student.id);
+        let student = StudentV2::new(name.to_string(), age, sex, grade, score)?;
+        println!("Added: {} with the following ID - {}", student.name, student.id);
         self.students.push(student);
-        self.next_id += 1;
         Ok(())
     }
 
@@ -31,13 +28,13 @@ impl Registry {
             return;
         }
         println!(
-            "  {:>5}  {:<20}  {:<6}  {:<8}  {:<10}  {}",
+            "  {:<38}  {:<20}  {:<6}  {:<8}  {:<10}  {}",
             "ID", "Name", "Age", "Sex", "Grade", "Score"
         );
-        println!("  {}", "-".repeat(65));
+        println!("  {}", "-".repeat(95));
         for student in &self.students {
             println!(
-                "  {:>5}  {:<20}  {:>6}  {:<8}  {:<10}  {:.1}",
+                "  {:<38}  {:<20}  {:>6}  {:<8}  {:<10}  {:.1}",
                 student.id,
                 student.name,
                 student.age,
@@ -48,8 +45,8 @@ impl Registry {
         }
     }
 
-    // === Get student by id
-    pub fn get_student_by_id(&self, id: u32) {
+    // === Get student by UUID
+    pub fn get_student_by_id(&self, id: Uuid) {
         if let Some(student) = self.students.iter().find(|s| s.id == id) {
             println!("{:?}", student);
         } else {
@@ -57,8 +54,8 @@ impl Registry {
         }
     }
 
-    // === Update functions
-    pub fn update_age(&mut self, id: u32, new_age: u8) -> Result<(), String> {
+    // === Update fields
+    pub fn update_age(&mut self, id: Uuid, new_age: u8) -> Result<(), String> {
         if new_age == 0 || new_age > 100 {
             return Err(format!("Invalid age: {}", new_age));
         }
@@ -71,7 +68,7 @@ impl Registry {
         }
     }
 
-    pub fn update_name(&mut self, id: u32, new_name: String) -> Result<(), String> {
+    pub fn update_name(&mut self, id: Uuid, new_name: String) -> Result<(), String> {
         if new_name.trim().is_empty() {
             return Err("Name cannot be empty".to_string());
         }
@@ -84,7 +81,8 @@ impl Registry {
         }
     }
 
-    pub fn update_sex(&mut self, id: u32, new_sex: Sex) -> Result<(), String> {
+    #[allow(dead_code)]
+    pub fn update_sex(&mut self, id: Uuid, new_sex: Sex) -> Result<(), String> {
         if let Some(student) = self.students.iter_mut().find(|s| s.id == id) {
             student.sex = new_sex;
             println!("Updated sex for student ID {}", id);
@@ -94,7 +92,8 @@ impl Registry {
         }
     }
 
-    pub fn update_grade(&mut self, id: u32, new_grade: Grade) -> Result<(), String> {
+    #[allow(dead_code)]
+    pub fn update_grade(&mut self, id: Uuid, new_grade: Grade) -> Result<(), String> {
         if let Some(student) = self.students.iter_mut().find(|s| s.id == id) {
             student.grade = new_grade;
             println!("Updated grade for student ID {}", id);
@@ -104,8 +103,7 @@ impl Registry {
         }
     }
 
-    // === Delete by id function
-    pub fn delete_student(&mut self, id: u32) -> Result<(), String> {
+    pub fn delete_student(&mut self, id: Uuid) -> Result<(), String> {
         if let Some(index) = self.students.iter().position(|s| s.id == id) {
             self.students.remove(index);
             println!("Deleted student ID {}", id);
