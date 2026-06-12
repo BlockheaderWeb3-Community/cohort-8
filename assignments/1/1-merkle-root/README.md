@@ -3,6 +3,7 @@
 This project demonstrates how a **Merkle Tree** works by hashing a list of transactions and recursively combining them to produce a **Merkle root**.
 
 The implementation is written in Rust and shows:
+
 - How transactions are hashed
 - How Merkle tree levels are built
 - How the final Merkle root is computed
@@ -35,3 +36,4 @@ Pairwise hash concatenation
 Repeated hashing of levels
    ↓
 Merkle Root
+```

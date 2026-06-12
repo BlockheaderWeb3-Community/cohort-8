@@ -10,6 +10,7 @@ This is a **conceptual example**, not an exact implementation of Ethereum’s ga
 ## What This Program Does
 
 The program:
+
 - Defines a unit of computational work
 - Defines a price per unit of work
 - Multiplies the two values to compute a gas fee
@@ -24,10 +25,10 @@ Gas Fee = Computational Work × Price Per Unit
 
 
 
-### Gas 
+### Gas
 Gas is a unit of measurement. It measures how much computation a transaction uses
 
-### Gas Limit 
+### Gas Limit
 Gas limit is the maximum amount of gas you are willing to use for a transaction.
 
 ### Gas price
@@ -40,3 +41,4 @@ A base fee is calculated automatically by the network
 It changes depending on network congestion
 This base fee is burned (destroyed forever)
 **Burned ETH is removed from circulation → makes ETH deflationary**
+```

@@ -1,0 +1,19 @@
+[package]
+name = "axum_server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8.9"
+tokio = { version = "1", features = ["full"] }
+serde = {version = "1.0.228", features = ["derive"]} 
+tracing = "0.1"
+# env-filter lets us control log levels per crate, e.g.
+# "tower_http=debug,info" — debug for tower_http, info for everything else
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+
+# tower-http = ready-made middleware for axum (it's built on tower).
+# The "trace" feature gives us TraceLayer — production-grade
+# request/response logging with timings.
+tower-http = { version = "0.6", features = ["trace"] }

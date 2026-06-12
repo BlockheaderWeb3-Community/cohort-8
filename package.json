@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "node assignments/3-private-key/generate_address.js"
+  },
+  "dependencies": {
+    "bip32": "^5.0.0",
+    "bip39": "^3.1.0",
+    "bitcoinjs-lib": "^7.0.1",
+    "crypto": "^1.0.1",
+    "js-sha3": "^0.9.3",
+    "tiny-secp256k1": "^2.2.4"
+  }
+}

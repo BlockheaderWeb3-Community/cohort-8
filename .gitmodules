@@ -1,0 +1,3 @@
+[submodule "assignments/foundry-test-assignment/lib/openzeppelin-contracts"]
+	path = assignments/foundry-test-assignment/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts

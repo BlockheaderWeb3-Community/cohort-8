@@ -1,0 +1,12 @@
+{
+  "name": "hardhat-project",
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.6",
+    "ethers": "^5.6.9"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/aji70/Foundry-Hardhat-Diamonds-master-Scarfold.git",
+  "author": "Ajidokwu Sabo <realjaiboi70@gmail.com>",
+  "license": "MIT"
+}

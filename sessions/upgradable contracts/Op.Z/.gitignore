@@ -1,0 +1,23 @@
+node_modules/
+lib/
+
+# Hardhat / build artifacts
+artifacts/
+cache/
+coverage/
+coverage.json
+typechain/
+types/
+
+# Logs
+*.log
+
+# Env / secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+

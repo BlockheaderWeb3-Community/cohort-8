@@ -4,6 +4,37 @@
 package-lock.json
 node_modules
 
+# Dependencies
+lib/
+
 # Rust build artifacts
 /target
 **/target
+
+# Hardhat / Foundry build artifacts
+artifacts/
+cache/
+typechain-types/
+out/
+build-info/
+
+# Solidity compiler binary
+soljson-latest.js
+
+# Hardhat Ignition build info (large generated files)
+ignition/deployments/**/build-info/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+
+lib/

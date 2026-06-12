@@ -3,6 +3,7 @@
 This project demonstrates how to generate an **Ethereum wallet** in Rust using industry standards such as **BIP-39**, **BIP-32/BIP-44**, and **Keccak256**.
 
 The program:
+
 - Generates cryptographically secure entropy
 - Creates a 12-word mnemonic phrase
 - Derives an Ethereum private key using a BIP-44 path
@@ -40,3 +41,4 @@ Private Key
 Public Key
    ↓
 Ethereum Address
+```
