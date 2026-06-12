@@ -15,6 +15,7 @@ pub struct Student {
 
 // This is the implementation of the student struct with its corresponding methods
 impl Student {
+    
     pub fn new(id: u32, name: String, age: u8, sex: Sex, grade: Grade, score: f32) -> Student {
         Student {
             id,

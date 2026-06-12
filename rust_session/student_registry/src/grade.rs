@@ -15,7 +15,7 @@ impl Grade {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Sex {
     Male,
     Female,
