@@ -10,6 +10,10 @@ lib/
 # Rust build artifacts
 /target
 **/target
+**/Cargo.lock
+
+# Personal notes
+rust_session/student_registry_v2/notes/
 
 # Hardhat / Foundry build artifacts
 artifacts/
