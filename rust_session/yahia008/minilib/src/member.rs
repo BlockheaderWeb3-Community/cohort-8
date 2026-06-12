@@ -16,7 +16,7 @@ impl Member {
         if self.borrowed_books.is_empty() {
             println!("{} hasn't borrowed any books.", self.name);
         } else {
-            println!("\n📚 {}'s Borrowed Books:", self.name);
+            println!("\n {}'s Borrowed Books:", self.name);
             for book in &self.borrowed_books {
                 println!("  - {}", book);
             }

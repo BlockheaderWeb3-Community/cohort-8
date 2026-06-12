@@ -25,17 +25,17 @@ impl Library {
             available,
         };
         self.books.push(new_book);
-        println!("✅ Book added successfully!");
+        println!("Book added successfully!");
     }
 
 
     pub fn list_books(&self) {
         if self.books.is_empty() {
-            println!("📚 No books in the library yet!");
+            println!(" No books in the library yet!");
             return;
         }
         
-        println!("\n📚 Library Collection:");
+        println!("\nLibrary Collection:");
         println!("{:<30} {:<25} {:<10}", "Title", "Author", "Available");
         println!("{}", "-".repeat(65));
         
@@ -64,14 +64,14 @@ impl Library {
             if book.available {
                 book.available = false;
                 member.borrowed_books.push(book.title.clone());
-                println!("✅ '{}' has been checked out by {}", title, member.name);
+                println!("'{}' has been checked out by {}", title, member.name);
                 return true;
             } else {
-                println!("❌ '{}' is already checked out!", title);
+                println!(" '{}' is already checked out!", title);
                 return false;
             }
         }
-        println!("❌ Book '{}' not found!", title);
+        println!(" Book '{}' not found!", title);
         false
     }
 
@@ -81,14 +81,14 @@ impl Library {
             if !book.available {
                 book.available = true;
                 member.borrowed_books.retain(|b| b != title);
-                println!("✅ '{}' has been returned by {}", title, member.name);
+                println!(" '{}' has been returned by {}", title, member.name);
                 return true;
             } else {
-                println!("❌ '{}' wasn't checked out!", title);
+                println!(" '{}' wasn't checked out!", title);
                 return false;
             }
         }
-        println!("❌ Book '{}' not found!", title);
+        println!("Book '{}' not found!", title);
         false
     }
 
@@ -100,7 +100,7 @@ impl Library {
             println!("  Author:    {}", book.author);
             println!("  Status:    {}", if book.available { "Available" } else { "Checked Out" });
         } else {
-            println!("❌ Book '{}' not found!", title);
+            println!(" Book '{}' not found!", title);
         }
     }
 }

@@ -27,6 +27,25 @@ fn main() {
         println!("Found: {}", book.title);
     }
     
-    
+    println!("\n--- Checkout Process ---");
+    library.checkout_book("48 laws of power", &mut member);
+    library.checkout_book("meditation", &mut member);
+    library.checkout_book("romeo an julliet", &mut member);
+       
+     member.list_borrowed_books();
 
+    println!("\n--- Book Info ---");
+    library.display_book_info("48 laws of power");
+    library.display_book_info("romeo an julliet");
+
+    println!("\n--- Return Process ---");
+    library.return_book("48 laws of power", &mut member);
+
+    println!("\n--- Updated Library ---");
+    library.list_books();
+
+
+    println!("\n--- rasputins's Remaining Books ---");
+    member.list_borrowed_books();
+    
 }
