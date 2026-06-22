@@ -1,0 +1,8 @@
+## the vulnerability in the smart contract is a reentrancy attack. 
+## An attacker can exploit this contact by calling another function that calls the withdraw function again before the first call is completed.
+## This can result in the attacker draining the contract's balance.
+
+## To fix this vulnerability, we use the Checks-Effects-Interactions pattern.
+## This pattern involves separating the state changes (checks and effects) from the external interactions.you do this by updating the balance first before the user withdraws the or receives the money
+## By doing this, you can ensure that the state changes are completed before any external interactions are made.
+
