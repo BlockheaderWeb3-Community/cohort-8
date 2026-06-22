@@ -19,6 +19,7 @@ impl Grade {
 pub enum Sex {
     Male,
     Female,
+    Goddess,
 }
 
 impl Sex {
@@ -26,6 +27,7 @@ impl Sex {
         match self {
             Sex::Male => println!("male: 👨🏾"),
             Sex::Female => println!("female: 👧🏾"),
+            Sex::Goddess => println!("goddess: 👩🏾"),
         }
     }
 }
