@@ -16,8 +16,11 @@ Example (Conventional Commits–lite):
 
 ```
 feat: implement token transfer logic
+refac: modularize token transfer logic
 fix: handle zero-address edge case
 test: add coverage for revert conditions
+chore: update README
+
 ```
 
 4. Pull Request Checklist
